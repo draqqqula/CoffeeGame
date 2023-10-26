@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RvYppiDrNKaFsOgEwxPfxPmY/So5gAKhl3hsRS68uXsnCyCl6Z730CzpUGds5Alw+QKGhE6CnAsh42O1GaxvyA==",
+  "success": true,
+  "projectFilePath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+  ],
+  "logs": []
+}

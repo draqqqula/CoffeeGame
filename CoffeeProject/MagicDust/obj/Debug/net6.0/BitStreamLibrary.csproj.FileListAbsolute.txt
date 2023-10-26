@@ -1,0 +1,12 @@
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.csproj.AssemblyReference.cache
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.AssemblyInfoInputs.cache
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.AssemblyInfo.cs
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.csproj.CoreCompileInputs.cache
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\bin\Debug\net6.0\BitStreamLibrary.deps.json
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\bin\Debug\net6.0\BitStreamLibrary.dll
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\bin\Debug\net6.0\BitStreamLibrary.pdb
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.dll
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\refint\BitStreamLibrary.dll
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\BitStreamLibrary.pdb
+C:\Users\BogdanPC\Desktop\Game\VideoGame\BitStreamLibrary\obj\Debug\net6.0\ref\BitStreamLibrary.dll
