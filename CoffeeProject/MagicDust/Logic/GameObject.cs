@@ -49,6 +49,7 @@ namespace MagicDustLibrary.Logic
         public Type FamilyType { get; }
     }
 
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class MemberShipAttribute<F> : Attribute, IMemberShipContainer where F : IFamily
     {
         public Type FamilyType { get; }
