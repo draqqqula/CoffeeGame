@@ -109,11 +109,16 @@ namespace MagicDustLibrary.Logic
         {
             get
             {
-                return new DrawingParameters()
+                var info = new DrawingParameters()
                 {
                     Position = this.Position,
                     Mirroring = GetFlipping(),
                 };
+                foreach (var behavior in Behaviors.Values)
+                {
+                    info = behavior.ChangeAppearanceUnhandled(this, info);
+                }
+                return info;
             }
         }
 
@@ -140,7 +145,7 @@ namespace MagicDustLibrary.Logic
         {
             foreach (var behavior in Behaviors.Values)
             {
-                behavior.Act(this, deltaTime);
+                behavior.UpdateUnhandled(state, deltaTime, this);
             }
             OnUpdate(state, deltaTime);
         }

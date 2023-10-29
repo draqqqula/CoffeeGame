@@ -1,18 +1,14 @@
-﻿using MagicDustLibrary.Display;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.Display;
 
 namespace MagicDustLibrary.Logic
 {
     public abstract class Behavior<T> : IBehavior where T : GameObject
     {
         public bool Enabled { get; set; } = true;
-        public DrawingParameters ChangeAppearance(GameObject parent, DrawingParameters parameters)
+        public DrawingParameters ChangeAppearanceUnhandled(GameObject parent, DrawingParameters parameters)
         {
-            if (parent.GetType() is T)
+            if (parent is T)
             {
                 return ChangeAppearance((T)parent, parameters);
             }
@@ -22,14 +18,14 @@ namespace MagicDustLibrary.Logic
         {
             return parameters;
         }
-        public void Act(GameObject parent, TimeSpan deltaTime)
+        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, GameObject parent)
         {
-            if (parent.GetType() is T)
+            if (parent is T)
             {
-                Act((T)parent, deltaTime);
+                Update(state, deltaTime, (T)parent);
             }
         }
-        protected virtual void Act(T parent, TimeSpan deltaTime)
+        protected virtual void Update(IStateController state, TimeSpan deltaTime, T parent)
         {
         }
     }
@@ -38,8 +34,8 @@ namespace MagicDustLibrary.Logic
     {
         public bool Enabled { get; set; }
 
-        public DrawingParameters ChangeAppearance(GameObject parent, DrawingParameters parameters);
+        public DrawingParameters ChangeAppearanceUnhandled(GameObject parent, DrawingParameters parameters);
 
-        public void Act(GameObject parent, TimeSpan deltaTime);
+        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, GameObject parent);
     }
 }
