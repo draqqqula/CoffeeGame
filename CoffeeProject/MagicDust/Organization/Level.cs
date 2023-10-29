@@ -45,11 +45,11 @@ namespace MagicDustLibrary.Organization
             }
         }
 
-        public void Start(MagicGameApplication app)
+        public void Start(MagicGameApplication app, LevelArgs arguments, string name)
         {
-            var state = new GameState(app, GetDefaults());
+            var state = new GameState(app, GetDefaults(), name);
             GameState = state;
-            Initialize(state.Controller);
+            Initialize(state.Controller, arguments);
             state.BoundCustomActions(_levelClientManager);
         }
 
@@ -61,7 +61,7 @@ namespace MagicDustLibrary.Organization
 
 
         #region ABSTRACT
-        protected abstract void Initialize(IStateController state);
+        protected abstract void Initialize(IStateController state, LevelArgs arguments);
         protected abstract void OnConnect(IStateController state, GameClient client);
         protected abstract void OnDisconnect(IStateController state, GameClient client);
         protected abstract void OnClientUpdate(IStateController state, GameClient client);
@@ -88,6 +88,11 @@ namespace MagicDustLibrary.Organization
                 }
             }
         }
+
+        public bool HasState()
+        {
+            return GameState is not null;
+        }
         #endregion
 
 
@@ -106,9 +111,11 @@ namespace MagicDustLibrary.Organization
     {
         public void Update(TimeSpan deltaTime);
         public void Draw(GameClient mainClient, SpriteBatch spriteBatch);
-        public void Start(MagicGameApplication world);
+        public void Start(MagicGameApplication world, LevelArgs arguments, string name);
+        public void Shut();
         public void Pause();
         public void Resume();
         public void TogglePause();
+        public bool HasState();
     }
 }

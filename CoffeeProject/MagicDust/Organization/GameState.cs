@@ -37,6 +37,8 @@ namespace MagicDustLibrary.Organization
         private ViewStorage _viewStorage = new();
         private CameraStorage _cameraStorage;
 
+        private StateLevelManager _stateLevelManager;
+
         private void Hook(GameObject obj)
         {
             _stateUpdateManager.AddUpdateable(obj);
@@ -84,11 +86,13 @@ namespace MagicDustLibrary.Organization
         }
 
         public GameState(MagicGameApplication app, LevelSettings defaults)
+        public GameState(MagicGameApplication app, LevelSettings defaults, string levelName)
         {
             Services = app.Services;
             _levelSettings = defaults;
             _cameraStorage = new CameraStorage(defaults.CameraSettings);
             _gameObjectFactory = new GameObjectFactory(this);
+            _stateLevelManager = new StateLevelManager(app.LevelManager, levelName);
             Controller = new StateActions(this);
             ConfigureManagers();
             _stateClientManager.Connect(app.MainClient);
