@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Organization
 {
-    public class GameView
+    public class ViewBuffer
     {
         private readonly List<IDisplayable> _displayables = new List<IDisplayable>();
 
