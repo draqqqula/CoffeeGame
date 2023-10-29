@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic
 {
+    /// <summary>
+    /// Содержит операции, доступные для выполнения внутри методов <see cref="IStateUpdateable.Update(IStateController, TimeSpan)"/>.
+    /// </summary>
     public interface IStateController
     {
         public T CreateObject<T, L>(Vector2 position) where T : GameObject where L : Layer;
