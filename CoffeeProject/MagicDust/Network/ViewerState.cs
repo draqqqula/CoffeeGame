@@ -126,7 +126,7 @@ namespace MagicDustLibrary.Network
         //    ConnectionLoop.Start();
         //}
         //#endregion
-        public ViewerState(MagicGameApplication app, LevelSettings defaults) : base(app, defaults)
+        public ViewerState(MagicGameApplication app, LevelSettings defaults, string name) : base(app, defaults, name)
         {
         }
     }
