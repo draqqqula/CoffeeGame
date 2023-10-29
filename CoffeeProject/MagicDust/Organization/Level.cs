@@ -2,11 +2,15 @@
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 
 namespace MagicDustLibrary.Organization
 {
+    /// <summary>
+    /// Уровень игры.
+    /// </summary>
     public abstract class GameLevel : ILevel
     {
         #region PAUSE
@@ -61,11 +65,46 @@ namespace MagicDustLibrary.Organization
 
 
         #region ABSTRACT
+        /// <summary>
+        /// Вызывается при запуске уровня во время <see cref="MagicGameApplication.Launch(string)"/>.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="client"></param>
         protected abstract void Initialize(IStateController state, LevelArgs arguments);
+        /// <summary>
+        /// Вызывается при подключении нового игрока.<br/>
+        /// В <b>однопользовательской игре</b> вызывается сразу после <see cref="Initialize"/>
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="client"></param>
         protected abstract void OnConnect(IStateController state, GameClient client);
+        /// <summary>
+        /// Вызывается при отключении игрока.<br/>
+        /// В <b>однопользовательской игре</b> вызывается только при отключении игрока от уровня вручную.<br/>
+        /// Важно, когда игрок отключен но уровень не убран из активных в <see cref="MagicGameApplication"/>,<br/>
+        /// на уровне продолжает выполняться <see cref="Update"/>. Но при этом не задействуется его отрисовка.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="client"></param>
         protected abstract void OnDisconnect(IStateController state, GameClient client);
+        /// <summary>
+        /// Вызывается при <b>значительном изменении</b> состояния клиента<br/>
+        /// Например при изменении размера окна приложения игроком.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="client"></param>
         protected abstract void OnClientUpdate(IStateController state, GameClient client);
+        /// <summary>
+        /// Вызывается после <see cref="Game.Update(GameTime)"/>.<br/>
+        /// Код, выполняемый на уровне <b>каждый кадр</b>.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="deltaTime"></param>
         protected abstract void Update(IStateController state, TimeSpan deltaTime);
+        /// <summary>
+        /// Получение стандартных настроек для уровня.
+        /// </summary>
+        /// <returns></returns>
         protected abstract LevelSettings GetDefaults();
         #endregion
 

@@ -2,7 +2,7 @@
 namespace MagicDustLibrary.Logic
 {
     /// <summary>
-    /// одно из действий игрока
+    /// Одно из действий игрока.
     /// </summary>
     public enum Control
     {
@@ -15,7 +15,7 @@ namespace MagicDustLibrary.Logic
         lookDown
     }
     /// <summary>
-    /// содержит информацию о том, какая клавиша за какое действие отвечает
+    /// Содержит информацию о том, какая клавиша за какое действие отвечает.
     /// </summary>
     public class GameControls
     {
@@ -71,10 +71,9 @@ namespace MagicDustLibrary.Logic
         }
 
         /// <summary>
-        /// возвращает true в момент нажатия кнопки
         /// </summary>
         /// <param newPriority="control"></param>
-        /// <returns></returns>
+        /// <returns>true в момент нажатия кнопки</returns>
         public bool OnPress(Control control)
         {
             if (Controls.ContainsKey(control))
@@ -90,10 +89,9 @@ namespace MagicDustLibrary.Logic
         }
 
         /// <summary>
-        /// возвращает true в момент отпускания кнопки
         /// </summary>
         /// <param newPriority="control"></param>
-        /// <returns></returns>
+        /// <returns>true в момент отпускания кнопки</returns>
         public bool OnRelease(Control control)
         {
             if (Controls.ContainsKey(control))

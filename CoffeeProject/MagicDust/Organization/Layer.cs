@@ -6,6 +6,14 @@ using System.Runtime.Serialization;
 
 namespace MagicDustLibrary.Organization
 {
+    /// <summary>
+    /// Слой предназначенный для отрисовки.
+    /// <list>
+    /// <item>Используйте <see cref="LayerPriorityAttribute"/> для задания <b>глобального приоритета.</b></item>
+    /// <item>Слои в уровне будут отрисовываться в порядке возрастания <b>глобального приоритета</b>.</item>
+    /// <item>Слои <b>не надо добавлять в уровень вручную</b>, они будут добавляться сами при создании <see cref="GameObject"/>.</item>
+    /// </list>
+    /// </summary>
     public abstract class Layer : RelativeCollection<IDisplayProvider>
     {
         public readonly byte Priority;
@@ -25,7 +33,12 @@ namespace MagicDustLibrary.Organization
         }
     }
     /// <summary>
-    /// Inherit this class to define parlax layer quickly. ParalaxAttribute required. If not found sets xFactor and yFactor to 1.
+    /// Специальный подкласс <see cref="Layer"/> для быстрого создания слоёв.<br/>
+    /// <list>
+    /// <item>Используйте <see cref="ParalaxAttribute"/> для задания параметров паралакса.</item>
+    /// <item>По умолчанию паралакс по <b>x</b> и <b>y</b> равен 1.</item>
+    /// <item>Статья про паралакс <see href="https://en.wikipedia.org/wiki/Parallax_scrolling"/></item>
+    /// </list>
     /// </summary>
     public abstract class ParalaxLayer : Layer
     {

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace MagicDustLibrary.Display
 {
+    /// <summary>
+    /// Описывает параметры, применяемые при отрисовке объекта.
+    /// </summary>
     public partial record struct DrawingParameters : IPackable
     {
         public Vector2 Position;

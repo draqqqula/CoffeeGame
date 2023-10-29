@@ -9,6 +9,13 @@ using Microsoft.Xna.Framework;
 
 namespace MagicDustLibrary.Logic
 {
+    /// <summary>
+    /// Обозначает игрока.<br/>
+    /// <list>
+    /// <item>Для <b>одиночной игры</b> всегда один и тот же.</item>
+    /// <item>Для <b>многопользовательской игры</b> свой для каждого подключенного игрока.</item>
+    /// </list>
+    /// </summary>
     public class GameClient : IDisposable
     {
         public enum GameLanguage

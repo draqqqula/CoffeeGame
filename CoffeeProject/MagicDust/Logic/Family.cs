@@ -11,14 +11,39 @@ namespace MagicDustLibrary.Logic
 
         public void RemoveMember(IStateController state, IFamilyMember member);
     }
+    /// <summary>
+    /// Группа объектов с общей логикой обновления.
+    /// <list type="table">
+    /// <item><typeparamref name="T"/> имеет схожее предзназначение с аналогичным параметром в <see cref="Behavior{T}"/></item>
+    /// <item>В семью автоматически добавляются объекты с аттрибутом <see cref="MemberShipAttribute{F}"/>,<br/>
+    /// где тип этой семьи указан в качестве параметра</item>
+    /// </list>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class Family<T> : IEnumerable<T>, IFamily where T : IFamilyMember
     {
 
         protected List<T> Members { get; } = new List<T>();
 
+        /// <summary>
+        /// Вызывается во время <see cref="Game.Update"/>, описывает логику для обновления группы объектов.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="deltaTime"></param>
         protected abstract void CommonUpdate(IStateController state, TimeSpan deltaTime);
 
+        /// <summary>
+        /// Вызывается при создании <typeparamref name="T"/> с аттрибутом <see cref="MemberShipAttribute{F}"/>.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="member"></param>
         protected abstract void OnReplenishment(IStateController state, T member);
+
+        /// <summary>
+        /// Вызывается при удалении <typeparamref name="T"/>, который является членом семьи.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="member"></param>
         protected abstract void OnAbandonment(IStateController state, T member);
 
         public void AddMember(IStateController state, IFamilyMember member)

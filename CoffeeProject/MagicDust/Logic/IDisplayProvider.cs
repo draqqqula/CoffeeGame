@@ -10,6 +10,12 @@ namespace MagicDustLibrary.Logic
 {
     public interface IDisplayProvider
     {
+        /// <summary>
+        /// Возвращает несколько объектов для отрисовки.
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="layer"></param>
+        /// <returns></returns>
         public IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer);
         public bool IsVisibleFor(GameClient client);
         public Type GetLayerType();

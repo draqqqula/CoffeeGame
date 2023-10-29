@@ -8,6 +8,9 @@ using System.Reflection;
 
 namespace MagicDustLibrary.CommonObjectTypes
 {
+    /// <summary>
+    /// Специальный тип <see cref="GameObject"/>, поддерживающий анимации.
+    /// </summary>
     public abstract class Sprite : GameObject
     {
         public Animator Animator { get; init; }

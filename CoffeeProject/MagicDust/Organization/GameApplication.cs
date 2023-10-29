@@ -8,12 +8,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MagicDustLibrary.Organization
 {
+    /// <summary>
+    /// Игровое приложение. Управляет логикой запуска, обновления и отрисовки уровней. 
+    /// </summary>
     public class MagicGameApplication
     {
         public readonly GameClient MainClient;
         public readonly GameServiceContainer Services;
         public readonly ApplicationLevelManager LevelManager;
 
+        /// <summary>
+        /// Обновляет все активные уровни.
+        /// </summary>
+        /// <param name="deltaTime"></param>
+        /// <param name="window"></param>
         public void Update(TimeSpan deltaTime, GameWindow window)
         {
             var active = LevelManager.GetAllActive();
@@ -30,6 +38,11 @@ namespace MagicDustLibrary.Organization
             }
         }
 
+        /// <summary>
+        /// Отрисовывает все активные уровни.
+        /// </summary>
+        /// <param name="batch"></param>
+        public void Draw(SpriteBatch batch)
         {
             var active = LevelManager.GetAllActive();
             if (active.Length > 0 && MainClient is not null)

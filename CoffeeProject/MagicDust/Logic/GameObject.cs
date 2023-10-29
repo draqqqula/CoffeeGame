@@ -59,6 +59,18 @@ namespace MagicDustLibrary.Logic
     }
     #endregion
 
+    /// <summary>
+    /// Главный родительский класс для объектов.<br/><br/>
+    /// Реализует интерфейсы:
+    /// <list type="bullet">
+    /// <item><see cref="IDisposable"/> функционал для удаления.</item>
+    /// <item><see cref="IDisplayProvider"/> функционал для отрисовки</item>
+    /// <item><see cref="IBody"/> функционал для коллизии</item>
+    /// <item><see cref="IStateUpdateable"/> функционал для обновления на каждом кадре</item>
+    /// <item><see cref="IFamilyMember"/> возможность быть членом <see cref="IFamily"/></item>
+    /// <item><see cref="IMultiBehavior"/> возможность добавлять функционал через <see cref="IBehavior"/></item>
+    /// </list>
+    /// </summary>
     public abstract class GameObject : IDisposable, IDisplayProvider, IBody, IStateUpdateable, IFamilyMember, IMultiBehavior
     {
 
