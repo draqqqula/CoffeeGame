@@ -43,6 +43,7 @@ namespace MagicDustLibrary.Organization
         {
             _stateUpdateManager.AddUpdateable(obj);
             _stateLayerManager.GetLayer(obj.GetLayerType()).PlaceTop(obj);
+            _stateFamilyManager.Introduce(Controller, obj);
 
             obj.OnDisposed += Unhook;
 
@@ -52,11 +53,17 @@ namespace MagicDustLibrary.Organization
         {
             _stateUpdateManager.RemoveUpdateable(obj);
             _stateLayerManager.GetLayer(obj.GetLayerType()).Remove(obj);
+            _stateFamilyManager.Abandon(Controller, obj);
         }
 
         public void Update(TimeSpan deltaTime)
         {
             _stateUpdateManager.Update(Controller, deltaTime);
+
+            foreach (var family in _stateFamilyManager.GetAll())
+            {
+                family.Update(Controller, deltaTime);
+            }
 
             _statePictureManager.UpdatePicture(
                 _stateLayerManager.GetAll(),
@@ -85,7 +92,6 @@ namespace MagicDustLibrary.Organization
             _stateClientManager.ConfigureRelated(customActions);
         }
 
-        public GameState(MagicGameApplication app, LevelSettings defaults)
         public GameState(MagicGameApplication app, LevelSettings defaults, string levelName)
         {
             Services = app.Services;

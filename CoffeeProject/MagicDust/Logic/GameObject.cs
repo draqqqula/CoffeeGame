@@ -44,12 +44,17 @@ namespace MagicDustLibrary.Logic
         }
     }
 
-    public class MemberShipAttribute : Attribute
+    public interface IMemberShipContainer
     {
-        public string FamilyName { get; }
-        public MemberShipAttribute(string familyName)
+        public Type FamilyType { get; }
+    }
+
+    public class MemberShipAttribute<F> : Attribute, IMemberShipContainer where F : IFamily
+    {
+        public Type FamilyType { get; }
+        public MemberShipAttribute()
         {
-            FamilyName = familyName;
+            FamilyType = typeof(F);
         }
     }
     #endregion

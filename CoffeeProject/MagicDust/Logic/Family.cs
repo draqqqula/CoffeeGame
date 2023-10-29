@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Microsoft.Xna.Framework;
 using System.Collections.Immutable;
 using System.Reflection;
 
@@ -6,61 +7,54 @@ namespace MagicDustLibrary.Logic
 {
     public interface IFamily : IStateUpdateable
     {
-        public virtual void CommonUpdate(TimeSpan deltaTime)
-        {
-        }
+        public void AddMember(IStateController state, IFamilyMember member);
 
-        public virtual void Initialize(IFamilyMember member)
-        {
-        }
-
-        public virtual void OnReplenishment(IFamilyMember member)
-        {
-        }
-
-        public virtual void OnAbandonment(IFamilyMember member)
-        {
-        }
+        public void RemoveMember(IStateController state, IFamilyMember member);
     }
-    public abstract class Family<T> : IEnumerable<T> where T : IFamilyMember
+    public abstract class Family<T> : IEnumerable<T>, IFamily where T : IFamilyMember
     {
 
-        protected List<T> Members = new List<T>();
+        protected List<T> Members { get; } = new List<T>();
 
-        public virtual void CommonUpdate(TimeSpan deltaTime)
+        protected abstract void CommonUpdate(IStateController state, TimeSpan deltaTime);
+
+        protected abstract void OnReplenishment(IStateController state, T member);
+        protected abstract void OnAbandonment(IStateController state, T member);
+
+        public void AddMember(IStateController state, IFamilyMember member)
         {
+            if (member is IFamilyMember)
+            {
+                AddMember(state, (T)member);
+            }
         }
 
-        public virtual void Initialize(T member)
+        public void RemoveMember(IStateController state, IFamilyMember member)
         {
+            if (member is IFamilyMember)
+            {
+                RemoveMember(state, (T)member);
+            }
         }
 
-        public virtual void OnReplenishment(T member)
-        {
-        }
-
-        public virtual void OnAbandonment(T member)
-        {
-        }
-
-        public void AddMember(T member)
+        private void AddMember(IStateController state, T member)
         {
             Members.Add(member);
-            OnReplenishment(member);
+            OnReplenishment(state, member);
         }
 
-        public void RemoveMember(T member)
+        private void RemoveMember(IStateController state, T member)
         {
             Members.Remove(member);
-            OnAbandonment(member);
+            OnAbandonment(state, member);
         }
 
-        public IEnumerable<T> PickLazy(Func<T, IComparable> keySelector)
+        public IEnumerable<T> GetSortedLazy(Func<T, IComparable> keySelector)
         {
             return Members.OrderBy(keySelector);
         }
 
-        public IEnumerable<T> Pick(IComparer<T> comparer)
+        public IEnumerable<T> GetSorted(IComparer<T> comparer)
         {
             var newCollection = Members.ToList();
             newCollection.Sort(comparer);
@@ -75,6 +69,11 @@ namespace MagicDustLibrary.Logic
         IEnumerator IEnumerable.GetEnumerator()
         {
             return Members.GetEnumerator();
+        }
+
+        public void Update(IStateController state, TimeSpan deltaTime)
+        {
+            CommonUpdate(state, deltaTime);
         }
     }
 

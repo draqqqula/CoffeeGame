@@ -11,21 +11,71 @@ namespace MagicDustLibrary.Organization
 {
     public class StateFamilyManager
     {
-        private ImmutableDictionary<Type, IFamily> Families { get; init; } =
-        Assembly.GetEntryAssembly()
-            .GetTypes()
-            .Where(type => type.IsSubclassOf(typeof(Family<>)))
-            .ToDictionary(it => it, it => it.GetConstructor(new Type[] { }).Invoke(new object[] { }) as IFamily)
-            .ToImmutableDictionary();
+        private Dictionary<Type, IFamily> _families { get; } = new Dictionary<Type, IFamily>();
+
+        public IEnumerable<IFamily> GetAll()
+        {
+            return _families.Values;
+        }
 
         public T GetFamily<T>() where T : class, IFamily
         {
-            return Families[typeof(T)] as T;
+            return (T)GetFamily(typeof(T));
         }
 
         public IFamily GetFamily(Type type)
         {
-            return Families[type] as IFamily;
+            if (_families.ContainsKey(type))
+            {
+                return _families[type];
+            }
+            var newFamily = Activator.CreateInstance(type) as IFamily;
+            _families.Add(type, newFamily);
+            return newFamily;
+        }
+
+        private IEnumerable<IFamily> GetFamilies(IFamilyMember obj)
+        {
+            var type = obj.GetType();
+            var attributes = type.GetCustomAttributes(true);
+
+            if (!attributes.Any())
+            {
+                return Array.Empty<IFamily>();
+            }
+            var memberShips = attributes.Where(it => it is IMemberShipContainer);
+
+            if (!memberShips.Any())
+            {
+                return Array.Empty<IFamily>();
+            }
+
+            var families = memberShips.Select(it => GetFamily((it as IMemberShipContainer).FamilyType));
+
+            if (!families.Any())
+            {
+                return Array.Empty<IFamily>();
+            }
+
+            return families;
+        }
+
+        public void Introduce(IStateController state, IFamilyMember obj)
+        {
+            var families = GetFamilies(obj);
+            foreach (var family in families)
+            {
+                family.AddMember(state, obj);
+            }
+        }
+
+        public void Abandon(IStateController state, IFamilyMember obj)
+        {
+            var families = GetFamilies(obj);
+            foreach (var family in families)
+            {
+                family.RemoveMember(state, obj);
+            }
         }
     }
 }
