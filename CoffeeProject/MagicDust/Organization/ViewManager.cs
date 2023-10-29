@@ -9,25 +9,25 @@ namespace MagicDustLibrary.Organization
 {
     public class ViewStorage : ClientRelatedActions
     {
-        private readonly Dictionary<GameClient, GameView> _viewPoints = new();
+        private readonly Dictionary<GameClient, ViewBuffer> _viewPoints = new();
 
-        public GameView GetFor(GameClient client)
+        public ViewBuffer GetFor(GameClient client)
         {
             return _viewPoints[client];
         }
 
         protected override void AddClient(GameClient client)
         {
-            _viewPoints.Add(client, new GameView());
+            _viewPoints.Add(client, new ViewBuffer());
         }
 
         protected override void RemoveClient(GameClient client)
         {
+            _viewPoints.Remove(client);
         }
 
         protected override void UpdateClient(GameClient client)
         {
-            _viewPoints.Remove(client);
         }
     }
 }

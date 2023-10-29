@@ -1,11 +1,5 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Organization
 {
@@ -26,12 +20,12 @@ namespace MagicDustLibrary.Organization
 
         protected override void RemoveClient(GameClient client)
         {
-            _cameras[client].OnClientUpdated(client);
+            _cameras.Remove(client);
         }
 
         protected override void UpdateClient(GameClient client)
         {
-            _cameras.Remove(client);
+            _cameras[client].OnClientUpdated(client);
         }
 
         public CameraStorage(CameraSettings settings)
