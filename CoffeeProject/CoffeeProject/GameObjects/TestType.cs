@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.CommonObjectTypes;
+﻿using CoffeeProject.Family;
+using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
@@ -35,8 +36,29 @@ namespace CoffeeProject.GameObjects
         {
             if (Client.Controls[Control.left])
             {
-                SetPosition(GetPosition() + new Vector2(1, 0));
+                SetPosition(GetPosition() + new Vector2(-1, 0));
             }
         }
     }
+
+    public static class ControlsExtensions
+    {
+        public static Vector2 ToVector(this Control control)
+        {
+            switch (control)
+            {
+                case Control.left:
+                    return new Vector2(-1, 0);
+                case Control.right:
+                    return new Vector2(1, 0);
+                case Control.lookUp:
+                    return new Vector2(0, -1);
+                case Control.lookDown:
+                    return new Vector2(0, 1);
+                default:
+                    return Vector2.Zero;
+            }    
+        }
+    }
+
 }

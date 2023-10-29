@@ -44,8 +44,10 @@ namespace CoffeeProject
 
             var client = new GameClient(Window.ClientBounds, CreateKeyBoardControls(), GameClient.GameLanguage.Russian);
             _app = new MagicGameApplication(client, this);
-            _app.LoadAs<TestLevel>("test");
-            _app.Launch("test");
+            _app.LevelManager.LoadAs<TestLevel>("test");
+            _app.LevelManager.LoadAs<TestLevel2>("test2");
+            _app.LevelManager.Launch("test2", false);
+            _app.LevelManager.Launch("test", false);
 
             base.Initialize();
         }
@@ -81,7 +83,7 @@ namespace CoffeeProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _app.Display(_spriteBatch);
+            _app.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
