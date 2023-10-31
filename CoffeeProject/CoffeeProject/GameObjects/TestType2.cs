@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace CoffeeProject.GameObjects
 {
     [Box(50, 50, 25, 25)]
-    [SpriteSheet("Painting")]
+    [SpriteSheet("painting")]
     [MemberShip<Global>]
     public class TestType2 : Sprite
     {
