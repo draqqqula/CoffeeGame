@@ -59,6 +59,7 @@ namespace MagicDustLibrary.Organization
 
         public void Shut()
         {
+            GameState.Dispose();
             GameState = null;
         }
         #endregion

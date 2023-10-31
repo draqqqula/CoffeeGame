@@ -27,5 +27,7 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\MagicDustL
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\MagicDustLibrary.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\hero.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\hero_properties.txt
-C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\Painting.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Painting_properties.txt
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\ANOTHER HIM.ogg
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\ANOTHER HIM.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\painting.xnb

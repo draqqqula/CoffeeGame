@@ -127,7 +127,7 @@ namespace MagicDustLibrary.Organization
         public void Shut(string name, bool keepState)
         {
             ActiveLevels.Remove(Loaded[name]);
-            if (keepState)
+            if (!keepState)
             {
                 Loaded[name].Shut();
             }

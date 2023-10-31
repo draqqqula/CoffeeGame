@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.Logic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +117,19 @@ namespace MagicDustLibrary.Organization
             public void ShutCurrent(bool keepState)
             {
                 _state._stateLevelManager.ShutCurrent(keepState);
+            }
+            #endregion
+
+
+            #region SOUND PLAYER
+            public SoundEffectInstance? CreateSoundInstance(string fileName, string tag)
+            {
+                return _state._stateSoundManager.CreateInstance(fileName, tag);
+            }
+
+            public SoundEffectInstance? GetSoundInstance(string tag)
+            {
+                return _state._stateSoundManager.GetInstance(tag);
             }
             #endregion
 

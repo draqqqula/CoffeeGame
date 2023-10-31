@@ -11,7 +11,7 @@ using MagicDustLibrary.Factorys;
 
 namespace MagicDustLibrary.Organization
 {
-    public partial class GameState
+    public partial class GameState : IDisposable
     {
         public GameServiceContainer Services { get; }
         public IStateController Controller { get; }
@@ -38,6 +38,7 @@ namespace MagicDustLibrary.Organization
         private CameraStorage _cameraStorage;
 
         private StateLevelManager _stateLevelManager;
+        private StateSoundManager _stateSoundManager;
 
         private void Hook(GameObject obj)
         {
@@ -92,6 +93,11 @@ namespace MagicDustLibrary.Organization
             _stateClientManager.ConfigureRelated(customActions);
         }
 
+        public void Dispose()
+        {
+            _stateSoundManager.Dispose();
+        }
+
         public GameState(MagicGameApplication app, LevelSettings defaults, string levelName)
         {
             Services = app.Services;
@@ -102,6 +108,7 @@ namespace MagicDustLibrary.Organization
             Controller = new StateActions(this);
             ConfigureManagers();
             _stateClientManager.Connect(app.MainClient);
+            _stateSoundManager = new StateSoundManager(ContentStorage);
         }
     }
 }

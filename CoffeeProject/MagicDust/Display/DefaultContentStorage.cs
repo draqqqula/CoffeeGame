@@ -20,6 +20,7 @@ namespace MagicDustLibrary.Display
         private readonly Dictionary<object, string> ReverseData = new Dictionary<object, string>();
         private readonly string[] IDExchanger;
         private readonly Dictionary<string, int> ReverseIDExchanger;
+        private readonly Dictionary<string, List<string>> FileExtensions;
 
         public T GetAsset<T>(string name) where T : class
         {
@@ -71,11 +72,31 @@ namespace MagicDustLibrary.Display
         {
             ContentProvider = content;
             Device = device;
-            IDExchanger = Directory.CreateDirectory(content.RootDirectory)
-                .GetFiles()
+            var files = Directory.CreateDirectory(content.RootDirectory).GetFiles();
+            IDExchanger = files
                 .Select(it => Path.GetFileNameWithoutExtension(it.Name))
-                .OrderBy(it => it).ToArray();
+                .OrderBy(it => it).Distinct().ToArray();
             ReverseIDExchanger = Enumerable.Range(0, IDExchanger.Length).ToDictionary(it => IDExchanger[it]);
+            FileExtensions = CreateFileExtensions(files);
+        }
+
+        private Dictionary<string, List<string>> CreateFileExtensions(FileInfo[] files)
+        {
+            var result = new Dictionary<string, List<string>>();
+            foreach (var file in files)
+            {
+                var withExtension = Path.GetFileName(file.Name);
+                var noExtension = Path.GetFileNameWithoutExtension(file.Name);
+                if (result.ContainsKey(noExtension))
+                {
+                    result[noExtension].Add(withExtension);
+                }
+                else
+                {
+                    result.Add(noExtension, new List<string> { withExtension });
+                }
+            }
+            return result;
         }
 
         private object GenerateMissingTexture(GraphicsDevice device, Color goodColor, Color badColor, int size)
