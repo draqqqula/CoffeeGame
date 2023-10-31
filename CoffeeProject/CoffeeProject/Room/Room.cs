@@ -8,16 +8,27 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.Room
 {
-    public class Room
+    public class RoomInfo
     {
         public Rectangle Bounds { get; private set; }
-        public bool Completed { get; private set; }
-        public Encounter[] Encounters { get; private set; }
+        public EncounterInfo[] Encounters { get; private set; }
 
-        public Room(Rectangle bounds, Encounter[] encounters)
+        public RoomInfo(Rectangle bounds, EncounterInfo[] encounters)
         {
             Bounds = bounds;
             Encounters = encounters;
+        }
+    }
+
+    public class EncounterInfo
+    {
+        public string Name { get; private set; }
+        public Point Position { get; private set; }
+
+        public EncounterInfo(string name, Point position)
+        {
+            Name = name;
+            Position = position;
         }
     }
 }
