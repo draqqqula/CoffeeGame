@@ -4,7 +4,7 @@ namespace MagicDustLibrary.Network
 {
     public interface IPackable
     {
-        public IEnumerable<byte> Pack(DefaultContentStorage contentStorage);
+        public IEnumerable<byte> Pack(IContentStorage contentStorage);
 
     }
 
