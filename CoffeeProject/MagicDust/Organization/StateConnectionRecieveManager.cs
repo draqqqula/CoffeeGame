@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using MagicDustLibrary.Network;
 
 namespace MagicDustLibrary.Organization
 {
@@ -15,38 +16,38 @@ namespace MagicDustLibrary.Organization
     {
         private IGameClientProvider _clientProvider;
         private UdpClient _requestReciever;
-        private Task<UdpReceiveResult> recieveTask;
+        private MessageHandler _handler;
+        private readonly object _lock;
 
         public Action<GameClient> OnConnected = delegate { };
 
         public void StartServer(int port)
         {
             _requestReciever = new UdpClient(port);
-            recieveTask = _requestReciever.ReceiveAsync();
-            recieveTask.ContinueWith(CheckResult);
+            _handler = new MessageHandler(_requestReciever);
+            _handler.Start(HandleConnection);
         }
         public void StopServer()
         {
             _requestReciever.Close();
         }
 
-        private void CheckResult(Task<UdpReceiveResult> task)
+        private void HandleConnection(IPEndPoint host, byte[] data)
         {
-            if (recieveTask.IsCompletedSuccessfully)
+            lock (_lock)
             {
-                var client = _clientProvider.CreateClient(task.Result.RemoteEndPoint, task.Result.Buffer);
+                var client = _clientProvider.CreateClient(host, data);
                 OnConnected(client);
             }
-            recieveTask = _requestReciever.ReceiveAsync();
-            recieveTask.ContinueWith(CheckResult);
         }
 
-        public StateConnectionRecieveManager(IGameClientProvider provider)
+        public StateConnectionRecieveManager(object lockObject, IGameClientProvider provider)
         {
             _clientProvider = provider;
+            _lock = lockObject;
         }
 
-        public StateConnectionRecieveManager() : this(new DefaultClientProvider()) { }
+        public StateConnectionRecieveManager(object lockObject) : this(lockObject, new DefaultClientProvider()) { }
     }
 
     public interface IGameClientProvider

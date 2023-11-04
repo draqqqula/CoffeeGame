@@ -24,7 +24,7 @@ namespace MagicDustLibrary.Organization
                 return (DefaultContentStorage)ApplicationServices.GetService<IContentStorage>();
             }
         }
-        private LevelSettings _levelSettings;
+        private readonly LevelSettings _levelSettings;
 
 
         private void Hook(GameObject obj)
@@ -127,7 +127,7 @@ namespace MagicDustLibrary.Organization
         private void AddClientServices(GameServiceContainer container, LevelSettings settings)
         {
             container.AddService(new StateClientManager());
-            container.AddService(new StateConnectionRecieveManager());
+            container.AddService(new StateConnectionRecieveManager(_levelSettings.UpdateLock));
             container.AddService(new StateConnectionHandleManager(this));
             container.AddService(new ViewStorage());
             container.AddService(new CameraStorage(settings.CameraSettings));

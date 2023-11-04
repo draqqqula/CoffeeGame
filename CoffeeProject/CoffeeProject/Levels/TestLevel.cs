@@ -34,8 +34,6 @@ namespace CoffeeProject.Levels
         protected override void OnConnect(IStateController state, GameClient client)
         {
             var obj = state.CreateObject<TestType, MainLayer>(new Vector2(500, 500));
-            var behavior = new Fade(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1), TimeSpan.Zero, true, true);
-            obj.AddBehavior("fade", behavior);
             obj.Client = client;
         }
 

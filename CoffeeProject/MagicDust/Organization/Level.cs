@@ -32,12 +32,17 @@ namespace MagicDustLibrary.Organization
 
 
         #region CONTROL
+        private readonly object _lock;
+
         public void Update(TimeSpan deltaTime)
         {
-            if (GameState is not null)
+            lock (_lock)
             {
-                GameState.Update(deltaTime);
-                Update(GameState.Controller, deltaTime);
+                if (GameState is not null)
+                {
+                    GameState.Update(deltaTime);
+                    Update(GameState.Controller, deltaTime);
+                }
             }
         }
 
@@ -51,7 +56,7 @@ namespace MagicDustLibrary.Organization
 
         public void Start(MagicGameApplication app, LevelArgs arguments, string name)
         {
-            var state = new GameState(app, GetDefaults(), name);
+            var state = new GameState(app, _defaults, name);
             GameState = state;
             Initialize(state.Controller, arguments);
             state.BoundCustomActions(_levelClientManager);
@@ -133,6 +138,8 @@ namespace MagicDustLibrary.Organization
         {
             return GameState is not null;
         }
+
+        private readonly LevelSettings _defaults;
         #endregion
 
 
@@ -143,6 +150,9 @@ namespace MagicDustLibrary.Organization
             _levelClientManager.OnConnect += OnConnect;
             _levelClientManager.OnDisconnect += OnDisconnect;
             _levelClientManager.OnUpdate += OnClientUpdate;
+
+            _defaults = GetDefaults();
+            _lock = _defaults.UpdateLock;
         }
         #endregion
     }

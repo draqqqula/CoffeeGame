@@ -19,11 +19,11 @@ namespace MagicDustLibrary.Network
         private int _port;
         private IPEndPoint _openAdress;
         private UdpClient _messageReciever;
-        private Task<UdpReceiveResult> recieveTask;
         private volatile byte[] _actualData;
         private IUnpacker _messageUnpacker;
         private IUnpacker _stateUnpacker;
         private GameClient _mainClient;
+        private MessageHandler _handler;
 
         private void SendClientInfo(GameClient client)
         {
@@ -37,18 +37,13 @@ namespace MagicDustLibrary.Network
 
         public void StartRecieveMessages()
         {
-            recieveTask = _messageReciever.ReceiveAsync();
-            recieveTask.ContinueWith(CheckResult);
+            _handler = new MessageHandler(_messageReciever);
+            _handler.Start(CheckResult);
         }
 
-        private void CheckResult(Task<UdpReceiveResult> task)
+        private void CheckResult(IPEndPoint host, byte[] data)
         {
-            if (recieveTask.IsCompletedSuccessfully)
-            {
-                _actualData = recieveTask.Result.Buffer;
-            }
-            recieveTask = _messageReciever.ReceiveAsync();
-            recieveTask.ContinueWith(CheckResult);
+            _actualData = data;
         }
 
         private void RecieveStateInfo()
@@ -95,6 +90,7 @@ namespace MagicDustLibrary.Network
 
         protected override void OnDisconnect(IStateController state, GameClient client)
         {
+            _handler.Dispose();
             _messageReciever.Close();
             _messageReciever.Dispose();
         }

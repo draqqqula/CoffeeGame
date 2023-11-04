@@ -1,10 +1,12 @@
 ﻿using CoffeeProject.Levels;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Network;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Data;
 
 namespace CoffeeProject
 {
@@ -46,7 +48,7 @@ namespace CoffeeProject
             _app = new MagicGameApplication(client, this);
             _app.LevelManager.LoadAs<TestLevel>("test");
             _app.LevelManager.LoadAs<TestLevel2>("test2");
-            _app.LevelManager.Launch("test2", false);
+            _app.LevelManager.LoadAs<ViewerLevel>("connection");
             _app.LevelManager.Launch("test", false);
 
             base.Initialize();

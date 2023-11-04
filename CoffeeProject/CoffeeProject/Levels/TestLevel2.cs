@@ -19,7 +19,7 @@ namespace CoffeeProject.Levels
         {
             return new LevelSettings
             {
-                CameraSettings = new CameraSettings()
+                CameraSettings = new CameraSettings(),
             };
         }
 

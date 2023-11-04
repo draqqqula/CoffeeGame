@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using MagicDustLibrary.Network;
 
 namespace MagicDustLibrary.Logic
 {
@@ -28,8 +29,9 @@ namespace MagicDustLibrary.Logic
         public readonly GameControls Controls;
         public Rectangle Window { get; set; }
         public readonly bool IsRemote;
-        private readonly UdpClient Sender;
-        private readonly IPEndPoint RemoteHost;
+        private readonly UdpClient _udpClient;
+        private readonly IPEndPoint _remoteHost;
+        private readonly MessageHandler _handler;
 
         #region CONSTRUCTORS
         private GameClient(Rectangle window, GameControls controls, GameLanguage language, bool isRemote, IPEndPoint remoteHost)
@@ -40,10 +42,11 @@ namespace MagicDustLibrary.Logic
             IsRemote = isRemote;
             if (IsRemote)
             {
-                Sender = new UdpClient(0);
-                RemoteHost = remoteHost;
-                recieveTask = StartWaitForData();
+                _udpClient = new UdpClient(0);
+                _remoteHost = remoteHost;
                 CreateRemoteControls();
+                _handler = new MessageHandler(_udpClient);
+                _handler.Start(HandleData);
             }
         }
 
@@ -67,40 +70,17 @@ namespace MagicDustLibrary.Logic
         public void SendData(byte[] data)
         {
             if (IsRemote)
-                Sender.SendAsync(data, RemoteHost);
+                _udpClient.SendAsync(data, _remoteHost);
             else
                 throw new Exception("Non-Remote client unable to send data to remote host");
         }
 
-        public Task<UdpReceiveResult> StartWaitForData()
-        {
-            if (IsRemote)
-            {
-                var host = RemoteHost;
-                return Sender.ReceiveAsync();
-            }
-            else
-                throw new Exception("Non-Remote client unable to recieve data from remote host");
-        }
-        private Task<UdpReceiveResult> recieveTask;
-
-        public void CheckForData()
-        {
-            if (recieveTask.IsCompletedSuccessfully)
-            {
-                HandleData(recieveTask.Result.Buffer);
-            }
-            if (recieveTask.IsCompletedSuccessfully || recieveTask.IsCompleted || recieveTask.IsFaulted || recieveTask.IsCanceled)
-            {
-                recieveTask = StartWaitForData();
-            }
-        }
 
         private bool[] ControlsMap = new bool[8];
 
-        private void HandleData(byte[] bytes)
+        private void HandleData(IPEndPoint host, byte[] data)
         {
-            bool[] controlsMap = GetControlMap(bytes[0], Enum.GetValues<Control>().Count());
+            bool[] controlsMap = GetControlMap(data[0], Enum.GetValues<Control>().Count());
             for (byte i = 0; i < controlsMap.Length; i++)
             {
                 ControlsMap[i] = controlsMap[i];
@@ -131,9 +111,9 @@ namespace MagicDustLibrary.Logic
 
         public void Dispose()
         {
-            if (Sender is not null)
+            if (_udpClient is not null)
             {
-                Sender.Dispose();
+                _udpClient.Dispose();
                 OnDispose(this);
             }
         }
