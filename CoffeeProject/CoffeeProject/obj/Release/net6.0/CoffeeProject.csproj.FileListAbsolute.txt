@@ -1,0 +1,33 @@
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\Content\ANOTHER HIM.ogg
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\Content\ANOTHER HIM.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\Content\hero.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\Content\painting.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\hero_properties.txt
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\Painting_properties.txt
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\CoffeeProject.exe
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\CoffeeProject.deps.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\CoffeeProject.runtimeconfig.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\CoffeeProject.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\MonoGame.Framework.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\linux-x64\native\libopenal.so.1
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\osx\native\libSDL2.dylib
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\osx\native\libopenal.1.dylib
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\win-x64\native\SDL2.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\win-x64\native\soft_oal.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\win-x86\native\SDL2.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\runtimes\win-x86\native\soft_oal.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\MagicDustLibrary.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.csproj.AssemblyReference.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.AssemblyInfoInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.AssemblyInfo.cs
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.csproj.CoreCompileInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.csproj.CopyComplete
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\refint\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\CoffeeProject.genruntimeconfig.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\ref\CoffeeProject.dll

@@ -8,43 +8,30 @@ using Microsoft.Xna.Framework;
 using MagicDustLibrary.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MagicDustLibrary.Factorys;
+using System.ComponentModel.Design;
 
 namespace MagicDustLibrary.Organization
 {
     public partial class GameState : IDisposable
     {
-        public GameServiceContainer Services { get; }
+        public GameServiceContainer ApplicationServices { get; }
+        public GameServiceContainer StateServices { get; }
         public IStateController Controller { get; }
         public DefaultContentStorage ContentStorage
         {
             get
             {
-                return (DefaultContentStorage)Services.GetService<IContentStorage>();
+                return (DefaultContentStorage)ApplicationServices.GetService<IContentStorage>();
             }
         }
-
-        //object related
-        private StateUpdateManager _stateUpdateManager = new();
-        private StatePictureManager _statePictureManager = new();
-        private StateLayerManager _stateLayerManager = new();
-        private StateFamilyManager _stateFamilyManager = new();
-        private IGameObjectFactory _gameObjectFactory;
-
-        //client related
         private LevelSettings _levelSettings;
-        private StateClientManager _stateClientManager = new();
-        private StateConnectionRecieveManager _stateConnectionManager = new();
-        private ViewStorage _viewStorage = new();
-        private CameraStorage _cameraStorage;
 
-        private StateLevelManager _stateLevelManager;
-        private StateSoundManager _stateSoundManager;
 
         private void Hook(GameObject obj)
         {
-            _stateUpdateManager.AddUpdateable(obj);
-            _stateLayerManager.GetLayer(obj.GetLayerType()).PlaceTop(obj);
-            _stateFamilyManager.Introduce(Controller, obj);
+            StateServices.GetService<StateUpdateManager>().AddUpdateable(obj);
+            StateServices.GetService<StateLayerManager>().GetLayer(obj.GetLayerType()).PlaceTop(obj);
+            StateServices.GetService<StateFamilyManager>().Introduce(Controller, obj);
 
             obj.OnDisposed += Unhook;
 
@@ -52,63 +39,98 @@ namespace MagicDustLibrary.Organization
 
         private void Unhook(GameObject obj)
         {
-            _stateUpdateManager.RemoveUpdateable(obj);
-            _stateLayerManager.GetLayer(obj.GetLayerType()).Remove(obj);
-            _stateFamilyManager.Abandon(Controller, obj);
+            StateServices.GetService<StateUpdateManager>().RemoveUpdateable(obj);
+            StateServices.GetService<StateLayerManager>().GetLayer(obj.GetLayerType()).Remove(obj);
+            StateServices.GetService<StateFamilyManager>().Abandon(Controller, obj);
         }
 
         public void Update(TimeSpan deltaTime)
         {
-            _stateUpdateManager.Update(Controller, deltaTime);
+            StateServices.GetService<StateUpdateManager>().Update(Controller, deltaTime);
 
-            foreach (var family in _stateFamilyManager.GetAll())
+            foreach (var family in StateServices.GetService<StateFamilyManager>().GetAll())
             {
                 family.Update(Controller, deltaTime);
             }
 
-            _statePictureManager.UpdatePicture(
-                _stateLayerManager.GetAll(),
-                _stateClientManager.GetAll(),
-                _cameraStorage,
-                _viewStorage);
+            StateServices.GetService<StatePictureManager>().UpdatePicture(
+                StateServices.GetService<StateLayerManager>().GetAll(),
+                StateServices.GetService<StateClientManager>().GetAll(),
+                StateServices.GetService<CameraStorage>(),
+                StateServices.GetService<ViewStorage>());
+
+            StateServices.GetService<StateConnectionHandleManager>().SendPictures();
         }
 
         public void Draw(GameClient mainClient, SpriteBatch batch)
         {
-            foreach (var displayable in _viewStorage.GetFor(mainClient).GetAndClear())
+            foreach (var displayable in StateServices.GetService<ViewStorage>().GetFor(mainClient).GetAndClear())
             {
-                displayable.Draw(batch, _cameraStorage.GetFor(mainClient), Services.GetService<IContentStorage>());
+                displayable.Draw(batch,
+                    StateServices.GetService<CameraStorage>().GetFor(mainClient),
+                    ApplicationServices.GetService<IContentStorage>());
             }
         }
 
-        private void ConfigureManagers()
+        private void ConfigureClientManagers()
         {
-            _stateConnectionManager.OnConnected += _stateClientManager.Connect;
-            _stateClientManager.ConfigureRelated(_viewStorage);
-            _stateClientManager.ConfigureRelated(_cameraStorage);
+            StateServices.GetService<StateConnectionRecieveManager>().OnConnected
+                += StateServices.GetService<StateClientManager>().Connect;
+            StateServices.GetService<StateClientManager>().ConfigureRelated(StateServices.GetService<ViewStorage>());
+            StateServices.GetService<StateClientManager>().ConfigureRelated(StateServices.GetService<CameraStorage>());
+            StateServices.GetService<StateClientManager>().ConfigureRelated(StateServices.GetService<StateConnectionHandleManager>());
         }
 
         public void BoundCustomActions(ClientRelatedActions customActions)
         {
-            _stateClientManager.ConfigureRelated(customActions);
+            StateServices.GetService<StateClientManager>().ConfigureRelated(customActions);
         }
 
         public void Dispose()
         {
-            _stateSoundManager.Dispose();
+            StateServices.GetService<StateSoundManager>().Dispose();
         }
 
         public GameState(MagicGameApplication app, LevelSettings defaults, string levelName)
         {
-            Services = app.Services;
-            _levelSettings = defaults;
-            _cameraStorage = new CameraStorage(defaults.CameraSettings);
-            _gameObjectFactory = new GameObjectFactory(this);
-            _stateLevelManager = new StateLevelManager(app.LevelManager, levelName);
+            ApplicationServices = app.Services;
             Controller = new StateActions(this);
-            ConfigureManagers();
-            _stateClientManager.Connect(app.MainClient);
-            _stateSoundManager = new StateSoundManager(ContentStorage);
+            StateServices = new GameServiceContainer();
+
+            _levelSettings = defaults;
+
+            AddCommonServices(StateServices, defaults, app, levelName);
+            AddObjectServices(StateServices, defaults);
+            AddClientServices(StateServices, defaults);
+
+            ConfigureClientManagers();
+
+            StateServices.GetService<StateClientManager>().Connect(app.MainClient);
+        }
+
+        private void AddCommonServices(GameServiceContainer container,
+            LevelSettings settings, MagicGameApplication app, string levelName)
+        {
+            container.AddService(new StateLevelManager(app.LevelManager, levelName));
+            container.AddService(new StateSoundManager(ApplicationServices.GetService<IContentStorage>()));
+        }
+
+        private void AddObjectServices(GameServiceContainer container, LevelSettings settings)
+        {
+            container.AddService(new StateUpdateManager());
+            container.AddService(new StatePictureManager());
+            container.AddService(new StateLayerManager());
+            container.AddService(new StateFamilyManager());
+            container.AddService<IGameObjectFactory>(new GameObjectFactory(this));
+        }
+
+        private void AddClientServices(GameServiceContainer container, LevelSettings settings)
+        {
+            container.AddService(new StateClientManager());
+            container.AddService(new StateConnectionRecieveManager());
+            container.AddService(new StateConnectionHandleManager(this));
+            container.AddService(new ViewStorage());
+            container.AddService(new CameraStorage(settings.CameraSettings));
         }
     }
 }

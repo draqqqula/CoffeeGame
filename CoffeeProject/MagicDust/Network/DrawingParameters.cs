@@ -17,7 +17,7 @@ namespace MagicDustLibrary.Display
     public partial record struct DrawingParameters : IPackable
     {
 
-        public IEnumerable<byte> Pack(DefaultContentStorage contentStorage)
+        public IEnumerable<byte> Pack(IContentStorage contentStorage)
         {
             Span<byte> buffer = stackalloc byte[29];
             MemoryMarshal.Write(buffer, ref Position);
@@ -49,7 +49,7 @@ namespace MagicDustLibrary.Display
     [ByteKey(2)]
     public partial struct FrameForm : IDisplayable, IPackable
     {
-        public IEnumerable<byte> Pack(DefaultContentStorage contentStorage)
+        public IEnumerable<byte> Pack(IContentStorage contentStorage)
         {
             Span<byte> buffer = stackalloc byte[57];
             BinaryPrimitives.WriteInt32LittleEndian(buffer, Borders.X);
@@ -63,7 +63,7 @@ namespace MagicDustLibrary.Display
             return buffer.ToArray();
         }
 
-        public static FrameForm Unpack(ReadOnlySpan<byte> bytes, DefaultContentStorage contentStorage)
+        public static FrameForm Unpack(ReadOnlySpan<byte> bytes, IContentStorage contentStorage)
         {
             if (bytes.Length != 57)
                 throw new ArgumentException("Invalid byte array length for FrameForm");
@@ -91,7 +91,7 @@ namespace MagicDustLibrary.CommonObjectTypes
     [ByteKey(1)]
     public partial struct TileMapChunk : IPackable, IDisplayable
     {
-        public IEnumerable<byte> Pack(DefaultContentStorage contentStorage)
+        public IEnumerable<byte> Pack(IContentStorage contentStorage)
         {
             List<byte> buffer = new();
             var LinkID = Source.LinkedID;
@@ -140,7 +140,7 @@ namespace MagicDustLibrary.CommonObjectTypes
     [ByteKey(0)]
     public partial class TileMap : IPackable
     {
-        public IEnumerable<byte> Pack(DefaultContentStorage contentStorage)
+        public IEnumerable<byte> Pack(IContentStorage contentStorage)
         {
             List<byte> buffer = new List<byte>();
 
@@ -242,99 +242,6 @@ namespace MagicDustLibrary.CommonObjectTypes
             var obj = new TileMap(position, map, sheet, state, tileFrame, layer, pictureScale, tiles);
             obj.Link(linkID);
             return obj;
-        }
-    }
-}
-
-namespace MagicDustLibrary.Organization
-{
-    public partial class GameState
-    {
-        public IEnumerable<byte> GetInitialPack(DefaultContentStorage contentStorage)
-        {
-            List<byte> buffer = new();
-            var tileMaps = _stateLayerManager.GetAll().SelectMany(it => it).Where(it => it is TileMap).Select(it => it as TileMap);
-            int c = 0;
-            foreach (var map in tileMaps)
-            {
-                map.Link(BitConverter.GetBytes(c).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).ToArray());
-                IEnumerable<byte> mapBytes = map.Pack(contentStorage);
-                buffer.AddRange(BitConverter.GetBytes(mapBytes.Count()));
-                buffer.AddRange(mapBytes);
-                c++;
-            }
-            return buffer;
-        }
-
-        public IEnumerable<TileMap> UnpackTileMaps(byte[] bytes, Layer layer)
-        {
-            int pointer = 0;
-            while (pointer < bytes.Length)
-            {
-                int length = BinaryPrimitives.ReadInt32LittleEndian(bytes[pointer..]);
-                var obj = TileMap.Unpack(bytes[(pointer + 4)..(pointer + 4 + length)], this, layer);
-                pointer += length + 4;
-                yield return obj;
-            }
-        }
-
-        public IEnumerable<byte> GetPack(GameClient client)
-        {
-            List<byte> buffer = new();
-            var camera = _cameraStorage.GetFor(client);
-            foreach (var layer in _stateLayerManager.GetAll())
-            {
-                var view = _viewStorage.GetFor(client);
-
-                foreach (var drawable in view.GetAndClear())
-                {
-                    if (drawable is IPackable packable)
-                    {
-                        var pack = packable.Pack(ContentStorage);
-                        buffer.Add(packable.GetType().GetCustomAttribute<ByteKeyAttribute>().value);
-                        buffer.AddRange(BitConverter.GetBytes(pack.Count()));
-                        buffer.AddRange(pack);
-                    }
-                }
-            }
-
-            return buffer.ToArray();
-        }
-
-
-        private static ImmutableArray<Type> PackableTypes = Assembly.GetAssembly(typeof(GameState))
-            .GetTypes()
-            .Where(type => type.GetInterfaces().Contains(typeof(IPackable))).OrderBy(it => it.GetCustomAttribute<ByteKeyAttribute>().value).ToImmutableArray();
-
-        public static IEnumerable<IDisplayable> Unpack(byte[] bytes, DefaultContentStorage contentStorage, Dictionary<byte[], GameObject> networkCollection)
-        {
-            int pointer = 0;
-            while (pointer < bytes.Length)
-            {
-                Type type = PackableTypes[bytes[pointer]];
-                int length = BinaryPrimitives.ReadInt32LittleEndian(bytes[(pointer + 1)..]);
-                IDisplayable obj = null;
-
-                if (type == typeof(FrameForm))
-                {
-                    obj = FrameForm.Unpack(bytes.AsSpan<byte>()[(pointer + 5)..(pointer + 5 + length)], contentStorage);
-                }
-                else if (type == typeof(TileMapChunk))
-                {
-
-                    obj = TileMapChunk.Unpack(bytes.AsSpan<byte>()[(pointer + 5)..(pointer + 5 + length)], networkCollection);
-
-                }
-
-                pointer += length + 5;
-
-                if (obj is null)
-                {
-                    throw new ArgumentException("Cannot decide type of encoded object");
-                }
-                yield return obj;
-            }
-            yield break;
         }
     }
 }

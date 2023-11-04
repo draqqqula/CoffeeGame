@@ -11,7 +11,7 @@ namespace MagicDustLibrary.Organization
     /// </summary>
     public class LevelArgs
     {
-        string[] Data;
+        public string[] Data;
         public static LevelArgs Empty
         {
             get

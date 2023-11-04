@@ -27,7 +27,7 @@ namespace MagicDustLibrary.Factorys
             }
             var placement = new Placement<L>();
             var defaultArgs = new object[] { placement, position };
-            var serviceArgs = ctor.GetParameters().Skip(2).Select(it => _state.Services.GetService(it.ParameterType));
+            var serviceArgs = ctor.GetParameters().Skip(2).Select(it => _state.ApplicationServices.GetService(it.ParameterType));
             var finalArgs = defaultArgs.Concat(serviceArgs).ToArray();
             var obj = (T)ctor.Invoke(finalArgs);
             return obj;
@@ -42,7 +42,7 @@ namespace MagicDustLibrary.Factorys
                     args[1].Name == "position" && args[1].ParameterType == typeof(Vector2))
                 {
                     var serviceArgs = args.Skip(2);
-                    if (!serviceArgs.Any() || serviceArgs.All(it => _state.Services.GetService(it.ParameterType) is not null))
+                    if (!serviceArgs.Any() || serviceArgs.All(it => _state.ApplicationServices.GetService(it.ParameterType) is not null))
                     {
                         return ctor;
                     }

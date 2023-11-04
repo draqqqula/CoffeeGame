@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.Factorys;
+using MagicDustLibrary.Logic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System;
@@ -18,14 +19,14 @@ namespace MagicDustLibrary.Organization
             #region COMMON
             public T CreateObject<T, L>(Vector2 position) where T : GameObject where L : Layer
             {
-                var obj =  _state._gameObjectFactory.CreateObject<T, L>(position);
+                var obj =  _state.StateServices.GetService<IGameObjectFactory>().CreateObject<T, L>(position);
                 _state.Hook(obj);
                 return obj;
             }
 
             public void GetFamily<F>() where F : class, IFamily
             {
-                _state._stateFamilyManager.GetFamily<F>();
+                _state.StateServices.GetService<StateFamilyManager>().GetFamily<F>();
             }
             #endregion
 
@@ -33,29 +34,29 @@ namespace MagicDustLibrary.Organization
             #region LAYER PLACEMENT
             public void PlaceAbove(GameObject target, GameObject source)
             {
-                _state._stateLayerManager.GetLayer(target.Placement.GetLayerType()).Remove(target);
-                _state._stateLayerManager.GetLayer(source.Placement.GetLayerType()).PlaceAbove(target, source);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(target.Placement.GetLayerType()).Remove(target);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(source.Placement.GetLayerType()).PlaceAbove(target, source);
             }
 
             public void PlaceBelow(GameObject target, GameObject source)
             {
-                _state._stateLayerManager.GetLayer(target.Placement.GetLayerType()).Remove(target);
-                _state._stateLayerManager.GetLayer(source.Placement.GetLayerType()).PlaceBelow(target, source);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(target.Placement.GetLayerType()).Remove(target);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(source.Placement.GetLayerType()).PlaceBelow(target, source);
             }
 
             public void PlaceBottom(GameObject target)
             {
-                _state._stateLayerManager.GetLayer(target.Placement.GetLayerType()).PlaceBottom(target);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(target.Placement.GetLayerType()).PlaceBottom(target);
             }
 
             public void PlaceTop(GameObject target)
             {
-                _state._stateLayerManager.GetLayer(target.Placement.GetLayerType()).PlaceTop(target);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(target.Placement.GetLayerType()).PlaceTop(target);
             }
             public void PlaceTo<L>(GameObject target) where L : Layer
             {
-                _state._stateLayerManager.GetLayer(target.Placement.GetLayerType()).Remove(target);
-                _state._stateLayerManager.GetLayer<L>().PlaceTop(target);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer(target.Placement.GetLayerType()).Remove(target);
+                _state.StateServices.GetService<StateLayerManager>().GetLayer<L>().PlaceTop(target);
             }
             #endregion
 
@@ -63,7 +64,7 @@ namespace MagicDustLibrary.Organization
             #region NETWORK
             public void OpenServer(int port)
             {
-                _state._stateConnectionManager.StartServer(port);
+                _state.StateServices.GetService<StateConnectionRecieveManager>().StartServer(port);
             }
             #endregion
 
@@ -71,52 +72,52 @@ namespace MagicDustLibrary.Organization
             #region LEVEL MANAGEMENT
             public void LaunchLevel(string name, bool keepState)
             {
-                _state._stateLevelManager.ApplicationLevelManager.Launch(name, keepState);
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Launch(name, keepState);
             }
 
             public void LaunchLevel(string name, LevelArgs arguments, bool keepState)
             {
-                _state._stateLevelManager.ApplicationLevelManager.Launch(name, arguments, keepState);
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Launch(name, arguments, keepState);
             }
 
             public void PauseLevel(string name)
             {
-                _state._stateLevelManager.ApplicationLevelManager.Pause(name);
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Pause(name);
             }
 
             public void PauseCurrent()
             {
-                _state._stateLevelManager.PauseCurrent();
+                _state.StateServices.GetService<StateLevelManager>().PauseCurrent();
             }
 
             public void RestartCurrent()
             {
-                _state._stateLevelManager.RestartCurrent();
+                _state.StateServices.GetService<StateLevelManager>().RestartCurrent();
             }
 
             public void RestartCurrent(LevelArgs arguments)
             {
-                _state._stateLevelManager.RestartCurrent(arguments);
+                _state.StateServices.GetService<StateLevelManager>().RestartCurrent(arguments);
             }
 
             public void RestartLevel(string name)
             {
-                _state._stateLevelManager.ApplicationLevelManager.Restart(name);
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Restart(name);
             }
 
             public void RestartLevel(string name, LevelArgs arguments)
             {
-                _state._stateLevelManager.ApplicationLevelManager.Restart(name, arguments);
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Restart(name, arguments);
             }
 
             public void ShutLevel(string name, bool keepState)
             {
-                _state._stateLevelManager.ApplicationLevelManager.Shut(name, keepState);
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Shut(name, keepState);
             }
 
             public void ShutCurrent(bool keepState)
             {
-                _state._stateLevelManager.ShutCurrent(keepState);
+                _state.StateServices.GetService<StateLevelManager>().ShutCurrent(keepState);
             }
             #endregion
 
@@ -124,12 +125,12 @@ namespace MagicDustLibrary.Organization
             #region SOUND PLAYER
             public SoundEffectInstance? CreateSoundInstance(string fileName, string tag)
             {
-                return _state._stateSoundManager.CreateInstance(fileName, tag);
+                return _state.StateServices.GetService<StateSoundManager>().CreateInstance(fileName, tag);
             }
 
             public SoundEffectInstance? GetSoundInstance(string tag)
             {
-                return _state._stateSoundManager.GetInstance(tag);
+                return _state.StateServices.GetService<StateSoundManager>().GetInstance(tag);
             }
             #endregion
 
