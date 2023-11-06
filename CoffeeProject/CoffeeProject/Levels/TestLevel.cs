@@ -43,6 +43,7 @@ namespace CoffeeProject.Levels
 
         protected override void Update(IStateController state, TimeSpan deltaTime)
         {
+            int a = 1;
         }
     }
 }
