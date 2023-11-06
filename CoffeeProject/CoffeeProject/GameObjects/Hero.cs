@@ -60,6 +60,12 @@ namespace CoffeeProject.GameObjects
             {
                 physics.AddVector("up", new MovementVector(new Vector2(0, speed), -5, TimeSpan.Zero, true));
             }
+
+            if (Client.Controls.OnPress(Control.pause))
+            {
+                state.PauseCurrent();
+                state.LaunchLevel("pause", new LevelArgs(state.GetCurrentLevelName()), false);
+            }
         }
 
         private void ApplyModifiers()

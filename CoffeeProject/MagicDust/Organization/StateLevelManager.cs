@@ -9,37 +9,37 @@ namespace MagicDustLibrary.Organization
     public class StateLevelManager
     {
         public readonly ApplicationLevelManager ApplicationLevelManager;
-        private readonly string _levelName;
+        public readonly string LevelName;
 
         public StateLevelManager(ApplicationLevelManager applicationLevelManager, string levelName)
         {
             ApplicationLevelManager = applicationLevelManager;
-            _levelName = levelName;
+            LevelName = levelName;
         }
 
         public void PauseCurrent()
         {
-            ApplicationLevelManager.Pause(_levelName);
+            ApplicationLevelManager.Pause(LevelName);
         }
 
         public void ResumeCurrent()
         {
-            ApplicationLevelManager.Resume(_levelName);
+            ApplicationLevelManager.Resume(LevelName);
         }
 
         public void ShutCurrent(bool keepState)
         {
-            ApplicationLevelManager.Shut(_levelName, keepState);
+            ApplicationLevelManager.Shut(LevelName, keepState);
         }
 
         public void RestartCurrent()
         {
-            ApplicationLevelManager.Restart(_levelName);
+            ApplicationLevelManager.Restart(LevelName);
         }
 
         public void RestartCurrent(LevelArgs arguments)
         {
-            ApplicationLevelManager.Restart(_levelName, arguments);
+            ApplicationLevelManager.Restart(LevelName, arguments);
         }
     }
 }

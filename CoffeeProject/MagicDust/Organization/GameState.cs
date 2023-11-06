@@ -44,13 +44,16 @@ namespace MagicDustLibrary.Organization
             StateServices.GetService<StateFamilyManager>().Abandon(Controller, obj);
         }
 
-        public void Update(TimeSpan deltaTime)
+        public void Update(TimeSpan deltaTime, bool onPause)
         {
-            StateServices.GetService<StateUpdateManager>().Update(Controller, deltaTime);
-
-            foreach (var family in StateServices.GetService<StateFamilyManager>().GetAll())
+            if (!onPause)
             {
-                family.Update(Controller, deltaTime);
+                StateServices.GetService<StateUpdateManager>().Update(Controller, deltaTime);
+
+                foreach (var family in StateServices.GetService<StateFamilyManager>().GetAll())
+                {
+                    family.Update(Controller, deltaTime);
+                }
             }
 
             StateServices.GetService<StatePictureManager>().UpdatePicture(

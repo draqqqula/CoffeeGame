@@ -24,6 +24,8 @@ namespace MagicDustLibrary.Logic
         public void OpenServer(int port);
         public void LaunchLevel(string name, bool keepState);
         public void LaunchLevel(string name, LevelArgs arguments, bool keepState);
+        public string GetCurrentLevelName();
+        public void ResumeLevel(string name);
         public void PauseLevel(string name);
         public void PauseCurrent();
         public void RestartCurrent();

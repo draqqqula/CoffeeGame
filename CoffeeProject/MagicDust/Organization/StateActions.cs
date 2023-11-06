@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MagicDustLibrary.Organization
 {
@@ -78,6 +79,16 @@ namespace MagicDustLibrary.Organization
             public void LaunchLevel(string name, LevelArgs arguments, bool keepState)
             {
                 _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Launch(name, arguments, keepState);
+            }
+
+            public string GetCurrentLevelName()
+            {
+                return _state.StateServices.GetService<StateLevelManager>().LevelName;
+            }
+
+            public void ResumeLevel(string name)
+            {
+                _state.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.Resume(name);
             }
 
             public void PauseLevel(string name)

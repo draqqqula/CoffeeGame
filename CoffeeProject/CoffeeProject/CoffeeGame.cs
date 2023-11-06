@@ -52,6 +52,7 @@ namespace CoffeeProject
 
             _app = new MagicGameApplication(client, parameters, this);
             _app.LevelManager.LoadAs<TestLevel>("test");
+            _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.Launch("test", false);
 
             base.Initialize();

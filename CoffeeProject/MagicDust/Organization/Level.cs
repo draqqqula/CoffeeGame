@@ -40,7 +40,7 @@ namespace MagicDustLibrary.Organization
             {
                 if (GameState is not null)
                 {
-                    GameState.Update(deltaTime);
+                    GameState.Update(deltaTime, OnPause);
                     Update(GameState.Controller, deltaTime);
                 }
             }
