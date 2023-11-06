@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {}
+    "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {}
   },
   "projects": {
-    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
+    "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
+        "projectUniqueName": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
         "projectName": "AsepriteImporter",
-        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
-        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
-        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\obj\\",
+        "projectPath": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
+        "packagesPath": "C:\\Users\\Павел\\.nuget\\packages\\",
+        "outputPath": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\AsepriteImporter\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Павел\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -33,8 +29,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
-                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
+              "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+                "projectPath": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
               }
             }
           }
@@ -74,21 +70,17 @@
         }
       }
     },
-    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+    "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
       "version": "1.0.2",
       "restore": {
-        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+        "projectUniqueName": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
         "projectName": "MagicDustLibrary",
-        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
-        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
-        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\obj\\",
+        "projectPath": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+        "packagesPath": "C:\\Users\\Павел\\.nuget\\packages\\",
+        "outputPath": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Павел\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
