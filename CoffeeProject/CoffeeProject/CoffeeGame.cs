@@ -1,4 +1,6 @@
-﻿using CoffeeProject.Levels;
+﻿using AsepriteImporter;
+using CoffeeProject.Levels;
+using MagicDustLibrary.Content;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Network;
 using MagicDustLibrary.Organization;
@@ -35,9 +37,9 @@ namespace CoffeeProject
             _graphics.PreferredBackBufferWidth = 1903;
             _graphics.PreferredBackBufferHeight = 969;
             _graphics.PreferMultiSampling = true;
-            _graphics.SynchronizeWithVerticalRetrace = false;
-            this.IsFixedTimeStep = false;
-            this.TargetElapsedTime = TimeSpan.FromSeconds(1 / 60f);
+            _graphics.SynchronizeWithVerticalRetrace = true;
+            this.IsFixedTimeStep = true;
+            this.TargetElapsedTime = TimeSpan.FromSeconds(1 / 120f);
             _graphics.ApplyChanges();
             Window.AllowUserResizing = true;
             Window.Title = "Farland";
@@ -45,10 +47,11 @@ namespace CoffeeProject
             GraphicsDevice.Reset();
 
             var client = new GameClient(Window.ClientBounds, CreateKeyBoardControls(), GameClient.GameLanguage.Russian);
-            _app = new MagicGameApplication(client, this);
+
+            var parameters = new ApplicationParameters() { AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice) };
+
+            _app = new MagicGameApplication(client, parameters, this);
             _app.LevelManager.LoadAs<TestLevel>("test");
-            _app.LevelManager.LoadAs<TestLevel2>("test2");
-            _app.LevelManager.LoadAs<ViewerLevel>("connection");
             _app.LevelManager.Launch("test", false);
 
             base.Initialize();

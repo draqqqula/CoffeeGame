@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeProject", "CoffeeProject\CoffeeProject.csproj", "{3091751B-2966-41E6-9E9E-66F3440A1CE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeProject", "CoffeeProject\CoffeeProject.csproj", "{3091751B-2966-41E6-9E9E-66F3440A1CE4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicDustLibrary", "MagicDust\MagicDustLibrary.csproj", "{DC89EA31-DD57-4F14-ABAA-EFB2BE385BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsepriteImporter", "AsepriteImporter\AsepriteImporter.csproj", "{3EEE94BE-01C7-44BE-89FA-0B895E21779B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DC89EA31-DD57-4F14-ABAA-EFB2BE385BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC89EA31-DD57-4F14-ABAA-EFB2BE385BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC89EA31-DD57-4F14-ABAA-EFB2BE385BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EEE94BE-01C7-44BE-89FA-0B895E21779B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EEE94BE-01C7-44BE-89FA-0B895E21779B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EEE94BE-01C7-44BE-89FA-0B895E21779B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EEE94BE-01C7-44BE-89FA-0B895E21779B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

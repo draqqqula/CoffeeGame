@@ -64,7 +64,7 @@ namespace MagicDustLibrary.Animations
                 return false;
             }
 
-            CurrentFrame = (int)Math.Round(progress * (Frames.Length - 1));
+            CurrentFrame = (int)Math.Floor(progress * Frames.Length);
             return true;
         }
 

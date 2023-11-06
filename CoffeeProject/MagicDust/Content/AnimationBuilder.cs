@@ -27,7 +27,7 @@ namespace MagicDustLibrary.Content
 
     public class AnimationBuilder : IAnimationProvider
     {
-        private readonly DefaultContentStorage ContentStorage;
+        private readonly IContentStorage ContentStorage;
 
         private static AnimationFrame BuildFrame(string line)
         {
@@ -71,7 +71,7 @@ namespace MagicDustLibrary.Content
             return animations;
         }
 
-        public AnimationBuilder(DefaultContentStorage contentStorage)
+        public AnimationBuilder(IContentStorage contentStorage)
         {
             ContentStorage = contentStorage;
         }

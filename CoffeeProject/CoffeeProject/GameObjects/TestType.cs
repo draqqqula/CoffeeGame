@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace CoffeeProject.GameObjects
 {
     [Box(10)]
-    [SpriteSheet("hero")]
+    [SpriteSheet("hero.aseprite")]
     public class TestType : Sprite
     {
         public GameClient Client;
@@ -27,7 +27,7 @@ namespace CoffeeProject.GameObjects
             get
             {
                 var info = base.DisplayInfo;
-                info.Scale = new Vector2(0.1f, 0.1f);
+                info.Scale = new Vector2(0.5f, 0.5f);
                 return info;
             }
         }

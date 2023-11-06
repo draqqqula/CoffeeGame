@@ -52,13 +52,44 @@ namespace MagicDustLibrary.Organization
             }
         }
 
-        public MagicGameApplication(GameClient mainClient, Game game)
+        public MagicGameApplication(GameClient mainClient, ApplicationParameters paremeters, Game game)
         {
             MainClient = mainClient;
             Services = game.Services;
             LevelManager = new ApplicationLevelManager(this);
-            var contentStorage = new DefaultContentStorage(game.GraphicsDevice, game.Content);
-            var animationProvider = new AnimationBuilder(contentStorage);
+
+            ConfigureServices(game, paremeters);
+        }
+
+
+        public MagicGameApplication(GameClient mainClient, Game game) :
+            this(mainClient, new ApplicationParameters(), game)
+        {
+        }
+
+
+        private void ConfigureServices(Game game, ApplicationParameters paremeters)
+        {
+            IAnimationProvider animationProvider;
+            IContentStorage contentStorage;
+
+            if (paremeters.ContentStorage is null)
+            {
+                contentStorage = new DefaultContentStorage(game.GraphicsDevice, game.Content);
+            }
+            else
+            {
+                contentStorage = paremeters.ContentStorage;
+            }
+            if (paremeters.AnimationProvider is null)
+            {
+                animationProvider = new AnimationBuilder(contentStorage);
+            }
+            else
+            {
+                animationProvider = paremeters.AnimationProvider;
+            }
+
             Services.AddService(typeof(IContentStorage), contentStorage);
             Services.AddService(typeof(IAnimationProvider), animationProvider);
         }

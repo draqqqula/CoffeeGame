@@ -29,9 +29,13 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AsepriteImporter\AsepriteImporter.csproj" />
     <ProjectReference Include="..\MagicDust\MagicDustLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="hero.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="hero_properties.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

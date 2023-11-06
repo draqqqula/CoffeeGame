@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>MagicDustLibrary</id>
+    <version>1.0.1</version>
+    <authors>Bogdan Korshunov</authors>
+    <license type="expression">MIT OR Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/MIT%20OR%20Apache-2.0</licenseUrl>
+    <icon>icon.png</icon>
+    <readme>README.md</readme>
+    <description>MonoGame library featuring multiplayer</description>
+    <tags>Monogame,Multiplayer,UDP,GameObject,Behavior,Family,State,Application,Animation,Sprite,TileMap,Network</tags>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="MonoGame.Framework.DesktopGL" version="3.8.1.303" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Release\net6.0\MagicDustLibrary.dll" target="lib\net6.0\MagicDustLibrary.dll" />
+    <file src="C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\README.md" target="README.md" />
+    <file src="C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\icon.png" target="icon.png" />
+  </files>
+</package>
