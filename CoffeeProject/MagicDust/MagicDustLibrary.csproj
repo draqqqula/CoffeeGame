@@ -22,8 +22,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
-	  <None Include="README.md" Pack="true" PackagePath=""/>
+	  <None Include="README.md" Pack="true" PackagePath="" />
 	  <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />	    </ItemGroup>
 
 </Project>

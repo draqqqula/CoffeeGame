@@ -33,7 +33,7 @@ namespace CoffeeProject.Levels
 
         protected override void OnConnect(IStateController state, GameClient client)
         {
-            var obj = state.CreateObject<TestType, MainLayer>(new Vector2(500, 500));
+            var obj = state.CreateObject<Hero, MainLayer>(new Vector2(500, 500));
             obj.Client = client;
         }
 

@@ -87,6 +87,7 @@
       },
       "MagicDustLibrary/1.0.2": {
         "dependencies": {
+          "MonoGame.Content.Builder.Task": "3.8.1.303",
           "MonoGame.Framework.DesktopGL": "3.8.1.303"
         },
         "runtime": {
