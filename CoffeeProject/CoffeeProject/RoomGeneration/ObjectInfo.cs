@@ -31,4 +31,9 @@ namespace CoffeeProject.Room
             Position = position;
         }
     }
+
+    public class TestMerge
+    {
+        private int Num = 0;
+    }
 }

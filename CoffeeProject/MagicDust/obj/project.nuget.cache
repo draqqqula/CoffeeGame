@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "yeCtr11dGmDBMIbyyFBXyh8jE81OB2R51BAui9+J8Rj61c6iOrg0CQHk635WmnWBDvUPxCoJKqGEtcyHDxbKRg==",
+  "dgSpecHash": "7TItVOYE3dZBVV0vaVIR+dbv57fA34rf2aWws9NO3ppS3dpEjtUW04nXvne1bQznL8dhsXaDjFqMhB2evD34kQ==",
   "success": true,
-  "projectFilePath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+  "projectFilePath": "F:\\Прога\\CoffeeGameFork_1\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\Павел\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }
