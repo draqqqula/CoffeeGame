@@ -22,3 +22,15 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net6.0\MagicDustLibra
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net6.0\MagicDustLibrary.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net6.0\MagicDustLibrary.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net6.0\ref\MagicDustLibrary.dll
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\bin\Debug\net6.0\MagicDustLibrary.deps.json
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\bin\Debug\net6.0\MagicDustLibrary.dll
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\bin\Debug\net6.0\MagicDustLibrary.pdb
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.csproj.AssemblyReference.cache
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.AssemblyInfoInputs.cache
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.AssemblyInfo.cs
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.csproj.CoreCompileInputs.cache
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.dll
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\refint\MagicDustLibrary.dll
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.pdb
+C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\ref\MagicDustLibrary.dll
