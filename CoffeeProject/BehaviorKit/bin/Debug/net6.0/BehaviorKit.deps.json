@@ -6,24 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "CoffeeProject/1.0.0": {
+      "BehaviorKit/1.0.0": {
         "dependencies": {
-          "AsepriteImporter": "1.0.0",
-          "BehaviorKit": "1.0.0",
-          "MagicDustLibrary": "1.0.2",
-          "MonoGame.Content.Builder.Task": "3.8.1.303",
-          "MonoGame.Framework.DesktopGL": "3.8.1.303"
+          "MagicDustLibrary": "1.0.2"
         },
         "runtime": {
-          "CoffeeProject.dll": {}
-        }
-      },
-      "AsepriteDotNet/0.2.3": {
-        "runtime": {
-          "lib/net6.0/AsepriteDotNet.dll": {
-            "assemblyVersion": "0.2.3.0",
-            "fileVersion": "0.2.3.0"
-          }
+          "BehaviorKit.dll": {}
         }
       },
       "MonoGame.Content.Builder.Task/3.8.1.303": {},
@@ -77,23 +65,6 @@
           }
         }
       },
-      "AsepriteImporter/1.0.0": {
-        "dependencies": {
-          "AsepriteDotNet": "0.2.3",
-          "MagicDustLibrary": "1.0.2"
-        },
-        "runtime": {
-          "AsepriteImporter.dll": {}
-        }
-      },
-      "BehaviorKit/1.0.0": {
-        "dependencies": {
-          "MagicDustLibrary": "1.0.2"
-        },
-        "runtime": {
-          "BehaviorKit.dll": {}
-        }
-      },
       "MagicDustLibrary/1.0.2": {
         "dependencies": {
           "MonoGame.Content.Builder.Task": "3.8.1.303",
@@ -106,17 +77,10 @@
     }
   },
   "libraries": {
-    "CoffeeProject/1.0.0": {
+    "BehaviorKit/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "AsepriteDotNet/0.2.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-SWZN9naehVZtEcAFzyTDItLeZPlEtxEENZAEOYE/+swFATop82YY7ydlFEopxG3p3yQOhqmOrki+JxuE1pyjJw==",
-      "path": "asepritedotnet/0.2.3",
-      "hashPath": "asepritedotnet.0.2.3.nupkg.sha512"
     },
     "MonoGame.Content.Builder.Task/3.8.1.303": {
       "type": "package",
@@ -131,16 +95,6 @@
       "sha512": "sha512-eGYhqn0n1olk8MNYeE9EuBmoNNECN1T18rPMaQpkzsEQ0H3nVyFPXC+uCo78v5pi5juQpJ3PSFnSkjzZJ1U58A==",
       "path": "monogame.framework.desktopgl/3.8.1.303",
       "hashPath": "monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
-    },
-    "AsepriteImporter/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BehaviorKit/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "MagicDustLibrary/1.0.2": {
       "type": "project",

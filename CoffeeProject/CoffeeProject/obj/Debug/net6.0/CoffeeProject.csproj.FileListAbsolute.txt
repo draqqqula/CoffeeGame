@@ -73,3 +73,5 @@ C:\Users\DNS\Desktop\ПП\CoffeeProject\CoffeeProject\obj\Debug\net6.0\CoffeePro
 C:\Users\DNS\Desktop\ПП\CoffeeProject\CoffeeProject\obj\Debug\net6.0\CoffeeProject.genruntimeconfig.cache
 C:\Users\DNS\Desktop\ПП\CoffeeProject\CoffeeProject\obj\Debug\net6.0\ref\CoffeeProject.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\PauseTitle.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\BehaviorKit.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\BehaviorKit.pdb

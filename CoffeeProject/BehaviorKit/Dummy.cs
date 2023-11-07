@@ -121,7 +121,7 @@ namespace BehaviorKit
             return false;
         }
 
-        public Dummy(GameObject parent, int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor, bool enabled) : base(parent)
+        public Dummy(int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor, bool enabled) : base()
         {
             MaxHealth = maxHealth;
             Health = maxHealth;
