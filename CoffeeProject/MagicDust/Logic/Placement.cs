@@ -18,7 +18,7 @@ namespace MagicDustLibrary.Logic
             return typeof(T);
         }
 
-        public static Placement<T> On<T>() where T : Layer
+        public static Placement<T> On()
         {
             return new Placement<T>();
         }

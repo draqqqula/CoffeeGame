@@ -92,7 +92,7 @@ namespace MagicDustLibrary.CommonObjectTypes
         {
         }
 
-        public TileMap(Vector2 position, byte[,] map, Texture2D sheet, GameState state, Rectangle tileFrame, Layer layer, Vector2 scale, (Rectangle, Point, bool)[] tiles) : base(new Placement<Layer>(), position)
+        public TileMap(Vector2 position, byte[,] map, Texture2D sheet, GameState state, Rectangle tileFrame, Layer layer, Vector2 scale, (Rectangle, Point, bool)[] tiles) : base()
         {
             Position = position;
             Map = map;

@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.Display;
+﻿using MagicDustLibrary.Common;
+using MagicDustLibrary.Display;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -147,7 +148,7 @@ namespace MagicDustLibrary.Logic
             return Placement.GetLayerType();
         }
 
-        public IPlacement Placement { get; private set; }
+        public IPlacement Placement { get; set; }
         private readonly HashSet<GameClient> ClientList = new();
         private readonly bool ReversedVisibility;
         #endregion
@@ -224,10 +225,10 @@ namespace MagicDustLibrary.Logic
         #region CONSTRUCTORS
         protected Action<GameObject> OnAssembled = (obj) => { };
 
-        public GameObject(IPlacement placement, Vector2 position)
+        public GameObject()
         {
-            Placement = placement;
-            Position = position;
+            Placement = new Placement<CommonLayer>();
+            Position = Vector2.Zero;
 
             bool reversedVisibility = false;
             Rectangle hitbox = new Rectangle(-64, -64, 128, 128);

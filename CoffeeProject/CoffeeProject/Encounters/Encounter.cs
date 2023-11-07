@@ -19,7 +19,6 @@ namespace CoffeeProject.Encounters
     {
         public override void Create(IStateController state, Point position)
         {
-            state.CreateObject<Hero, MainLayer>(position.ToVector2());
         }
     }
 }

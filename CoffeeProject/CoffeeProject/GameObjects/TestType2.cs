@@ -35,7 +35,7 @@ namespace CoffeeProject.GameObjects
 
         }
 
-        public TestType2(IPlacement placement, Vector2 position, IAnimationProvider provider) : base(placement, position, provider)
+        public TestType2(IAnimationProvider provider) : base(provider)
         {
         }
     }

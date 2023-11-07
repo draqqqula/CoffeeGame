@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using MagicDustLibrary.Factorys;
 
 namespace CoffeeProject.Levels
 {
@@ -23,7 +24,10 @@ namespace CoffeeProject.Levels
 
         protected override void Initialize(IStateController state, LevelArgs arguments)
         {
-            state.CreateObject<PauseTitle, MainLayer>(new Vector2(500, 500));
+            state.CreateObject<PauseTitle>()
+                .SetPos(new Vector2(500, 500))
+                .SetPlacement(Placement<MainLayer>.On())
+                .AddToState(state);
             PauseSource = arguments.Data[0];
         }
 

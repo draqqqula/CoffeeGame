@@ -18,11 +18,15 @@ namespace MagicDustLibrary.Organization
             private readonly GameState _state;
 
             #region COMMON
-            public T CreateObject<T, L>(Vector2 position) where T : GameObject where L : Layer
+            public T CreateObject<T>() where T : GameObject
             {
-                var obj =  _state.StateServices.GetService<IGameObjectFactory>().CreateObject<T, L>(position);
-                _state.Hook(obj);
+                var obj =  _state.StateServices.GetService<IGameObjectFactory>().CreateObject<T>();
                 return obj;
+            }
+
+            public void AddToState<T>(T obj) where T : GameObject
+            {
+                _state.Hook(obj);
             }
 
             public void GetFamily<F>() where F : class, IFamily

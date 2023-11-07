@@ -21,7 +21,7 @@ namespace CoffeeProject.GameObjects
     {
         public GameClient Client;
         private List<PlayerModifier> _modifiers = new List<PlayerModifier>();
-        public Hero(IPlacement placement, Vector2 position, IAnimationProvider provider) : base(placement, position, provider)
+        public Hero(IAnimationProvider provider) : base(provider)
         {
             this.AddBehavior("physics", new Physics(new List<Rectangle[]>().ToArray(), 12, true));
         }
@@ -39,7 +39,7 @@ namespace CoffeeProject.GameObjects
         public override void OnTick(IStateController state, TimeSpan deltaTime)
         {
             var physics = GetBehavior<Physics>("physics");
-            var speed = 120f * (float)deltaTime.TotalSeconds;
+            var speed = 240f * (float)deltaTime.TotalSeconds;
 
             SetDefaults();
             ApplyModifiers();

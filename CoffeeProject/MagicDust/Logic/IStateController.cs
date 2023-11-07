@@ -14,7 +14,8 @@ namespace MagicDustLibrary.Logic
     /// </summary>
     public interface IStateController
     {
-        public T CreateObject<T, L>(Vector2 position) where T : GameObject where L : Layer;
+        public T CreateObject<T>() where T : GameObject;
+        public void AddToState<T>(T obj) where T : GameObject;
         public void PlaceAbove(GameObject target, GameObject source);
         public void PlaceBelow(GameObject target, GameObject source);
         public void PlaceTop(GameObject target);

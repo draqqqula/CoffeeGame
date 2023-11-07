@@ -1,6 +1,7 @@
 ﻿using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
 using MagicDustLibrary.Display;
+using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
@@ -34,7 +35,10 @@ namespace CoffeeProject.Levels
 
         protected override void OnConnect(IStateController state, GameClient client)
         {
-            var obj = state.CreateObject<TestType2, TestLayer>(new Vector2(500, 800));
+            var obj = state.CreateObject<TestType2>()
+                .SetPos(new Vector2(213, 454))
+                .SetPlacement(new Placement<MainLayer>())
+                .AddToState(state);
             obj.Client = client;
             _mainClient = client;
         }

@@ -27,7 +27,7 @@ namespace MagicDustLibrary.CommonObjectTypes
             Animator.Update(deltaTime);
         }
 
-        protected Sprite(IPlacement placement, Vector2 position, IAnimationProvider provider) : base(placement, position)
+        protected Sprite(IAnimationProvider provider) : base()
         {
             var attribute = GetType().GetCustomAttribute<SpriteSheetAttribute>();
             if (attribute != null)

@@ -14,7 +14,7 @@ namespace CoffeeProject.GameObjects
     [SpriteSheet("PauseTitle.aseprite")]
     public class PauseTitle : Sprite
     {
-        public PauseTitle(IPlacement placement, Vector2 position, IAnimationProvider provider) : base(placement, position, provider)
+        public PauseTitle(IAnimationProvider provider) : base(provider)
         {
         }
     }
