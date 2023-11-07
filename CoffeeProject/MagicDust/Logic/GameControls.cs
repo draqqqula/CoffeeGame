@@ -1,4 +1,6 @@
-﻿
+﻿using MonoGame.Extended.Input;
+using MonoGame.Extended.Input.InputListeners;
+
 namespace MagicDustLibrary.Logic
 {
     /// <summary>

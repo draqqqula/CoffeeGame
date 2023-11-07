@@ -2,24 +2,10 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "AsepriteDotNet/0.2.3": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/AsepriteDotNet.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/AsepriteDotNet.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "MonoGame.Content.Builder.Task/3.8.1.303": {
         "type": "package",
         "build": {
-          "build/MonoGame.Content.Builder.Task.props": {},
-          "build/MonoGame.Content.Builder.Task.targets": {}
+          "build/_._": {}
         }
       },
       "MonoGame.Framework.DesktopGL/3.8.1.303": {
@@ -31,7 +17,7 @@
           "lib/net6.0/MonoGame.Framework.dll": {}
         },
         "build": {
-          "build/MonoGame.Framework.DesktopGL.targets": {}
+          "build/_._": {}
         },
         "runtimeTargets": {
           "runtimes/linux-x64/native/libSDL2-2.0.so.0": {
@@ -68,33 +54,6 @@
           }
         }
       },
-      "AsepriteImporter/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "AsepriteDotNet": "0.2.3",
-          "MagicDustLibrary": "1.0.2"
-        },
-        "compile": {
-          "bin/placeholder/AsepriteImporter.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/AsepriteImporter.dll": {}
-        }
-      },
-      "BehaviorKit/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "MagicDustLibrary": "1.0.2"
-        },
-        "compile": {
-          "bin/placeholder/BehaviorKit.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BehaviorKit.dll": {}
-        }
-      },
       "MagicDustLibrary/1.0.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -112,23 +71,6 @@
     }
   },
   "libraries": {
-    "AsepriteDotNet/0.2.3": {
-      "sha512": "SWZN9naehVZtEcAFzyTDItLeZPlEtxEENZAEOYE/+swFATop82YY7ydlFEopxG3p3yQOhqmOrki+JxuE1pyjJw==",
-      "type": "package",
-      "path": "asepritedotnet/0.2.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "aseprite-dotnet-nuget-icon.png",
-        "asepritedotnet.0.2.3.nupkg.sha512",
-        "asepritedotnet.nuspec",
-        "lib/net6.0/AsepriteDotNet.dll",
-        "lib/net6.0/AsepriteDotNet.xml",
-        "lib/net7.0/AsepriteDotNet.dll",
-        "lib/net7.0/AsepriteDotNet.xml"
-      ]
-    },
     "MonoGame.Content.Builder.Task/3.8.1.303": {
       "sha512": "9Ilzzje62LhWElbPNEl7vh7XsRSbze+lvCJdZtTZUGu48FRgvYN6THURwIB9PN98EI33/Wnf6iuShNUtD7hL4Q==",
       "type": "package",
@@ -165,16 +107,6 @@
         "runtimes/win-x86/native/soft_oal.dll"
       ]
     },
-    "AsepriteImporter/1.0.0": {
-      "type": "project",
-      "path": "../AsepriteImporter/AsepriteImporter.csproj",
-      "msbuildProject": "../AsepriteImporter/AsepriteImporter.csproj"
-    },
-    "BehaviorKit/1.0.0": {
-      "type": "project",
-      "path": "../BehaviorKit/BehaviorKit.csproj",
-      "msbuildProject": "../BehaviorKit/BehaviorKit.csproj"
-    },
     "MagicDustLibrary/1.0.2": {
       "type": "project",
       "path": "../MagicDust/MagicDustLibrary.csproj",
@@ -183,11 +115,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "AsepriteImporter >= 1.0.0",
-      "BehaviorKit >= 1.0.0",
-      "MagicDustLibrary >= 1.0.2",
-      "MonoGame.Content.Builder.Task >= 3.8.1.303",
-      "MonoGame.Framework.DesktopGL >= 3.8.1.303"
+      "MagicDustLibrary >= 1.0.2"
     ]
   },
   "packageFolders": {
@@ -197,11 +125,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
-      "projectName": "CoffeeProject",
-      "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
+      "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
+      "projectName": "BehaviorKit",
+      "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
       "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
-      "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\obj\\",
+      "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -223,12 +151,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
-              "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj"
-            },
-            "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
-              "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj"
-            },
             "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
               "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
             }
@@ -244,16 +166,6 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
-        "dependencies": {
-          "MonoGame.Content.Builder.Task": {
-            "target": "Package",
-            "version": "[3.8.1.303, )"
-          },
-          "MonoGame.Framework.DesktopGL": {
-            "target": "Package",
-            "version": "[3.8.1.303, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

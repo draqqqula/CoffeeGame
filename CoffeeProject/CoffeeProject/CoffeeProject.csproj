@@ -30,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AsepriteImporter\AsepriteImporter.csproj" />
+    <ProjectReference Include="..\BehaviorKit\BehaviorKit.csproj" />
     <ProjectReference Include="..\MagicDust\MagicDustLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
