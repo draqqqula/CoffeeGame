@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "GraphShape/1.2.1": {
+        "type": "package",
+        "dependencies": {
+          "QuikGraph": "2.3.0"
+        },
+        "compile": {
+          "lib/net5.0/GraphShape.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/GraphShape.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MonoGame.Content.Builder.Task/3.8.1.303": {
         "type": "package",
         "build": {
@@ -54,6 +70,19 @@
           }
         }
       },
+      "QuikGraph/2.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/QuikGraph.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/QuikGraph.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MagicDustLibrary/1.0.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -71,6 +100,29 @@
     }
   },
   "libraries": {
+    "GraphShape/1.2.1": {
+      "sha512": "FOa1AGPTtYEcYV0JTa+OHX0VvmMv3aJx0dnwto+qpggFX8VUYqmjr1C2e2aCcINxAd6HZpurc22QbSNoMi+ULg==",
+      "type": "package",
+      "path": "graphshape/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "graphshape.1.2.1.nupkg.sha512",
+        "graphshape.nuspec",
+        "graphshape_logo.png",
+        "lib/net35/GraphShape.dll",
+        "lib/net35/GraphShape.xml",
+        "lib/net40/GraphShape.dll",
+        "lib/net40/GraphShape.xml",
+        "lib/net45/GraphShape.dll",
+        "lib/net45/GraphShape.xml",
+        "lib/net5.0/GraphShape.dll",
+        "lib/net5.0/GraphShape.xml",
+        "lib/netstandard2.0/GraphShape.dll",
+        "lib/netstandard2.0/GraphShape.xml"
+      ]
+    },
     "MonoGame.Content.Builder.Task/3.8.1.303": {
       "sha512": "9Ilzzje62LhWElbPNEl7vh7XsRSbze+lvCJdZtTZUGu48FRgvYN6THURwIB9PN98EI33/Wnf6iuShNUtD7hL4Q==",
       "type": "package",
@@ -107,6 +159,29 @@
         "runtimes/win-x86/native/soft_oal.dll"
       ]
     },
+    "QuikGraph/2.3.0": {
+      "sha512": "Vhj33jEOi4xQlJHFOrhDf29MgYLYnPi4z6ywIVvPhe/nUkCihj3kynWI9PaK+HM29ati5rd1SUON5z2sslEsVw==",
+      "type": "package",
+      "path": "quikgraph/2.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/net35/QuikGraph.dll",
+        "lib/net35/QuikGraph.xml",
+        "lib/net40/QuikGraph.dll",
+        "lib/net40/QuikGraph.xml",
+        "lib/net45/QuikGraph.dll",
+        "lib/net45/QuikGraph.xml",
+        "lib/netstandard1.3/QuikGraph.dll",
+        "lib/netstandard1.3/QuikGraph.xml",
+        "lib/netstandard2.0/QuikGraph.dll",
+        "lib/netstandard2.0/QuikGraph.xml",
+        "quikgraph.2.3.0.nupkg.sha512",
+        "quikgraph.nuspec",
+        "quikgraph_logo.png"
+      ]
+    },
     "MagicDustLibrary/1.0.2": {
       "type": "project",
       "path": "../MagicDust/MagicDustLibrary.csproj",
@@ -115,6 +190,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "GraphShape >= 1.2.1",
       "MagicDustLibrary >= 1.0.2"
     ]
   },
@@ -166,6 +242,12 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
+        "dependencies": {
+          "GraphShape": {
+            "target": "Package",
+            "version": "[1.2.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -182,7 +264,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
