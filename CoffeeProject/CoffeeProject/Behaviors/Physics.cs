@@ -222,7 +222,7 @@ namespace CoffeeProject.Behaviors
                 var mapSegment = GetMapSegment(Math.Min(pastPosition.Left, futurePosition.Left), Math.Max(pastPosition.Right, futurePosition.Right));
                 var collisionFactor = ApplyCollision(pastPosition, mapSegment, futurePosition);
 
-                parent.SetPosition(parent.GetPosition() + vectorSequence + collisionFactor);
+                parent.Position += vectorSequence + collisionFactor;
             }
 
             HalfUpdateVectors(deltaTime);
