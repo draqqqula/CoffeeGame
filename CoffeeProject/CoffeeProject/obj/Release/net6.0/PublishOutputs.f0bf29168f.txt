@@ -3,12 +3,15 @@ C:\Users\BogdanPC\Documents\CoffeeProject\Content/ANOTHER HIM.ogg
 C:\Users\BogdanPC\Documents\CoffeeProject\Content/ANOTHER HIM.xnb
 C:\Users\BogdanPC\Documents\CoffeeProject\Content/hero.xnb
 C:\Users\BogdanPC\Documents\CoffeeProject\Content/painting.xnb
+C:\Users\BogdanPC\Documents\CoffeeProject\hero.aseprite
 C:\Users\BogdanPC\Documents\CoffeeProject\hero_properties.txt
 C:\Users\BogdanPC\Documents\CoffeeProject\Painting_properties.txt
+C:\Users\BogdanPC\Documents\CoffeeProject\PauseTitle.aseprite
 C:\Users\BogdanPC\Documents\CoffeeProject\CoffeeProject.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\CoffeeProject.deps.json
 C:\Users\BogdanPC\Documents\CoffeeProject\CoffeeProject.runtimeconfig.json
 C:\Users\BogdanPC\Documents\CoffeeProject\CoffeeProject.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\AsepriteDotNet.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\MonoGame.Framework.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\runtimes\linux-x64\native\libSDL2-2.0.so.0
 C:\Users\BogdanPC\Documents\CoffeeProject\runtimes\linux-x64\native\libopenal.so.1
@@ -18,5 +21,9 @@ C:\Users\BogdanPC\Documents\CoffeeProject\runtimes\win-x64\native\SDL2.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\runtimes\win-x64\native\soft_oal.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\runtimes\win-x86\native\SDL2.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\runtimes\win-x86\native\soft_oal.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\AsepriteImporter.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\BehaviorKit.dll
 C:\Users\BogdanPC\Documents\CoffeeProject\MagicDustLibrary.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\AsepriteImporter.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\BehaviorKit.pdb
 C:\Users\BogdanPC\Documents\CoffeeProject\MagicDustLibrary.pdb

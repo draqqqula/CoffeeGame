@@ -1,0 +1,6 @@
+C:\Users\BogdanPC\source\repos\MagicDustTemplate\Multiplayer\Server example\MagicDustLibrary.dll
+C:\Users\BogdanPC\source\repos\MagicDustTemplate\Multiplayer\Server example\MagicDustLibrary.deps.json
+C:\Users\BogdanPC\source\repos\MagicDustTemplate\Multiplayer\Server example\MagicDustLibrary.pdb
+C:\Users\BogdanPC\source\repos\MagicDustTemplate\Multiplayer\Server example\MonoGame.Framework.dll
+C:\Users\BogdanPC\source\repos\MagicDustTemplate\Multiplayer\Server example\SDL2.dll
+C:\Users\BogdanPC\source\repos\MagicDustTemplate\Multiplayer\Server example\soft_oal.dll

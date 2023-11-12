@@ -2,10 +2,6 @@
 using MagicDustLibrary.Logic;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeProject.Family
 {
@@ -15,7 +11,7 @@ namespace CoffeeProject.Family
         {
             foreach (var obj in Members)
             {
-                obj.SetPosition(obj.GetPosition() + new Vector2(0.1f, 0));
+                obj.Position += new Vector2(0.1f, 0);
             }
         }
 

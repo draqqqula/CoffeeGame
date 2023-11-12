@@ -1,0 +1,30 @@
+C:\Users\BogdanPC\Documents\CoffeeProject\server\CoffeeProject.exe
+C:\Users\BogdanPC\Documents\CoffeeProject\server\Content/ANOTHER HIM.ogg
+C:\Users\BogdanPC\Documents\CoffeeProject\server\Content/ANOTHER HIM.xnb
+C:\Users\BogdanPC\Documents\CoffeeProject\server\Content/painting.xnb
+C:\Users\BogdanPC\Documents\CoffeeProject\server\hero.aseprite
+C:\Users\BogdanPC\Documents\CoffeeProject\server\hero_properties.txt
+C:\Users\BogdanPC\Documents\CoffeeProject\server\Painting_properties.txt
+C:\Users\BogdanPC\Documents\CoffeeProject\server\PauseTitle.aseprite
+C:\Users\BogdanPC\Documents\CoffeeProject\server\CoffeeProject.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\CoffeeProject.deps.json
+C:\Users\BogdanPC\Documents\CoffeeProject\server\CoffeeProject.runtimeconfig.json
+C:\Users\BogdanPC\Documents\CoffeeProject\server\CoffeeProject.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\server\AsepriteDotNet.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\GraphShape.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\MonoGame.Framework.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\QuikGraph.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\osx\native\libSDL2.dylib
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\osx\native\libopenal.1.dylib
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\win-x64\native\SDL2.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\win-x64\native\soft_oal.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\win-x86\native\SDL2.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\runtimes\win-x86\native\soft_oal.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\AsepriteImporter.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\BehaviorKit.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\MagicDustLibrary.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\server\AsepriteImporter.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\server\BehaviorKit.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\server\MagicDustLibrary.pdb

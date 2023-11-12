@@ -14,7 +14,7 @@ namespace MagicDustLibrary.Organization
     /// <item>Слои <b>не надо добавлять в уровень вручную</b>, они будут добавляться сами при создании <see cref="GameObject"/>.</item>
     /// </list>
     /// </summary>
-    public abstract class Layer : RelativeCollection<IDisplayProvider>
+    public abstract class Layer : RelativeCollection<IDisplayComponent>
     {
         public readonly byte Priority;
         public abstract DrawingParameters Process(DrawingParameters arguments, GameCamera camera);

@@ -32,7 +32,7 @@ namespace MagicDustLibrary.Organization
             int c = 0;
             foreach (var map in tileMaps)
             {
-                map.Link(BitConverter.GetBytes(c).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).ToArray());
+                //map.Link(BitConverter.GetBytes(c).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).ToArray());
                 IEnumerable<byte> mapBytes = map.Pack(_state.ApplicationServices.GetService<IContentStorage>());
                 buffer.AddRange(BitConverter.GetBytes(mapBytes.Count()));
                 buffer.AddRange(mapBytes);

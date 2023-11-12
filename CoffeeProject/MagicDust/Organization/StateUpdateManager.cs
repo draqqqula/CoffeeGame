@@ -2,16 +2,16 @@
 
 namespace MagicDustLibrary.Organization
 {
-    public class StateUpdateManager : IStateUpdateable
+    public class StateUpdateManager
     {
-        private readonly List<IStateUpdateable> Updateables = new List<IStateUpdateable>();
+        private readonly List<IUpdateComponent> Updateables = new List<IUpdateComponent>();
 
-        public void AddUpdateable(IStateUpdateable obj)
+        public void AddUpdateable(IUpdateComponent obj)
         {
             Updateables.Add(obj);
         }
 
-        public void RemoveUpdateable(IStateUpdateable obj)
+        public void RemoveUpdateable(IUpdateComponent obj)
         {
             Updateables.Remove(obj);
         }

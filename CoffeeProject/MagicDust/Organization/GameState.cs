@@ -27,21 +27,39 @@ namespace MagicDustLibrary.Organization
         private readonly LevelSettings _levelSettings;
 
 
-        private void Hook(GameObject obj)
+        private void Hook(IGameObjectComponent obj)
         {
-            StateServices.GetService<StateUpdateManager>().AddUpdateable(obj);
-            StateServices.GetService<StateLayerManager>().GetLayer(obj.GetLayerType()).PlaceTop(obj);
-            StateServices.GetService<StateFamilyManager>().Introduce(Controller, obj);
+            if (obj is IUpdateComponent updateable)
+            {
+                StateServices.GetService<StateUpdateManager>().AddUpdateable(updateable);
+            }
+            if (obj is IDisplayComponent displayProvider)
+            {
+                StateServices.GetService<StateLayerManager>().GetLayer(displayProvider.GetLayerType()).PlaceTop(displayProvider);
+            }
+            if (obj is IFamilyComponent member)
+            {
+                StateServices.GetService<StateFamilyManager>().Introduce(Controller, member);
+            }
 
-            obj.OnDisposed += Unhook;
+            obj.OnDisposeEvent += Unhook;
 
         }
 
-        private void Unhook(GameObject obj)
+        private void Unhook(IGameObjectComponent obj)
         {
-            StateServices.GetService<StateUpdateManager>().RemoveUpdateable(obj);
-            StateServices.GetService<StateLayerManager>().GetLayer(obj.GetLayerType()).Remove(obj);
-            StateServices.GetService<StateFamilyManager>().Abandon(Controller, obj);
+            if (obj is IUpdateComponent updateable)
+            {
+                StateServices.GetService<StateUpdateManager>().RemoveUpdateable(updateable);
+            }
+            if (obj is IDisplayComponent displayProvider)
+            {
+                StateServices.GetService<StateLayerManager>().GetLayer(displayProvider.GetLayerType()).Remove(displayProvider);
+            }
+            if (obj is IFamilyComponent member)
+            {
+                StateServices.GetService<StateFamilyManager>().Abandon(Controller, member);
+            }
         }
 
         public void Update(TimeSpan deltaTime, bool onPause)
@@ -62,7 +80,7 @@ namespace MagicDustLibrary.Organization
                 StateServices.GetService<CameraStorage>(),
                 StateServices.GetService<ViewStorage>());
 
-            StateServices.GetService<StateConnectionHandleManager>().SendPictures();
+            //StateServices.GetService<StateConnectionHandleManager>().SendPictures();
         }
 
         public void Draw(GameClient mainClient, SpriteBatch batch)

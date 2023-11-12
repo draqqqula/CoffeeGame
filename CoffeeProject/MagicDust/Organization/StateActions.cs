@@ -18,13 +18,13 @@ namespace MagicDustLibrary.Organization
             private readonly GameState _state;
 
             #region COMMON
-            public T CreateObject<T>() where T : GameObject
+            public T CreateObject<T>() where T : IGameObjectComponent
             {
                 var obj =  _state.StateServices.GetService<IGameObjectFactory>().CreateObject<T>();
                 return obj;
             }
 
-            public void AddToState<T>(T obj) where T : GameObject
+            public void AddToState<T>(T obj) where T : IGameObjectComponent
             {
                 _state.Hook(obj);
             }
@@ -133,6 +133,18 @@ namespace MagicDustLibrary.Organization
             public void ShutCurrent(bool keepState)
             {
                 _state.StateServices.GetService<StateLevelManager>().ShutCurrent(keepState);
+            }
+
+            public void TransferClient(GameClient client, string targetLevel)
+            {
+                var stateLevelManager = _state.StateServices.GetService<StateLevelManager>();
+                var targetLevelState = stateLevelManager.ApplicationLevelManager.GetLevel(targetLevel).GameState;
+                targetLevelState.StateServices.GetService<StateClientManager>().Connect(client);
+            }
+
+            public void Disconnect(GameClient client)
+            {
+                _state.StateServices.GetService<StateClientManager>().Disconnect(client);
             }
             #endregion
 

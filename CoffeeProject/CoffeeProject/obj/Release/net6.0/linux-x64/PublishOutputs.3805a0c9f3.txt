@@ -1,0 +1,24 @@
+C:\Users\BogdanPC\Documents\VirtualShared\server\CoffeeProject
+C:\Users\BogdanPC\Documents\VirtualShared\server\Content/ANOTHER HIM.ogg
+C:\Users\BogdanPC\Documents\VirtualShared\server\Content/ANOTHER HIM.xnb
+C:\Users\BogdanPC\Documents\VirtualShared\server\Content/painting.xnb
+C:\Users\BogdanPC\Documents\VirtualShared\server\hero.aseprite
+C:\Users\BogdanPC\Documents\VirtualShared\server\hero_properties.txt
+C:\Users\BogdanPC\Documents\VirtualShared\server\Painting_properties.txt
+C:\Users\BogdanPC\Documents\VirtualShared\server\PauseTitle.aseprite
+C:\Users\BogdanPC\Documents\VirtualShared\server\CoffeeProject.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\CoffeeProject.deps.json
+C:\Users\BogdanPC\Documents\VirtualShared\server\CoffeeProject.runtimeconfig.json
+C:\Users\BogdanPC\Documents\VirtualShared\server\CoffeeProject.pdb
+C:\Users\BogdanPC\Documents\VirtualShared\server\AsepriteDotNet.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\GraphShape.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\MonoGame.Framework.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\QuikGraph.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\libSDL2-2.0.so.0
+C:\Users\BogdanPC\Documents\VirtualShared\server\libopenal.so.1
+C:\Users\BogdanPC\Documents\VirtualShared\server\AsepriteImporter.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\BehaviorKit.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\MagicDustLibrary.dll
+C:\Users\BogdanPC\Documents\VirtualShared\server\AsepriteImporter.pdb
+C:\Users\BogdanPC\Documents\VirtualShared\server\BehaviorKit.pdb
+C:\Users\BogdanPC\Documents\VirtualShared\server\MagicDustLibrary.pdb

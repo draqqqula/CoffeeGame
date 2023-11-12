@@ -34,7 +34,7 @@ namespace MagicDustLibrary.Organization
             return newFamily;
         }
 
-        private IEnumerable<IFamily> GetFamilies(IFamilyMember obj)
+        private IEnumerable<IFamily> GetFamilies(IFamilyComponent obj)
         {
             var type = obj.GetType();
             var attributes = type.GetCustomAttributes(true);
@@ -60,7 +60,7 @@ namespace MagicDustLibrary.Organization
             return families;
         }
 
-        public void Introduce(IStateController state, IFamilyMember obj)
+        public void Introduce(IStateController state, IFamilyComponent obj)
         {
             var families = GetFamilies(obj);
             foreach (var family in families)
@@ -69,7 +69,7 @@ namespace MagicDustLibrary.Organization
             }
         }
 
-        public void Abandon(IStateController state, IFamilyMember obj)
+        public void Abandon(IStateController state, IFamilyComponent obj)
         {
             var families = GetFamilies(obj);
             foreach (var family in families)

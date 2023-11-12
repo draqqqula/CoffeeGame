@@ -9,6 +9,7 @@ namespace MagicDustLibrary.Display
     {
         public T GetAsset<T>(string name) where T : class;
         public T GetAsset<T>(int id) where T : class;
+        public void AddAsset(object asset, string name);
         public string GetName(object asset);
         public int GetID(object asset);
     }
@@ -37,12 +38,17 @@ namespace MagicDustLibrary.Display
                 }
                 catch
                 {
-                    throw new Exception("Asset not found");
+                    return null;
                 }
                 Data.Add(name, asset);
                 ReverseData.Add(asset, name);
                 return asset;
             }
+        }
+
+        public void AddAsset(object asset, string name)
+        {
+            Data.Add(name, asset);
         }
 
         public T GetAsset<T>(int id) where T : class

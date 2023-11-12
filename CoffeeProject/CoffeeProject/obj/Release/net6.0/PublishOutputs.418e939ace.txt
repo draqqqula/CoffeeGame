@@ -1,0 +1,28 @@
+C:\Users\BogdanPC\Documents\CoffeeProject\client\CoffeeProject.exe
+C:\Users\BogdanPC\Documents\CoffeeProject\client\Content/ANOTHER HIM.ogg
+C:\Users\BogdanPC\Documents\CoffeeProject\client\Content/ANOTHER HIM.xnb
+C:\Users\BogdanPC\Documents\CoffeeProject\client\Content/painting.xnb
+C:\Users\BogdanPC\Documents\CoffeeProject\client\hero.aseprite
+C:\Users\BogdanPC\Documents\CoffeeProject\client\hero_properties.txt
+C:\Users\BogdanPC\Documents\CoffeeProject\client\Painting_properties.txt
+C:\Users\BogdanPC\Documents\CoffeeProject\client\PauseTitle.aseprite
+C:\Users\BogdanPC\Documents\CoffeeProject\client\CoffeeProject.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\CoffeeProject.deps.json
+C:\Users\BogdanPC\Documents\CoffeeProject\client\CoffeeProject.runtimeconfig.json
+C:\Users\BogdanPC\Documents\CoffeeProject\client\CoffeeProject.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\client\AsepriteDotNet.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\MonoGame.Framework.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\osx\native\libSDL2.dylib
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\osx\native\libopenal.1.dylib
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\win-x64\native\SDL2.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\win-x64\native\soft_oal.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\win-x86\native\SDL2.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\runtimes\win-x86\native\soft_oal.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\AsepriteImporter.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\BehaviorKit.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\MagicDustLibrary.dll
+C:\Users\BogdanPC\Documents\CoffeeProject\client\AsepriteImporter.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\client\BehaviorKit.pdb
+C:\Users\BogdanPC\Documents\CoffeeProject\client\MagicDustLibrary.pdb

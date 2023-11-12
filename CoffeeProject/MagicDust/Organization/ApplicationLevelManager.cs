@@ -61,6 +61,11 @@ namespace MagicDustLibrary.Organization
 
 
         #region CONTROL
+        public ILevel GetLevel(string name)
+        {
+            return Loaded[name];
+        }
+
         /// <summary>
         /// Возобновляет уровень на паузе.
         /// </summary>

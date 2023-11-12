@@ -1,6 +1,7 @@
 ﻿using AsepriteImporter;
 using CoffeeProject.Levels;
 using MagicDustLibrary.Content;
+using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Network;
 using MagicDustLibrary.Organization;
@@ -47,13 +48,15 @@ namespace CoffeeProject
             GraphicsDevice.Reset();
 
             var client = new GameClient(Window.ClientBounds, CreateKeyBoardControls(), GameClient.GameLanguage.Russian);
-
-            var parameters = new ApplicationParameters() { AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice) };
+            var storage = new DefaultContentStorage(_graphics.GraphicsDevice, Content);
+            var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice, storage) };
 
             _app = new MagicGameApplication(client, parameters, this);
             _app.LevelManager.LoadAs<TestLevel>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
+            _app.LevelManager.LoadAs<ViewerLevel>("connect");
             _app.LevelManager.Launch("test", false);
+            //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 
             base.Initialize();
         }

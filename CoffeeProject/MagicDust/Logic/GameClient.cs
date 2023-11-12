@@ -105,6 +105,8 @@ namespace MagicDustLibrary.Logic
             Controls.ChangeControl(Control.jump, () => ControlsMap[2]);
             Controls.ChangeControl(Control.dash, () => ControlsMap[3]);
             Controls.ChangeControl(Control.pause, () => ControlsMap[4]);
+            Controls.ChangeControl(Control.lookUp, () => ControlsMap[5]);
+            Controls.ChangeControl(Control.lookDown, () => ControlsMap[6]);
         }
 
         #endregion

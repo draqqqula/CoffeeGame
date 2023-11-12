@@ -8,12 +8,33 @@
     ".NETCoreApp,Version=v6.0": {
       "CoffeeProject/1.0.0": {
         "dependencies": {
-          "MagicDustLibrary": "1.0.0",
+          "AsepriteImporter": "1.0.0",
+          "BehaviorKit": "1.0.0",
+          "MagicDustLibrary": "1.0.2",
           "MonoGame.Content.Builder.Task": "3.8.1.303",
           "MonoGame.Framework.DesktopGL": "3.8.1.303"
         },
         "runtime": {
           "CoffeeProject.dll": {}
+        }
+      },
+      "AsepriteDotNet/0.2.3": {
+        "runtime": {
+          "lib/net6.0/AsepriteDotNet.dll": {
+            "assemblyVersion": "0.2.3.0",
+            "fileVersion": "0.2.3.0"
+          }
+        }
+      },
+      "GraphShape/1.2.1": {
+        "dependencies": {
+          "QuikGraph": "2.3.0"
+        },
+        "runtime": {
+          "lib/net5.0/GraphShape.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
         }
       },
       "MonoGame.Content.Builder.Task/3.8.1.303": {},
@@ -67,8 +88,35 @@
           }
         }
       },
-      "MagicDustLibrary/1.0.0": {
+      "QuikGraph/2.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/QuikGraph.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.0"
+          }
+        }
+      },
+      "AsepriteImporter/1.0.0": {
         "dependencies": {
+          "AsepriteDotNet": "0.2.3",
+          "MagicDustLibrary": "1.0.2"
+        },
+        "runtime": {
+          "AsepriteImporter.dll": {}
+        }
+      },
+      "BehaviorKit/1.0.0": {
+        "dependencies": {
+          "GraphShape": "1.2.1",
+          "MagicDustLibrary": "1.0.2"
+        },
+        "runtime": {
+          "BehaviorKit.dll": {}
+        }
+      },
+      "MagicDustLibrary/1.0.2": {
+        "dependencies": {
+          "MonoGame.Content.Builder.Task": "3.8.1.303",
           "MonoGame.Framework.DesktopGL": "3.8.1.303"
         },
         "runtime": {
@@ -82,6 +130,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AsepriteDotNet/0.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SWZN9naehVZtEcAFzyTDItLeZPlEtxEENZAEOYE/+swFATop82YY7ydlFEopxG3p3yQOhqmOrki+JxuE1pyjJw==",
+      "path": "asepritedotnet/0.2.3",
+      "hashPath": "asepritedotnet.0.2.3.nupkg.sha512"
+    },
+    "GraphShape/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FOa1AGPTtYEcYV0JTa+OHX0VvmMv3aJx0dnwto+qpggFX8VUYqmjr1C2e2aCcINxAd6HZpurc22QbSNoMi+ULg==",
+      "path": "graphshape/1.2.1",
+      "hashPath": "graphshape.1.2.1.nupkg.sha512"
     },
     "MonoGame.Content.Builder.Task/3.8.1.303": {
       "type": "package",
@@ -97,7 +159,24 @@
       "path": "monogame.framework.desktopgl/3.8.1.303",
       "hashPath": "monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
     },
-    "MagicDustLibrary/1.0.0": {
+    "QuikGraph/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Vhj33jEOi4xQlJHFOrhDf29MgYLYnPi4z6ywIVvPhe/nUkCihj3kynWI9PaK+HM29ati5rd1SUON5z2sslEsVw==",
+      "path": "quikgraph/2.3.0",
+      "hashPath": "quikgraph.2.3.0.nupkg.sha512"
+    },
+    "AsepriteImporter/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BehaviorKit/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MagicDustLibrary/1.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

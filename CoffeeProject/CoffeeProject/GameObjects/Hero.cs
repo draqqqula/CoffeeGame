@@ -1,4 +1,5 @@
-﻿using CoffeeProject.Behaviors;
+﻿using BehaviorKit;
+using CoffeeProject.Behaviors;
 using CoffeeProject.Combat;
 using CoffeeProject.Family;
 using MagicDustLibrary.CommonObjectTypes;
@@ -15,8 +16,8 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.GameObjects
 {
-    [Box(10)]
-    [SpriteSheet("hero.aseprite")]
+    [Box(100, 200, 50, 200)]
+    [SpriteSheet("hero")]
     public class Hero : Sprite
     {
         public GameClient Client;
@@ -24,6 +25,7 @@ namespace CoffeeProject.GameObjects
         public Hero(IAnimationProvider provider) : base(provider)
         {
             this.AddBehavior("physics", new Physics(new List<Rectangle[]>().ToArray(), 12, true));
+            AddBehavior("spring", new Spring(0.1f));
         }
 
         protected override DrawingParameters DisplayInfo
@@ -31,40 +33,60 @@ namespace CoffeeProject.GameObjects
             get
             {
                 var info = base.DisplayInfo;
-                info.Scale = new Vector2(0.5f, 0.5f);
+                info.Scale = info.Scale * new Vector2(0.14f, 0.14f);
                 return info;
             }
         }
 
+        const float SPEED = 8;
+        const float DECELERATION = 15;
         public override void OnTick(IStateController state, TimeSpan deltaTime)
         {
             var physics = GetBehavior<Physics>("physics");
-            var speed = 240f * (float)deltaTime.TotalSeconds;
+            var spring = GetBehavior<Spring>("spring");
+            var speed = 60f*SPEED * (float)deltaTime.TotalSeconds;
+            var deceleration = DECELERATION;
 
             SetDefaults();
             ApplyModifiers();
 
             if (Client.Controls[Control.left])
             {
-                physics.AddVector("left", new MovementVector(new Vector2(-speed, 0), -5, TimeSpan.Zero, true));
+                physics.AddVector("move_left", new MovementVector(new Vector2(-speed, 0), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.right])
             {
-                physics.AddVector("right", new MovementVector(new Vector2(speed, 0), -5, TimeSpan.Zero, true));
+                physics.AddVector("move_right", new MovementVector(new Vector2(speed, 0), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.lookUp])
             {
-                physics.AddVector("down", new MovementVector(new Vector2(0, -speed), -5, TimeSpan.Zero, true));
+                physics.AddVector("move_down", new MovementVector(new Vector2(0, -speed), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.lookDown])
             {
-                physics.AddVector("up", new MovementVector(new Vector2(0, speed), -5, TimeSpan.Zero, true));
+                physics.AddVector("move_up", new MovementVector(new Vector2(0, speed), -deceleration, TimeSpan.Zero, true));
+            }
+
+            if (Client.Controls.OnPress(Control.left) || Client.Controls.OnPress(Control.right)
+                || Client.Controls.OnPress(Control.lookUp) || Client.Controls.OnPress(Control.lookDown))
+            {
+                spring.Pull(1.12f);
             }
 
             if (Client.Controls.OnPress(Control.pause))
             {
                 state.PauseCurrent();
                 state.LaunchLevel("pause", new LevelArgs(state.GetCurrentLevelName()), false);
+            }
+
+            if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move_")).Any())
+            {
+                Animator.Resume();
+            }
+            else
+            {
+                Animator.SetFrame(DisplayInfo ,0);
+                Animator.Stop();
             }
         }
 

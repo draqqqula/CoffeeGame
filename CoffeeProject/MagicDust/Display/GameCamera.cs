@@ -7,30 +7,27 @@ namespace MagicDustLibrary.Display
     public record struct CameraSettings(Vector2 defaultPosition, Rectangle innerWindow, Rectangle? outerWindow);
     public class GameCamera
     {
-        public Vector2 Position { get; private set; }
+        private const float сatchDistance = 0.4f;
 
+        public GameCamera(CameraSettings settings, Rectangle clientBorders) :
+    this(settings.defaultPosition, settings.innerWindow, settings.outerWindow, clientBorders)
+        { }
+
+        private GameCamera(Vector2 position, Rectangle innerBorders, Rectangle? outerBorders, Rectangle clientBorders)
+        {
+            Position = position;
+            InnerBorders = innerBorders;
+            ClientBounds = clientBorders;
+            OuterBorders = outerBorders;
+            OnClientUpdated += UpdateWindow;
+        }
+
+        public Vector2 Position { get; private set; }
         public Vector2 LeftTopCorner { get { return new Vector2(Position.X - ViewPort.Width / 2, Position.Y - ViewPort.Height / 2); } }
         public Vector2 RightTopCorner { get { return new Vector2(Position.X + ViewPort.Width / 2, Position.Y - ViewPort.Height / 2); } }
         public Vector2 LeftBottomCorner { get { return new Vector2(Position.X - ViewPort.Width / 2, Position.Y + ViewPort.Height / 2); } }
         public Vector2 RightBottomCorner { get { return new Vector2(Position.X + ViewPort.Width / 2, Position.Y + ViewPort.Height / 2); } }
-
-        private const float CatchDistance = 0.4f;
-
-
-        /// <summary>
-        /// Применяет паралакс к абсолютной позиции объекта.<br/>
-        /// Паралакс представляет собой коэффициент изменения абсолютной позиции объекта относительно наблюдателя.
-        /// </summary>
-        /// <param newPriority="position"></param>
-        /// <param newPriority="dx"></param>
-        /// <param newPriority="dy"></param>
-        /// <returns></returns>
-        public DrawingParameters ApplyParalax(DrawingParameters arguments, float dx, float dy)
-        {
-            return arguments with { Position = arguments.Position - new Vector2((int)(LeftTopCorner.X * dx), (int)(LeftTopCorner.Y * dy)) };
-        }
-
-        public GameObject TargetObject { get; private set; }
+        public IBodyComponent TargetBody { get; private set; }
         /// <summary>
         /// Внутренние границы, закреплены на цели<br/>
         /// Положение камеры не может выйти за их пределы
@@ -61,6 +58,12 @@ namespace MagicDustLibrary.Display
         public Rectangle ClientBounds { get; private set; }
 
         public Action<GameClient> OnClientUpdated = delegate { };
+
+        public DrawingParameters ApplyParalax(DrawingParameters arguments, float dx, float dy)
+        {
+            return arguments with { Position = arguments.Position - new Vector2((int)(LeftTopCorner.X * dx), (int)(LeftTopCorner.Y * dy)) };
+        }
+
         private void UpdateWindow(GameClient client)
         {
             ClientBounds = client.Window;
@@ -71,16 +74,6 @@ namespace MagicDustLibrary.Display
             return 1f - MathF.Pow(1 - 0.95f, dt / 0.4f);
         }
 
-        public GameCamera(CameraSettings settings, Rectangle clientBorders) :
-            this(settings.defaultPosition, settings.innerWindow, settings.outerWindow, clientBorders)
-        { }
-
-        private GameCamera(Vector2 position, Rectangle innerBorders, Rectangle? outerBorders, Rectangle clientBorders)
-        {
-            Position = position;
-            InnerBorders = innerBorders;
-            OnClientUpdated += UpdateWindow;
-        }
         /// <summary>
         /// устанавливает внешние границы пространства, в котором камера может видеть
         /// </summary>
@@ -117,9 +110,9 @@ namespace MagicDustLibrary.Display
         /// заставляет камеру следовать за объектом
         /// </summary>
         /// <param newPriority="targetObject"></param>
-        public void LinkTo(GameObject targetObject)
+        public void LinkTo(IBodyComponent targetObject)
         {
-            this.TargetObject = targetObject;
+            this.TargetBody = targetObject;
         }
 
         /// <summary>
@@ -127,16 +120,16 @@ namespace MagicDustLibrary.Display
         /// </summary>
         public void Update(TimeSpan deltaTime)
         {
-            if (TargetObject != null)
+            if (TargetBody != null)
             {
-                if ((TargetObject.Position - Position).Length() < CatchDistance)
+                if ((TargetBody.Position - Position).Length() < сatchDistance)
                 {
-                    Position = TargetObject.Position;
+                    Position = TargetBody.Position;
                     return;
                 }
                 var rawPos = FitInBorders(
-                    Lerp(TargetObject.Position, Position, InterpolationFactor((float)deltaTime.TotalSeconds))
-                    , TargetObject.Position, InnerBorders);
+                    Lerp(TargetBody.Position, Position, InterpolationFactor((float)deltaTime.TotalSeconds))
+                    , TargetBody.Position, InnerBorders);
                 if (OuterBorders.HasValue)
                 {
                     var outer = OuterBorders.Value;

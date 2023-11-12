@@ -1,0 +1,15 @@
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Release\net6.0\AsepriteImporter.deps.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Release\net6.0\AsepriteImporter.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Release\net6.0\AsepriteImporter.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Release\net6.0\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Release\net6.0\MagicDustLibrary.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.csproj.AssemblyReference.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.GeneratedMSBuildEditorConfig.editorconfig
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.AssemblyInfoInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.AssemblyInfo.cs
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.csproj.CoreCompileInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.csproj.CopyComplete
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\refint\AsepriteImporter.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\AsepriteImporter.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Release\net6.0\ref\AsepriteImporter.dll

@@ -5,11 +5,13 @@ using System.Reflection;
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IFamily : IStateUpdateable
+    public interface IFamily
     {
-        public void AddMember(IStateController state, IFamilyMember member);
+        public void AddMember(IStateController state, IFamilyComponent member);
 
-        public void RemoveMember(IStateController state, IFamilyMember member);
+        public void RemoveMember(IStateController state, IFamilyComponent member);
+
+        public void Update(IStateController state, TimeSpan deltaTime);
     }
     /// <summary>
     /// Группа объектов с общей логикой обновления.
@@ -20,7 +22,7 @@ namespace MagicDustLibrary.Logic
     /// </list>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Family<T> : IEnumerable<T>, IFamily where T : IFamilyMember
+    public abstract class Family<T> : IEnumerable<T>, IFamily where T : IFamilyComponent
     {
 
         protected List<T> Members { get; } = new List<T>();
@@ -46,17 +48,17 @@ namespace MagicDustLibrary.Logic
         /// <param name="member"></param>
         protected abstract void OnAbandonment(IStateController state, T member);
 
-        public void AddMember(IStateController state, IFamilyMember member)
+        public void AddMember(IStateController state, IFamilyComponent member)
         {
-            if (member is IFamilyMember)
+            if (member is IFamilyComponent)
             {
                 AddMember(state, (T)member);
             }
         }
 
-        public void RemoveMember(IStateController state, IFamilyMember member)
+        public void RemoveMember(IStateController state, IFamilyComponent member)
         {
-            if (member is IFamilyMember)
+            if (member is IFamilyComponent)
             {
                 RemoveMember(state, (T)member);
             }
@@ -102,7 +104,7 @@ namespace MagicDustLibrary.Logic
         }
     }
 
-    public interface IFamilyMember
+    public interface IFamilyComponent
     {
     }
 }

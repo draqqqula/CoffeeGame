@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "bjo2V1wXkd9ZO9QWJbG/e4tQQe0SE+l4JE1hXj6TIRZS5ct3M6vErb94ZAhzc9vRtU1NCRN69eVC5hi6WyG/pQ==",
+  "dgSpecHash": "tvCxv8PgzeMXv9mT8oAuymewuM2Co08zP9pU3ZijfjyLzaPTzlBSw7IL61PKdzGMvDPeZfUphrwjAQ0hZSRpsg==",
   "success": true,
   "projectFilePath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\BogdanPC\\.nuget\\packages\\graphshape\\1.2.1\\graphshape.1.2.1.nupkg.sha512",
     "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\BogdanPC\\.nuget\\packages\\quikgraph\\2.3.0\\quikgraph.2.3.0.nupkg.sha512",
     "C:\\Users\\BogdanPC\\.nuget\\packages\\magicdustlibrary\\1.0.2\\magicdustlibrary.1.0.2.nupkg.sha512"
   ],
   "logs": []

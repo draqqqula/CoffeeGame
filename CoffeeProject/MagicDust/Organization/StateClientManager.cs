@@ -29,7 +29,7 @@ namespace MagicDustLibrary.Organization
                 client.OnUpdate += OnUpdate;
             }
         }
-        public void ForceDisconnect(GameClient client)
+        public void Disconnect(GameClient client)
         {
             Clients.Remove(client);
             OnDisconnect(client);

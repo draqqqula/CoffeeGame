@@ -26,6 +26,7 @@ namespace CoffeeProject.Levels
 
         protected override void Initialize(IStateController state, LevelArgs arguments)
         {
+            //state.OpenServer(7878);
         }
 
         protected override void OnClientUpdate(IStateController state, GameClient client)
@@ -35,7 +36,7 @@ namespace CoffeeProject.Levels
         protected override void OnConnect(IStateController state, GameClient client)
         {
             var obj = state.CreateObject<Hero>()
-                .SetPos(new Vector2(343, 626))
+                .SetPos(new Vector2(0, 0))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddToState(state);
             obj.Client = client;

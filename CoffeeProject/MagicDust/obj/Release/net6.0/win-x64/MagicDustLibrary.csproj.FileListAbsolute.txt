@@ -1,0 +1,12 @@
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Release\net6.0\win-x64\MagicDustLibrary.deps.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Release\net6.0\win-x64\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Release\net6.0\win-x64\MagicDustLibrary.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.csproj.AssemblyReference.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.AssemblyInfoInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.AssemblyInfo.cs
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.csproj.CoreCompileInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\refint\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\MagicDustLibrary.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Release\net6.0\win-x64\ref\MagicDustLibrary.dll

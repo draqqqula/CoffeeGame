@@ -66,29 +66,15 @@ namespace MagicDustLibrary.Logic
     /// Реализует интерфейсы:
     /// <list type="bullet">
     /// <item><see cref="IDisposable"/> функционал для удаления.</item>
-    /// <item><see cref="IDisplayProvider"/> функционал для отрисовки</item>
-    /// <item><see cref="IBody"/> функционал для коллизии</item>
-    /// <item><see cref="IStateUpdateable"/> функционал для обновления на каждом кадре</item>
-    /// <item><see cref="IFamilyMember"/> возможность быть членом <see cref="IFamily"/></item>
-    /// <item><see cref="IMultiBehavior"/> возможность добавлять функционал через <see cref="IBehavior"/></item>
+    /// <item><see cref="IDisplayComponent"/> функционал для отрисовки</item>
+    /// <item><see cref="IBodyComponent"/> функционал для коллизии</item>
+    /// <item><see cref="IUpdateComponent"/> функционал для обновления на каждом кадре</item>
+    /// <item><see cref="IFamilyComponent"/> возможность быть членом <see cref="IFamily"/></item>
+    /// <item><see cref="IMultiBehaviorComponent"/> возможность добавлять функционал через <see cref="IBehavior"/></item>
     /// </list>
     /// </summary>
-    public abstract class GameObject : IDisposable, IDisplayProvider, IBody, IStateUpdateable, IFamilyMember, IMultiBehavior
+    public abstract class GameObject : GameObjectComponentBase, IDisplayComponent, IBodyComponent, IUpdateComponent, IFamilyComponent, IMultiBehaviorComponent
     {
-
-        #region IDisposable
-        public Action<GameObject>? OnDisposed;
-
-        public void Dispose()
-        {
-            if (OnDisposed is not null)
-            {
-                OnDisposed(this);
-            }
-        }
-
-        #endregion
-
 
         #region IDisplayProvider
         public bool IsMirroredVertical = false;
@@ -138,11 +124,6 @@ namespace MagicDustLibrary.Logic
 
         public abstract IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer);
 
-        public bool IsVisibleFor(GameClient client)
-        {
-            return ReversedVisibility ^ !ClientList.Contains(client);
-        }
-
         public Type GetLayerType()
         {
             return Placement.GetLayerType();
@@ -169,41 +150,22 @@ namespace MagicDustLibrary.Logic
 
 
         #region IBody
-        public virtual Vector2 Position { get; protected set; }
-        public virtual Rectangle Box { get; protected set; }
-        public Vector2 GetPosition()
-        {
-            return Position;
-        }
-
-        public void SetPosition(Vector2 position)
-        {
-            Position = position;
-        }
-
-        public void SetBounds(Rectangle box)
-        {
-            Box = box;
-        }
-
-        public Rectangle GetBounds()
-        {
-            return Box;
-        }
+        public Vector2 Position { get; set; }
+        public Rectangle Bounds { get; set; }
 
         public Rectangle Layout
         {
-            get => new Rectangle(Box.Location + Position.ToPoint(), Box.Size);
+            get => new Rectangle(Bounds.Location + Position.ToPoint(), Bounds.Size);
         }
 
         public Rectangle PredictLayout(Vector2 movementPrediction)
         {
             return new
                 Rectangle(
-                (int)(Position.X + movementPrediction.X) + Box.X,
-                (int)(Position.Y + movementPrediction.Y) + Box.Y,
-                Box.Width,
-                Box.Height
+                (int)(Position.X + movementPrediction.X) + Bounds.X,
+                (int)(Position.Y + movementPrediction.Y) + Bounds.Y,
+                Bounds.Width,
+                Bounds.Height
                 );
         }
         #endregion
@@ -235,7 +197,7 @@ namespace MagicDustLibrary.Logic
 
             ParseAttributes(this.GetType().GetCustomAttributes(true), ref hitbox, ref reversedVisibility);
 
-            Box = hitbox;
+            Bounds = hitbox;
             ReversedVisibility = reversedVisibility;
         }
         private void ParseAttributes(object[] attributes, ref Rectangle hitbox, ref bool reversedVisibility)
@@ -265,6 +227,20 @@ namespace MagicDustLibrary.Logic
         public T GetBehavior<T>(string name) where T : IBehavior
         {
             return (T)Behaviors[name];
+        }
+
+        public DrawingParameters GetDrawingParameters()
+        {
+            var info = new DrawingParameters()
+            {
+                Position = this.Position,
+                Mirroring = GetFlipping(),
+            };
+            foreach (var behavior in Behaviors.Values)
+            {
+                info = behavior.ChangeAppearanceUnhandled(this, info);
+            }
+            return info;
         }
         #endregion
     }

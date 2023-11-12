@@ -3,6 +3,7 @@ using AsepriteDotNet.Document;
 using AsepriteDotNet.Image;
 using MagicDustLibrary.Animations;
 using MagicDustLibrary.Content;
+using MagicDustLibrary.Display;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,16 +20,27 @@ namespace AsepriteImporter
     {
         private const string DEFAULT_NAME = "Default";
         private readonly GraphicsDevice _device;
+        private readonly IContentStorage _storage;
 
         public Dictionary<string, Animation> BuildFromFiles(string name)
         {
-            var file = AsepriteFile.Load(name);
+            var file = AsepriteFile.Load($"{name}.aseprite");
             var sheet = file.ToAsepriteSheet(GetSpritesheetOptions(), GetTilesheetOptions());
             var aseAnimations = sheet.Spritesheet.Animations;
-            var texture = ToXnaTexture(
+            Texture2D texture;
+            if (_storage.GetAsset<Texture2D>(name) is not null)
+            {
+                texture = _storage.GetAsset<Texture2D>(name);
+            }
+            else
+            {
+                texture = ToXnaTexture(
                 sheet.Spritesheet.Pixels,
                 sheet.Spritesheet.Size.Width,
                 sheet.Spritesheet.Size.Height);
+                _storage.AddAsset(texture, name);
+            }
+
             var dictionary = new Dictionary<string, Animation>();
 
             if (!aseAnimations.Any())
@@ -43,7 +55,6 @@ namespace AsepriteImporter
                 dictionary.Add(ParseName(aseAnimation.Name), magicAnimation);
                 indent += magicAnimation.FrameCount;
             }
-
             return dictionary;
         }
 
@@ -170,9 +181,10 @@ namespace AsepriteImporter
             return name.Value;
         }
 
-        public AsepriteAnimationBuilder(GraphicsDevice device)
+        public AsepriteAnimationBuilder(GraphicsDevice device, IContentStorage storage)
         {
             _device = device;
+            _storage = storage;
         }
     }
 }

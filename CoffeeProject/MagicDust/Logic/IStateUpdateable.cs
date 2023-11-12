@@ -3,7 +3,7 @@
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IStateUpdateable
+    public interface IUpdateComponent : IGameObjectComponent
     {
         /// <summary>
         /// Вызвается у объектов во время <see cref="Game.Update"/>.<br/>

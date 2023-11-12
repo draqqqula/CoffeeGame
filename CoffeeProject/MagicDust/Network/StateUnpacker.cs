@@ -22,7 +22,7 @@ namespace MagicDustLibrary.Network
             var tilemaps = UnpackTileMaps(data, _unpackLayer);
             foreach (var tilemap in tilemaps)
             {
-                _collection.Add(tilemap.LinkedID, tilemap);
+                //_collection.Add(tilemap.LinkedID, tilemap);
             }
         }
 

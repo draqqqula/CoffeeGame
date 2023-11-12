@@ -94,8 +94,8 @@ namespace MagicDustLibrary.CommonObjectTypes
         public IEnumerable<byte> Pack(IContentStorage contentStorage)
         {
             List<byte> buffer = new();
-            var LinkID = Source.LinkedID;
-            buffer.AddRange(LinkID);
+            //var LinkID = Source.LinkedID;
+            //buffer.AddRange(LinkID);
             buffer.AddRange(BitConverter.GetBytes(Position.X));
             buffer.AddRange(BitConverter.GetBytes(Position.Y));
             buffer.AddRange(BitConverter.GetBytes(Chunk.X));
@@ -133,7 +133,8 @@ namespace MagicDustLibrary.CommonObjectTypes
                     BinaryPrimitives.ReadInt32LittleEndian(bytes[(48 + i * 8)..])
                     );
             }
-            return new TileMapChunk(networkCollection[linkID] as TileMap, chunk, position, extra);
+            //return new TileMapChunk(networkCollection[linkID] as TileMap, chunk, position, extra);
+            throw new Exception();
         }
     }
 
@@ -153,8 +154,8 @@ namespace MagicDustLibrary.CommonObjectTypes
             buffer.AddRange(BitConverter.GetBytes(TileFrame.Height));
             buffer.AddRange(BitConverter.GetBytes(PictureScale.X));
             buffer.AddRange(BitConverter.GetBytes(PictureScale.Y));
-            var linkID = LinkedID;
-            buffer.AddRange(linkID);
+            //var linkID = LinkedID;
+            //buffer.AddRange(linkID);
             buffer.AddRange(BitConverter.GetBytes(Tiles.Length));
             foreach (var tile in Tiles)
             {
@@ -242,6 +243,11 @@ namespace MagicDustLibrary.CommonObjectTypes
             var obj = new TileMap(position, map, sheet, state, tileFrame, layer, pictureScale, tiles);
             obj.Link(linkID);
             return obj;
+        }
+
+        private void Link(byte[] linkID)
+        {
+            throw new NotImplementedException();
         }
     }
 }

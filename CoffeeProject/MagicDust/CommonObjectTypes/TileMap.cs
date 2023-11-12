@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MagicDustLibrary.CommonObjectTypes
 {
-    public partial class TileMap : GameObject
+    public partial class TileMap : GameObjectComponentBase, IDisplayComponent, IBodyComponent
     {
         #region DATA
 
@@ -33,7 +33,7 @@ namespace MagicDustLibrary.CommonObjectTypes
         /// <summary>
         /// расположение площади, занимаемой картой
         /// </summary>
-        public override Rectangle Box
+        public Rectangle Bounds
         {
             get
             {
@@ -43,7 +43,13 @@ namespace MagicDustLibrary.CommonObjectTypes
                         new Point(Map.GetLength(0) * TileFrame.Width * (int)PictureScale.X, Map.GetLength(1) * TileFrame.Height * (int)PictureScale.Y
                     ));
             }
+            set
+            {
+
+            }
         }
+
+        public Vector2 Position { get; set; }
         #endregion
 
         #region CONSTRUCTORS
@@ -175,9 +181,9 @@ namespace MagicDustLibrary.CommonObjectTypes
                         0);
         }
 
-        public override IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer)
+        public IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer)
         {
-            var pos = layer.Process(DisplayInfo, camera).Position;
+            var pos = layer.Process(GetDrawingParameters(), camera).Position;
             var chunk = GetChunk(new Rectangle((-pos).ToPoint(), camera.ViewPort.Size));
             yield return new TileMapChunk(this, chunk, pos,
                 ExtraPoints.Where(
@@ -205,6 +211,16 @@ namespace MagicDustLibrary.CommonObjectTypes
             int endX = Math.Clamp(window.Right / frame.X, 0, width);
             int endY = Math.Clamp(window.Bottom / frame.Y, 0, height);
             return new Rectangle(startX, startY, endX - startX, endY - startY);
+        }
+
+        public Type GetLayerType()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DrawingParameters GetDrawingParameters()
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

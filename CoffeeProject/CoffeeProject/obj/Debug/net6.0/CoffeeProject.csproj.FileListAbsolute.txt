@@ -25,7 +25,6 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net6.0\CoffeeProj
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net6.0\ref\CoffeeProject.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\MagicDustLibrary.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\MagicDustLibrary.pdb
-C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\hero.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\hero_properties.txt
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Painting_properties.txt
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\Content\ANOTHER HIM.ogg
@@ -75,3 +74,5 @@ C:\Users\DNS\Desktop\ПП\CoffeeProject\CoffeeProject\obj\Debug\net6.0\ref\Coffe
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\PauseTitle.aseprite
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\BehaviorKit.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\BehaviorKit.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\GraphShape.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\QuikGraph.dll

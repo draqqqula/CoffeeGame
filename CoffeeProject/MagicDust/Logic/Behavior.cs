@@ -14,10 +14,10 @@ namespace MagicDustLibrary.Logic
     /// </list>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Behavior<T> : IBehavior where T : GameObject
+    public abstract class Behavior<T> : IBehavior where T : IMultiBehaviorComponent
     {
         public bool Enabled { get; set; } = true;
-        public DrawingParameters ChangeAppearanceUnhandled(GameObject parent, DrawingParameters parameters)
+        public DrawingParameters ChangeAppearanceUnhandled(IMultiBehaviorComponent parent, DrawingParameters parameters)
         {
             if (parent is T)
             {
@@ -36,7 +36,7 @@ namespace MagicDustLibrary.Logic
         {
             return parameters;
         }
-        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, GameObject parent)
+        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             if (parent is T)
             {
@@ -59,8 +59,8 @@ namespace MagicDustLibrary.Logic
     {
         public bool Enabled { get; set; }
 
-        public DrawingParameters ChangeAppearanceUnhandled(GameObject parent, DrawingParameters parameters);
+        public DrawingParameters ChangeAppearanceUnhandled(IMultiBehaviorComponent parent, DrawingParameters parameters);
 
-        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, GameObject parent);
+        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent);
     }
 }

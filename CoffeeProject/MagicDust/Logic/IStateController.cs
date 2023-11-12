@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace MagicDustLibrary.Logic
 {
     /// <summary>
-    /// Содержит операции, доступные для выполнения внутри методов <see cref="IStateUpdateable.Update(IStateController, TimeSpan)"/>.
+    /// Содержит операции, доступные для выполнения внутри методов <see cref="IUpdateComponent.Update(IStateController, TimeSpan)"/>.
     /// </summary>
     public interface IStateController
     {
-        public T CreateObject<T>() where T : GameObject;
-        public void AddToState<T>(T obj) where T : GameObject;
+        public T CreateObject<T>() where T : IGameObjectComponent;
+        public void AddToState<T>(T obj) where T : IGameObjectComponent;
         public void PlaceAbove(GameObject target, GameObject source);
         public void PlaceBelow(GameObject target, GameObject source);
         public void PlaceTop(GameObject target);
@@ -35,6 +35,8 @@ namespace MagicDustLibrary.Logic
         public void RestartLevel(string name, LevelArgs arguments);
         public void ShutLevel(string name, bool keepState);
         public void ShutCurrent(bool keepState);
+        public void TransferClient(GameClient client, string targetLevel);
+        public void Disconnect(GameClient client);
         public SoundEffectInstance? CreateSoundInstance(string fileName, string tag);
         public SoundEffectInstance? GetSoundInstance(string tag);
     }

@@ -1,0 +1,35 @@
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\Content\ANOTHER HIM.ogg
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\Content\ANOTHER HIM.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\Content\painting.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\hero.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\hero_properties.txt
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\Painting_properties.txt
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\PauseTitle.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\CoffeeProject
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\CoffeeProject.deps.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\CoffeeProject.runtimeconfig.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\CoffeeProject.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\AsepriteDotNet.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\GraphShape.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\MonoGame.Framework.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\QuikGraph.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\libSDL2-2.0.so.0
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\libopenal.so.1
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\AsepriteImporter.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\BehaviorKit.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\AsepriteImporter.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\BehaviorKit.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Release\net6.0\linux-x64\MagicDustLibrary.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.csproj.AssemblyReference.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.AssemblyInfoInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.AssemblyInfo.cs
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.csproj.CoreCompileInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.csproj.CopyComplete
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\refint\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\CoffeeProject.genruntimeconfig.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Release\net6.0\linux-x64\ref\CoffeeProject.dll

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CoffeeProject.GameObjects
 {
     [Box(10)]
-    [SpriteSheet("PauseTitle.aseprite")]
+    [SpriteSheet("PauseTitle")]
     public class PauseTitle : Sprite
     {
         public PauseTitle(IAnimationProvider provider) : base(provider)
