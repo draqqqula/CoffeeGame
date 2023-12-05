@@ -26,8 +26,8 @@ namespace MagicDustLibrary.Network
 
         public void Unpack(byte[] data)
         {
-            var clients = _state.StateServices.GetService<StateClientManager>().GetAll();
-            var views = _state.StateServices.GetService<ViewStorage>();
+            var clients = _state.Services.GetService<StateClientManager>().GetAll();
+            var views = _state.Services.GetService<ViewStorage>();
             var displays = GetDisplays(
                 data,
                 _state.ApplicationServices.GetService<IContentStorage>(),

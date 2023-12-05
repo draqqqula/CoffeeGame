@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +37,11 @@ namespace CoffeeProject.Behaviors
             return parameters;
         }
 
-        public Fade(TimeSpan delay, TimeSpan fadeDuration, TimeSpan t0, bool destroyAfterFadeOut, bool enabled) : base()
+        public Fade(TimeSpan delay, TimeSpan fadeDuration, TimeSpan t0, bool destroyAfterFadeOut) : base()
         {
             Delay = delay;
             FadeDuration = fadeDuration;
             t = t0;
-            Enabled = enabled;
             DestroyAfterFadeOut = destroyAfterFadeOut;
         }
     }

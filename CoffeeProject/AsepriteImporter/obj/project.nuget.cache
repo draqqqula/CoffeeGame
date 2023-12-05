@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6780GO0zYaleLVZpO39sZZxBGIEl4fY0YQDa5Nt1zOv72DDPKYoy5N5QOYlcXbApmap24Rew/B4wg62V17sHtg==",
+  "dgSpecHash": "B5lje0AV1tRUqKiPqAyVqSoiLVsb9rkNvrIO5E2lD7Ywo4ITesPrXY9w+P3h7+0+lwi29pDoh0SBWP1ZDLARwg==",
   "success": true,
   "projectFilePath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BogdanPC\\.nuget\\packages\\asepritedotnet\\0.2.3\\asepritedotnet.0.2.3.nupkg.sha512",
+    "C:\\Users\\BogdanPC\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\BogdanPC\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
     "C:\\Users\\BogdanPC\\.nuget\\packages\\magicdustlibrary\\1.0.2\\magicdustlibrary.1.0.2.nupkg.sha512"

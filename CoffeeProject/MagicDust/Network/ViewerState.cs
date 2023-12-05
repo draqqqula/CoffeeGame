@@ -13,6 +13,7 @@ using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.VisualBasic;
 using static MagicDustLibrary.Network.ViewerState;
+using MagicDustLibrary.Organization.Application;
 
 namespace MagicDustLibrary.Network
 {

@@ -1,6 +1,7 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Extensions;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,14 @@ using System.Threading.Tasks;
 
 namespace BehaviorKit
 {
-    public class Spring : Behavior<IMultiBehaviorComponent>
+    public class Spring : Behavior<IMultiBehaviorComponent>, IDisplayFilter
     {
         private float _factor = 1;
         private float _subsidence;
 
-        protected override DrawingParameters ChangeAppearance(IMultiBehaviorComponent parent, DrawingParameters parameters)
+        public Spring(float subsidence)
         {
-            if (_factor > 1)
-            {
-                parameters.Scale = new Vector2(parameters.Scale.X, parameters.Scale.Y * _factor);
-            }
-            return parameters;
+            this._subsidence = subsidence;
         }
 
         public void Pull(float factor)
@@ -29,7 +26,7 @@ namespace BehaviorKit
             _factor = factor;
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
+        protected override void Act(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             if (_factor > 1)
             {
@@ -37,9 +34,13 @@ namespace BehaviorKit
             }
         }
 
-        public Spring(float subsidence)
+        public DrawingParameters ApplyFilter(DrawingParameters info)
         {
-            this._subsidence = subsidence;
+            if (_factor > 1)
+            {
+                info.Scale = new Vector2(info.Scale.X, info.Scale.Y * _factor);
+            }
+            return info;
         }
     }
 }

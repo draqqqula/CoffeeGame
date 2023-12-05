@@ -1,5 +1,7 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Display;
+using MagicDustLibrary.Organization.BaseServices;
 
 namespace MagicDustLibrary.Logic
 {
@@ -14,53 +16,24 @@ namespace MagicDustLibrary.Logic
     /// </list>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Behavior<T> : IBehavior where T : IMultiBehaviorComponent
+    public abstract class Behavior<T> : GameObjectComponentBase where T : class, IMultiBehaviorComponent
     {
-        public bool Enabled { get; set; } = true;
-        public DrawingParameters ChangeAppearanceUnhandled(IMultiBehaviorComponent parent, DrawingParameters parameters)
+        protected abstract void Act(IStateController state, TimeSpan deltaTime, T parent);
+
+        [ContactComponent]
+        private void GreetMultiBehavior(T parent)
         {
-            if (parent is T)
-            {
-                return ChangeAppearance((T)parent, parameters);
-            }
-            return parameters;
+            parent.OnAct += Update;
         }
-        /// <summary>
-        /// Метод, который будет вызываться в get <see cref="GameObject.DisplayInfo"/>.<br/>
-        /// Изменяет <b>настройки отрисовки</b>, которые будут применяться к объекту.
-        /// </summary>
-        /// <param name="parent"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        protected virtual DrawingParameters ChangeAppearance(T parent, DrawingParameters parameters)
+
+        private void Update(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
-            return parameters;
-        }
-        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
-        {
-            if (parent is T)
-            {
-                Update(state, deltaTime, (T)parent);
-            }
-        }
-        /// <summary>
-        /// Метод, который будет вызываться <b>перед</b> <see cref="GameObject.Update(IStateController, TimeSpan)"/>.<br/>
-        /// Должен реализовывать <b>добавочную логику</b> обновления.
-        /// </summary>
-        /// <param name="parent"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        protected virtual void Update(IStateController state, TimeSpan deltaTime, T parent)
-        {
+            Act(state, deltaTime, parent as T);
         }
     }
 
-    public interface IBehavior
+    public interface IDisplayFilter : IComponent
     {
-        public bool Enabled { get; set; }
-
-        public DrawingParameters ChangeAppearanceUnhandled(IMultiBehaviorComponent parent, DrawingParameters parameters);
-
-        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent);
+        public DrawingParameters ApplyFilter(DrawingParameters info);
     }
 }

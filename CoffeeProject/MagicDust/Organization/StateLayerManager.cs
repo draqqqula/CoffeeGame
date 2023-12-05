@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
+using MagicDustLibrary.Organization.StateManagement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Organization
 {
-    public class StateLayerManager
+    public class StateLayerManager : ComponentHandler<IDisplayComponent>
     {
         private readonly List<Layer> LayerOrder = new();
         private readonly Dictionary<Type, Layer> LayerTypes = new();
@@ -47,6 +50,16 @@ namespace MagicDustLibrary.Organization
         public IEnumerable<Layer> GetAll()
         {
             return LayerOrder.ToArray();
+        }
+
+        public override void Hook(IDisplayComponent component)
+        {
+            GetLayer(component.GetLayerType()).PlaceTop(component);
+        }
+
+        public override void Unhook(IDisplayComponent component)
+        {
+            GetLayer(component.GetLayerType()).Remove(component);
         }
     }
 }

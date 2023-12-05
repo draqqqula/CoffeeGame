@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 using System;
 

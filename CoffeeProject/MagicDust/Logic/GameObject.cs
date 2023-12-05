@@ -1,6 +1,7 @@
 ﻿using MagicDustLibrary.Common;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
@@ -216,18 +217,6 @@ namespace MagicDustLibrary.Logic
         }
         #endregion
 
-
-        #region BEHAVIORS
-        public Dictionary<string, IBehavior> Behaviors { get; private set; } = new Dictionary<string, IBehavior>();
-        public void AddBehavior(string name, IBehavior behavior)
-        {
-            Behaviors[name] = behavior;
-        }
-
-        public T GetBehavior<T>(string name) where T : IBehavior
-        {
-            return (T)Behaviors[name];
-        }
 
         public DrawingParameters GetDrawingParameters()
         {

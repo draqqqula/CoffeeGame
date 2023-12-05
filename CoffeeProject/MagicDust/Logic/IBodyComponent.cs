@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IBodyComponent : IGameObjectComponent
+    public interface IBodyComponent : IDisposableComponent
     {
         public Vector2 Position { get; set; }
         public Rectangle Bounds { get; set; }

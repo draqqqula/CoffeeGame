@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.BaseServices;
 using Condition = System.Func<BehaviorKit.Dummy, BehaviorKit.DamageInstance, bool>;
 using DamageEvent = System.Func<BehaviorKit.Dummy, BehaviorKit.DamageInstance, BehaviorKit.DamageInstance>;
 
@@ -72,7 +73,7 @@ namespace BehaviorKit
         public Dictionary<string, TimeSpan> InvincibilityFrames { get; private set; }
         public double InvincibilityFactor { get; private set; }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Act(IStateController state, TimeSpan deltaTime, GameObject parent)
         {
             foreach (var invinibilityInstance in InvincibilityFrames)
             {
@@ -121,7 +122,7 @@ namespace BehaviorKit
             return false;
         }
 
-        public Dummy(int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor, bool enabled) : base()
+        public Dummy(int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor) : base()
         {
             MaxHealth = maxHealth;
             Health = maxHealth;
@@ -131,7 +132,6 @@ namespace BehaviorKit
             Conditions = conditions == null ? new List<Condition>() : conditions;
             InvincibilityFrames = new Dictionary<string, TimeSpan>();
             InvincibilityFactor = invincibilityFactor;
-            Enabled = enabled;
         }
     }
 }

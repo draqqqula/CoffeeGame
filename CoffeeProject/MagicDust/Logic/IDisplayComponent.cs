@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IDisplayComponent : IGameObjectComponent
+    public interface IDisplayComponent : IDisposableComponent
     {
         /// <summary>
         /// Возвращает несколько объектов для отрисовки.

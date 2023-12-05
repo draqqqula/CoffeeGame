@@ -22,9 +22,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
 	  <None Include="README.md" Pack="true" PackagePath="" />
 	  <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />	    </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Organization\ComponentServices\" />
+    <Folder Include="Organization\ClientServices\" />
+  </ItemGroup>
 
 </Project>

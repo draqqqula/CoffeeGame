@@ -19,7 +19,7 @@ namespace MagicDustLibrary.Organization
         private MessageHandler _handler;
         private readonly object _lock;
 
-        public Action<GameClient> OnConnected = delegate { };
+        public event Action<GameClient> OnConnected = delegate { };
 
         public void StartServer(int port)
         {

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Immutable;
 using System.Reflection;
+using MagicDustLibrary.Organization.BaseServices;
 
 namespace MagicDustLibrary.Logic
 {

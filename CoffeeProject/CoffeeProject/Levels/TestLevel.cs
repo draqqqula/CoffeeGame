@@ -5,6 +5,7 @@ using MagicDustLibrary.Display;
 using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

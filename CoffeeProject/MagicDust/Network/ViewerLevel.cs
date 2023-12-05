@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MagicDustLibrary.Display;
+using MagicDustLibrary.Organization.BaseServices;
 
 namespace MagicDustLibrary.Network
 {
@@ -70,7 +71,7 @@ namespace MagicDustLibrary.Network
             _openAdress = IPEndPoint.Parse(IP);
             _messageReciever = new UdpClient();
 
-            _stateUnpacker = new StateUnpacker(GameState, NetworkCollection, GameState.StateServices
+            _stateUnpacker = new StateUnpacker(GameState, NetworkCollection, GameState.Services
                 .GetService<StateLayerManager>()
                 .GetLayer<UnpackLayer>());
             _messageUnpacker = new MessageUnpacker(GameState, NetworkCollection);

@@ -3,6 +3,7 @@ using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 
 namespace CoffeeProject.Behaviors
@@ -241,12 +242,11 @@ namespace CoffeeProject.Behaviors
             return resultingVector;
         }
 
-        public Physics(Rectangle[][] surfaceMap, int surfaceWidth, bool enabled)
+        public Physics(Rectangle[][] surfaceMap, int surfaceWidth)
         {
             SurfaceMap = surfaceMap;
             SurfaceWidth = surfaceWidth;
             Vectors = new Dictionary<string, MovementVector>();
-            Enabled = enabled;
 
             Faces = new Dictionary<Side, bool>();
             foreach (Side side in (Side[])Enum.GetValues(typeof(Side)))

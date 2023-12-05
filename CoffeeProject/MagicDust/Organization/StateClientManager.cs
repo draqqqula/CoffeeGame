@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using MagicDustLibrary.Organization.BaseServices;
 
 namespace MagicDustLibrary.Organization
 {

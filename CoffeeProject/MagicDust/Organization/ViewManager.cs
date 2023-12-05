@@ -1,4 +1,6 @@
 ﻿using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
+using MagicDustLibrary.Organization.StateManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace MagicDustLibrary.Organization
     public class ViewStorage : ClientRelatedActions
     {
         private readonly Dictionary<GameClient, ViewBuffer> _viewPoints = new();
+
+        public StateServiceCollection Services { get; set; }
 
         public ViewBuffer GetFor(GameClient client)
         {

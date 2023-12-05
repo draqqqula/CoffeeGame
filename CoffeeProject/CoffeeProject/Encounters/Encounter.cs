@@ -1,6 +1,6 @@
 ﻿using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
-using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.BaseServices;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

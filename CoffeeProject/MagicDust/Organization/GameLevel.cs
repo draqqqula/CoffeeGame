@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using MagicDustLibrary.Organization.BaseServices;
+using MagicDustLibrary.Organization.Application;
 
 namespace MagicDustLibrary.Organization
 {
@@ -56,7 +58,7 @@ namespace MagicDustLibrary.Organization
 
         public void Start(MagicGameApplication app, LevelArgs arguments, string name)
         {
-            var state = new GameState(app, _defaults, name);
+            var state = new GameState(app, _defaults);
             GameState = state;
             Initialize(state.Controller, arguments);
             state.BoundCustomActions(_levelClientManager);

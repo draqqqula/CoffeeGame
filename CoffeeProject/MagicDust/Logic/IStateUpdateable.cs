@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MagicDustLibrary.Organization.BaseServices;
+using Microsoft.Xna.Framework;
 
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IUpdateComponent : IGameObjectComponent
+    public interface IUpdateComponent : IDisposableComponent
     {
         /// <summary>
         /// Вызвается у объектов во время <see cref="Game.Update"/>.<br/>

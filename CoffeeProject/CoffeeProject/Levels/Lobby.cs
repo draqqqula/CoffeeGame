@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.BaseServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,15 +36,15 @@ namespace CoffeeProject.Levels
         {
             if (!client.IsRemote)
             {
-                GameState.StateServices.GetService<StateClientManager>().Disconnect(client);
+                GameState.Services.GetService<StateClientManager>().Disconnect(client);
                 return;
             }
-            var allLevels = GameState.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.GetAllActive();
+            var allLevels = GameState.Services.GetService<StateLevelManager>().ApplicationLevelManager.GetAllActive();
             foreach (var level in allLevels)
             {
                 if (level.GetType().GetCustomAttribute<LobbyAttribute>() is not null)
                 {
-                    var stateClientManager = level.GameState.StateServices.GetService<StateClientManager>();
+                    var stateClientManager = level.GameState.Services.GetService<StateClientManager>();
                     stateClientManager.Connect(client);
                 }
             }
