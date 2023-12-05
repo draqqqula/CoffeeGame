@@ -1,16 +1,16 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net8.0": {
       "AsepriteDotNet/0.2.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/AsepriteDotNet.dll": {
+          "lib/net7.0/AsepriteDotNet.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/AsepriteDotNet.dll": {
+          "lib/net7.0/AsepriteDotNet.dll": {
             "related": ".xml"
           }
         }
@@ -99,7 +99,7 @@
       },
       "AsepriteImporter/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AsepriteDotNet": "0.2.3",
           "MagicDustLibrary": "1.0.2"
@@ -113,7 +113,7 @@
       },
       "BehaviorKit/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "GraphShape": "1.2.1",
           "MagicDustLibrary": "1.0.2"
@@ -127,7 +127,7 @@
       },
       "MagicDustLibrary/1.0.2": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "MonoGame.Content.Builder.Task": "3.8.1.303",
           "MonoGame.Framework.DesktopGL": "3.8.1.303"
@@ -258,7 +258,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net8.0": [
       "AsepriteImporter >= 1.0.0",
       "BehaviorKit >= 1.0.0",
       "MagicDustLibrary >= 1.0.2",
@@ -288,7 +288,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -296,8 +296,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {
             "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
               "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj"
@@ -318,8 +318,8 @@
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "MonoGame.Content.Builder.Task": {
             "target": "Package",
@@ -346,7 +346,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -13,3 +13,4 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net6.0\BehaviorKit.
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net6.0\refint\BehaviorKit.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net6.0\BehaviorKit.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net6.0\ref\BehaviorKit.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net6.0\BehaviorKit.sourcelink.json

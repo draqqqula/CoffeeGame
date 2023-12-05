@@ -34,3 +34,4 @@ C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibr
 C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\refint\MagicDustLibrary.dll
 C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.pdb
 C:\Users\DNS\Desktop\ПП\CoffeeProject\MagicDust\obj\Debug\net6.0\ref\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net6.0\MagicDustLibrary.sourcelink.json
