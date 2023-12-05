@@ -18,13 +18,13 @@ namespace MagicDustLibrary.Organization
             private readonly GameState _state;
 
             #region COMMON
-            public T CreateObject<T>() where T : IGameObjectComponent
+            public T CreateObject<T>() where T : IDisposableComponent
             {
                 var obj =  _state.StateServices.GetService<IGameObjectFactory>().CreateObject<T>();
                 return obj;
             }
 
-            public void AddToState<T>(T obj) where T : IGameObjectComponent
+            public void AddToState<T>(T obj) where T : IDisposableComponent
             {
                 _state.Hook(obj);
             }

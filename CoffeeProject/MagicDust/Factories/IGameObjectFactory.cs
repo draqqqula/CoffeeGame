@@ -12,13 +12,13 @@ namespace MagicDustLibrary.Factorys
 {
     public interface IGameObjectFactory
     {
-        public T CreateObject<T>() where T : IGameObjectComponent;
+        public T CreateObject<T>() where T : IDisposableComponent;
     }
 
     public class GameObjectFactory : IGameObjectFactory
     {
         private readonly GameState _state;
-        public T CreateObject<T>() where T : IGameObjectComponent
+        public T CreateObject<T>() where T : IDisposableComponent
         {
             var ctor = GetCorrectConstructor(typeof(T));
             if (ctor is null)

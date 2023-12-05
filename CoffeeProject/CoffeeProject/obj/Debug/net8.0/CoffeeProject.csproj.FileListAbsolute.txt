@@ -40,3 +40,5 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\refint\Cof
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.genruntimeconfig.cache
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\ref\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll

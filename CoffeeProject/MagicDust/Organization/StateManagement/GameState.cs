@@ -27,7 +27,7 @@ namespace MagicDustLibrary.Organization
         private readonly LevelSettings _levelSettings;
 
 
-        private void Hook(IGameObjectComponent obj)
+        private void Hook(IDisposableComponent obj)
         {
             if (obj is IUpdateComponent updateable)
             {
@@ -46,7 +46,7 @@ namespace MagicDustLibrary.Organization
 
         }
 
-        private void Unhook(IGameObjectComponent obj)
+        private void Unhook(IDisposableComponent obj)
         {
             if (obj is IUpdateComponent updateable)
             {

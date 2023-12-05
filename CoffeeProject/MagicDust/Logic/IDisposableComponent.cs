@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public delegate void OnDispose(IGameObjectComponent target);
+public delegate void OnDispose(IDisposableComponent target);
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IGameObjectComponent : IDisposable, IComponent
+    public interface IDisposableComponent : IDisposable, IComponent
     {
         public event OnDispose OnDisposeEvent;
     }

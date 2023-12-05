@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IMultiBehaviorComponent : IGameObjectComponent
+    public interface IMultiBehaviorComponent : IDisposableComponent
     {
         public void AddBehavior(string name, IBehavior behavior);
 

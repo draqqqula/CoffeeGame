@@ -9,6 +9,8 @@ namespace MagicDustLibrary.Organization.Services
 {
     public interface IUpdateService
     {
-        public void Update(IStateController controller, TimeSpan deltaTime, bool onPause);
+        public bool RunOnPause { get; }
+
+        public void Update(IStateController controller, TimeSpan deltaTime);
     }
 }

@@ -35,7 +35,7 @@ namespace MagicDustLibrary.Factorys
             return obj;
         }
 
-        public static T AddToState<T>(this T obj, IStateController state) where T : IGameObjectComponent
+        public static T AddToState<T>(this T obj, IStateController state) where T : IDisposableComponent
         {
             state.AddToState(obj);
             return obj;
