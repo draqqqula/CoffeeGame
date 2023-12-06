@@ -12,7 +12,7 @@ using MagicDustLibrary.Display;
 
 namespace MagicDustLibrary.Network
 {
-    public class ViewerLevel : GameLevel
+    public class RemoteLevel : GameLevel
     {
         public Dictionary<byte[], GameObject> NetworkCollection = new(new ByteKeyEqualityComparer());
         private IPAddress _adress;

@@ -33,7 +33,7 @@ namespace CoffeeProject.GameObjects
             get
             {
                 var info = base.DisplayInfo;
-                info.Scale = info.Scale * new Vector2(0.14f, 0.14f);
+                info.Scale = info.Scale * new Vector2(0.05f, 0.05f);
                 return info;
             }
         }
@@ -52,18 +52,22 @@ namespace CoffeeProject.GameObjects
 
             if (Client.Controls[Control.left])
             {
+                Animator.SetAnimation("Left", 0);
                 physics.AddVector("move_left", new MovementVector(new Vector2(-speed, 0), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.right])
             {
+                Animator.SetAnimation("Right", 0);
                 physics.AddVector("move_right", new MovementVector(new Vector2(speed, 0), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.lookUp])
             {
+                Animator.SetAnimation("Backward", 0);
                 physics.AddVector("move_down", new MovementVector(new Vector2(0, -speed), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.lookDown])
             {
+                Animator.SetAnimation("Default", 0);
                 physics.AddVector("move_up", new MovementVector(new Vector2(0, speed), -deceleration, TimeSpan.Zero, true));
             }
 
