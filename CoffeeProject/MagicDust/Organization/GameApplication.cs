@@ -2,6 +2,8 @@
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Extensions.Collections;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.StateManagement;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +15,7 @@ namespace MagicDustLibrary.Organization
     /// </summary>
     public class MagicGameApplication
     {
+        public readonly StateConfigurations Configurations;
         public readonly GameClient MainClient;
         public readonly GameServiceContainer Services;
         public readonly ApplicationLevelManager LevelManager;
@@ -57,6 +60,10 @@ namespace MagicDustLibrary.Organization
             MainClient = mainClient;
             Services = game.Services;
             LevelManager = new ApplicationLevelManager(this);
+            Configurations = new StateConfigurations();
+            Configurations.AddConfiguration((services, settings) => services.AddSingleton(this));
+            Configurations.AddConfiguration((services, settings) => services.AddSingleton(Services.GetService<IContentStorage>()));
+            Configurations.AddConfiguration((services, settings) => services.AddSingleton(Services.GetService<IAnimationProvider>()));
 
             ConfigureServices(game, paremeters);
         }

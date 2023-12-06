@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.Organization;
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System;
@@ -14,8 +15,8 @@ namespace MagicDustLibrary.Logic
     /// </summary>
     public interface IStateController
     {
-        public T CreateObject<T>() where T : IDisposableComponent;
-        public void AddToState<T>(T obj) where T : IDisposableComponent;
+        public T CreateObject<T>() where T : ComponentBase;
+        public void AddToState<T>(T obj) where T : ComponentBase;
         public void PlaceAbove(GameObject target, GameObject source);
         public void PlaceBelow(GameObject target, GameObject source);
         public void PlaceTop(GameObject target);

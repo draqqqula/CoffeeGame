@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
@@ -35,7 +36,7 @@ namespace MagicDustLibrary.Factorys
             return obj;
         }
 
-        public static T AddToState<T>(this T obj, IStateController state) where T : IDisposableComponent
+        public static T AddToState<T>(this T obj, IStateController state) where T : ComponentBase
         {
             state.AddToState(obj);
             return obj;

@@ -13,11 +13,27 @@ namespace MagicDustLibrary.Organization
 {
     public class StateConnectionHandleManager : ClientRelatedActions
     {
-        private readonly GameState _state;
+        private readonly StateClientManager _stateClientManager;
+        private readonly StateLayerManager _stateLayerManager;
+        private readonly CameraStorage _cameraStorage;
+        private readonly ViewStorage _viewStorage;
+        private readonly IContentStorage _contentStorage;
+
+        public StateConnectionHandleManager(StateClientManager clientManager, StateLayerManager layerManager,
+    CameraStorage cameraStorage, ViewStorage viewStorage, IContentStorage contentStorage)
+        {
+            _stateClientManager = clientManager;
+            _stateLayerManager = layerManager;
+            _cameraStorage = cameraStorage;
+            _viewStorage = viewStorage;
+            _contentStorage = contentStorage;
+
+            _stateClientManager.ConfigureRelated(this);
+        }
 
         public void SendPictures()
         {
-            var clients = _state.StateServices.GetService<StateClientManager>().GetAll().Where(it => it.IsRemote);
+            var clients = _stateClientManager.GetAll().Where(it => it.IsRemote);
             foreach (var client in clients)
             {
                 var data = GetPack(client);
@@ -28,12 +44,12 @@ namespace MagicDustLibrary.Organization
         public IEnumerable<byte> GetInitialPack()
         {
             List<byte> buffer = new();
-            var tileMaps = _state.StateServices.GetService<StateLayerManager>().GetAll().SelectMany(it => it).Where(it => it is TileMap).Select(it => it as TileMap);
+            var tileMaps = _stateLayerManager.GetAll().SelectMany(it => it).Where(it => it is TileMap).Select(it => it as TileMap);
             int c = 0;
             foreach (var map in tileMaps)
             {
                 //map.Link(BitConverter.GetBytes(c).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).Concat(BitConverter.GetBytes(c)).ToArray());
-                IEnumerable<byte> mapBytes = map.Pack(_state.ApplicationServices.GetService<IContentStorage>());
+                IEnumerable<byte> mapBytes = map.Pack(_contentStorage);
                 buffer.AddRange(BitConverter.GetBytes(mapBytes.Count()));
                 buffer.AddRange(mapBytes);
                 c++;
@@ -44,16 +60,16 @@ namespace MagicDustLibrary.Organization
         public IEnumerable<byte> GetPack(GameClient client)
         {
             List<byte> buffer = new();
-            var camera = _state.StateServices.GetService<CameraStorage>().GetFor(client);
-            foreach (var layer in _state.StateServices.GetService<StateLayerManager>().GetAll())
+            var camera = _cameraStorage.GetFor(client);
+            foreach (var layer in _stateLayerManager.GetAll())
             {
-                var view = _state.StateServices.GetService<ViewStorage>().GetFor(client);
+                var view = _viewStorage.GetFor(client);
 
                 foreach (var drawable in view.GetAndClear())
                 {
                     if (drawable is IPackable packable)
                     {
-                        var pack = packable.Pack(_state.ContentStorage);
+                        var pack = packable.Pack(_contentStorage);
                         buffer.Add(packable.GetType().GetCustomAttribute<ByteKeyAttribute>().value);
                         buffer.AddRange(BitConverter.GetBytes(pack.Count()));
                         buffer.AddRange(pack);
@@ -78,11 +94,6 @@ namespace MagicDustLibrary.Organization
 
         protected override void UpdateClient(GameClient client)
         {
-        }
-
-        public StateConnectionHandleManager(GameState state)
-        {
-            _state = state;
         }
     }
 }

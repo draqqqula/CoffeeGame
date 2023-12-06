@@ -31,7 +31,7 @@ namespace MagicDustLibrary.Organization
         {
             if (obj is IUpdateComponent updateable)
             {
-                StateServices.GetService<StateUpdateManager>().AddUpdateable(updateable);
+                //StateServices.GetService<StateUpdateManager>().AddUpdateable(updateable);
             }
             if (obj is IDisplayComponent displayProvider)
             {
@@ -50,7 +50,7 @@ namespace MagicDustLibrary.Organization
         {
             if (obj is IUpdateComponent updateable)
             {
-                StateServices.GetService<StateUpdateManager>().RemoveUpdateable(updateable);
+                //StateServices.GetService<StateUpdateManager>().RemoveUpdateable(updateable);
             }
             if (obj is IDisplayComponent displayProvider)
             {
@@ -115,7 +115,7 @@ namespace MagicDustLibrary.Organization
         public GameState(MagicGameApplication app, LevelSettings defaults, string levelName)
         {
             ApplicationServices = app.Services;
-            Controller = new StateActions(this);
+            //Controller = new StateActions(this);
             StateServices = new GameServiceContainer();
 
             _levelSettings = defaults;
@@ -139,17 +139,17 @@ namespace MagicDustLibrary.Organization
         private void AddObjectServices(GameServiceContainer container, LevelSettings settings)
         {
             container.AddService(new StateUpdateManager());
-            container.AddService(new StatePictureManager());
+            //container.AddService(new StatePictureManager());
             container.AddService(new StateLayerManager());
-            container.AddService(new StateFamilyManager());
-            container.AddService<IGameObjectFactory>(new GameObjectFactory(this));
+            //container.AddService(new StateFamilyManager());
+            //container.AddService<IGameObjectFactory>(new GameObjectFactory(this));
         }
 
         private void AddClientServices(GameServiceContainer container, LevelSettings settings)
         {
             container.AddService(new StateClientManager());
             container.AddService(new StateConnectionRecieveManager(_levelSettings.UpdateLock));
-            container.AddService(new StateConnectionHandleManager(this));
+            //container.AddService(new StateConnectionHandleManager(this));
             container.AddService(new ViewStorage());
             container.AddService(new CameraStorage(settings.CameraSettings));
         }

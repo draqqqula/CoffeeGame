@@ -5,30 +5,44 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Organization.StateManagement
 {
-    public class GameState1 : IDisposable
+    public partial class GameState1 : IDisposable
     {
         private readonly IServiceProviderFactory<IServiceCollection> _factory;
+        private IServiceProvider _serviceProvider;
         private readonly IServiceCollection _services;
-        private IServiceProvider GetProvider()
+        public IServiceProvider GetProvider()
         {
-            return _factory.CreateServiceProvider(_services);
+            if (_serviceProvider is null)
+            {
+                _serviceProvider = _factory.CreateServiceProvider(_services);
+            }
+            return _serviceProvider;
         }
+
+        public IStateController Controller => GetProvider().GetService<IStateController>();
 
         public GameState1()
         {
             _factory = new DefaultServiceProviderFactory();
             _services = new ServiceCollection();
+            _services.AddSingleton<IStateController>(new StateActions(this));
         }
 
         public void ConfigureServices(StateConfigurations configurations, LevelSettings settings)
         {
             configurations.ConfigureServices(_services, settings);
+        }
+
+        public void ConfigureServices(ConfigurationDelegate configuration, LevelSettings settings)
+        {
+            configuration(_services, settings);
         }
 
         public void Update(TimeSpan deltaTime, bool onPause)

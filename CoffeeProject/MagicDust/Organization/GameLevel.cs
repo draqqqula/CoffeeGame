@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using MagicDustLibrary.Organization.StateManagement;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MagicDustLibrary.Organization
 {
@@ -56,10 +58,21 @@ namespace MagicDustLibrary.Organization
 
         public void Start(MagicGameApplication app, LevelArgs arguments, string name)
         {
-            var state = new GameState(app, _defaults, name);
+            var state = new GameState1();
+            state.ConfigureServices(app.Configurations, _defaults);
+
+            state.ConfigureServices((services, settings) => 
+            {
+                services.AddSingleton(new StateLevelManager(app.LevelManager, name));
+            }
+            , _defaults);
+
             GameState = state;
+
             Initialize(state.Controller, arguments);
-            state.BoundCustomActions(_levelClientManager);
+            var clientManager = state.GetProvider().GetService<StateClientManager>();
+            clientManager.ConfigureRelated(_levelClientManager);
+            clientManager.Connect(app.MainClient);
         }
 
         public void Shut()
@@ -116,7 +129,7 @@ namespace MagicDustLibrary.Organization
 
 
         #region EXTRA
-        public GameState GameState { get; private set; }
+        public GameState1 GameState { get; private set; }
 
         private readonly LevelClientManager _levelClientManager;
         private IEnumerable<Layer> GetInitialLayers()
@@ -159,7 +172,7 @@ namespace MagicDustLibrary.Organization
 
     public interface ILevel
     {
-        public GameState GameState { get; }
+        public GameState1 GameState { get; }
         public void Update(TimeSpan deltaTime);
         public void Draw(GameClient mainClient, SpriteBatch spriteBatch);
         public void Start(MagicGameApplication world, LevelArgs arguments, string name);

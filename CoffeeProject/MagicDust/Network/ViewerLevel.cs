@@ -70,10 +70,10 @@ namespace MagicDustLibrary.Network
             _openAdress = IPEndPoint.Parse(IP);
             _messageReciever = new UdpClient();
 
-            _stateUnpacker = new StateUnpacker(GameState, NetworkCollection, GameState.StateServices
-                .GetService<StateLayerManager>()
-                .GetLayer<UnpackLayer>());
-            _messageUnpacker = new MessageUnpacker(GameState, NetworkCollection);
+            //_stateUnpacker = new StateUnpacker(GameState, NetworkCollection, GameState.StateServices
+            //    .GetService<StateLayerManager>()
+            //    .GetLayer<UnpackLayer>());
+            //_messageUnpacker = new MessageUnpacker(GameState, NetworkCollection);
         }
 
         protected override void OnClientUpdate(IStateController state, GameClient client)

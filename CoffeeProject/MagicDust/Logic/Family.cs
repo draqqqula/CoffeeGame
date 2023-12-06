@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Immutable;
 using System.Reflection;
+using MagicDustLibrary.ComponentModel;
 
 namespace MagicDustLibrary.Logic
 {
@@ -104,7 +105,7 @@ namespace MagicDustLibrary.Logic
         }
     }
 
-    public interface IFamilyComponent
+    public interface IFamilyComponent : IComponent
     {
     }
 }

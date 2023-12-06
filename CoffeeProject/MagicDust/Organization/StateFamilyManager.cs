@@ -1,4 +1,5 @@
 ﻿using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -9,8 +10,15 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Organization
 {
-    public class StateFamilyManager
+    public class StateFamilyManager : ComponentHandler<IFamilyComponent>
     {
+        private readonly IStateController _stateController;
+
+        public StateFamilyManager(IStateController controller)
+        {
+            _stateController = controller;
+        }
+
         private Dictionary<Type, IFamily> _families { get; } = new Dictionary<Type, IFamily>();
 
         public IEnumerable<IFamily> GetAll()
@@ -76,6 +84,16 @@ namespace MagicDustLibrary.Organization
             {
                 family.RemoveMember(state, obj);
             }
+        }
+
+        public override void Hook(IFamilyComponent component)
+        {
+            Introduce(_stateController, component);
+        }
+
+        public override void Unhook(IFamilyComponent component)
+        {
+            Abandon(_stateController, component);
         }
     }
 }

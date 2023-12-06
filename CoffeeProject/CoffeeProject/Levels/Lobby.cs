@@ -35,18 +35,18 @@ namespace CoffeeProject.Levels
         {
             if (!client.IsRemote)
             {
-                GameState.StateServices.GetService<StateClientManager>().Disconnect(client);
+                //GameState.StateServices.GetService<StateClientManager>().Disconnect(client);
                 return;
             }
-            var allLevels = GameState.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.GetAllActive();
-            foreach (var level in allLevels)
-            {
-                if (level.GetType().GetCustomAttribute<LobbyAttribute>() is not null)
-                {
-                    var stateClientManager = level.GameState.StateServices.GetService<StateClientManager>();
-                    stateClientManager.Connect(client);
-                }
-            }
+            //var allLevels = GameState.StateServices.GetService<StateLevelManager>().ApplicationLevelManager.GetAllActive();
+            //foreach (var level in allLevels)
+            //{
+            //    if (level.GetType().GetCustomAttribute<LobbyAttribute>() is not null)
+            //    {
+            //        var stateClientManager = level.GameState.StateServices.GetService<StateClientManager>();
+            //        stateClientManager.Connect(client);
+            //    }
+            //}
         }
 
         protected override void OnDisconnect(IStateController state, GameClient client)

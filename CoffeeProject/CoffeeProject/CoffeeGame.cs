@@ -5,6 +5,7 @@ using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Network;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.StateManagement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -52,6 +53,7 @@ namespace CoffeeProject
             var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice, storage) };
 
             _app = new MagicGameApplication(client, parameters, this);
+            _app.AddDefualtConfigurations();
             _app.LevelManager.LoadAs<TestLevel>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<ViewerLevel>("connect");
