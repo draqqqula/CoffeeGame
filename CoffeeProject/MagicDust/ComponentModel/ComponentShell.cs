@@ -13,7 +13,7 @@
             return _component.GetComponents<T>();
         }
 
-        public ComponentShell CombineWith<T>(T component) where T : ComponentBase
+        public override ComponentBase CombineWith(ComponentBase component)
         {
             if (_component is null)
             {
@@ -21,6 +21,15 @@
                 return this;
             }
             _component = _component.CombineWith(component);
+            return this;
+        }
+
+        public override ComponentBase? Without<T>()
+        {
+            if (_component is not null)
+            {
+                _component = _component.Without<T>();
+            }
             return this;
         }
     }

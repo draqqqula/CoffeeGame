@@ -4,12 +4,28 @@
     {
         private IActionContainer Greetings { get; init; } = new ActionContainer();
 
-        public virtual IEnumerable<T> GetComponents<T>() where T : IComponent
+        public virtual ComponentBase CombineWith(ComponentBase obj)
+        {
+            Greet(obj);
+            obj.Greet(this);
+            return new CompositeComponent(this, obj);
+        }
+
+        public virtual IEnumerable<T> GetComponents<T>()
         {
             if (this is T t)
             {
                 yield return t;
             }
+        }
+
+        public virtual ComponentBase? Without<T>()
+        {
+            if (this is T)
+            {
+                return null;
+            }
+            return this;
         }
 
         public IEnumerable<ComponentBase> Decomposed => GetComponents<ComponentBase>();
@@ -19,7 +35,7 @@
             Greetings.Register(greetingAction);
         }
 
-        protected internal virtual void Greet<T>(T obj) where T : ComponentBase
+        private void Greet(ComponentBase obj)
         {
             foreach (var component in obj.Decomposed)
             {
