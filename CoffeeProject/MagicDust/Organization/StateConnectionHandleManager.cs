@@ -1,4 +1,5 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Network;
