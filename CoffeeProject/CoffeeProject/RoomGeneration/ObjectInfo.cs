@@ -11,136 +11,165 @@ using System.Drawing.Imaging;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Point = Microsoft.Xna.Framework.Point;
 using System.IO;
+using MagicDustLibrary.Display;
 
-namespace CoffeeProject.Room
+namespace CoffeeProject.RoomGeneration
 {
-    public class RoomAbstraction
-    {
-        public int RoomNumber;
-
-        public RoomAbstraction(int roomNumber)
-        {
-            RoomNumber = roomNumber;
-        }
-    }
-
-    public class RoomInfo
-    {
-        public Rectangle Bounds { get; private set; }
-        public EncounterInfo[] Encounters { get; private set; }
-
-        public RoomInfo(Rectangle bounds, EncounterInfo[] encounters)
-        {
-            Bounds = bounds;
-            Encounters = encounters;
-        }
-    }
-
-    public class EncounterInfo
-    {
-        public string Name { get; private set; }
-        public Point Position { get; private set; }
-
-        public EncounterInfo(string name, Point position)
-        {
-            Name = name;
-            Position = position;
-        }
-    }
-
     public class LevelGenerator
     {
-        //private static int NumberOfRooms = 10;
+        private IContentStorage _contentStorage;
+        public LevelGenerator(IContentStorage contentStorage)
+        {
+            _contentStorage = contentStorage;
+        }
 
-        public static Level GenerateLevel(int levelNumber, int numberOfRooms)
+        public LevelGraph GenerateLevelGraph(string levelName, int mainPathRoomsCount, int enemyRoomsCount, int lootRoomsCount)
         {
             var rnd = new Random();
-            var numberOfRoomTypes = new DirectoryInfo($@"\CoffeeGame\CoffeeProject\CoffeeProject\Content\Levels\Rooms_Level{levelNumber}").GetFiles().Length / 4;
+            //var numberOfRoomTypes = new DirectoryInfo($@"\CoffeeGame\CoffeeProject\CoffeeProject\Content\Levels\Rooms_Level{levelNumber}").GetFiles().Length / 4;
+            var levelInfo = _contentStorage.GetAsset<LevelInfo>(levelName);
+            var level = new LevelGraph(enemyRoomsCount, lootRoomsCount, mainPathRoomsCount);
+            var roomsCount = 2 + enemyRoomsCount + lootRoomsCount;
+            #region
+            // Добавление стартовой комнаты
+            level[0].AddRoomInfo(levelInfo.StartRoom);
 
-            var level = new Level(numberOfRooms);
-
-            // Добавление начальной и конечной комнат
-            level[0].AddRoomInfo(levelNumber, 0);
-            level[numberOfRooms - 1].AddRoomInfo(levelNumber, 1);
-
-            // Добавление промежуточных комнат
-            for (int i = 1; i < numberOfRooms - 2; i++)
+            // Добавление комнат с противниками на главном пути
+            for (int i = 1; i <= mainPathRoomsCount; i++)
             {
-                var roomType = rnd.Next(2, numberOfRoomTypes);
-                level[i].AddRoomInfo(levelNumber, roomType);
+                var enemyRoomIndex = rnd.Next(0, levelInfo.EnemyRooms.Length);
+                level[i].AddRoomInfo(levelInfo.EnemyRooms[enemyRoomIndex]);
             }
 
+            // Добавление комнаты с боссом
+            level[mainPathRoomsCount + 1].AddRoomInfo(levelInfo.BossRoom);
+
+            // Добавление дополнительных комнат с противниками 
+            for (int i = mainPathRoomsCount + 2; i <= enemyRoomsCount + 1; i++)
+            {
+                var enemyRoomIndex = rnd.Next(0, levelInfo.EnemyRooms.Length);
+                level[i].AddRoomInfo(levelInfo.EnemyRooms[enemyRoomIndex]);
+            }
+
+            // Добавление комнат с лутом
+            for (int i = enemyRoomsCount + 2; i < roomsCount; i++)
+            {
+                var lootRoomIndex = rnd.Next(0, levelInfo.LootRooms.Length);
+                level[i].AddRoomInfo(levelInfo.LootRooms[lootRoomIndex]);
+            }
+            #endregion
             return level;
         }
     }
 
-    public class Room
+    public class RoomNode
     {
         // Это Node в Graph
 
-        private readonly List<Room> connectedRooms = new List<Room>();
+        private readonly List<RoomNode> connectedRooms = new List<RoomNode>();
         public readonly int RoomNumber;
 
         public RoomInfo RoomInfo;
 
-        public Room(int number)
+        public RoomNode(int number)
         {
             RoomNumber = number;
         }
 
-        public IEnumerable<Room> ConnectedRooms
+        public IEnumerable<RoomNode> ConnectedRooms
         {
             get
             {
-                foreach (var room in connectedRooms)
-                    yield return room;
+                return connectedRooms;
             }
         }
-        public static void Connect(Room node1, Room node2, Level graph)
+        public static void Connect(RoomNode node1, RoomNode node2, LevelGraph graph)
         {
             if (!graph.Rooms.Contains(node1) || !graph.Rooms.Contains(node2)) throw new ArgumentException();
             node1.connectedRooms.Add(node2);
             node2.connectedRooms.Add(node1);
         }
 
-        public void AddRoomInfo(int levelNumber, int roomType)
+        public void AddRoomInfo(RoomInfo roomInfo)
         {
-
+            RoomInfo = roomInfo;
         }
-        //public void AddRoomInfo(RoomInfo roomInfo)
-        //{
-        //    this.RoomInfo = roomInfo;
-        //}
     }
 
-    public class Level
+    public class LevelGraph
     {
         // Это Graph
 
-        //private int LevelNumber;
-        private Room[] rooms;
-        public Level(int nodesCount)
-        {
-            //this.LevelNumber = levelNumber;
-            rooms = Enumerable.Range(0, nodesCount).Select(z => new Room(z)).ToArray();
+        private int _mainPathRoomsCount;
+        private int _enemyRoomsCount;
+        private int _lootRoomsCount;
+        private int _roomsCount;
+
+        // Уровень:
+        //      Уровень состоит из главного пути и дополнительных путей
+        //      Главный путь состоит из стартовой комнаты, mainPathRoomsCount комнат с противниками и комнаты с боссом
+        //      В комнату с боссом ведёт только 1 проход
+        //      Дополнительные пути это отвитвления от главного пути
+        //      Дополнительные пути могут появляться начиная со стартовой комнаты
+        //      Дополнительные пути могут состоять из комнат с противниками и комнат с лутом
+        //      Количество комнат - 2 + enemyRoomsCount + lootRoomsCount
+
+        private RoomNode[] rooms;
+        
+        // Индексация
+        // 0 - startRoom
+        // [1; mainPathRoomsCount] - enemyRoom
+        // mainPathRoomsCount + 1 - bossRoom
+        // [mainPathRoomsCount + 2; enemyRoomsCount + 1] - enemyRoom (не на главном пути)
+        // [enemyRoomsCount + 2; roomCount) - lootRoom
+
+        public LevelGraph(int enemyRoomsCount, int lootRoomsCount, int mainPathRoomsCount) 
+        { 
+            _mainPathRoomsCount = mainPathRoomsCount;
+            _enemyRoomsCount = enemyRoomsCount;
+            _lootRoomsCount = lootRoomsCount;
+            _roomsCount = enemyRoomsCount + lootRoomsCount + 2;
+            rooms = Enumerable.Range(0, _roomsCount).Select(z => new RoomNode(z)).ToArray();
         }
 
         public int Length { get { return rooms.Length; } }
 
-        public Room this[int index] { get { return rooms[index]; } }
+        public RoomNode this[int index] { get { return rooms[index]; } }
 
-        public IEnumerable<Room> Rooms
+        public IEnumerable<RoomNode> Rooms
         {
             get
             {
-                foreach (var room in rooms) 
-                    yield return room;
+                return rooms;
             }
+        }
+
+        public void ConnectLevelGraph()
+        {
+            var rnd = new Random();
+            //var additionalRoomsCount = _enemyRoomsCount - _mainPathRoomsCount + _lootRoomsCount;
+
+            //// Соединение комнат главного пути (от StartRoom до BossRoom через EnemyRooms)
+            //for (int i = 1; i <= _mainPathRoomsCount + 1; i++)
+            //{
+            //    Connect(i - 1, i);
+            //}
+
+            //// Соединение комнат дополнительных путей
+            //for (int i = _mainPathRoomsCount + 2; i < _roomsCount; i++)
+            //{
+            //    var branchStartIndex = rnd.Next(_mainPathRoomsCount + 1);
+                
+            //    var rndPath = rnd.Next();
+            //}
+
+
+            
         }
 
         public void Connect(int index1, int index2)
         {
-            Room.Connect(rooms[index1], rooms[index2], this);
+            RoomNode.Connect(rooms[index1], rooms[index2], this);
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VOPe9YbM3b/26mCwnHX0+mI6EuzqWgsO91eAoP1Lk2KIxuEhtG4WI0NMsKcAz0+rObEnowjG+lbTT6LHxBsrZQ==",
+  "dgSpecHash": "brtHObpVuH1zZAMvdZSDO/kbyIpJmDxQrNRcGEw7z+4AfyzUC8kwUbyRib17jGpkMUNAt1Lklejezb3bB90Rxw==",
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
   "expectedPackageFiles": [
@@ -8,12 +8,5 @@
     "C:\\Users\\Павел\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\Павел\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Ошибка чтения файла кэша F:\\Прога\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

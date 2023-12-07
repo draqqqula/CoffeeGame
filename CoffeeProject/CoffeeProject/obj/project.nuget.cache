@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/DFPDFfi+g5glENHh3oOm9efX5XYcK5we22JB9yIVqE4FNMg9ooRjLezfQiR3ivXlvBe7qY2fKSBmnZyK1FrNA==",
+  "dgSpecHash": "63kFTNe2BnRhia1CUZEJ50C/Wp6dCcnv0AArsMPtTsU6CpMuRYHm2OGEj3GVmCGIEd9TU1EZIzbDPVtnI/uL0w==",
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
   "expectedPackageFiles": [
@@ -10,12 +10,5 @@
     "C:\\Users\\Павел\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
     "C:\\Users\\Павел\\.nuget\\packages\\quikgraph\\2.3.0\\quikgraph.2.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Ошибка чтения файла кэша F:\\Прога\\CoffeeGame\\CoffeeProject\\CoffeeProject\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
