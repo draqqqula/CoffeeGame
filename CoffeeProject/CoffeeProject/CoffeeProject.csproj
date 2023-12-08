@@ -34,10 +34,16 @@
     <ProjectReference Include="..\MagicDust\MagicDustLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="heart.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="hero.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="hero_properties.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="menuBackground.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Painting_properties.txt">

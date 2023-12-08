@@ -50,7 +50,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             var provider = GetProvider();
             var updateables = provider.GetServices<IUpdateService>();
             var controller = provider.GetService<IStateController>() ??
-                throw new Exception("at least one state controller must be registered");
+                throw new Exception("At least one state controller must be registered");
 
             foreach (var updateable in updateables)
             {

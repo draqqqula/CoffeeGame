@@ -1,9 +1,11 @@
-﻿using MagicDustLibrary.Display;
+﻿using MagicDustLibrary.Content;
+using MagicDustLibrary.Display;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,30 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
         {
             _sheet = sheet;
             _tileDescriptions = tiles.ToFrozenDictionary(it => it.Id, it => it);
+        }
+
+        public TileSheet(
+            [FromStorage("*_folder", "sheet")]Texture2D sheet,
+            [FromStorage("*_folder", "info")]List<ExpandoObject> tiles
+            ) :
+            this(sheet, ParseTileInfo(tiles).ToArray())
+        {
+
+        }
+
+        private static IEnumerable<TileInfo> ParseTileInfo(List<ExpandoObject> json)
+        {
+            foreach (dynamic value in json)
+            {
+                List<object> tags = value.Tags;
+                List<object> bounds = value.Bounds;
+                List<object> offset = value.Offset;
+                long id = value.Id;
+                yield return new TileInfo(
+                    (byte)id,
+                    new Rectangle(Convert.ToInt32(bounds[0]), Convert.ToInt32(bounds[1]), Convert.ToInt32(bounds[2]), Convert.ToInt32(bounds[3])),
+                    new Point(Convert.ToInt32(offset[0]), Convert.ToInt32(offset[1])), tags.Select(it => (string)it).ToArray());
+            }
         }
 
         public TileInfo GetInfo(byte id)
@@ -79,11 +105,15 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
 
         public void DrawAtPoint(SpriteBatch batch, byte id, Point point, Point frame, Vector2 position, float scale)
         {
+            if (id == 0)
+            {
+                return;
+            }    
             var tile = _tileDescriptions[id];
             var tilePosition = tile.Offset + frame * point;
             batch.Draw(
                         _sheet,
-                        position + tilePosition.ToVector2(),
+                        position + tilePosition.ToVector2()*scale,
                         tile.Bounds,
                         Color.White,
                         0,

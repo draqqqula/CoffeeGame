@@ -1,6 +1,8 @@
-﻿using MagicDustLibrary.Content;
+﻿using MagicDustLibrary.Common;
+using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Network;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
@@ -23,8 +25,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
                 return
                     new Rectangle(
                         new Point(0, 0),
-                        new Point(_map.GetLength(0) * _tileFrame.X * (int)_scale, _map.GetLength(1) * _tileFrame.Y * (int)_scale
-                    ));
+                        new Vector2(_map.GetLength(0) * _tileFrame.X * _scale, _map.GetLength(1) * _tileFrame.Y * _scale).ToPoint()
+                        );
             }
             set
             {
@@ -56,6 +58,11 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             _tileFrame = tileFrame;
         }
 
+        public void SetScale(float scale)
+        {
+            _scale = scale;
+        }
+
         public Rectangle? GetBoundsForPoint(Point point)
         {
             if (_sheet is null ||
@@ -77,14 +84,17 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
 
         private Rectangle GetChunk(Rectangle window)
         {
-            int width = _map.GetLength(0) - 1;
-            int height = _map.GetLength(1) - 1;
-            var scale = (int)MathF.Round(_scale);
-            var frame = _tileFrame * new Point(scale, scale);
-            int startX = Math.Clamp(window.Left / frame.X, 0, width);
-            int startY = Math.Clamp(window.Top / frame.Y, 0, height);
-            int endX = Math.Clamp(window.Right / frame.X, 0, width);
-            int endY = Math.Clamp(window.Bottom / frame.Y, 0, height);
+            if (Bounds.Size == Point.Zero)
+            {
+                return Rectangle.Empty;
+            }
+            float width = _map.GetLength(0) - 1;
+            float height = _map.GetLength(1) - 1;
+            var frame = _tileFrame.ToVector2() * new Vector2(_scale, _scale);
+            var startX = (int)Math.Clamp(window.Left / frame.X, 0f, width);
+            var startY = (int)Math.Clamp(window.Top / frame.Y, 0f, height);
+            var endX = (int)Math.Ceiling(Math.Clamp(window.Right / frame.X, 0f, width));
+            var endY = (int)Math.Ceiling(Math.Clamp(window.Bottom / frame.Y, 0f, height));
             return new Rectangle(startX, startY, endX - startX, endY - startY);
         }
 
@@ -124,12 +134,17 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
 
         public Type GetLayerType()
         {
-            throw new NotImplementedException();
+            return typeof(CommonLayer);
         }
 
         public DrawingParameters GetDrawingParameters()
         {
-            throw new NotImplementedException();
+            var info = new DrawingParameters()
+            {
+                Position = this.Position,
+                Mirroring = SpriteEffects.None,
+            };
+            return info;
         }
 
     }

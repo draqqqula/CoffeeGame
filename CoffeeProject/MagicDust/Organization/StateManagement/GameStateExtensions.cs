@@ -42,6 +42,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             services.AddSingleton<StateConnectionHandleManager>();
             services.AddSingleton(viewStorage);
             services.AddSingleton(cameraStorage);
+            services.AddSingleton<IUpdateService>(cameraStorage);
 
             recieveManager.OnConnected += clientManager.Connect;
             clientManager.ConfigureRelated(viewStorage);

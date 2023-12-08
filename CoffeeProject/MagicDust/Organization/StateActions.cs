@@ -1,4 +1,6 @@
 ﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Content;
+using MagicDustLibrary.Display;
 using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization.StateManagement;
@@ -19,6 +21,13 @@ namespace MagicDustLibrary.Organization.StateManagement
         private readonly GameState1 _state;
 
         #region COMMON
+
+        public T CreateAsset<T>(string name)
+        {
+            var content = _state.GetProvider().GetService<IContentStorage>();
+            return AssetExtensions.Create<T>(name, content);
+        }
+
         public T CreateObject<T>() where T : ComponentBase
         {
             var obj = _state.GetProvider().GetService<IGameObjectFactory>().CreateObject<T>();
@@ -159,6 +168,11 @@ namespace MagicDustLibrary.Organization.StateManagement
         public SoundEffectInstance? GetSoundInstance(string tag)
         {
             return _state.GetProvider().GetService<StateSoundManager>().GetInstance(tag);
+        }
+
+        public void AttachCamera<T>(GameClient client, T obj) where T : IBodyComponent
+        {
+            _state.GetProvider().GetService<CameraStorage>().GetFor(client).LinkTo(obj);
         }
         #endregion
 

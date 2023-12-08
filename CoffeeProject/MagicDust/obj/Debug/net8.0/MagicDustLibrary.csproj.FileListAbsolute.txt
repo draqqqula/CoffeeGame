@@ -11,3 +11,6 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibra
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\refint\MagicDustLibrary.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\ref\MagicDustLibrary.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.CopyComplete

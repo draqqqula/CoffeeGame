@@ -25,6 +25,7 @@ namespace CoffeeProject
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferHalfPixelOffset = true;
             Content.RootDirectory = "Content";
+
             IsMouseVisible = true;
         }
 
@@ -45,7 +46,7 @@ namespace CoffeeProject
             _graphics.ApplyChanges();
             Window.AllowUserResizing = true;
             Window.Title = "Farland";
-
+            
             GraphicsDevice.Reset();
 
             var client = new GameClient(Window.ClientBounds, CreateKeyBoardControls(), GameClient.GameLanguage.Russian);
@@ -57,7 +58,9 @@ namespace CoffeeProject
             _app.LevelManager.LoadAs<TestLevel>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
+            _app.LevelManager.LoadAs<MainMenu>("placeholder");
             _app.LevelManager.Launch("test", false);
+            _app.LevelManager.Launch("placeholder", false);
             //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 
             base.Initialize();
@@ -91,7 +94,7 @@ namespace CoffeeProject
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             _app.Draw(_spriteBatch);

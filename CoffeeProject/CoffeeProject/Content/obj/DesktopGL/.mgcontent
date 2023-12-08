@@ -1,1 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Profile>Reach</Profile><Platform>DesktopGL</Platform><Config /><SourceFiles><File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3</File><File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/YB-d3DBPnwA.jpg</File></SourceFiles><DestFiles><File xsi:nil="true" /><File>painting.jpg</File></DestFiles></SourceFileCollection>
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/../../../Design/for location/level1_map.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/painting.jpg</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>level1_map.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>level1_folder/sheet.png</File>
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

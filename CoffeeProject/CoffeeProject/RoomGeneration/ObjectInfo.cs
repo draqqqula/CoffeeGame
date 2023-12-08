@@ -8,16 +8,6 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.Room
 {
-    public class RoomAbstraction
-    {
-        public int RoomNumber;
-
-        public RoomAbstraction(int roomNumber)
-        {
-            RoomNumber = roomNumber;
-        }
-    }
-
     public class RoomInfo
     {
         public Rectangle Bounds { get; private set; }

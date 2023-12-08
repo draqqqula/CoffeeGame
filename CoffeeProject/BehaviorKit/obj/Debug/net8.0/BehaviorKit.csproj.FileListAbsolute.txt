@@ -14,3 +14,5 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\refint\BehaviorKit.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\ref\BehaviorKit.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.pdb

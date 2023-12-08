@@ -14,3 +14,5 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\Aseprit
 C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\refint\AsepriteImporter.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\ref\AsepriteImporter.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\JsonPipeline.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\JsonPipeline.pdb

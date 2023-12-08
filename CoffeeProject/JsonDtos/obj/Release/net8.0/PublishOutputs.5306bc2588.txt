@@ -1,0 +1,3 @@
+C:\CoffeeGame\CoffeeGame\CustomImporters\JsonDtos.dll
+C:\CoffeeGame\CoffeeGame\CustomImporters\JsonDtos.deps.json
+C:\CoffeeGame\CoffeeGame\CustomImporters\JsonDtos.pdb

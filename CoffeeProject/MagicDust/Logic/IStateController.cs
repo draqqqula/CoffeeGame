@@ -1,4 +1,5 @@
 ﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Content;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -15,8 +16,10 @@ namespace MagicDustLibrary.Logic
     /// </summary>
     public interface IStateController
     {
+        public T CreateAsset<T>(string name);
         public T CreateObject<T>() where T : ComponentBase;
         public void AddToState<T>(T obj) where T : ComponentBase;
+        public void AttachCamera<T>(GameClient client, T obj) where T : IBodyComponent;
         public void PlaceAbove(GameObject target, GameObject source);
         public void PlaceBelow(GameObject target, GameObject source);
         public void PlaceTop(GameObject target);

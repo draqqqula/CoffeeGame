@@ -1,12 +1,15 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.Services;
 
 namespace MagicDustLibrary.Organization
 {
-    public class CameraStorage : ClientRelatedActions
+    public class CameraStorage : ClientRelatedActions, IUpdateService
     {
         private readonly CameraSettings _initialSettings;
         private readonly Dictionary<GameClient, GameCamera> _cameras = new();
+
+        public bool RunOnPause => false;
 
         public GameCamera GetFor(GameClient client)
         {
@@ -26,6 +29,14 @@ namespace MagicDustLibrary.Organization
         protected override void UpdateClient(GameClient client)
         {
             _cameras[client].OnClientUpdated(client);
+        }
+
+        public void Update(IStateController controller, TimeSpan deltaTime)
+        {
+            foreach (var camera in _cameras.Values)
+            {
+                camera.Update(deltaTime);
+            }    
         }
 
         public CameraStorage(CameraSettings settings)
