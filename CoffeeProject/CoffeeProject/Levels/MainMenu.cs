@@ -1,6 +1,7 @@
 ﻿using CoffeeProject.GameObjects;
 using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using System;
 using System.Collections.Generic;
@@ -18,25 +19,25 @@ namespace CoffeeProject.Levels
             return new LevelSettings();
         }
 
-        protected override void Initialize(IStateController state, LevelArgs arguments)
+        protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            state.CreateObject<MenuImage>().SetPos(new Microsoft.Xna.Framework.Vector2(0, 0)).AddToState(state);
+            state.Using<IFactoryController>().CreateObject<MenuImage>().SetPos(new Microsoft.Xna.Framework.Vector2(0, 0)).AddToState(state);
         }
 
-        protected override void OnClientUpdate(IStateController state, GameClient client)
+        protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void OnConnect(IStateController state, GameClient client)
+        protected override void OnConnect(IControllerProvider state, GameClient client)
         {
             _player = client;
         }
 
-        protected override void OnDisconnect(IStateController state, GameClient client)
+        protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             if (_player is null)
             {
@@ -44,7 +45,7 @@ namespace CoffeeProject.Levels
             }
             if (_player.Controls.OnPress(Control.jump))
             {
-                state.ShutCurrent(false);
+                state.Using<ILevelController>().ShutCurrent(false);
             }
         }
     }

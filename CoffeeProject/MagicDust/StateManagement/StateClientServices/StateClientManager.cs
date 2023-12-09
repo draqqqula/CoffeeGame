@@ -10,11 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.StateClientServices
 {
     public class StateClientManager
     {
-        private readonly List<GameClient> Clients = new ();
+        private readonly List<GameClient> Clients = new();
 
         public Action<GameClient> OnConnect = delegate { };
         public Action<GameClient> OnUpdate = delegate { };

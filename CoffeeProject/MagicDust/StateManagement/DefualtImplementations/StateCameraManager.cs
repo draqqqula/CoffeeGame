@@ -1,8 +1,9 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization.Services;
+using MagicDustLibrary.Organization.StateClientServices;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class CameraStorage : ClientRelatedActions, IUpdateService
     {
@@ -31,12 +32,12 @@ namespace MagicDustLibrary.Organization
             _cameras[client].OnClientUpdated(client);
         }
 
-        public void Update(IStateController controller, TimeSpan deltaTime)
+        public void Update(IControllerProvider controller, TimeSpan deltaTime)
         {
             foreach (var camera in _cameras.Values)
             {
                 camera.Update(deltaTime);
-            }    
+            }
         }
 
         public CameraStorage(CameraSettings settings)

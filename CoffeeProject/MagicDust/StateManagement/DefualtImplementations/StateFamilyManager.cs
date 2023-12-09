@@ -8,13 +8,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class StateFamilyManager : ComponentHandler<IFamilyComponent>
     {
-        private readonly IStateController _stateController;
+        private readonly IControllerProvider _stateController;
 
-        public StateFamilyManager(IStateController controller)
+        public StateFamilyManager(IControllerProvider controller)
         {
             _stateController = controller;
         }
@@ -68,7 +68,7 @@ namespace MagicDustLibrary.Organization
             return families;
         }
 
-        public void Introduce(IStateController state, IFamilyComponent obj)
+        public void Introduce(IControllerProvider state, IFamilyComponent obj)
         {
             var families = GetFamilies(obj);
             foreach (var family in families)
@@ -77,7 +77,7 @@ namespace MagicDustLibrary.Organization
             }
         }
 
-        public void Abandon(IStateController state, IFamilyComponent obj)
+        public void Abandon(IControllerProvider state, IFamilyComponent obj)
         {
             var families = GetFamilies(obj);
             foreach (var family in families)

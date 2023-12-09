@@ -1,11 +1,12 @@
 ﻿using MagicDustLibrary.Logic;
+using MagicDustLibrary.Organization.StateClientServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class ViewStorage : ClientRelatedActions
     {

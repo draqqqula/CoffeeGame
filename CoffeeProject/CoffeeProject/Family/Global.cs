@@ -7,7 +7,7 @@ namespace CoffeeProject.Family
 {
     public class Global : Family<Sprite>
     {
-        protected override void CommonUpdate(IStateController state, TimeSpan deltaTime)
+        protected override void CommonUpdate(IControllerProvider state, TimeSpan deltaTime)
         {
             foreach (var obj in Members)
             {
@@ -15,11 +15,11 @@ namespace CoffeeProject.Family
             }
         }
 
-        protected override void OnAbandonment(IStateController state, Sprite member)
+        protected override void OnAbandonment(IControllerProvider state, Sprite member)
         {
         }
 
-        protected override void OnReplenishment(IStateController state, Sprite member)
+        protected override void OnReplenishment(IControllerProvider state, Sprite member)
         {
         }
     }

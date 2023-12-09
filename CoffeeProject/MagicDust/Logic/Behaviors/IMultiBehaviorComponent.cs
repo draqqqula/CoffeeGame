@@ -8,6 +8,6 @@ namespace MagicDustLibrary.Logic.Behaviors
 {
     public interface IMultiBehaviorComponent : IDisposableComponent
     {
-        public event Action<IStateController, TimeSpan, IMultiBehaviorComponent> OnAct;
+        public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct;
     }
 }

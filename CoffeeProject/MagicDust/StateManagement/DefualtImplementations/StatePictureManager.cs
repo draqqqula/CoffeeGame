@@ -1,6 +1,7 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization.Services;
+using MagicDustLibrary.Organization.StateClientServices;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class StatePictureManager : IUpdateService
     {
@@ -30,7 +31,7 @@ namespace MagicDustLibrary.Organization
 
         public bool RunOnPause => true;
 
-        public void Update(IStateController controller, TimeSpan deltaTime)
+        public void Update(IControllerProvider controller, TimeSpan deltaTime)
         {
             UpdatePicture(_stateLayerManager.GetAll(), _stateClientManager.GetAll(), _cameraStorage, _viewStorage);
         }

@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,13 +27,13 @@ namespace MagicDustLibrary.Organization.StateManagement
             return _serviceProvider;
         }
 
-        public IStateController Controller => GetProvider().GetService<IStateController>();
+        public IControllerProvider Controller => GetProvider().GetService<IControllerProvider>();
 
         public GameState1()
         {
             _factory = new DefaultServiceProviderFactory();
             _services = new ServiceCollection();
-            _services.AddSingleton<IStateController>(new StateActions(this));
+            _services.AddSingleton<IControllerProvider>(new DefaultStateController(this));
         }
 
         public void ConfigureServices(StateConfigurations configurations, LevelSettings settings)
@@ -49,7 +50,7 @@ namespace MagicDustLibrary.Organization.StateManagement
         {
             var provider = GetProvider();
             var updateables = provider.GetServices<IUpdateService>();
-            var controller = provider.GetService<IStateController>() ??
+            var controller = provider.GetService<IControllerProvider>() ??
                 throw new Exception("At least one state controller must be registered");
 
             foreach (var updateable in updateables)

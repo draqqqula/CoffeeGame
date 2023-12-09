@@ -1,4 +1,5 @@
 ﻿using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using System;
 using System.Collections.Generic;
@@ -17,21 +18,21 @@ namespace CoffeeProject.Levels
             return new LevelSettings();
         }
 
-        protected override void Initialize(IStateController state, LevelArgs arguments)
+        protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
             if (int.TryParse(arguments.Data[0], out int port))
             {
-                state.OpenServer(port);
+                state.Using<IClientController>().OpenServer(port);
             }
-            state.OpenServer(DEFAULT_PORT);
+            state.Using<IClientController>().OpenServer(DEFAULT_PORT);
         }
 
-        protected override void OnClientUpdate(IStateController state, GameClient client)
+        protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
             throw new NotImplementedException();
         }
 
-        protected override void OnConnect(IStateController state, GameClient client)
+        protected override void OnConnect(IControllerProvider state, GameClient client)
         {
             if (!client.IsRemote)
             {
@@ -49,12 +50,12 @@ namespace CoffeeProject.Levels
             //}
         }
 
-        protected override void OnDisconnect(IStateController state, GameClient client)
+        protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
 
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
         }
     }

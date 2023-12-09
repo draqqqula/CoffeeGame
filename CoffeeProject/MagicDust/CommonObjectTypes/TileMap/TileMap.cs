@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MagicDustLibrary.CommonObjectTypes.TileMap
 {
-    public partial class TileMap : GameObjectComponentBase, IDisplayComponent, IBodyComponent
+    public partial class TileMap : NodeComponent, IDisplayComponent, IBodyComponent
     {
         private byte[,] _map = new byte[0, 0];
         private float _scale = 1;
@@ -88,8 +88,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             {
                 return Rectangle.Empty;
             }
-            float width = _map.GetLength(0) - 1;
-            float height = _map.GetLength(1) - 1;
+            float width = _map.GetLength(0);
+            float height = _map.GetLength(1);
             var frame = _tileFrame.ToVector2() * new Vector2(_scale, _scale);
             var startX = (int)Math.Clamp(window.Left / frame.X, 0f, width);
             var startY = (int)Math.Clamp(window.Top / frame.Y, 0f, height);

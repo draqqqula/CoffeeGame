@@ -8,11 +8,11 @@ namespace MagicDustLibrary.Logic
 {
     public interface IFamily
     {
-        public void AddMember(IStateController state, IFamilyComponent member);
+        public void AddMember(IControllerProvider state, IFamilyComponent member);
 
-        public void RemoveMember(IStateController state, IFamilyComponent member);
+        public void RemoveMember(IControllerProvider state, IFamilyComponent member);
 
-        public void Update(IStateController state, TimeSpan deltaTime);
+        public void Update(IControllerProvider state, TimeSpan deltaTime);
     }
     /// <summary>
     /// Группа объектов с общей логикой обновления.
@@ -33,23 +33,23 @@ namespace MagicDustLibrary.Logic
         /// </summary>
         /// <param name="state"></param>
         /// <param name="deltaTime"></param>
-        protected abstract void CommonUpdate(IStateController state, TimeSpan deltaTime);
+        protected abstract void CommonUpdate(IControllerProvider state, TimeSpan deltaTime);
 
         /// <summary>
         /// Вызывается при создании <typeparamref name="T"/> с аттрибутом <see cref="MemberShipAttribute{F}"/>.
         /// </summary>
         /// <param name="state"></param>
         /// <param name="member"></param>
-        protected abstract void OnReplenishment(IStateController state, T member);
+        protected abstract void OnReplenishment(IControllerProvider state, T member);
 
         /// <summary>
         /// Вызывается при удалении <typeparamref name="T"/>, который является членом семьи.
         /// </summary>
         /// <param name="state"></param>
         /// <param name="member"></param>
-        protected abstract void OnAbandonment(IStateController state, T member);
+        protected abstract void OnAbandonment(IControllerProvider state, T member);
 
-        public void AddMember(IStateController state, IFamilyComponent member)
+        public void AddMember(IControllerProvider state, IFamilyComponent member)
         {
             if (member is IFamilyComponent)
             {
@@ -57,7 +57,7 @@ namespace MagicDustLibrary.Logic
             }
         }
 
-        public void RemoveMember(IStateController state, IFamilyComponent member)
+        public void RemoveMember(IControllerProvider state, IFamilyComponent member)
         {
             if (member is IFamilyComponent)
             {
@@ -65,13 +65,13 @@ namespace MagicDustLibrary.Logic
             }
         }
 
-        private void AddMember(IStateController state, T member)
+        private void AddMember(IControllerProvider state, T member)
         {
             Members.Add(member);
             OnReplenishment(state, member);
         }
 
-        private void RemoveMember(IStateController state, T member)
+        private void RemoveMember(IControllerProvider state, T member)
         {
             Members.Remove(member);
             OnAbandonment(state, member);
@@ -99,7 +99,7 @@ namespace MagicDustLibrary.Logic
             return Members.GetEnumerator();
         }
 
-        public void Update(IStateController state, TimeSpan deltaTime)
+        public void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             CommonUpdate(state, deltaTime);
         }

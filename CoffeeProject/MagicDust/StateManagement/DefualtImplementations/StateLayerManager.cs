@@ -7,16 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class StateLayerManager : ComponentHandler<IDisplayComponent>
     {
         private readonly List<Layer> LayerOrder = new();
         private readonly Dictionary<Type, Layer> LayerTypes = new();
-
-        public StateLayerManager() {
-            var a = 1;
-        }
+        private readonly Dictionary<IDisplayComponent, Layer> Placements = new();
 
         public T GetLayer<T>() where T : Layer
         {
@@ -57,12 +54,17 @@ namespace MagicDustLibrary.Organization
 
         public override void Hook(IDisplayComponent component)
         {
+            Placements.Add(component, GetLayer(component.GetLayerType()));
             GetLayer(component.GetLayerType()).PlaceTop(component);
         }
 
         public override void Unhook(IDisplayComponent component)
         {
             GetLayer(component.GetLayerType()).Remove(component);
+            if (Placements.ContainsKey(component))
+            {
+                Placements.Remove(component);
+            }
         }
     }
 }

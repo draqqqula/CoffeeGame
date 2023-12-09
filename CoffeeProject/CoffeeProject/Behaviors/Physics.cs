@@ -205,7 +205,7 @@ namespace CoffeeProject.Behaviors
             return (moving.Location - end.Location).ToVector2();
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime, GameObject parent)
         {
             Vector2 resultingVector = HalfUpdateVectors(deltaTime);
             var resultingLength = resultingVector.Length();

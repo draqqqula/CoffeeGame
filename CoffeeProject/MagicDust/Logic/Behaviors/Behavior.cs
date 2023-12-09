@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic.Behaviors
 {
-    public abstract class Behavior<T> : GameObjectComponentBase where T : class, IMultiBehaviorComponent
+    public abstract class Behavior<T> : NodeComponent where T : class, IMultiBehaviorComponent
     {
-        protected abstract void Act(IStateController state, TimeSpan deltaTime, T parent);
+        protected abstract void Act(IControllerProvider state, TimeSpan deltaTime, T parent);
 
         [ContactComponent]
         private void GreetMultiBehavior(T parent)
@@ -17,7 +17,7 @@ namespace MagicDustLibrary.Logic.Behaviors
             parent.OnAct += Update;
         }
 
-        private void Update(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
+        private void Update(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             Act(state, deltaTime, parent as T);
         }

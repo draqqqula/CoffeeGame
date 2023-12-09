@@ -62,7 +62,7 @@ namespace MagicDustLibrary.Network
         }
 
 
-        protected override void Initialize(IStateController state, LevelArgs arguments)
+        protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
             var IP = arguments.Data[0];
             _adress = IPAddress.Parse(Regex.Split(IP, ":")[0]);
@@ -76,11 +76,11 @@ namespace MagicDustLibrary.Network
             //_messageUnpacker = new MessageUnpacker(GameState, NetworkCollection);
         }
 
-        protected override void OnClientUpdate(IStateController state, GameClient client)
+        protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void OnConnect(IStateController state, GameClient client)
+        protected override void OnConnect(IControllerProvider state, GameClient client)
         {
             SendClientInfo(client);
             RecieveStateInfo();
@@ -88,14 +88,14 @@ namespace MagicDustLibrary.Network
             _mainClient = client;
         }
 
-        protected override void OnDisconnect(IStateController state, GameClient client)
+        protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
             _handler.Dispose();
             _messageReciever.Close();
             _messageReciever.Dispose();
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             if (_mainClient.Controls.OnAny())
             {

@@ -11,7 +11,7 @@ namespace BehaviorKit
     public class ShapeCollider : Behavior<IMultiBehaviorComponent>
     {
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
         }
     }

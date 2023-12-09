@@ -6,6 +6,7 @@ using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
@@ -40,7 +41,7 @@ namespace CoffeeProject.GameObjects
 
         const float SPEED = 8;
         const float DECELERATION = 15;
-        public override void OnTick(IStateController state, TimeSpan deltaTime)
+        public override void OnTick(IControllerProvider state, TimeSpan deltaTime)
         {
             var physics = GetBehavior<Physics>("physics");
             var spring = GetBehavior<Spring>("spring");
@@ -79,8 +80,8 @@ namespace CoffeeProject.GameObjects
 
             if (Client.Controls.OnPress(Control.pause))
             {
-                state.PauseCurrent();
-                state.LaunchLevel("pause", new LevelArgs(state.GetCurrentLevelName()), false);
+                state.Using<ILevelController>().PauseCurrent();
+                state.Using<ILevelController>().LaunchLevel("pause", new LevelArgs(state.Using<ILevelController>().GetCurrentLevelName()), false);
             }
 
             if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move_")).Any())

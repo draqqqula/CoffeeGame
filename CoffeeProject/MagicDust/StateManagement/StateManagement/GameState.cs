@@ -9,6 +9,8 @@ using MagicDustLibrary.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MagicDustLibrary.Factorys;
 using System.ComponentModel.Design;
+using MagicDustLibrary.Organization.DefualtImplementations;
+using MagicDustLibrary.Organization.StateClientServices;
 
 namespace MagicDustLibrary.Organization
 {
@@ -16,7 +18,7 @@ namespace MagicDustLibrary.Organization
     {
         public GameServiceContainer ApplicationServices { get; }
         public GameServiceContainer StateServices { get; }
-        public IStateController Controller { get; }
+        public IControllerProvider Controller { get; }
         public DefaultContentStorage ContentStorage
         {
             get

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.StateClientServices
 {
     public abstract class ClientRelatedActions
     {

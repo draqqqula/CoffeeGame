@@ -11,6 +11,6 @@ namespace MagicDustLibrary.Logic
         /// </summary>
         /// <param name="state"></param>
         /// <param name="deltaTime"></param>
-        public void Update(IStateController state, TimeSpan deltaTime);
+        public void Update(IControllerProvider state, TimeSpan deltaTime);
     }
 }

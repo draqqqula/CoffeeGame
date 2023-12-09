@@ -1,6 +1,7 @@
 ﻿using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,23 @@ namespace MagicDustLibrary.Factorys
     public interface IGameObjectFactory
     {
         public T CreateObject<T>() where T : ComponentBase;
+    }
+
+    public class ComponentFactory : IGameObjectFactory
+    {
+        private IServiceProviderFactory<IServiceCollection> _factory;
+        private IServiceCollection _services;
+        public ComponentFactory(IServiceCollection services, IServiceProviderFactory<IServiceCollection> factory)
+        {
+            _factory = factory;
+            _services = services;
+        }
+        public T CreateObject<T>() where T : ComponentBase
+        {
+            _services.AddTransient<T>();
+            var provider = _factory.CreateServiceProvider(_services);
+            return provider.GetService<T>();
+        }
     }
 
     public class GameObjectFactory : IGameObjectFactory

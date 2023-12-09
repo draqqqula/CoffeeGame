@@ -1,8 +1,11 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization.DefualtImplementations;
 using MagicDustLibrary.Organization.Services;
+using MagicDustLibrary.Organization.StateClientServices;
+using MagicDustLibrary.StateManagement.DefualtImplementations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework;
 using System;
@@ -27,7 +30,17 @@ namespace MagicDustLibrary.Organization.StateManagement
             services.AddSingleton<IUpdateService, StatePictureManager>();
             services.AddSingleton<IComponentHandler, StateFamilyManager>();
             services.AddSingleton<IDisplayService, DefaultDisplayService>();
-            services.AddSingleton<IGameObjectFactory>(new GameObjectFactory(new DefaultServiceProviderFactory().CreateServiceProvider(services)));
+            services.AddSingleton<IGameObjectFactory>(new ComponentFactory(services, new DefaultServiceProviderFactory()));
+        }
+
+        public static void ConfigureControllers(IServiceCollection services, LevelSettings settings)
+        {
+            services.AddSingleton<IFamilyController, DefaultFamilyController>();
+            services.AddSingleton<ILayerController, DefaultLayerController>();
+            services.AddSingleton<ILevelController, DefaultLevelController>();
+            services.AddSingleton<IFactoryController, DefaultFactoryController>();
+            services.AddSingleton<IClientController, DefaultClientController>();
+            services.AddSingleton<ISoundController, DefaultSoundController>();
         }
 
         public static void ConfigureNetworkServices(IServiceCollection services, LevelSettings settings)
@@ -61,6 +74,8 @@ namespace MagicDustLibrary.Organization.StateManagement
             app.Configurations.AddConfiguration(ConfigureNetworkServices);
             app.Configurations.AddConfiguration(ConfigureDefualtServices);
             app.Configurations.AddConfiguration(ConfigureExtraServices);
+            app.Configurations.AddConfiguration((provider, settings) => provider.AddSingleton<StateHooker>());
+            app.Configurations.AddConfiguration(ConfigureControllers);
         }
     }
 }

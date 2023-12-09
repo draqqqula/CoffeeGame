@@ -3,6 +3,7 @@ using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Network;
+using MagicDustLibrary.Organization.DefualtImplementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.StateClientServices
 {
     public class StateConnectionHandleManager : ClientRelatedActions
     {

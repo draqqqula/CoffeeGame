@@ -1,15 +1,11 @@
 ﻿using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization.Services;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class StateUpdateManager : ComponentHandler<IUpdateComponent>, IUpdateService
     {
         private readonly List<IUpdateComponent> Updateables = new List<IUpdateComponent>();
-
-        public StateUpdateManager() {
-            var a = 0;
-        }
 
         public bool RunOnPause => false;
 
@@ -23,7 +19,7 @@ namespace MagicDustLibrary.Organization
             Updateables.Remove(component);
         }
 
-        public void Update(IStateController state, TimeSpan deltaTime)
+        public void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             var collection = Updateables.ToArray();
             foreach (var updateable in collection)

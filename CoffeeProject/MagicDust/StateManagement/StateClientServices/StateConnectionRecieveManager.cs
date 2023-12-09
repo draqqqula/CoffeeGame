@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MagicDustLibrary.Network;
 
-namespace MagicDustLibrary.Organization
+namespace MagicDustLibrary.Organization.StateClientServices
 {
     public class StateConnectionRecieveManager
     {

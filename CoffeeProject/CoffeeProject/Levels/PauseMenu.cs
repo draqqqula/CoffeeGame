@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MagicDustLibrary.Factorys;
+using MagicDustLibrary.Logic.Controllers;
 
 namespace CoffeeProject.Levels
 {
@@ -22,34 +23,34 @@ namespace CoffeeProject.Levels
             return new LevelSettings();
         }
 
-        protected override void Initialize(IStateController state, LevelArgs arguments)
+        protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            state.CreateObject<PauseTitle>()
+            state.Using<IFactoryController>().CreateObject<PauseTitle>()
                 .SetPos(new Vector2(500, 500))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddToState(state);
             PauseSource = arguments.Data[0];
         }
 
-        protected override void OnClientUpdate(IStateController state, GameClient client)
+        protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void OnConnect(IStateController state, GameClient client)
+        protected override void OnConnect(IControllerProvider state, GameClient client)
         {
             _client = client;
         }
 
-        protected override void OnDisconnect(IStateController state, GameClient client)
+        protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             if (_client.Controls.OnPress(Control.pause))
             {
-                state.ResumeLevel(PauseSource);
-                state.ShutCurrent(false);
+                state.Using<ILevelController>().ResumeLevel(PauseSource);
+                state.Using<ILevelController>().ShutCurrent(false);
             }
         }
     }

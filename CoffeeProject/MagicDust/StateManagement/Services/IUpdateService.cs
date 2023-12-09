@@ -11,6 +11,6 @@ namespace MagicDustLibrary.Organization.Services
     {
         public bool RunOnPause { get; }
 
-        public void Update(IStateController controller, TimeSpan deltaTime);
+        public void Update(IControllerProvider controller, TimeSpan deltaTime);
     }
 }
