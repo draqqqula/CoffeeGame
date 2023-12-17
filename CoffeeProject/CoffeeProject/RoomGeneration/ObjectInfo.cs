@@ -28,10 +28,10 @@ namespace CoffeeProject.RoomGeneration
         public LevelGraph GenerateLevelGraph(string levelName, int mainPathRoomsCount, int enemyRoomsCount, int lootRoomsCount)
         {
             var rnd = new Random();
-            //var numberOfRoomTypes = new DirectoryInfo($@"\CoffeeGame\CoffeeProject\CoffeeProject\Content\Levels\Rooms_Level{levelNumber}").GetFiles().Length / 4;
             var levelInfo = _state.Using<IFactoryController>().CreateAsset<LevelInfo>(levelName);
             var level = new LevelGraph(enemyRoomsCount, lootRoomsCount, mainPathRoomsCount);
             var roomsCount = 2 + enemyRoomsCount + lootRoomsCount;
+
             #region
             // Добавление стартовой комнаты
             level[0].AddRoomInfo(levelInfo.StartRoom);
@@ -60,6 +60,8 @@ namespace CoffeeProject.RoomGeneration
                 level[i].AddRoomInfo(levelInfo.LootRooms[lootRoomIndex]);
             }
             #endregion
+
+            level.ConnectLevelGraph();
             return level;
         }
     }
@@ -179,7 +181,46 @@ namespace CoffeeProject.RoomGeneration
             {
                 Connect(i - 1, i);
             }
+
+            // Проверяем нет ли комнат не соединённых с основным путём
+            var conRoomsNum = GetConnectedRoomsNum();
+            while (conRoomsNum.Count != _roomsCount)
+            {
+                foreach (var room in rooms)
+                {
+                    if (!conRoomsNum.Contains(room.RoomNumber))
+                    {
+                        var randomNum = rnd.Next(0, _roomsCount);
+                        while (randomNum == _mainPathRoomsCount + 1)
+                        {
+                            randomNum = rnd.Next(0, _roomsCount);
+                        }
+                        Connect(randomNum, room.RoomNumber);
+                    }
+                }
+            }
         }
+
+        public List<int> GetConnectedRoomsNum()
+        {
+            var visited = new HashSet<RoomNode>();
+            var queue = new Queue<RoomNode>();
+            var conRoomsNum = new List<int>();
+            queue.Enqueue(rooms[0]);
+            while (queue.Count != 0)
+            {
+                var node = queue.Dequeue();
+                if (visited.Contains(node))
+                    continue;
+                visited.Add(node);
+                conRoomsNum.Add(node.RoomNumber);
+                foreach (var nextNode in node.ConnectedRooms)
+                    queue.Enqueue(nextNode);
+            }
+
+            return conRoomsNum;     // Возвращает лист номеров комнат соединённых с основным путём
+        }
+
 
         public void Connect(int index1, int index2)
         {
