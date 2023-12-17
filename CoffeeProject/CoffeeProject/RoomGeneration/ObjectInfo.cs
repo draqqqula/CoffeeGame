@@ -86,8 +86,12 @@ namespace CoffeeProject.RoomGeneration
         public static void Connect(RoomNode node1, RoomNode node2, LevelGraph graph)
         {
             if (!graph.Rooms.Contains(node1) || !graph.Rooms.Contains(node2)) throw new ArgumentException();
-            node1.connectedRooms.Add(node2);
-            node2.connectedRooms.Add(node1);
+            // Соединяет комнаты только если они не соеденины
+            if (!node1.connectedRooms.Contains(node2))
+            {
+                node1.connectedRooms.Add(node2);
+                node2.connectedRooms.Add(node1);
+            }
         }
 
         public void AddRoomInfo(RoomInfo roomInfo)
@@ -147,24 +151,32 @@ namespace CoffeeProject.RoomGeneration
         public void ConnectLevelGraph()
         {
             var rnd = new Random();
-            //var additionalRoomsCount = _enemyRoomsCount - _mainPathRoomsCount + _lootRoomsCount;
+            var connectCoef = 0.80;
+            // Рандомное соединение комнат графа
+            for (int i = 0; i < _roomsCount; i++)
+            {
+                if (i == _mainPathRoomsCount + 1) // Пропускает комнату босса
+                {
+                    continue;
+                }
+                for (int j = 0; j < _roomsCount; j++)
+                {
+                    if (j == _mainPathRoomsCount + 1) // Пропускает комнату босса
+                    {
+                        continue;
+                    }
+                    if (rnd.NextDouble() > connectCoef)
+                    {
+                        Connect(i, j);
+                    }
+                }
+            }
 
-            //// Соединение комнат главного пути (от StartRoom до BossRoom через EnemyRooms)
-            //for (int i = 1; i <= _mainPathRoomsCount + 1; i++)
-            //{
-            //    Connect(i - 1, i);
-            //}
-
-            //// Соединение комнат дополнительных путей
-            //for (int i = _mainPathRoomsCount + 2; i < _roomsCount; i++)
-            //{
-            //    var branchStartIndex = rnd.Next(_mainPathRoomsCount + 1);
-                
-            //    var rndPath = rnd.Next();
-            //}
-
-
-            
+            // Соединение комнат главного пути (от StartRoom до BossRoom через EnemyRooms)
+            for (int i = 1; i <= _mainPathRoomsCount + 1; i++)
+            {
+                Connect(i - 1, i);
+            }
         }
 
         public void Connect(int index1, int index2)
