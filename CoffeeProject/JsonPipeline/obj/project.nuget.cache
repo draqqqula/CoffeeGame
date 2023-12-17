@@ -1,17 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nm18eCcp939DsnPHpP/w3MTgaa4L8hTVLgvyPpFnc54of9jGu/hf/f4M+XxIWNboKw7Bh2yVdgERnhwHlygUAA==",
+  "dgSpecHash": "ou9ZVMVg+1nJnFHVJLXDd3XPdhu6+sUke96fPc2/WRYrz7Qw+sbFUUoFbViXTF0BYhTk32eLlaDL3LzWDvLoPQ==",
   "success": true,
-  "projectFilePath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+  "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\BogdanPC\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\Павел\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Ошибка чтения файла кэша C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
