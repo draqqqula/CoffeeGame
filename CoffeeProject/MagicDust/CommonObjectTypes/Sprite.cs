@@ -4,6 +4,7 @@ using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 
 namespace MagicDustLibrary.CommonObjectTypes
@@ -11,21 +12,12 @@ namespace MagicDustLibrary.CommonObjectTypes
     /// <summary>
     /// Специальный тип <see cref="GameObject"/>, поддерживающий анимации.
     /// </summary>
-    public abstract class Sprite : GameObject
+    public abstract class Sprite : GameObject, IDisplayComponent, IBodyComponent, IUpdateComponent
     {
-        public Animator Animator { get; init; }
-        public override IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer)
-        {
-            yield return Animator.GetVisual(layer.Process(DisplayInfo, camera));
-        }
+        public bool IsMirroredVertical = false;
+        public bool IsMirroredHorizontal = false;
 
-        public virtual void OnTick(IStateController state, TimeSpan deltaTime)
-        {
-        }
-        public void UpdateAnimator(IStateController state, TimeSpan deltaTime)
-        {
-            Animator.Update(deltaTime);
-        }
+        public event OnDispose OnDisposeEvent;
 
         protected Sprite(IAnimationProvider provider) : base()
         {
@@ -38,8 +30,68 @@ namespace MagicDustLibrary.CommonObjectTypes
             {
                 Animator = new Animator("placeholder", "default", provider);
             }
-            OnUpdate += OnTick;
-            OnUpdate += UpdateAnimator;
+        }
+        public Animator Animator { get; init; }
+        public int MirrorFactorHorizontal
+        {
+            get
+            {
+                return IsMirroredHorizontal ? -1 : 1;
+            }
+        }
+        public int MirrorFactorVertical
+        {
+            get
+            {
+                return IsMirroredVertical ? -1 : 1;
+            }
+        }
+        private SpriteEffects GetFlipping()
+        {
+            if (IsMirroredVertical && IsMirroredHorizontal)
+                return SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
+
+            if (IsMirroredVertical) return SpriteEffects.FlipVertically;
+
+            if (IsMirroredHorizontal) return SpriteEffects.FlipHorizontally;
+
+            else return SpriteEffects.None;
+        }
+
+        protected virtual DrawingParameters DisplayInfo
+        {
+            get
+            {
+                var info = new DrawingParameters()
+                {
+                    Position = this.Position,
+                    Mirroring = GetFlipping(),
+                };
+                return info;
+            }
+        }
+
+        public Vector2 Position { get; set; }
+        public Rectangle Bounds { get; set; }
+
+        public IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer)
+        {
+            yield return Animator.GetVisual(layer.Process(DisplayInfo, camera));
+        }
+
+        public virtual void Update(IControllerProvider state, TimeSpan deltaTime)
+        {
+            Animator.Update(deltaTime);
+        }
+
+        public DrawingParameters GetDrawingParameters()
+        {
+            return DisplayInfo;
+        }
+
+        public void Dispose()
+        {
+            OnDisposeEvent(this);
         }
     }
 

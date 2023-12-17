@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using Microsoft.Xna.Framework;
 
 namespace CoffeeProject.Behaviors
@@ -122,7 +123,7 @@ namespace CoffeeProject.Behaviors
     /// <summary>
     /// Описывает поведение объекта, подверженного физике
     /// </summary>
-    public class Physics : Behavior<GameObject>
+    public class Physics<T> : Behavior<T> where T : class, IBodyComponent, IMultiBehaviorComponent
     {
         public readonly Rectangle[][] SurfaceMap;
         public readonly int SurfaceWidth;
@@ -205,7 +206,7 @@ namespace CoffeeProject.Behaviors
             return (moving.Location - end.Location).ToVector2();
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Act(IControllerProvider state, TimeSpan deltaTime, T parent)
         {
             Vector2 resultingVector = HalfUpdateVectors(deltaTime);
             var resultingLength = resultingVector.Length();
@@ -217,7 +218,7 @@ namespace CoffeeProject.Behaviors
                 var sequenceLength = Math.Min(allowedSpeed, resultingLength - i * allowedSpeed);
                 var vectorSequence = direction * sequenceLength;
 
-                var pastPosition = parent.Layout;
+                var pastPosition = parent.GetLayout();
                 var futurePosition = parent.PredictLayout(vectorSequence);
                 var mapSegment = GetMapSegment(Math.Min(pastPosition.Left, futurePosition.Left), Math.Max(pastPosition.Right, futurePosition.Right));
                 var collisionFactor = ApplyCollision(pastPosition, mapSegment, futurePosition);
@@ -241,12 +242,11 @@ namespace CoffeeProject.Behaviors
             return resultingVector;
         }
 
-        public Physics(Rectangle[][] surfaceMap, int surfaceWidth, bool enabled)
+        public Physics(Rectangle[][] surfaceMap, int surfaceWidth) : base()
         {
             SurfaceMap = surfaceMap;
             SurfaceWidth = surfaceWidth;
             Vectors = new Dictionary<string, MovementVector>();
-            Enabled = enabled;
 
             Faces = new Dictionary<Side, bool>();
             foreach (Side side in (Side[])Enum.GetValues(typeof(Side)))

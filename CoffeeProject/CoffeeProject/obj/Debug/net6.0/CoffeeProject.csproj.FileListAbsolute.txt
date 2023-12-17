@@ -76,3 +76,4 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\BehaviorKi
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\BehaviorKit.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\GraphShape.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net6.0\QuikGraph.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net6.0\CoffeeProject.sourcelink.json

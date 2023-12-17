@@ -30,10 +30,6 @@ namespace CoffeeProject.GameObjects
                 return info;
             }
         }
-        public override void OnTick(IStateController state, TimeSpan deltaTime)
-        {
-
-        }
 
         public TestType2(IAnimationProvider provider) : base(provider)
         {

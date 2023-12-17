@@ -1,4 +1,6 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Organization;
 using Condition = System.Func<BehaviorKit.Dummy, BehaviorKit.DamageInstance, bool>;
 using DamageEvent = System.Func<BehaviorKit.Dummy, BehaviorKit.DamageInstance, BehaviorKit.DamageInstance>;
@@ -60,7 +62,7 @@ namespace BehaviorKit
     /// <summary>
     /// поведение объекта, которму может быть нанесён урон
     /// </summary>
-    public class Dummy : Behavior<GameObject>
+    public class Dummy : Behavior<IMultiBehaviorComponent>
     {
         public int MaxHealth { get; private set; }
         public int Health { get; private set; }
@@ -72,7 +74,7 @@ namespace BehaviorKit
         public Dictionary<string, TimeSpan> InvincibilityFrames { get; private set; }
         public double InvincibilityFactor { get; private set; }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Act(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             foreach (var invinibilityInstance in InvincibilityFrames)
             {
@@ -121,7 +123,7 @@ namespace BehaviorKit
             return false;
         }
 
-        public Dummy(int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor, bool enabled) : base()
+        public Dummy(int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor) : base()
         {
             MaxHealth = maxHealth;
             Health = maxHealth;
@@ -131,7 +133,6 @@ namespace BehaviorKit
             Conditions = conditions == null ? new List<Condition>() : conditions;
             InvincibilityFrames = new Dictionary<string, TimeSpan>();
             InvincibilityFactor = invincibilityFactor;
-            Enabled = enabled;
         }
     }
 }

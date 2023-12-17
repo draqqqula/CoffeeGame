@@ -1,7 +1,11 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.TileMap;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.DefualtImplementations;
+using MagicDustLibrary.Organization.StateClientServices;
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
@@ -16,7 +20,7 @@ namespace MagicDustLibrary.Network
     public class MessageUnpacker : IUnpacker
     {
         private readonly GameState _state;
-        private readonly Dictionary<byte[], GameObject> _collection;
+        private readonly Dictionary<byte[], ComponentBase> _collection;
 
         private static ImmutableArray<Type> PackableTypes = Assembly.GetAssembly(typeof(GameState))
             .GetTypes()
@@ -43,13 +47,13 @@ namespace MagicDustLibrary.Network
             }
         }
 
-        public MessageUnpacker(GameState state, Dictionary<byte[], GameObject> networkCollection)
+        public MessageUnpacker(GameState state, Dictionary<byte[], ComponentBase> networkCollection)
         {
             this._state = state;
             this._collection = networkCollection;
         }
 
-        private static IEnumerable<IDisplayable> GetDisplays(byte[] bytes, IContentStorage contentStorage, Dictionary<byte[], GameObject> networkCollection)
+        private static IEnumerable<IDisplayable> GetDisplays(byte[] bytes, IContentStorage contentStorage, Dictionary<byte[], ComponentBase> networkCollection)
         {
             int pointer = 0;
             while (pointer < bytes.Length)

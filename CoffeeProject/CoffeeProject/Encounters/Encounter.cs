@@ -12,12 +12,12 @@ namespace CoffeeProject.Encounters
 {
     public abstract class Encounter
     {
-        public abstract void Create(IStateController state, Point position);
+        public abstract void Create(IControllerProvider state, Point position);
     }
 
     public class EnemyEncounter : Encounter
     {
-        public override void Create(IStateController state, Point position)
+        public override void Create(IControllerProvider state, Point position)
         {
         }
     }

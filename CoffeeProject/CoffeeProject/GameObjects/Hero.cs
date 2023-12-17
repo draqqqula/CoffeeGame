@@ -6,6 +6,8 @@ using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
@@ -18,14 +20,18 @@ namespace CoffeeProject.GameObjects
 {
     [Box(100, 200, 50, 200)]
     [SpriteSheet("hero")]
-    public class Hero : Sprite
+    public class Hero : Sprite, IMultiBehaviorComponent, IUpdateComponent
     {
         public GameClient Client;
         private List<PlayerModifier> _modifiers = new List<PlayerModifier>();
         public Hero(IAnimationProvider provider) : base(provider)
         {
-            this.AddBehavior("physics", new Physics(new List<Rectangle[]>().ToArray(), 12, true));
-            AddBehavior("spring", new Spring(0.1f));
+            this.CombineWith(
+                new Physics<Hero>(
+                new List<Rectangle[]>().ToArray(),
+                12
+                ));
+            this.CombineWith(new Spring(0.1f));
         }
 
         protected override DrawingParameters DisplayInfo
@@ -33,17 +39,22 @@ namespace CoffeeProject.GameObjects
             get
             {
                 var info = base.DisplayInfo;
-                info.Scale = info.Scale * new Vector2(0.14f, 0.14f);
+                info.Scale = info.Scale * new Vector2(0.05f, 0.05f);
                 return info;
             }
         }
 
         const float SPEED = 8;
         const float DECELERATION = 15;
-        public override void OnTick(IStateController state, TimeSpan deltaTime)
+
+        public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
+
+        public override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
-            var physics = GetBehavior<Physics>("physics");
-            var spring = GetBehavior<Spring>("spring");
+            base.Update(state, deltaTime);
+            OnAct(state, deltaTime, this);
+            var physics = GetComponents<Physics<Hero>>().Last();
+            var spring = GetComponents<Spring>().Last();
             var speed = 60f*SPEED * (float)deltaTime.TotalSeconds;
             var deceleration = DECELERATION;
 
@@ -52,18 +63,22 @@ namespace CoffeeProject.GameObjects
 
             if (Client.Controls[Control.left])
             {
+                Animator.SetAnimation("Left", 0);
                 physics.AddVector("move_left", new MovementVector(new Vector2(-speed, 0), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.right])
             {
+                Animator.SetAnimation("Right", 0);
                 physics.AddVector("move_right", new MovementVector(new Vector2(speed, 0), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.lookUp])
             {
+                Animator.SetAnimation("Backward", 0);
                 physics.AddVector("move_down", new MovementVector(new Vector2(0, -speed), -deceleration, TimeSpan.Zero, true));
             }
             if (Client.Controls[Control.lookDown])
             {
+                Animator.SetAnimation("Default", 0);
                 physics.AddVector("move_up", new MovementVector(new Vector2(0, speed), -deceleration, TimeSpan.Zero, true));
             }
 
@@ -75,8 +90,8 @@ namespace CoffeeProject.GameObjects
 
             if (Client.Controls.OnPress(Control.pause))
             {
-                state.PauseCurrent();
-                state.LaunchLevel("pause", new LevelArgs(state.GetCurrentLevelName()), false);
+                state.Using<ILevelController>().PauseCurrent();
+                state.Using<ILevelController>().LaunchLevel("pause", new LevelArgs(state.Using<ILevelController>().GetCurrentLevelName()), false);
             }
 
             if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move_")).Any())
@@ -100,12 +115,9 @@ namespace CoffeeProject.GameObjects
 
         private void SetDefaults()
         {
-            foreach (var behavior in Behaviors.Values)
+            foreach (var container in GetComponents<IModifiableContainer>())
             {
-                if (behavior is IModifiableContainer container)
-                {
-                    container.SetDefaults();
-                }
+                container.SetDefaults();
             }
         }
 

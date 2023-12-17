@@ -11,7 +11,8 @@ namespace MagicDustLibrary.ComponentModel
 
         private void MapConnections()
         {
-            foreach (var method in GetType().GetMethods())
+            var methods = GetType().GetRuntimeMethods();
+            foreach (var method in methods)
             {
                 var attribute = method.GetCustomAttribute<ContactComponentAttribute>();
                 if (attribute is null)

@@ -1,4 +1,6 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
@@ -17,15 +19,10 @@ namespace MagicDustLibrary.Factorys
             return obj;
         }
 
-        public static T SetPlacement<T>(this T obj, IPlacement placement) where T : GameObject
+        public static T SetPlacement<T>(this T obj, IPlacement placement) where T : ComponentBase, IDisplayComponent
         {
-            obj.Placement = placement;
-            return obj;
-        }
-
-        public static GameObject PlaceTo<L>(this GameObject obj) where L : Layer
-        {
-            obj.Placement = new Placement<L>();
+            var layer = placement.GetLayerType();
+            obj.CombineWith(new PlacementInfoComponent() { PlacementInfo = placement });
             return obj;
         }
 
@@ -35,10 +32,21 @@ namespace MagicDustLibrary.Factorys
             return obj;
         }
 
-        public static T AddToState<T>(this T obj, IStateController state) where T : IGameObjectComponent
+        public static T AddToState<T>(this T obj, IControllerProvider state) where T : ComponentBase
         {
-            state.AddToState(obj);
+            state.Using<IFactoryController>().AddToState(obj);
             return obj;
+        }
+    }
+
+    internal class PlacementInfoComponent : ComponentBase, IDisposableComponent
+    {
+        public IPlacement PlacementInfo { get; set; }
+        public event OnDispose OnDisposeEvent;
+
+        public void Dispose()
+        {
+            OnDisposeEvent(this);
         }
     }
 }

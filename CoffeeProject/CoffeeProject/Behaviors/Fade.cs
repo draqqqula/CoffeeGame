@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.Behaviors
 {
-    public class Fade : Behavior<GameObject>
+    public class Fade : Behavior<IMultiBehaviorComponent>, IDisplayFilter
     {
 
         public TimeSpan Delay { get; private set; }
@@ -23,25 +24,24 @@ namespace CoffeeProject.Behaviors
             }
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Act(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             t += deltaTime;
             if (DestroyAfterFadeOut && CurrentOpacity == 0)
                 parent.Dispose();
         }
 
-        protected override DrawingParameters ChangeAppearance(GameObject parent, DrawingParameters parameters)
+        public DrawingParameters ApplyFilter(DrawingParameters parameters)
         {
             parameters.Color *= CurrentOpacity;
             return parameters;
         }
 
-        public Fade(TimeSpan delay, TimeSpan fadeDuration, TimeSpan t0, bool destroyAfterFadeOut, bool enabled) : base()
+        public Fade(TimeSpan delay, TimeSpan fadeDuration, TimeSpan t0, bool destroyAfterFadeOut) : base()
         {
             Delay = delay;
             FadeDuration = fadeDuration;
             t = t0;
-            Enabled = enabled;
             DestroyAfterFadeOut = destroyAfterFadeOut;
         }
     }

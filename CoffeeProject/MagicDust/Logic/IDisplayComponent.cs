@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IDisplayComponent : IGameObjectComponent
+    public interface IDisplayComponent : IDisposableComponent
     {
         /// <summary>
         /// Возвращает несколько объектов для отрисовки.
@@ -18,6 +18,5 @@ namespace MagicDustLibrary.Logic
         /// <returns></returns>
         public IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer);
         public DrawingParameters GetDrawingParameters();
-        public Type GetLayerType();
     }
 }

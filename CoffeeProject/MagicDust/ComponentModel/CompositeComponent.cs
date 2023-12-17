@@ -1,14 +1,12 @@
 ﻿namespace MagicDustLibrary.ComponentModel
 {
-    public class CompositeComponent<A, B> : ComponentBase where A : ComponentBase where B : ComponentBase
+    public class CompositeComponent : ComponentBase
     {
-        private readonly A _componentA;
-        private readonly B _componentB;
+        private readonly ComponentBase _componentA;
+        private readonly ComponentBase _componentB;
 
-        internal CompositeComponent(A componentA, B componentB)
+        internal CompositeComponent(ComponentBase componentA, ComponentBase componentB)
         {
-            componentA.Greet(componentB);
-            componentB.Greet(componentA);
             _componentA = componentA;
             _componentB = componentB;
         }
@@ -25,18 +23,21 @@
             }
         }
 
-        protected internal override void Greet<T>(T obj)
+        public override ComponentBase? Without<T>()
         {
-            _componentA.Greet(obj);
-            _componentB.Greet(obj);
-        }
-    }
-
-    public static class CompositeExtensions
-    {
-        internal static CompositeComponent<A, B> CombineWith<A, B>(this A a, B b) where A : ComponentBase where B : ComponentBase
-        {
-            return new CompositeComponent<A, B>(a, b);
+            if (_componentA.Without<T>() is null && _componentB.Without<T>() is null)
+            {
+                return null;
+            }
+            else if (_componentA.Without<T>() is null)
+            {
+                return _componentB;
+            }
+            else if (_componentB.Without<T>() is null)
+            {
+                return _componentA;
+            }
+            return this;
         }
     }
 }

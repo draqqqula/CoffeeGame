@@ -88,9 +88,9 @@ namespace MagicDustLibrary.Display
         /// </summary>
         /// <param newPriority="obj"></param>
         /// <returns></returns>
-        public bool Sees(GameObject obj)
+        public bool Sees(IBodyComponent obj)
         {
-            return ViewPort.Intersects(obj.Layout);
+            return ViewPort.Intersects(obj.GetLayout());
         }
 
         private Vector2 Lerp(Vector2 a, Vector2 b, float k)

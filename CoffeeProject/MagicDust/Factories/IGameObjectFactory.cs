@@ -1,5 +1,7 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,20 +14,37 @@ namespace MagicDustLibrary.Factorys
 {
     public interface IGameObjectFactory
     {
-        public T CreateObject<T>() where T : IGameObjectComponent;
+        public T CreateObject<T>() where T : ComponentBase;
+    }
+
+    public class ComponentFactory : IGameObjectFactory
+    {
+        private IServiceProviderFactory<IServiceCollection> _factory;
+        private IServiceCollection _services;
+        public ComponentFactory(IServiceCollection services, IServiceProviderFactory<IServiceCollection> factory)
+        {
+            _factory = factory;
+            _services = services;
+        }
+        public T CreateObject<T>() where T : ComponentBase
+        {
+            _services.AddTransient<T>();
+            var provider = _factory.CreateServiceProvider(_services);
+            return provider.GetService<T>();
+        }
     }
 
     public class GameObjectFactory : IGameObjectFactory
     {
-        private readonly GameState _state;
-        public T CreateObject<T>() where T : IGameObjectComponent
+        private readonly IServiceProvider _provider;
+        public T CreateObject<T>() where T : ComponentBase
         {
             var ctor = GetCorrectConstructor(typeof(T));
             if (ctor is null)
             {
                 throw new Exception($"\"{typeof(T).Name}\" object does not provide suitable constructor.");
             }
-            var serviceArgs = ctor.GetParameters().Select(it => _state.ApplicationServices.GetService(it.ParameterType));
+            var serviceArgs = ctor.GetParameters().Select(it => _provider.GetService(it.ParameterType));
             var finalArgs = serviceArgs.ToArray();
             var obj = (T)ctor.Invoke(finalArgs);
             return obj;
@@ -36,7 +55,7 @@ namespace MagicDustLibrary.Factorys
             foreach (var ctor in type.GetConstructors())
             {
                 var args = ctor.GetParameters();
-                if (!args.Any() || args.All(it => _state.ApplicationServices.GetService(it.ParameterType) is not null))
+                if (!args.Any() || args.All(it => _provider.GetService(it.ParameterType) is not null))
                 {
                     return ctor;
                 }
@@ -44,9 +63,9 @@ namespace MagicDustLibrary.Factorys
             return null;
         }
 
-        public GameObjectFactory(GameState state)
+        public GameObjectFactory(IServiceProvider provider)
         {
-            _state = state;
+            _provider = provider;
         }
     }
 }

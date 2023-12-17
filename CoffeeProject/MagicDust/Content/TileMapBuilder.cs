@@ -12,7 +12,7 @@ namespace MagicDustLibrary.Content
         /// </summary>
         /// <param newPriority="level"></param>
         /// <returns></returns>
-        public byte[,] BuildFromFiles(string level, DefaultContentStorage contentStorage)
+        public byte[,] BuildFromFiles(string level, IContentStorage contentStorage)
         {
             var mapImage = contentStorage.GetAsset<Texture2D>(level);
             Color[] colorMap = new Color[mapImage.Width * mapImage.Height];
@@ -83,5 +83,43 @@ namespace MagicDustLibrary.Content
             this(new Color[0])
         {
         }
+    }
+
+    public class LevelMap
+    {
+        public byte[,] Map { get;}
+
+        public LevelMap(
+            [FromStorage("*")]Texture2D texture
+            )
+        {
+            var colors = new Color[8] {
+                Color.Black,
+                Color.Red,
+                Color.Orange,
+                Color.Yellow,
+                Color.Green,
+                Color.LightBlue,
+                Color.Blue,
+                Color.Purple };
+            ColorByteExchanger = Enumerable.Range(0, colors.Length).ToDictionary(n => colors[n], n => (byte)(n + 1));
+            ColorByteExchanger.Add(Color.White, 0);
+
+            var mapImage = texture;
+            Color[] colorMap = new Color[mapImage.Width * mapImage.Height];
+            mapImage.GetData(colorMap);
+            var rawResult = colorMap.Select(color => ColorByteExchanger[color]).ToArray();
+            var result = new byte[mapImage.Width, mapImage.Height];
+            for (int i = 0; i < mapImage.Width; i++)
+            {
+                for (int j = 0; j < mapImage.Height; j++)
+                {
+                    result[i, j] = rawResult[j * mapImage.Width + i];
+                }
+            }
+            Map = result;
+        }
+
+        private readonly Dictionary<Color, byte> ColorByteExchanger;
     }
 }

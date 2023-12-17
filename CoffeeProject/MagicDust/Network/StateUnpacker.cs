@@ -1,4 +1,6 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.TileMap;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
@@ -15,7 +17,7 @@ namespace MagicDustLibrary.Network
     public class StateUnpacker : IUnpacker
     {
         private readonly GameState _state;
-        private readonly Dictionary<byte[], GameObject> _collection;
+        private readonly Dictionary<byte[], ComponentBase> _collection;
         private readonly Layer _unpackLayer;
         public void Unpack(byte[] data)
         {
@@ -38,7 +40,7 @@ namespace MagicDustLibrary.Network
             }
         }
 
-        public StateUnpacker(GameState state, Dictionary<byte[], GameObject> networkCollection, Layer unpackLayer)
+        public StateUnpacker(GameState state, Dictionary<byte[], ComponentBase> networkCollection, Layer unpackLayer)
         {
             this._state = state;
             this._collection = networkCollection;

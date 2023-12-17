@@ -1,0 +1,12 @@
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\bin\Release\net8.0\JsonDtos.deps.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\bin\Release\net8.0\JsonDtos.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\bin\Release\net8.0\JsonDtos.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.GeneratedMSBuildEditorConfig.editorconfig
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.AssemblyInfoInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.AssemblyInfo.cs
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.csproj.CoreCompileInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.sourcelink.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\refint\JsonDtos.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\JsonDtos.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonDtos\obj\Release\net8.0\ref\JsonDtos.dll

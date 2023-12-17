@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using MagicDustLibrary.CommonObjectTypes;
 using System.Text;
+using MagicDustLibrary.ComponentModel;
 
 namespace MagicDustLibrary.Display
 {
@@ -85,7 +86,7 @@ namespace MagicDustLibrary.Display
     }
 }
 
-namespace MagicDustLibrary.CommonObjectTypes
+namespace MagicDustLibrary.CommonObjectTypes.TileMap
 {
 
     [ByteKey(1)]
@@ -111,7 +112,7 @@ namespace MagicDustLibrary.CommonObjectTypes
             return buffer;
         }
 
-        public static TileMapChunk Unpack(ReadOnlySpan<byte> bytes, Dictionary<byte[], GameObject> networkCollection)
+        public static TileMapChunk Unpack(ReadOnlySpan<byte> bytes, Dictionary<byte[], ComponentBase> networkCollection)
         {
             byte[] linkID = bytes[0..16].ToArray();
 
@@ -143,43 +144,7 @@ namespace MagicDustLibrary.CommonObjectTypes
     {
         public IEnumerable<byte> Pack(IContentStorage contentStorage)
         {
-            List<byte> buffer = new List<byte>();
-
-            buffer.AddRange(BitConverter.GetBytes(Position.X));
-            buffer.AddRange(BitConverter.GetBytes(Position.Y));
-            buffer.AddRange(BitConverter.GetBytes(SheetID));
-            buffer.AddRange(BitConverter.GetBytes(TileFrame.X));
-            buffer.AddRange(BitConverter.GetBytes(TileFrame.Y));
-            buffer.AddRange(BitConverter.GetBytes(TileFrame.Width));
-            buffer.AddRange(BitConverter.GetBytes(TileFrame.Height));
-            buffer.AddRange(BitConverter.GetBytes(PictureScale.X));
-            buffer.AddRange(BitConverter.GetBytes(PictureScale.Y));
-            //var linkID = LinkedID;
-            //buffer.AddRange(linkID);
-            buffer.AddRange(BitConverter.GetBytes(Tiles.Length));
-            foreach (var tile in Tiles)
-            {
-                buffer.AddRange(BitConverter.GetBytes(tile.Item1.X));
-                buffer.AddRange(BitConverter.GetBytes(tile.Item1.Y));
-                buffer.AddRange(BitConverter.GetBytes(tile.Item1.Width));
-                buffer.AddRange(BitConverter.GetBytes(tile.Item1.Height));
-                buffer.AddRange(BitConverter.GetBytes(tile.Item2.X));
-                buffer.AddRange(BitConverter.GetBytes(tile.Item2.Y));
-                buffer.AddRange(BitConverter.GetBytes(tile.Item3));
-            }
-
-            buffer.AddRange(BitConverter.GetBytes(Map.GetLength(0)));
-            buffer.AddRange(BitConverter.GetBytes(Map.GetLength(1)));
-
-            for (int i = 0; i < Map.GetLength(0); i++)
-            {
-                for (int j = 0; j < Map.GetLength(1); j++)
-                {
-                    buffer.Add(Map[i, j]);
-                }
-            }
-
-            return buffer.ToArray();
+            throw new NotImplementedException();
         }
 
         private static byte[,] BuildMap(ReadOnlySpan<byte> bytes, int rows, int columns)
@@ -201,48 +166,7 @@ namespace MagicDustLibrary.CommonObjectTypes
 
         public static TileMap Unpack(ReadOnlySpan<byte> bytes, GameState state, Layer layer)
         {
-            Vector2 position = new Vector2(BinaryPrimitives.ReadSingleLittleEndian(bytes), BinaryPrimitives.ReadSingleLittleEndian(bytes[4..]));
-            Texture2D sheet = state.ContentStorage.GetAsset<Texture2D>(BinaryPrimitives.ReadInt32LittleEndian(bytes[8..]));
-            Rectangle tileFrame = new Rectangle(
-                BinaryPrimitives.ReadInt32LittleEndian(bytes[12..]),
-                BinaryPrimitives.ReadInt32LittleEndian(bytes[16..]),
-                BinaryPrimitives.ReadInt32LittleEndian(bytes[20..]),
-                BinaryPrimitives.ReadInt32LittleEndian(bytes[24..])
-                );
-            Vector2 pictureScale = new Vector2(BinaryPrimitives.ReadSingleLittleEndian(bytes[28..]), BinaryPrimitives.ReadSingleLittleEndian(bytes[32..]));
-            byte[] linkID = bytes.Slice(36, 16).ToArray();
-
-
-            (Rectangle, Point, bool)[] tiles = new (Rectangle, Point, bool)[BinaryPrimitives.ReadInt32LittleEndian(bytes[52..])];
-            int tileLoopStart = 56;
-            for (int n = 0; n < tiles.Length; n++)
-            {
-                Rectangle frame = new Rectangle(
-                    BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopStart + n * 25)..]),
-                    BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopStart + n * 25 + 4)..]),
-                    BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopStart + n * 25 + 8)..]),
-                    BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopStart + n * 25 + 12)..])
-                    );
-                Point offset = new Point(
-                    BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopStart + n * 25 + 16)..]),
-                    BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopStart + n * 25 + 20)..])
-                    );
-                bool isSolid = MemoryMarshal.Read<bool>(bytes[(tileLoopStart + n * 25 + 24)..]);
-                tiles[n] = new(frame, offset, isSolid);
-            }
-            int tileLoopEnd = tileLoopStart + tiles.Length * 25;
-
-            int mapLoopStart = tileLoopEnd + 8;
-
-            int mapWidth = BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopEnd)..]);
-            int mapHeight = BinaryPrimitives.ReadInt32LittleEndian(bytes[(tileLoopEnd + 4)..]);
-
-            ReadOnlySpan<byte> rawMap = bytes[mapLoopStart..];
-            byte[,] map = BuildMap(bytes[mapLoopStart..], mapWidth, mapHeight);
-
-            var obj = new TileMap(position, map, sheet, state, tileFrame, layer, pictureScale, tiles);
-            obj.Link(linkID);
-            return obj;
+            throw new NotImplementedException();
         }
 
         private void Link(byte[] linkID)

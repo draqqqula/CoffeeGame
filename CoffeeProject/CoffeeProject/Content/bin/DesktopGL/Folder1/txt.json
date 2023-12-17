@@ -1,0 +1,4 @@
+{
+  "$type": "JsonDtos.TestDto, JsonDtos",
+  "key": "value"
+}
