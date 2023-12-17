@@ -155,7 +155,7 @@ namespace CoffeeProject.RoomGeneration
         public void ConnectLevelGraph()
         {
             var rnd = new Random();
-            var connectCoef = 0.80;
+            var connectCoef = 0.85;
             // Рандомное соединение комнат графа
             for (int i = 0; i < _roomsCount; i++)
             {
@@ -165,7 +165,7 @@ namespace CoffeeProject.RoomGeneration
                 }
                 for (int j = 0; j < _roomsCount; j++)
                 {
-                    if (j == _mainPathRoomsCount + 1) // Пропускает комнату босса
+                    if ((j == _mainPathRoomsCount + 1) || (i == j)) // Пропускает комнату босса и повторающуюся комнату
                     {
                         continue;
                     }
@@ -196,6 +196,7 @@ namespace CoffeeProject.RoomGeneration
                             randomNum = rnd.Next(0, _roomsCount);
                         }
                         Connect(randomNum, room.RoomNumber);
+                        conRoomsNum = GetConnectedRoomsNum();
                     }
                 }
             }

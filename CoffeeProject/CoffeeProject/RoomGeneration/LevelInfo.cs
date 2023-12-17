@@ -47,7 +47,7 @@ namespace CoffeeProject.RoomGeneration
             {
                 string roomName = roomFile.ToString();
                 var room = AssetExtensions.Create<RoomInfo>(content, levelName, roomName);
-                enemyRooms.Add(room);
+                lootRooms.Add(room);
             }
             LootRooms = lootRooms.ToArray();
         }
