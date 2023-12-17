@@ -35,7 +35,7 @@
             Greetings.Register(greetingAction);
         }
 
-        private void Greet(ComponentBase obj)
+        internal void Greet(ComponentBase obj)
         {
             foreach (var component in obj.Decomposed)
             {

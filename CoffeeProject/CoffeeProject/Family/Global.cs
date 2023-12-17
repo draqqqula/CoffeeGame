@@ -5,21 +5,17 @@ using System;
 
 namespace CoffeeProject.Family
 {
-    public class Global : Family<Sprite>
+    public class Global : Family<IFamilyComponent>
     {
         protected override void CommonUpdate(IControllerProvider state, TimeSpan deltaTime)
         {
-            foreach (var obj in Members)
-            {
-                obj.Position += new Vector2(0.1f, 0);
-            }
         }
 
-        protected override void OnAbandonment(IControllerProvider state, Sprite member)
+        protected override void OnAbandonment(IControllerProvider state, IFamilyComponent member)
         {
         }
 
-        protected override void OnReplenishment(IControllerProvider state, Sprite member)
+        protected override void OnReplenishment(IControllerProvider state, IFamilyComponent member)
         {
         }
     }

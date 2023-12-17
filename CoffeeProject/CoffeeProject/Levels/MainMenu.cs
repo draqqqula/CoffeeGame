@@ -46,6 +46,7 @@ namespace CoffeeProject.Levels
             if (_player.Controls.OnPress(Control.jump))
             {
                 state.Using<ILevelController>().ShutCurrent(false);
+                state.Using<ILevelController>().LaunchLevel("test", false);
             }
         }
     }

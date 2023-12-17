@@ -9,12 +9,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MagicDustLibrary.Display;
+using MagicDustLibrary.ComponentModel;
 
 namespace MagicDustLibrary.Network
 {
     public class RemoteLevel : GameLevel
     {
-        public Dictionary<byte[], GameObject> NetworkCollection = new(new ByteKeyEqualityComparer());
+        public Dictionary<byte[], ComponentBase> NetworkCollection = new(new ByteKeyEqualityComparer());
         private IPAddress _adress;
         private int _port;
         private IPEndPoint _openAdress;

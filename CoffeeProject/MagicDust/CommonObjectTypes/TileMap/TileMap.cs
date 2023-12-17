@@ -132,11 +132,6 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             yield return new TileMapChunk(this, chunk, pos, extras);
         }
 
-        public Type GetLayerType()
-        {
-            return typeof(CommonLayer);
-        }
-
         public DrawingParameters GetDrawingParameters()
         {
             var info = new DrawingParameters()

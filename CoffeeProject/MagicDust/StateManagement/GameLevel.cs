@@ -61,6 +61,7 @@ namespace MagicDustLibrary.Organization
         public void Start(MagicGameApplication app, LevelArgs arguments, string name)
         {
             var state = new GameState1();
+            _defaults.AddEntry("levelName", name);
             state.ConfigureServices(app.Configurations, _defaults);
 
             state.ConfigureServices((services, settings) => 

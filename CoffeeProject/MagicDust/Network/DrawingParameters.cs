@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using MagicDustLibrary.CommonObjectTypes;
 using System.Text;
+using MagicDustLibrary.ComponentModel;
 
 namespace MagicDustLibrary.Display
 {
@@ -111,7 +112,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             return buffer;
         }
 
-        public static TileMapChunk Unpack(ReadOnlySpan<byte> bytes, Dictionary<byte[], GameObject> networkCollection)
+        public static TileMapChunk Unpack(ReadOnlySpan<byte> bytes, Dictionary<byte[], ComponentBase> networkCollection)
         {
             byte[] linkID = bytes[0..16].ToArray();
 
