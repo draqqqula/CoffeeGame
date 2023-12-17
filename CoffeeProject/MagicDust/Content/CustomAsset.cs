@@ -1,4 +1,5 @@
 ﻿using MagicDustLibrary.Display;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,38 +13,43 @@ using System.Threading.Tasks;
 namespace MagicDustLibrary.Content
 {
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-    public class FromStorageAttribute(params string[] path) : Attribute
+    public class FromContentAttribute(params string[] path) : Attribute
     {
         public string[] Path { get; } = path;
     }
 
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
+    public class FromInputAttribute(int index) : Attribute
+    {
+        public int Index { get; } = index;
+    }
+
     public static class AssetExtensions
     {
-        private static string ParsePath(FromStorageAttribute attribute, string assetName)
+        private static string GetAndMove(IEnumerator<string> names)
         {
+            var result = names.Current;
+            names.MoveNext();
+            return result;
+        }
+
+        private static string ParsePath(FromContentAttribute attribute, IEnumerator<string> names)
+        {
+            names.MoveNext();
             return Path.Combine(
                         attribute.Path
-                        .Select(it => it.Contains('*') ? Regex.Replace(it, "\\*", assetName) : it)
+                        .Select(it => it.Contains('*') ? Regex.Replace(it, "\\*", GetAndMove(names)) : it)
                         .ToArray()
                         );
         }
 
         private static object GetParameter(ParameterInfo parameter, string path, IContentStorage content)
         {
-            if (parameter.ParameterType.IsArray)
-            {
-                if (Directory.Exists(path))
-                {
-                    var array = Directory.GetFiles(path).Select(it => content.GetAsset<object>(it));
-                    return array;
-                }
-            }
-
             var value = content.GetAsset<object>(path);
             return value;
         }
 
-        public static T Create<T>(string name, IContentStorage content)
+        public static T Create<T>(IContentStorage content, params string[] inputNames)
         {
             foreach (var constructor in typeof(T).GetConstructors())
             {
@@ -52,12 +58,31 @@ namespace MagicDustLibrary.Content
 
                 foreach (var parameter in parameters)
                 {
-                    var attribute = parameter.GetCustomAttribute<FromStorageAttribute>();
+                    if (parameter.ParameterType == typeof(IContentStorage))
+                    {
+                        parameterList.Add(content);
+                        continue;
+                    }
+
+                    var fromInputAttribute = parameter.GetCustomAttribute<FromInputAttribute>();
+
+                    if (fromInputAttribute is not null)
+                    {
+                        if (parameter.ParameterType != typeof(string))
+                        {
+                            throw new Exception("FromInputAttribute must be applied to string parameter");
+                        }
+                        parameterList.Add(inputNames[fromInputAttribute.Index]);
+                        continue;
+                    }
+
+                    var attribute = parameter.GetCustomAttribute<FromContentAttribute>();
+
                     if (attribute is null)
                     {
                         continue;
                     }
-                    var path = ParsePath(attribute, name);
+                    var path = ParsePath(attribute, inputNames.AsEnumerable().GetEnumerator());
 
                     var value = GetParameter(parameter, path, content);
 

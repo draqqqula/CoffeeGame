@@ -12,22 +12,24 @@ using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Point = Microsoft.Xna.Framework.Point;
 using System.IO;
 using MagicDustLibrary.Display;
+using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 
 namespace CoffeeProject.RoomGeneration
 {
     public class LevelGenerator
     {
-        private IContentStorage _contentStorage;
-        public LevelGenerator(IContentStorage contentStorage)
+        private IControllerProvider _state;
+        public LevelGenerator(IControllerProvider state)
         {
-            _contentStorage = contentStorage;
+            _state = state;
         }
 
         public LevelGraph GenerateLevelGraph(string levelName, int mainPathRoomsCount, int enemyRoomsCount, int lootRoomsCount)
         {
             var rnd = new Random();
             //var numberOfRoomTypes = new DirectoryInfo($@"\CoffeeGame\CoffeeProject\CoffeeProject\Content\Levels\Rooms_Level{levelNumber}").GetFiles().Length / 4;
-            var levelInfo = _contentStorage.GetAsset<LevelInfo>(levelName);
+            var levelInfo = _state.Using<IFactoryController>().CreateAsset<LevelInfo>(levelName);
             var level = new LevelGraph(enemyRoomsCount, lootRoomsCount, mainPathRoomsCount);
             var roomsCount = 2 + enemyRoomsCount + lootRoomsCount;
             #region

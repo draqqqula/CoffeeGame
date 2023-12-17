@@ -30,8 +30,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
         }
 
         public TileSheet(
-            [FromStorage("*_folder", "sheet")]Texture2D sheet,
-            [FromStorage("*_folder", "info")]List<ExpandoObject> tiles
+            [FromContent("*_folder", "sheet")]Texture2D sheet,
+            [FromContent("*_folder", "info")]List<ExpandoObject> tiles
             ) :
             this(sheet, ParseTileInfo(tiles).ToArray())
         {

@@ -1,6 +1,7 @@
 ﻿using CoffeeProject.Behaviors;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
+using CoffeeProject.RoomGeneration;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.Content;
@@ -40,6 +41,9 @@ namespace CoffeeProject.Levels
             var level = state.Using<IFactoryController>().CreateAsset<LevelMap>("level1_map");
             map.UseMap(level.Map);
             state.Using<IFactoryController>().AddToState(map);
+
+            var generator = new LevelGenerator(state);
+            generator.GenerateLevelGraph("TestLevel", 3, 2, 1);
         }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
