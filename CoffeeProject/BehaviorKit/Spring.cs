@@ -29,7 +29,7 @@ namespace BehaviorKit
             _factor = factor;
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             if (_factor > 1)
             {

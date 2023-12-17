@@ -1,0 +1,51 @@
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Content;
+using MagicDustLibrary.Display;
+using MagicDustLibrary.Factorys;
+using MagicDustLibrary.Organization;
+using MagicDustLibrary.Organization.StateManagement;
+using MagicDustLibrary.StateManagement.DefualtImplementations;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MagicDustLibrary.Logic.Controllers
+{
+    public interface IFactoryController : IStateController
+    {
+        public T CreateAsset<T>(string name);
+        public T CreateObject<T>() where T : ComponentBase;
+        public void AddToState<T>(T obj) where T : ComponentBase;
+    }
+
+    internal class DefaultFactoryController : IFactoryController
+    {
+        private IContentStorage _storage;
+        private IGameObjectFactory _factory;
+        private StateHooker _hooker;
+        public DefaultFactoryController(IContentStorage storage, IGameObjectFactory factory, StateHooker hooker)
+        {
+            _storage = storage;
+            _hooker = hooker;
+            _factory = factory;
+        }
+        public T CreateAsset<T>(string name)
+        {
+            return AssetExtensions.Create<T>(name, _storage);
+        }
+
+        public T CreateObject<T>() where T : ComponentBase
+        {
+            var obj = _factory.CreateObject<T>();
+            return obj;
+        }
+
+        public void AddToState<T>(T obj) where T : ComponentBase
+        {
+            _hooker.Hook(obj);
+        }
+    }
+}

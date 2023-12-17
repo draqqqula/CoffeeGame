@@ -72,7 +72,7 @@ namespace BehaviorKit
         public Dictionary<string, TimeSpan> InvincibilityFrames { get; private set; }
         public double InvincibilityFactor { get; private set; }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime, GameObject parent)
         {
             foreach (var invinibilityInstance in InvincibilityFrames)
             {

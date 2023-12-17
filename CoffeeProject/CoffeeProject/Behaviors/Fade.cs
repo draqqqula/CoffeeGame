@@ -23,7 +23,7 @@ namespace CoffeeProject.Behaviors
             }
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime, GameObject parent)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime, GameObject parent)
         {
             t += deltaTime;
             if (DestroyAfterFadeOut && CurrentOpacity == 0)

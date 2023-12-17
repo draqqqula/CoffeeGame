@@ -36,7 +36,7 @@ namespace MagicDustLibrary.Logic
         {
             return parameters;
         }
-        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
+        public void UpdateUnhandled(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent)
         {
             if (parent is T)
             {
@@ -44,13 +44,13 @@ namespace MagicDustLibrary.Logic
             }
         }
         /// <summary>
-        /// Метод, который будет вызываться <b>перед</b> <see cref="GameObject.Update(IStateController, TimeSpan)"/>.<br/>
+        /// Метод, который будет вызываться <b>перед</b> <see cref="GameObject.Update(IControllerProvider, TimeSpan)"/>.<br/>
         /// Должен реализовывать <b>добавочную логику</b> обновления.
         /// </summary>
         /// <param name="parent"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        protected virtual void Update(IStateController state, TimeSpan deltaTime, T parent)
+        protected virtual void Update(IControllerProvider state, TimeSpan deltaTime, T parent)
         {
         }
     }
@@ -61,6 +61,6 @@ namespace MagicDustLibrary.Logic
 
         public DrawingParameters ChangeAppearanceUnhandled(IMultiBehaviorComponent parent, DrawingParameters parameters);
 
-        public void UpdateUnhandled(IStateController state, TimeSpan deltaTime, IMultiBehaviorComponent parent);
+        public void UpdateUnhandled(IControllerProvider state, TimeSpan deltaTime, IMultiBehaviorComponent parent);
     }
 }

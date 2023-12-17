@@ -30,7 +30,7 @@ namespace CoffeeProject.GameObjects
                 return info;
             }
         }
-        public override void OnTick(IStateController state, TimeSpan deltaTime)
+        public override void OnTick(IControllerProvider state, TimeSpan deltaTime)
         {
 
         }

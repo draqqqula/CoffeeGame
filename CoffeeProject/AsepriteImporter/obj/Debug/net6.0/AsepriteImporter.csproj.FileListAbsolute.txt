@@ -28,3 +28,4 @@ C:\Users\DNS\Desktop\ПП\CoffeeProject\AsepriteImporter\obj\Debug\net6.0\Asepri
 C:\Users\DNS\Desktop\ПП\CoffeeProject\AsepriteImporter\obj\Debug\net6.0\refint\AsepriteImporter.dll
 C:\Users\DNS\Desktop\ПП\CoffeeProject\AsepriteImporter\obj\Debug\net6.0\AsepriteImporter.pdb
 C:\Users\DNS\Desktop\ПП\CoffeeProject\AsepriteImporter\obj\Debug\net6.0\ref\AsepriteImporter.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net6.0\AsepriteImporter.sourcelink.json

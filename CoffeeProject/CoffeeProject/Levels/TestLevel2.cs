@@ -3,6 +3,7 @@ using CoffeeProject.Layers;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
@@ -24,18 +25,18 @@ namespace CoffeeProject.Levels
             };
         }
 
-        protected override void Initialize(IStateController state, LevelArgs arguments)
+        protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            state.CreateSoundInstance("ANOTHER HIM", "main").Play();
+            state.Using<ISoundController>().CreateSoundInstance("ANOTHER HIM", "main").Play();
         }
 
-        protected override void OnClientUpdate(IStateController state, GameClient client)
+        protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void OnConnect(IStateController state, GameClient client)
+        protected override void OnConnect(IControllerProvider state, GameClient client)
         {
-            var obj = state.CreateObject<TestType2>()
+            var obj = state.Using<IFactoryController>().CreateObject<TestType2>()
                 .SetPos(new Vector2(213, 454))
                 .SetPlacement(new Placement<MainLayer>())
                 .AddToState(state);
@@ -43,15 +44,15 @@ namespace CoffeeProject.Levels
             _mainClient = client;
         }
 
-        protected override void OnDisconnect(IStateController state, GameClient client)
+        protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
         }
 
-        protected override void Update(IStateController state, TimeSpan deltaTime)
+        protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             if (_mainClient is not null && _mainClient.Controls[Control.pause])
             {
-                state.ShutCurrent(false);
+                state.Using<ILevelController>().ShutCurrent(false);
             }
         }
     }

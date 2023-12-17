@@ -73,7 +73,7 @@ namespace MagicDustLibrary.Logic
     /// <item><see cref="IMultiBehaviorComponent"/> возможность добавлять функционал через <see cref="IBehavior"/></item>
     /// </list>
     /// </summary>
-    public abstract class GameObject : GameObjectComponentBase, IDisplayComponent, IBodyComponent, IUpdateComponent, IFamilyComponent, IMultiBehaviorComponent
+    public abstract class GameObject : NodeComponent, IDisplayComponent, IBodyComponent, IUpdateComponent, IFamilyComponent, IMultiBehaviorComponent
     {
 
         #region IDisplayProvider
@@ -136,7 +136,7 @@ namespace MagicDustLibrary.Logic
 
 
         #region IStateUpdateAble
-        public virtual void Update(IStateController state, TimeSpan deltaTime)
+        public virtual void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             foreach (var behavior in Behaviors.Values)
             {
@@ -145,7 +145,7 @@ namespace MagicDustLibrary.Logic
             OnUpdate(state, deltaTime);
         }
 
-        public Action<IStateController, TimeSpan> OnUpdate = (state, deltaTime) => { };
+        public Action<IControllerProvider, TimeSpan> OnUpdate = (state, deltaTime) => { };
         #endregion
 
 

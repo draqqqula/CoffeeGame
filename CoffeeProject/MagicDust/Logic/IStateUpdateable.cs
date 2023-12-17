@@ -3,7 +3,7 @@
 
 namespace MagicDustLibrary.Logic
 {
-    public interface IUpdateComponent : IGameObjectComponent
+    public interface IUpdateComponent : IDisposableComponent
     {
         /// <summary>
         /// Вызвается у объектов во время <see cref="Game.Update"/>.<br/>
@@ -11,6 +11,6 @@ namespace MagicDustLibrary.Logic
         /// </summary>
         /// <param name="state"></param>
         /// <param name="deltaTime"></param>
-        public void Update(IStateController state, TimeSpan deltaTime);
+        public void Update(IControllerProvider state, TimeSpan deltaTime);
     }
 }

@@ -19,10 +19,10 @@ namespace MagicDustLibrary.CommonObjectTypes
             yield return Animator.GetVisual(layer.Process(DisplayInfo, camera));
         }
 
-        public virtual void OnTick(IStateController state, TimeSpan deltaTime)
+        public virtual void OnTick(IControllerProvider state, TimeSpan deltaTime)
         {
         }
-        public void UpdateAnimator(IStateController state, TimeSpan deltaTime)
+        public void UpdateAnimator(IControllerProvider state, TimeSpan deltaTime)
         {
             Animator.Update(deltaTime);
         }

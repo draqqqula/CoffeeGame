@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.Layers
 {
-    [LayerPriority(0)]
+    [LayerPriority(254)]
     [Paralax(1, 1)]
     public class MainLayer : ParalaxLayer
     {

@@ -1,4 +1,5 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework.Graphics.PackedVector;

@@ -1,0 +1,13 @@
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.deps.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.csproj.AssemblyReference.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.GeneratedMSBuildEditorConfig.editorconfig
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.AssemblyInfoInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.AssemblyInfo.cs
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.csproj.CoreCompileInputs.cache
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.sourcelink.json
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\refint\JsonPipeline.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.pdb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\ref\JsonPipeline.dll

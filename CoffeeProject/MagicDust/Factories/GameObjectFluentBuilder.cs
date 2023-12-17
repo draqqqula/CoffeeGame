@@ -1,4 +1,6 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
@@ -35,9 +37,9 @@ namespace MagicDustLibrary.Factorys
             return obj;
         }
 
-        public static T AddToState<T>(this T obj, IStateController state) where T : IGameObjectComponent
+        public static T AddToState<T>(this T obj, IControllerProvider state) where T : ComponentBase
         {
-            state.AddToState(obj);
+            state.Using<IFactoryController>().AddToState(obj);
             return obj;
         }
     }
