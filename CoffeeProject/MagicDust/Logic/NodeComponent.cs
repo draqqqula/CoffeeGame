@@ -15,5 +15,7 @@ namespace MagicDustLibrary.Logic
         {
             OnDisposeEvent?.Invoke(this);
         }
+
+        public NodeComponent() : base() { }
     }
 }

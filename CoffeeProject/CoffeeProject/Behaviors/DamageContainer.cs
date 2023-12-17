@@ -1,5 +1,7 @@
 ﻿using CoffeeProject.GameObjects;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace CoffeeProject.Behaviors
         public void SetDefaults();
     }
 
-    public class DamageContainer : Behavior<Hero>, IModifiableContainer
+    public class DamageContainer : ComponentBase, IModifiableContainer
     {
         public int FireDamageDefault = 4;
         public int WaterDamageDefault = 12;

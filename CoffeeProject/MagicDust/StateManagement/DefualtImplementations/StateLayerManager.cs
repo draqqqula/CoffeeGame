@@ -1,4 +1,7 @@
-﻿using MagicDustLibrary.Logic;
+﻿using MagicDustLibrary.Common;
+using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Factorys;
+using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization.Services;
 using System;
 using System.Collections;
@@ -14,6 +17,26 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
         private readonly List<Layer> LayerOrder = new();
         private readonly Dictionary<Type, Layer> LayerTypes = new();
         private readonly Dictionary<IDisplayComponent, Layer> Placements = new();
+
+
+        public Layer? GetLayer(IDisplayComponent component)
+        {
+            if (Placements.TryGetValue(component, out Layer layer))
+            {
+                layer.GetType();
+            }
+            return null;
+        }
+
+        public IPlacement? GetPlacement(IDisplayComponent component)
+        {
+            var layer = GetLayer(component);
+            if (layer is not null)
+            {
+                return new Placement(layer.GetType());
+            }
+            return null;
+        }
 
         public T GetLayer<T>() where T : Layer
         {
@@ -54,13 +77,19 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
 
         public override void Hook(IDisplayComponent component)
         {
-            Placements.Add(component, GetLayer(component.GetLayerType()));
-            GetLayer(component.GetLayerType()).PlaceTop(component);
+            IPlacement placement = new Placement<CommonLayer>();
+            if (component is ComponentBase componentBase)
+            {
+                componentBase.InvokeEach<PlacementInfoComponent>(it => placement = it.PlacementInfo);
+            }
+            var layer = GetLayer(placement.GetLayerType());
+            Placements.Add(component, layer);
+            layer.PlaceTop(component);
         }
 
         public override void Unhook(IDisplayComponent component)
         {
-            GetLayer(component.GetLayerType()).Remove(component);
+            GetLayer(component).Remove(component);
             if (Placements.ContainsKey(component))
             {
                 Placements.Remove(component);

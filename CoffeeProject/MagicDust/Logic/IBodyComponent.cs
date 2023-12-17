@@ -19,6 +19,18 @@ namespace MagicDustLibrary.Logic
         {
             return new Rectangle(body.Position.ToPoint() + body.Bounds.Location, body.Bounds.Size);
         }
+
+        public static Rectangle PredictLayout(this IBodyComponent body, Vector2 movement)
+        {
+            return new
+                Rectangle(
+                (int)(body.Position.X + movement.X) + body.Bounds.X,
+                (int)(body.Position.Y + movement.Y) + body.Bounds.Y,
+                body.Bounds.Width,
+                body.Bounds.Height
+                );
+        }
+
         public static bool Collides(this IBodyComponent a, IBodyComponent b)
         {
             return a.GetLayout().Contains(b.GetLayout());

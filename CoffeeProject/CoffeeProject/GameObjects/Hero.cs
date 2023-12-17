@@ -6,6 +6,7 @@ using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
@@ -19,14 +20,18 @@ namespace CoffeeProject.GameObjects
 {
     [Box(100, 200, 50, 200)]
     [SpriteSheet("hero")]
-    public class Hero : Sprite
+    public class Hero : Sprite, IMultiBehaviorComponent, IUpdateComponent
     {
         public GameClient Client;
         private List<PlayerModifier> _modifiers = new List<PlayerModifier>();
         public Hero(IAnimationProvider provider) : base(provider)
         {
-            this.AddBehavior("physics", new Physics(new List<Rectangle[]>().ToArray(), 12, true));
-            AddBehavior("spring", new Spring(0.1f));
+            this.CombineWith(
+                new Physics<Hero>(
+                new List<Rectangle[]>().ToArray(),
+                12
+                ));
+            this.CombineWith(new Spring(0.1f));
         }
 
         protected override DrawingParameters DisplayInfo
@@ -41,10 +46,15 @@ namespace CoffeeProject.GameObjects
 
         const float SPEED = 8;
         const float DECELERATION = 15;
-        public override void OnTick(IControllerProvider state, TimeSpan deltaTime)
+
+        public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
+
+        public override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
-            var physics = GetBehavior<Physics>("physics");
-            var spring = GetBehavior<Spring>("spring");
+            base.Update(state, deltaTime);
+            OnAct(state, deltaTime, this);
+            var physics = GetComponents<Physics<Hero>>().Last();
+            var spring = GetComponents<Spring>().Last();
             var speed = 60f*SPEED * (float)deltaTime.TotalSeconds;
             var deceleration = DECELERATION;
 
@@ -105,12 +115,9 @@ namespace CoffeeProject.GameObjects
 
         private void SetDefaults()
         {
-            foreach (var behavior in Behaviors.Values)
+            foreach (var container in GetComponents<IModifiableContainer>())
             {
-                if (behavior is IModifiableContainer container)
-                {
-                    container.SetDefaults();
-                }
+                container.SetDefaults();
             }
         }
 

@@ -48,4 +48,12 @@ namespace MagicDustLibrary.Logic.Controllers
             _hooker.Hook(obj);
         }
     }
+    public static class FactoryExtensions
+    {
+        public static T1 AddComponent<T1,T2>(this T1 obj, T2 component) where T1 : ComponentBase where T2 : ComponentBase
+        {
+            obj.CombineWith(component);
+            return obj;
+        }
+    }
 }

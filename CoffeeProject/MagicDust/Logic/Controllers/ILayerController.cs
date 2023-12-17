@@ -10,11 +10,11 @@ namespace MagicDustLibrary.Logic.Controllers
 {
     public interface ILayerController : IStateController
     {
-        public void PlaceAbove(GameObject target, GameObject source);
-        public void PlaceBelow(GameObject target, GameObject source);
-        public void PlaceTop(GameObject target);
-        public void PlaceBottom(GameObject target);
-        public void PlaceTo<L>(GameObject target) where L : Layer;
+        public void PlaceAbove(IDisplayComponent target, IDisplayComponent source);
+        public void PlaceBelow(IDisplayComponent target, IDisplayComponent source);
+        public void PlaceTop(IDisplayComponent target);
+        public void PlaceBottom(IDisplayComponent target);
+        public void PlaceTo<L>(IDisplayComponent target) where L : Layer;
     }
 
     internal class DefaultLayerController : ILayerController
@@ -24,30 +24,30 @@ namespace MagicDustLibrary.Logic.Controllers
         {
             _stateLayerManager = layerManager;
         }
-        public void PlaceAbove(GameObject target, GameObject source)
+        public void PlaceAbove(IDisplayComponent target, IDisplayComponent source)
         {
-            _stateLayerManager.GetLayer(target.Placement.GetLayerType()).Remove(target);
-            _stateLayerManager.GetLayer(source.Placement.GetLayerType()).PlaceAbove(target, source);
+            _stateLayerManager.GetLayer(target).Remove(target);
+            _stateLayerManager.GetLayer(target).PlaceAbove(target, source);
         }
 
-        public void PlaceBelow(GameObject target, GameObject source)
+        public void PlaceBelow(IDisplayComponent target, IDisplayComponent source)
         {
-            _stateLayerManager.GetLayer(target.Placement.GetLayerType()).Remove(target);
-            _stateLayerManager.GetLayer(source.Placement.GetLayerType()).PlaceBelow(target, source);
+            _stateLayerManager.GetLayer(target).Remove(target);
+            _stateLayerManager.GetLayer(source).PlaceBelow(target, source);
         }
 
-        public void PlaceBottom(GameObject target)
+        public void PlaceBottom(IDisplayComponent target)
         {
-            _stateLayerManager.GetLayer(target.Placement.GetLayerType()).PlaceBottom(target);
+            _stateLayerManager.GetLayer(target).PlaceBottom(target);
         }
 
-        public void PlaceTop(GameObject target)
+        public void PlaceTop(IDisplayComponent target)
         {
-            _stateLayerManager.GetLayer(target.Placement.GetLayerType()).PlaceTop(target);
+            _stateLayerManager.GetLayer(target).PlaceTop(target);
         }
-        public void PlaceTo<L>(GameObject target) where L : Layer
+        public void PlaceTo<L>(IDisplayComponent target) where L : Layer
         {
-            _stateLayerManager.GetLayer(target.Placement.GetLayerType()).Remove(target);
+            _stateLayerManager.GetLayer(target).Remove(target);
             _stateLayerManager.GetLayer<L>().PlaceTop(target);
         }
     }

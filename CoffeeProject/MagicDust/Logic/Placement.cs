@@ -23,4 +23,13 @@ namespace MagicDustLibrary.Logic
             return new Placement<T>();
         }
     }
+
+    public class Placement(Type layerType) : IPlacement
+    {
+        private readonly Type _storedType = layerType;
+        public Type GetLayerType()
+        {
+            return _storedType;
+        }
+    }
 }

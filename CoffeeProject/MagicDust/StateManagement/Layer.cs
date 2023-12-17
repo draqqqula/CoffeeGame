@@ -6,14 +6,6 @@ using System.Runtime.Serialization;
 
 namespace MagicDustLibrary.Organization
 {
-    /// <summary>
-    /// Слой предназначенный для отрисовки.
-    /// <list>
-    /// <item>Используйте <see cref="LayerPriorityAttribute"/> для задания <b>глобального приоритета.</b></item>
-    /// <item>Слои в уровне будут отрисовываться в порядке возрастания <b>глобального приоритета</b>.</item>
-    /// <item>Слои <b>не надо добавлять в уровень вручную</b>, они будут добавляться сами при создании <see cref="GameObject"/>.</item>
-    /// </list>
-    /// </summary>
     public abstract class Layer : RelativeCollection<IDisplayComponent>
     {
         public readonly byte Priority;

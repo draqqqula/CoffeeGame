@@ -18,6 +18,5 @@ namespace MagicDustLibrary.Logic
         /// <returns></returns>
         public IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer);
         public DrawingParameters GetDrawingParameters();
-        public Type GetLayerType();
     }
 }

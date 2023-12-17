@@ -31,68 +31,18 @@ namespace MagicDustLibrary.Organization
 
         private void Hook(IDisposableComponent obj)
         {
-            if (obj is IUpdateComponent updateable)
-            {
-                //StateServices.GetService<StateUpdateManager>().AddUpdateable(updateable);
-            }
-            if (obj is IDisplayComponent displayProvider)
-            {
-                StateServices.GetService<StateLayerManager>().GetLayer(displayProvider.GetLayerType()).PlaceTop(displayProvider);
-            }
-            if (obj is IFamilyComponent member)
-            {
-                StateServices.GetService<StateFamilyManager>().Introduce(Controller, member);
-            }
-
-            obj.OnDisposeEvent += Unhook;
-
         }
 
         private void Unhook(IDisposableComponent obj)
         {
-            if (obj is IUpdateComponent updateable)
-            {
-                //StateServices.GetService<StateUpdateManager>().RemoveUpdateable(updateable);
-            }
-            if (obj is IDisplayComponent displayProvider)
-            {
-                StateServices.GetService<StateLayerManager>().GetLayer(displayProvider.GetLayerType()).Remove(displayProvider);
-            }
-            if (obj is IFamilyComponent member)
-            {
-                StateServices.GetService<StateFamilyManager>().Abandon(Controller, member);
-            }
         }
 
         public void Update(TimeSpan deltaTime, bool onPause)
         {
-            if (!onPause)
-            {
-                StateServices.GetService<StateUpdateManager>().Update(Controller, deltaTime);
-
-                foreach (var family in StateServices.GetService<StateFamilyManager>().GetAll())
-                {
-                    family.Update(Controller, deltaTime);
-                }
-            }
-
-            StateServices.GetService<StatePictureManager>().UpdatePicture(
-                StateServices.GetService<StateLayerManager>().GetAll(),
-                StateServices.GetService<StateClientManager>().GetAll(),
-                StateServices.GetService<CameraStorage>(),
-                StateServices.GetService<ViewStorage>());
-
-            //StateServices.GetService<StateConnectionHandleManager>().SendPictures();
         }
 
         public void Draw(GameClient mainClient, SpriteBatch batch)
         {
-            foreach (var displayable in StateServices.GetService<ViewStorage>().GetFor(mainClient).GetAndClear())
-            {
-                displayable.Draw(batch,
-                    StateServices.GetService<CameraStorage>().GetFor(mainClient),
-                    ApplicationServices.GetService<IContentStorage>());
-            }
         }
 
         private void ConfigureClientManagers()
@@ -102,16 +52,6 @@ namespace MagicDustLibrary.Organization
             StateServices.GetService<StateClientManager>().ConfigureRelated(StateServices.GetService<ViewStorage>());
             StateServices.GetService<StateClientManager>().ConfigureRelated(StateServices.GetService<CameraStorage>());
             StateServices.GetService<StateClientManager>().ConfigureRelated(StateServices.GetService<StateConnectionHandleManager>());
-        }
-
-        public void BoundCustomActions(ClientRelatedActions customActions)
-        {
-            StateServices.GetService<StateClientManager>().ConfigureRelated(customActions);
-        }
-
-        public void Dispose()
-        {
-            StateServices.GetService<StateSoundManager>().Dispose();
         }
 
         public GameState(MagicGameApplication app, LevelSettings defaults, string levelName)
@@ -154,6 +94,11 @@ namespace MagicDustLibrary.Organization
             //container.AddService(new StateConnectionHandleManager(this));
             container.AddService(new ViewStorage());
             container.AddService(new CameraStorage(settings.CameraSettings));
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
