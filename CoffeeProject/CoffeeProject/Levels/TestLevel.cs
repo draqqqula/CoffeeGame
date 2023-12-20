@@ -1,8 +1,10 @@
 ﻿using CoffeeProject.Behaviors;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
+using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.CommonObjectTypes.TileMap;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Factorys;
@@ -40,6 +42,7 @@ namespace CoffeeProject.Levels
             var level = state.Using<IFactoryController>().CreateAsset<LevelMap>("level1_map");
             map.UseMap(level.Map);
             state.Using<IFactoryController>().AddToState(map);
+            state.Using<SurfaceMapProvider>().AddMap("level", map);
         }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
@@ -48,11 +51,17 @@ namespace CoffeeProject.Levels
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
+            var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(new Vector2(0, 0))
+                .SetBounds(new Rectangle(-20, -20, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddToState(state);
+
+            obj.InvokeEach<Physics<Hero>>(it => it.SurfaceMap = surfaces);
+
             obj.Client = client;
+
             state.Using<IClientController>().AttachCamera(client, obj);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(50, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(150, 50)).AddToState(state);

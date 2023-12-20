@@ -1,1 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/../../../Design/for location/level1_map.png","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/level1_map.xnb","TextureProcessor","Texture2DContent",393,4837,0,11789
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/ANOTHER HIM.xnb","SoundEffectProcessor","SoundEffectContent",1158246,6161189,0,3390017
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/painting.jpg","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Folder1/painting.xnb","TextureProcessor","Texture2DContent",379694,16719701,0,5533066
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Folder1/txt.xnb","MagicJsonDynamicProcessor","JsonWrapper",22,107,0,0013304
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/level1_folder/sheet.xnb","TextureProcessor","Texture2DContent",172529,2939413,0,0587121
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/level1_folder/info.xnb","MagicJsonDynamicProcessor","JsonWrapper",334,420,0,0074639

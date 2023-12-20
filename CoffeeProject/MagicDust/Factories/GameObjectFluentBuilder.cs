@@ -28,7 +28,7 @@ namespace MagicDustLibrary.Factorys
 
         public static T SetBounds<T>(this T obj, Rectangle bounds) where T : IBodyComponent
         {
-            obj.SetBounds(bounds);
+            obj.Bounds = bounds;
             return obj;
         }
 

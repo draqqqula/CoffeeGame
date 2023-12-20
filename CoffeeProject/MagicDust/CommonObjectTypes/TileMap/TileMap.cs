@@ -25,7 +25,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
                 return
                     new Rectangle(
                         new Point(0, 0),
-                        new Vector2(_map.GetLength(0) * _tileFrame.X * _scale, _map.GetLength(1) * _tileFrame.Y * _scale).ToPoint()
+                        CellSize.ToPoint()
                         );
             }
             set
@@ -35,11 +35,14 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
         }
 
         public Vector2 Position { get; set; }
+        public Vector2 CellSize => _tileFrame.ToVector2() * _scale;
+        public int MapLengthX => _map.GetLength(0);
+        public int MapLengthY => _map.GetLength(1);
 
         public void UseSheet(TileSheet sheet)
         {
             _sheet = sheet;
-            ExtraPoints = sheet.UseFilter(FilterKind.HasAnyTag, _map, "special");
+            ExtraPoints = FilterMap(FilterKind.HasAnyTag, "special");
         }
 
         public void UseMap(byte[,] map)
@@ -50,7 +53,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             {
                 return;
             }
-            ExtraPoints = _sheet.UseFilter(FilterKind.HasAnyTag, map, "special");
+            ExtraPoints = FilterMap(FilterKind.HasAnyTag, "special");
         }
 
         public void SetFrame(Point tileFrame)
@@ -96,6 +99,50 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             var endX = (int)Math.Ceiling(Math.Clamp(window.Right / frame.X, 0f, width));
             var endY = (int)Math.Ceiling(Math.Clamp(window.Bottom / frame.Y, 0f, height));
             return new Rectangle(startX, startY, endX - startX, endY - startY);
+        }
+
+        public enum FilterKind
+        {
+            HasAllTags,
+            HasAnyTag,
+            MatchTags
+        }
+        private static Func<TileInfo, bool> BuildFilterTagFunction(FilterKind filterKind, string[] tags)
+        {
+            switch (filterKind)
+            {
+                case FilterKind.HasAllTags:
+                    return it => tags.All(tag => it.HasTag(tag));
+                case FilterKind.HasAnyTag:
+                    return it => tags.Any(tag => it.HasTag(tag));
+                case FilterKind.MatchTags:
+                    return it => tags.Order().SequenceEqual(it.AllTags.Order());
+                default:
+                    return it => true;
+            }
+        }
+
+        public IEnumerable<Point> FilterMap(FilterKind filterKind, params string[] tags)
+        {
+            if (_sheet is null)
+            {
+                throw new Exception($"Failed to filter map because {nameof(TileSheet)} was not found");
+            }
+            HashSet<byte> fittingBytes = _sheet.TileDescriptions.Values
+                .Where(BuildFilterTagFunction(filterKind, tags))
+                .Select(it => it.Id)
+                .ToHashSet();
+
+            for (int i = 0; i < _map.GetLength(0); i++)
+            {
+                for (int j = 0; j < _map.GetLength(1); j++)
+                {
+                    if (fittingBytes.Contains(_map[i, j]))
+                    {
+                        yield return new Point(i, j);
+                    }
+                }
+            }
         }
 
         public void DrawChunk(SpriteBatch batch, Rectangle chunk, Vector2 position)

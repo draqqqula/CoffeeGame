@@ -2,6 +2,7 @@
 using CoffeeProject.Behaviors;
 using CoffeeProject.Combat;
 using CoffeeProject.Family;
+using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
@@ -10,6 +11,7 @@ using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
+using RectangleFLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +30,7 @@ namespace CoffeeProject.GameObjects
         {
             this.CombineWith(
                 new Physics<Hero>(
-                new List<Rectangle[]>().ToArray(),
-                12
+                new SurfaceMap([], 0, 1)
                 ));
             this.CombineWith(new Spring(0.1f));
         }
