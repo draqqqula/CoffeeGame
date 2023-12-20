@@ -20,10 +20,12 @@ namespace CoffeeProject.BoxDisplay
     public class BoxDisplay : NodeComponent, IDisplayComponent
     {
         private IBodyComponent _box;
-        private readonly Texture2D _texture;
+        private Texture2D _texture;
+        private readonly IContentStorage _contentStorage;
         public BoxDisplay(IContentStorage content)
         {
             AddGreetingFor<IBodyComponent>(it => _box = it);
+            _contentStorage = content;
 
             if (content is DefaultContentStorage contentStorage)
             {
@@ -51,6 +53,12 @@ namespace CoffeeProject.BoxDisplay
                 Scale = _box.Bounds.Size.ToVector2()/_texture.Bounds.Size.ToVector2()
             };
             return info;
+        }
+
+        public BoxDisplay UseNewTexture(Color goodBolor, Color badColor, int size)
+        {
+            _texture = ((DefaultContentStorage)_contentStorage).GenerateMissingTexture(goodBolor, badColor, size);
+            return this;
         }
     }
 }

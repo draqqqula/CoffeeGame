@@ -55,7 +55,7 @@ namespace CoffeeProject.Levels
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(new Vector2(0, 0))
-                .SetBounds(new Rectangle(-20, -20, 40, 40))
+                .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddToState(state);
 
@@ -70,7 +70,11 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
 
-            var boxDisplay = state.Using<IFactoryController>().CreateObject<BoxDisplay.BoxDisplay>().SetPlacement(new Placement<BoxDisplayLayer>());
+            var boxDisplay = state
+                .Using<IFactoryController>()
+                .CreateObject<BoxDisplay.BoxDisplay>()
+                .SetPlacement(new Placement<BoxDisplayLayer>())
+                .UseNewTexture(new Color(0, 0, 1, 0.5f), new Color(1, 0, 0, 0.5f), 5);
 
             state.Using<IFactoryController>()
                 .CreateObject<SomeTrigger>()
