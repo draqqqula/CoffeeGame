@@ -94,7 +94,7 @@ namespace CoffeeProject.SurfaceMapping
 
     public static class SurfacesExtensions
     {
-        public static void ConfigureCustomSurfaceServices(IServiceCollection services, LevelSettings settings)
+        public static void ConfigureSurfaceHandler(IServiceCollection services, LevelSettings settings)
         {
             services.AddSingleton<SurfaceMapStorage>();
             services.AddSingleton<SurfaceMapProvider>();

@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Data;
 using CoffeeProject.SurfaceMapping;
+using CoffeeProject.Collision;
 
 namespace CoffeeProject
 {
@@ -57,7 +58,8 @@ namespace CoffeeProject
             _app = new MagicGameApplication(client, parameters, this);
 
             _app.AddDefualtConfigurations();
-            _app.Configurations.AddConfiguration(SurfacesExtensions.ConfigureCustomSurfaceServices);
+            _app.Configurations.AddConfiguration(SurfacesExtensions.ConfigureSurfaceHandler);
+            _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
 
             _app.LevelManager.LoadAs<TestLevel>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");

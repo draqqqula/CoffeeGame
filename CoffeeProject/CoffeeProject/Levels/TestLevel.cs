@@ -1,4 +1,5 @@
 ﻿using CoffeeProject.Behaviors;
+using CoffeeProject.BoxDisplay;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
 using CoffeeProject.SurfaceMapping;
@@ -68,6 +69,15 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(250, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
+
+            var boxDisplay = state.Using<IFactoryController>().CreateObject<BoxDisplay.BoxDisplay>().SetPlacement(new Placement<BoxDisplayLayer>());
+
+            state.Using<IFactoryController>()
+                .CreateObject<SomeTrigger>()
+                .SetPos(Vector2.Zero)
+                .SetBounds(new Rectangle(-100, -100, 200, 200))
+                .AddComponent(boxDisplay)
+                .AddToState(state);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

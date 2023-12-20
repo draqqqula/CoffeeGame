@@ -105,7 +105,7 @@ namespace MagicDustLibrary.Display
             return result;
         }
 
-        private object GenerateMissingTexture(GraphicsDevice device, Color goodColor, Color badColor, int size)
+        public Texture2D GenerateMissingTexture(Color goodColor, Color badColor, int size)
         {
             Color[] colors = new Color[size * size];
             for (int i = 0; i < size * size; i++)
@@ -113,7 +113,7 @@ namespace MagicDustLibrary.Display
                 if (i % 2 == 0) colors[i] = goodColor;
                 else colors[i] = badColor;
             }
-            Texture2D texture = new Texture2D(device, 2, 2);
+            Texture2D texture = new Texture2D(Device, size, size);
             texture.SetData(colors);
             return texture;
         }
