@@ -68,3 +68,21 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:level1_folder/info.json
 
+#begin SpriteFonts/TestFont/heart.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteFonts/TestFont/heart.png;SpriteFonts/TestFont/texture.png
+
+#begin SpriteFonts/TestFont/info.json
+/importer:MagicJsonImporter
+/processor:MagicJsonDynamicProcessor
+/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
+/build:SpriteFonts/TestFont/info.json
+

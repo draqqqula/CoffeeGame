@@ -28,4 +28,13 @@ namespace MagicDustLibrary.CommonObjectTypes
             return JsonConvert.DeserializeObject<List<ExpandoObject>>(json);
         }
     }
+
+    public class TestDtoSingleReader : ContentTypeReader<ExpandoObject>
+    {
+        protected override ExpandoObject Read(ContentReader input, ExpandoObject existingInstance)
+        {
+            string json = input.ReadString();
+            return JsonConvert.DeserializeObject<ExpandoObject>(json);
+        }
+    }
 }

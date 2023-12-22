@@ -4,6 +4,7 @@ using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.TextDisplays;
 using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Content;
@@ -44,6 +45,15 @@ namespace CoffeeProject.Levels
             map.UseMap(level.Map);
             state.Using<IFactoryController>().AddToState(map);
             state.Using<SurfaceMapProvider>().AddMap("level", map);
+
+            state.Using<IFactoryController>()
+                .CreateObject<Label>()
+                .UseFont(state, "TestFont")
+                .SetText("abc")
+                .SetScale(4f)
+                .SetPlacement(new Placement<GUI>())
+                .SetPos(new Vector2(15, 15))
+                .AddToState(state);
         }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
@@ -70,17 +80,11 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
 
-            var boxDisplay = state
-                .Using<IFactoryController>()
-                .CreateObject<BoxDisplay.BoxDisplay>()
-                .SetPlacement(new Placement<BoxDisplayLayer>())
-                .UseNewTexture(new Color(0, 0, 1, 0.5f), new Color(1, 0, 0, 0.5f), 5);
-
             state.Using<IFactoryController>()
                 .CreateObject<SomeTrigger>()
                 .SetPos(Vector2.Zero)
                 .SetBounds(new Rectangle(-100, -100, 200, 200))
-                .AddComponent(boxDisplay)
+                .UseBoxDisplay(state, Color.CadetBlue, Color.Blue, 15)
                 .AddToState(state);
         }
 

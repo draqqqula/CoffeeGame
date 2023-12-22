@@ -4,6 +4,7 @@ using CoffeeProject.Combat;
 using CoffeeProject.Family;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;

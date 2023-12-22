@@ -1,0 +1,25 @@
+{
+    "LineSpacing" : 16,
+    "Spacing" : "14",
+    "CharList" :
+    [
+        {
+            "Character" : "a",
+            "Bounds" : [0, 0, 7, 7],
+            "Cropping": [0, 0, 7, 7],
+            "Kerning": ["0", "0", "0"]
+        },
+        {
+            "Character" : "b",
+            "Bounds" : [7, 0, 7, 7],
+            "Cropping": [0, 0, 7, 7],
+            "Kerning": ["0", "0", "0"]
+        },
+        {
+            "Character" : "c",
+            "Bounds" : [14, 0, 7, 7],
+            "Cropping": [0, 0, 7, 7],
+            "Kerning": ["0", "0", "0"]
+        }
+    ]
+}

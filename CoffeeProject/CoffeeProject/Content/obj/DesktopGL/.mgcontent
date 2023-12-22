@@ -10,6 +10,8 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</File>
   </SourceFiles>
   <DestFiles>
     <File>level1_map.png</File>
@@ -17,6 +19,8 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>level1_folder/sheet.png</File>
+    <File xsi:nil="true" />
+    <File>SpriteFonts/TestFont/texture.png</File>
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
