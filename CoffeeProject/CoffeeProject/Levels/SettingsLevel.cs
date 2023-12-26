@@ -7,15 +7,15 @@ using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CoffeeProject.Levels
 {
-    internal class MainMenu : GameLevel
+    internal class SettingsLevel : GameLevel
     {
         private GameClient _player;
         private List<Label> _labels = [];
@@ -25,53 +25,123 @@ namespace CoffeeProject.Levels
             return new LevelSettings();
         }
 
+
+        class VSyncSetting : NodeComponent
+        {
+            private readonly GraphicsDeviceManager _graphics;
+            private readonly Game _game;
+            public VSyncSetting(MagicGameApplication app)
+            {
+                _graphics = app.Services.GetService<GraphicsDeviceManager>();
+                _game = app.Services.GetService<Game>();
+            }
+
+            public bool Setting
+            {
+                get
+                {
+                    return _graphics.SynchronizeWithVerticalRetrace;
+                }
+                set
+                {
+                    _graphics.SynchronizeWithVerticalRetrace = value;
+                    if (value)
+                    {
+                        _game.IsFixedTimeStep = false;
+                    }
+                    else
+                    {
+                        _game.IsFixedTimeStep = true;
+                    }
+                    _graphics.ApplyChanges();
+                }
+            }
+
+            public void Toggle()
+            {
+                Setting = !Setting;
+            }
+        }
+
+        class FPSSetting : NodeComponent
+        {
+            private readonly GraphicsDeviceManager _graphics;
+            private readonly Game _game;
+            private readonly double[] _options = [30, 60, 70, 120, 240, 360];
+            private int index = 4;
+            public FPSSetting(MagicGameApplication app)
+            {
+                _graphics = app.Services.GetService<GraphicsDeviceManager>();
+                _game = app.Services.GetService<Game>();
+            }
+
+            public double Setting => _options[index];
+
+            public void Scroll()
+            {
+                if (index < _options.Length - 1)
+                {
+                    index += 1;
+                }
+                else
+                {
+                    index = 0;
+                }
+                _game.TargetElapsedTime = TimeSpan.FromSeconds(1/Setting);
+                _graphics.ApplyChanges();
+            }
+        }
+
+
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            state.Using<IFactoryController>()
-                .CreateObject<MenuImage>()
-                .SetPos(new Vector2(0, 0))
-                .AddToState(state);
+            var vsync = state.Using<IFactoryController>()
+                .CreateObject<VSyncSetting>();
+            var fps = state.Using<IFactoryController>()
+                .CreateObject<FPSSetting>();
 
             var startGame = state.Using<IFactoryController>()
                 .CreateObject<Label>()
                 .UseFont(state, "Caveat")
-                .SetText("начать")
+                .SetText($"V-sync: {vsync.Setting}")
                 .SetScale(1f)
                 .SetPlacement(new Placement<GUI>())
-                .SetPos(new Vector2(300, 400))
+                .SetPos(new Vector2(700, 400))
                 .AddComponent(new ButtonAction(() =>
                 {
-                    state.Using<ILevelController>().ShutCurrent(false);
-                    state.Using<ILevelController>().LaunchLevel("test", false);
+                    vsync.Toggle();
+                    _labels[0].SetText($"V-sync: {vsync.Setting}");
                 }))
                 .AddToState(state);
 
             var settings = state.Using<IFactoryController>()
                 .CreateObject<Label>()
                 .UseFont(state, "Caveat")
-                .SetText("настройки")
+                .SetText($"Частота кадров: {fps.Setting}")
                 .SetScale(1f)
                 .SetPlacement(new Placement<GUI>())
-                .SetPos(new Vector2(300, 550))
+                .SetPos(new Vector2(700, 550))
                 .AddComponent(new ButtonAction(() =>
                 {
-                    state.Using<ILevelController>().PauseCurrent();
-                    state.Using<ILevelController>().LaunchLevel("settings", false);
+                    fps.Scroll();
+                    _labels[1].SetText($"Частота кадров: {fps.Setting}");
                 }))
                 .AddToState(state);
 
             var quit = state.Using<IFactoryController>()
                 .CreateObject<Label>()
                 .UseFont(state, "Caveat")
-                .SetText("выйти")
+                .SetText("назад")
                 .SetScale(1f)
                 .SetPlacement(new Placement<GUI>())
-                .SetPos(new Vector2(300, 700))
+                .SetPos(new Vector2(700, 700))
                 .AddComponent(new ButtonAction(() =>
                 {
+                    state.Using<ILevelController>().ResumeLevel("menu");
                     state.Using<ILevelController>().ShutCurrent(false);
                 }))
                 .AddToState(state);
+            _labels.Clear();
 
             _labels.Add(startGame);
             _labels.Add(settings);
@@ -116,20 +186,6 @@ namespace CoffeeProject.Levels
                 label.Color = Color.White;
             }
             _labels[_selectedIndex].Color = Color.Yellow;
-        }
-    }
-
-    class ButtonAction : NodeComponent
-    {
-        private readonly Action _action;
-        public ButtonAction(Action action)
-        {
-            _action = action;
-        }
-
-        public void Invoke()
-        {
-            _action();
         }
     }
 }

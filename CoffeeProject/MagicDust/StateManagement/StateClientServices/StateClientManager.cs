@@ -16,7 +16,7 @@ namespace MagicDustLibrary.Organization.StateClientServices
 {
     public class StateClientManager: IDisposable
     {
-        private readonly List<GameClient> Clients = new();
+        private readonly List<GameClient> Clients = [];
 
         public event Action<GameClient> OnConnect = delegate { };
         public event Action<GameClient> OnUpdate = delegate { };

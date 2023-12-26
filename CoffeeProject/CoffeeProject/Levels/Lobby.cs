@@ -1,6 +1,9 @@
-﻿using MagicDustLibrary.Logic;
+﻿using CoffeeProject.Layers;
+using MagicDustLibrary.CommonObjectTypes.TextDisplays;
+using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +23,6 @@ namespace CoffeeProject.Levels
 
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            if (int.TryParse(arguments.Data[0], out int port))
-            {
-                state.Using<IClientController>().OpenServer(port);
-            }
-            state.Using<IClientController>().OpenServer(DEFAULT_PORT);
         }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)

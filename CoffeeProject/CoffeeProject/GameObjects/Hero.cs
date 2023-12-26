@@ -46,7 +46,7 @@ namespace CoffeeProject.GameObjects
             }
         }
 
-        const float SPEED = 8;
+        const float SPEED = 4;
         const float DECELERATION = 15;
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
@@ -57,31 +57,56 @@ namespace CoffeeProject.GameObjects
             OnAct(state, deltaTime, this);
             var physics = GetComponents<Physics<Hero>>().Last();
             var spring = GetComponents<Spring>().Last();
-            var speed = 60f*SPEED * (float)deltaTime.TotalSeconds;
+            var speed = SPEED;
             var deceleration = DECELERATION;
 
             SetDefaults();
             ApplyModifiers();
 
+            Vector2 resultingVector = Vector2.Zero;
+            bool refreshAnimator = true;
+            
             if (Client.Controls[Control.left])
             {
-                Animator.SetAnimation("Left", 0);
-                physics.AddVector("move_left", new MovementVector(new Vector2(-speed, 0), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Left", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(-1, 0);
             }
             if (Client.Controls[Control.right])
             {
-                Animator.SetAnimation("Right", 0);
-                physics.AddVector("move_right", new MovementVector(new Vector2(speed, 0), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Right", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(1, 0);
             }
             if (Client.Controls[Control.lookUp])
             {
-                Animator.SetAnimation("Backward", 0);
-                physics.AddVector("move_down", new MovementVector(new Vector2(0, -speed), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Backward", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(0, -1);
             }
             if (Client.Controls[Control.lookDown])
             {
-                Animator.SetAnimation("Default", 0);
-                physics.AddVector("move_up", new MovementVector(new Vector2(0, speed), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Default", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(0, 1);
+            }
+
+            if (resultingVector != Vector2.Zero)
+            {
+                resultingVector.Normalize();
+                physics.AddVector("move", new MovementVector(speed * resultingVector, -deceleration, TimeSpan.Zero, true));
             }
 
             if (Client.Controls.OnPress(Control.left) || Client.Controls.OnPress(Control.right)
@@ -96,7 +121,7 @@ namespace CoffeeProject.GameObjects
                 state.Using<ILevelController>().LaunchLevel("pause", new LevelArgs(state.Using<ILevelController>().GetCurrentLevelName()), false);
             }
 
-            if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move_")).Any())
+            if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move")).Any())
             {
                 Animator.Resume();
             }
