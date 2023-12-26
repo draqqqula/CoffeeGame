@@ -62,10 +62,11 @@ namespace CoffeeProject
             _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
 
             _app.LevelManager.LoadAs<TestLevel>("test");
+            _app.LevelManager.LoadAs<levelilua>("testilua");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
             _app.LevelManager.LoadAs<MainMenu>("placeholder");
-            _app.LevelManager.Launch("placeholder", false);
+            _app.LevelManager.Launch("testilua", false);
             //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 
             base.Initialize();

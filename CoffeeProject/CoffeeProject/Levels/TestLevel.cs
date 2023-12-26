@@ -53,10 +53,12 @@ namespace CoffeeProject.Levels
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
+
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(new Vector2(0, 0))
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
+                
                 .AddToState(state);
 
             obj.InvokeEach<Physics<Hero>>(it => it.SurfaceMap = surfaces);
@@ -70,6 +72,7 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
 
+
             var boxDisplay = state
                 .Using<IFactoryController>()
                 .CreateObject<BoxDisplay.BoxDisplay>()
@@ -82,6 +85,8 @@ namespace CoffeeProject.Levels
                 .SetBounds(new Rectangle(-100, -100, 200, 200))
                 .AddComponent(boxDisplay)
                 .AddToState(state);
+
+            
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

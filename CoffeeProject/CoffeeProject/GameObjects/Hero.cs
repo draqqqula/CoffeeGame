@@ -33,7 +33,12 @@ namespace CoffeeProject.GameObjects
                 new SurfaceMap([], 0, 1)
                 ));
             this.CombineWith(new Spring(0.1f));
+
+            var dummy = new Dummy(100, [], Team.player, [], [], 1);
+            this.CombineWith(dummy);
         }
+
+        
 
         protected override DrawingParameters DisplayInfo
         {
