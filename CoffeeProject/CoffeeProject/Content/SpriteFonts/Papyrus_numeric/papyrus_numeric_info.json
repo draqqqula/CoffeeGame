@@ -1,0 +1,79 @@
+{
+    "LineSpacing" : 60,
+    "Spacing" : "5",
+    "CharList" :
+    [
+        {
+            "Character" : "-",
+            "Bounds" : [0, 0, 32, 61],
+            "Cropping": [0, 0, 32, 61],
+            "Kerning": ["16", "16", "0"]
+        },
+        {
+            "Character" : "1",
+            "Bounds" : [45, 0, 15, 61],
+            "Cropping": [0, 0, 15, 61],
+            "Kerning": ["7.5", "7.5", "0"]
+        },
+        {
+            "Character" : "2",
+            "Bounds" : [81, 0, 34, 61],
+            "Cropping": [0, 0, 34, 61],
+            "Kerning": ["34", "34", "0"]
+        },
+        {
+            "Character" : "3",
+            "Bounds" : [126, 0, 30, 61],
+            "Cropping": [0, 0, 30, 61],
+            "Kerning": ["30", "30", "0"]
+        },
+        {
+            "Character" : "4",
+            "Bounds" : [166, 0, 42, 61],
+            "Cropping": [0, 0, 42, 61],
+            "Kerning": ["42", "42", "0"]
+        },
+        {
+            "Character" : "5",
+            "Bounds" : [214, 0, 31, 61],
+            "Cropping": [0, 0, 31, 61],
+            "Kerning": ["15.5", "15.5", "0"]
+        },
+        {
+            "Character" : "6",
+            "Bounds" : [260, 0, 32, 61],
+            "Cropping": [0, 0, 32, 61],
+            "Kerning": ["16", "16", "0"]
+        },
+        {
+            "Character" : "7",
+            "Bounds" : [302, 0, 36, 61],
+            "Cropping": [0, 0, 36, 61],
+            "Kerning": ["36", "36", "0"]
+        },
+        {
+            "Character" : "8",
+            "Bounds" : [349, 0, 30, 61],
+            "Cropping": [0, 0, 30, 61],
+            "Kerning": ["30", "30", "0"]
+        },
+        {
+            "Character" : "9",
+            "Bounds" : [391, 0, 33, 61],
+            "Cropping": [0, 0, 33, 61],
+            "Kerning": ["33", "33", "0"]
+        },
+        {
+            "Character" : "0",
+            "Bounds" : [435, 0, 38, 61],
+            "Cropping": [0, 0, 38, 61],
+            "Kerning": ["38", "38", "0"]
+        },
+        {
+            "Character" : "/",
+            "Bounds" : [478, 0, 50, 61],
+            "Cropping": [0, 0, 50, 61],
+            "Kerning": ["25", "25", "0"]
+        }
+    ]
+}

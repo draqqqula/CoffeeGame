@@ -68,6 +68,31 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:level1_folder/info.json
 
+#begin SpriteFonts/Caveat1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:SpriteFonts/Caveat1.spritefont;SpriteFonts/Caveat.spritefont
+
+#begin SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json
+/importer:MagicJsonImporter
+/processor:MagicJsonDynamicProcessor
+/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
+/build:SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json;SpriteFonts/Papyrus_numeric/info.json
+
+#begin SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png;SpriteFonts/Papyrus_numeric/texture.png
+
 #begin SpriteFonts/TestFont/heart.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -74,7 +74,13 @@ namespace MagicDustLibrary.Logic
     /// <item><see cref="IMultiBehaviorComponent"/> возможность добавлять функционал через <see cref="IBehavior"/></item>
     /// </list>
     /// </summary>
-    public abstract class GameObject : ComponentShell
+    public abstract class GameObject : ComponentShell, IDisposableComponent
     {
+        public event OnDispose OnDisposeEvent = delegate { };
+
+        public void Dispose()
+        {
+            OnDisposeEvent?.Invoke(this);
+        }
     }
 }

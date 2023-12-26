@@ -32,7 +32,7 @@ namespace MagicDustLibrary.Factorys
             return obj;
         }
 
-        public static T AddToState<T>(this T obj, IControllerProvider state) where T : ComponentBase
+        public static T AddToState<T>(this T obj, IControllerProvider state) where T : GameObject
         {
             state.Using<IFactoryController>().AddToState(obj);
             return obj;

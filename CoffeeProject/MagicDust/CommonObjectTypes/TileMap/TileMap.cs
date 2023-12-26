@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MagicDustLibrary.CommonObjectTypes.TileMap
 {
-    public partial class TileMap : NodeComponent, IDisplayComponent, IBodyComponent
+    public partial class TileMap : GameObject, IDisplayComponent, IBodyComponent
     {
         private byte[,] _map = new byte[0, 0];
         private float _scale = 1;

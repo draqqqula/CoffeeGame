@@ -9,16 +9,18 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace MagicDustLibrary.Organization.StateClientServices
 {
-    public class StateClientManager
+    public class StateClientManager: IDisposable
     {
         private readonly List<GameClient> Clients = new();
 
-        public Action<GameClient> OnConnect = delegate { };
-        public Action<GameClient> OnUpdate = delegate { };
-        public Action<GameClient> OnDisconnect = delegate { };
+        public event Action<GameClient> OnConnect = delegate { };
+        public event Action<GameClient> OnUpdate = delegate { };
+        public event Action<GameClient> OnDisconnect = delegate { };
         public void Connect(GameClient client)
         {
             if (!IsConnected(client))
@@ -48,6 +50,15 @@ namespace MagicDustLibrary.Organization.StateClientServices
             foreach (var client in Clients)
             {
                 relatedManager.OnNewClient(client);
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (var client in Clients)
+            {
+                client.OnUpdate -= OnUpdate;
+                client.OnDispose -= OnDisconnect;
             }
         }
     }

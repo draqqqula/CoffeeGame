@@ -26,6 +26,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
         public Rectangle Bounds { get; set; }
         public string Text { get; set; } = TextConstants.DEFAULT_TEXT;
         public float Scale { get; set; } = 1f;
+        public Color Color { get; set; } = Color.White;
 
         public event OnDispose OnDisposeEvent = delegate { };
 
@@ -52,7 +53,9 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
         {
             return new DrawingParameters
             {
-                Position = Position
+                Position = Position,
+                Scale = new Vector2(Scale, Scale),
+                Color = Color
             };
         }
 
@@ -62,9 +65,16 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
             return this;
         }
 
+        public Label UseCustomFont(IControllerProvider state, string fileName)
+        {
+            _font = state.Using<IFactoryController>().CreateAsset<CustomFontWrapper>(fileName).Font;
+            return this;
+        }
+
         public Label SetText(string text)
         {
             Text = text;
+            Bounds = new Rectangle(Point.Zero, (_font.MeasureString(Text) * Scale).ToPoint());
             return this;
         }
 

@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/SpriteFonts/TestFont/info.xnb","MagicJsonDynamicProcessor","JsonWrapper",600,692,0,0726597
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Caveat1.spritefont","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/SpriteFonts/Caveat.xnb","FontDescriptionProcessor","SpriteFontContent",2610,532383,0,2149773

@@ -2,6 +2,7 @@
 using CoffeeProject.BoxDisplay;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
+using CoffeeProject.Run;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
@@ -27,10 +28,12 @@ namespace CoffeeProject.Levels
     {
         protected override LevelSettings GetDefaults()
         {
-            return new LevelSettings
+            var settings = new LevelSettings
             {
                 CameraSettings = new CameraSettings()
             };
+            settings.AddEntry("RunInfo", new RunInfo() { CharacterName = "Олег" });
+            return settings;
         }
 
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
@@ -48,9 +51,9 @@ namespace CoffeeProject.Levels
 
             state.Using<IFactoryController>()
                 .CreateObject<Label>()
-                .UseFont(state, "TestFont")
-                .SetText("abc")
-                .SetScale(4f)
+                .UseFont(state, "Caveat")
+                .SetText("текст text")
+                .SetScale(1f)
                 .SetPlacement(new Placement<GUI>())
                 .SetPos(new Vector2(15, 15))
                 .AddToState(state);

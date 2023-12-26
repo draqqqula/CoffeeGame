@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace MagicDustLibrary.Extensions
         {
             if (field is List<object> array)
             {
-                return array.Select(it => Convert.ToSingle(it.ToString())).Take(3).ToArray().ToVector3();
+                return array.Select(it => Convert.ToSingle(it.ToString(), CultureInfo.InvariantCulture)).Take(3).ToArray().ToVector3();
             }
             throw new Exception("field was not list");
         }
