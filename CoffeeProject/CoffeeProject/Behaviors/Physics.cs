@@ -133,6 +133,11 @@ namespace CoffeeProject.Behaviors
         public Dictionary<Side, bool> Faces;
         public Dictionary<string, MovementVector> Vectors { get; private set; }
 
+        public Vector2 GetResultingVector(TimeSpan deltaTime)
+        {
+            return HalfUpdateVectors(deltaTime) * 2;
+        }
+
         public Dictionary<string, MovementVector> ActiveVectors
         {
             get => Vectors.Where(v => v.Value.Enabled).ToDictionary(e => e.Key, e => e.Value);

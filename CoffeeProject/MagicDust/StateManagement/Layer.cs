@@ -23,6 +23,11 @@ namespace MagicDustLibrary.Organization
         {
             Priority = priority;
         }
+
+        public virtual IComparer<IDisplayComponent>? GetComparer()
+        {
+            return null;
+        }
     }
     /// <summary>
     /// Специальный подкласс <see cref="Layer"/> для быстрого создания слоёв.<br/>

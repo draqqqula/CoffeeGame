@@ -69,6 +69,7 @@ namespace CoffeeProject
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
             _app.LevelManager.LoadAs<MainMenu>("menu");
             _app.LevelManager.LoadAs<SettingsLevel>("settings");
+            _app.LevelManager.LoadAs<GameOverScreen>("gameover");
             _app.LevelManager.Launch("menu", false);
             //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 

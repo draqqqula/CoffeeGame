@@ -21,5 +21,7 @@ namespace MagicDustLibrary.Display
         /// <param name="camera"></param>
         /// <param name="contentStorage"></param>
         public void Draw(SpriteBatch batch, GameCamera camera, IContentStorage contentStorage);
+
+        public IComparable OrderComparer { get; }
     }
 }

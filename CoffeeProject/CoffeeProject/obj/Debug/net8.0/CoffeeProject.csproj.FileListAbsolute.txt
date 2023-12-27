@@ -6,10 +6,8 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProj
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.sourcelink.json
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\ANOTHER HIM.ogg
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\ANOTHER HIM.xnb
-C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\hero.aseprite
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\hero_properties.txt
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Painting_properties.txt
-C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\PauseTitle.aseprite
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\CoffeeProject.exe
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\CoffeeProject.deps.json
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\CoffeeProject.runtimeconfig.json
@@ -90,8 +88,6 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\JsonPipeli
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\level1_folder\info.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\level1_folder\sheet.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\level1_map.xnb
-C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\heart.aseprite
-C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\menuBackground.aseprite
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.CodeAnalysis.VisualBasic.dll
@@ -118,3 +114,8 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sp
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\SpriteFonts\Papyrus_numeric\info.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\SpriteFonts\Papyrus_numeric\texture.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\SpriteFonts\Caveat.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\heart.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\hero.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\menuBackground.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\PauseTitle.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\enemy.aseprite

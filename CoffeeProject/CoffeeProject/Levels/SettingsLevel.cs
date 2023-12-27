@@ -101,31 +101,23 @@ namespace CoffeeProject.Levels
                 .CreateObject<FPSSetting>();
 
             var startGame = state.Using<IFactoryController>()
-                .CreateObject<Label>()
+                .CreateObject<DynamicLabel>()
+                .SetText(() => $"V-sync: {vsync.Setting}")
                 .UseFont(state, "Caveat")
-                .SetText($"V-sync: {vsync.Setting}")
                 .SetScale(1f)
                 .SetPlacement(new Placement<GUI>())
                 .SetPos(new Vector2(700, 400))
-                .AddComponent(new ButtonAction(() =>
-                {
-                    vsync.Toggle();
-                    _labels[0].SetText($"V-sync: {vsync.Setting}");
-                }))
+                .AddComponent(new ButtonAction(vsync.Toggle))
                 .AddToState(state);
 
             var settings = state.Using<IFactoryController>()
-                .CreateObject<Label>()
+                .CreateObject<DynamicLabel>()
+                .SetText(() => $"Частота кадров: {fps.Setting}")
                 .UseFont(state, "Caveat")
-                .SetText($"Частота кадров: {fps.Setting}")
                 .SetScale(1f)
                 .SetPlacement(new Placement<GUI>())
                 .SetPos(new Vector2(700, 550))
-                .AddComponent(new ButtonAction(() =>
-                {
-                    fps.Scroll();
-                    _labels[1].SetText($"Частота кадров: {fps.Setting}");
-                }))
+                .AddComponent(new ButtonAction(fps.Scroll))
                 .AddToState(state);
 
             var quit = state.Using<IFactoryController>()

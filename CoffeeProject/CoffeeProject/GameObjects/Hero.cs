@@ -33,6 +33,10 @@ namespace CoffeeProject.GameObjects
                 new Physics<Hero>(
                 new SurfaceMap([], 0, 1)
                 ));
+            this.CombineWith(
+                new Dummy(
+                16, [], Team.player, [], [], 1
+                ));
             this.CombineWith(new Spring(0.1f));
         }
 
@@ -42,6 +46,7 @@ namespace CoffeeProject.GameObjects
             {
                 var info = base.DisplayInfo;
                 info.Scale = info.Scale * new Vector2(0.05f, 0.05f);
+                info.OrderComparer = Position.ToPoint().Y;
                 return info;
             }
         }
@@ -57,6 +62,7 @@ namespace CoffeeProject.GameObjects
             OnAct(state, deltaTime, this);
             var physics = GetComponents<Physics<Hero>>().Last();
             var spring = GetComponents<Spring>().Last();
+            var dummy = GetComponents<Dummy>().Last();
             var speed = SPEED;
             var deceleration = DECELERATION;
 
@@ -129,6 +135,12 @@ namespace CoffeeProject.GameObjects
             {
                 Animator.SetFrame(DisplayInfo ,0);
                 Animator.Stop();
+            }
+
+            if (!dummy.IsAlive)
+            {
+                state.Using<ILevelController>().PauseCurrent();
+                state.Using<ILevelController>().LaunchLevel("gameover", false);
             }
         }
 

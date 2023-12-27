@@ -40,17 +40,13 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
         {
             foreach (var layer in layers)
             {
-                foreach (var displayProvider in layer)
+                foreach (var client in clients)
                 {
-                    foreach (var client in clients)
+                    var camera = cameras.GetFor(client);
+                    var view = viewPoints.GetFor(client);
+                    foreach (var display in layer.SelectMany(it => it.GetDisplay(camera, layer)).OrderBy(it => it.OrderComparer))
                     {
-                        var camera = cameras.GetFor(client);
-                        var view = viewPoints.GetFor(client);
-                        var displayables = displayProvider.GetDisplay(camera, layer);
-                        foreach (var displayable in displayables)
-                        {
-                            view.Add(displayable);
-                        }
+                        view.Add(display);
                     }
                 }
             }

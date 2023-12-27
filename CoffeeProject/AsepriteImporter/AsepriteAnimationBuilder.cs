@@ -24,7 +24,7 @@ namespace AsepriteImporter
 
         public Dictionary<string, Animation> BuildFromFiles(string name)
         {
-            var file = AsepriteFile.Load($"{name}.aseprite");
+            var file = AsepriteFile.Load(Path.Combine("Sprites", $"{name}.aseprite"));
             var sheet = file.ToAsepriteSheet(GetSpritesheetOptions(), GetTilesheetOptions());
             var aseAnimations = sheet.Spritesheet.Animations;
             Texture2D texture;

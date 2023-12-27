@@ -17,6 +17,7 @@ namespace MagicDustLibrary.Display
         public Vector2 Scale;
         public SpriteEffects Mirroring;
         public float Priority;
+        public IComparable OrderComparer;
 
         public DrawingParameters()
         {
@@ -26,6 +27,7 @@ namespace MagicDustLibrary.Display
             Scale = new Vector2(3, 3);
             Mirroring = SpriteEffects.None;
             Priority = 0;
+            OrderComparer = 0;
         }
 
         public DrawingParameters

@@ -59,26 +59,32 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
             };
         }
 
-        public Label UseFont(IControllerProvider state, string fileName)
+        internal Label UseFont(IControllerProvider state, string fileName)
         {
             _font = state.Using<IFactoryController>().CreateAsset<SpriteFontWrapper>(fileName).Font;
             return this;
         }
 
-        public Label UseCustomFont(IControllerProvider state, string fileName)
+        internal Label UseCustomFont(IControllerProvider state, string fileName)
         {
             _font = state.Using<IFactoryController>().CreateAsset<CustomFontWrapper>(fileName).Font;
             return this;
         }
 
-        public Label SetText(string text)
+        internal Label SetText(string text)
         {
-            Text = text;
-            Bounds = new Rectangle(Point.Zero, (_font.MeasureString(Text) * Scale).ToPoint());
+            if (text != Text)
+            {
+                Text = text;
+                if (_font is not null)
+                {
+                    Bounds = new Rectangle(Point.Zero, (_font.MeasureString(Text) * Scale).ToPoint());
+                }
+            }
             return this;
         }
 
-        public Label SetScale(float scale)
+        internal Label SetScale(float scale)
         {
             Scale = scale;
             return this;
@@ -90,6 +96,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
         public SpriteFont Font { get; init; }
         public string Text { get; init; }
         public DrawingParameters Parameters { get; init; }
+        public IComparable OrderComparer => Parameters.OrderComparer;
+
         public void Draw(SpriteBatch batch, GameCamera camera, IContentStorage contentStorage)
         {
             batch.DrawString(Font, 
@@ -100,6 +108,29 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
                 Vector2.Zero, 
                 Parameters.Scale, 
                 Parameters.Mirroring, 0);
+        }
+    }
+
+    public static class LabelExtensions
+    {
+        public static T SetText<T>(this T obj, string text) where T : Label
+        {
+            return obj.SetText(text) as T;
+        }
+
+        public static T UseFont<T>(this T obj, IControllerProvider state, string fileName) where T : Label
+        {
+            return obj.UseFont(state, fileName) as T;
+        }
+
+        public static T UseCustomFont<T>(this T obj, IControllerProvider state, string fileName) where T : Label
+        {
+            return obj.UseCustomFont(state, fileName) as T;
+        }
+
+        public static T SetScale<T>(this T obj, float scale) where T : Label
+        {
+            return obj.SetScale(scale) as T;
         }
     }
 }

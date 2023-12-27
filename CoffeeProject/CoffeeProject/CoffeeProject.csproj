@@ -35,22 +35,25 @@
     <ProjectReference Include="..\MagicDust\MagicDustLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="heart.aseprite">
+    <None Update="Sprites\enemy.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="hero.aseprite">
+    <None Update="Sprites\heart.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\hero.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="hero_properties.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="menuBackground.aseprite">
+    <None Update="Sprites\menuBackground.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Painting_properties.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="PauseTitle.aseprite">
+    <None Update="Sprites\PauseTitle.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

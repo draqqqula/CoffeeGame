@@ -1,4 +1,5 @@
-﻿using CoffeeProject.Behaviors;
+﻿using BehaviorKit;
+using CoffeeProject.Behaviors;
 using CoffeeProject.BoxDisplay;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
@@ -49,15 +50,17 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().AddToState(map);
             state.Using<SurfaceMapProvider>().AddMap("level", map);
 
-            state.Using<IFactoryController>()
-                .CreateObject<Label>()
-                .UseFont(state, "Caveat")
-                .SetText("текст text")
-                .SetScale(1f)
-                .SetPlacement(new Placement<GUI>())
-                .SetPos(new Vector2(15, 15))
+            var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
+            Enemy = state.Using<IFactoryController>()
+                .CreateObject<NaughtyShell>()
+                .SetPos(new Vector2(850, 700))
+                .SetBounds(new Rectangle(-20, -40, 40, 40))
+                .SetPlacement(Placement<MainLayer>.On())
+                .AddHealthLabel(state)
                 .AddToState(state);
+            Enemy.InvokeEach<Physics<NaughtyShell>>(it => it.SurfaceMap = surfaces);
         }
+        private NaughtyShell Enemy { get; set; }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
@@ -66,13 +69,18 @@ namespace CoffeeProject.Levels
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
+
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(new Vector2(0, 0))
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
+                .AddHealthLabel(state)
                 .AddToState(state);
 
+            Enemy.SetTarget(obj);
+
             obj.InvokeEach<Physics<Hero>>(it => it.SurfaceMap = surfaces);
+            var dummy = obj.GetComponents<Dummy>().First();
 
             obj.Client = client;
 
@@ -82,13 +90,6 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(250, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
             state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
-
-            state.Using<IFactoryController>()
-                .CreateObject<SomeTrigger>()
-                .SetPos(Vector2.Zero)
-                .SetBounds(new Rectangle(-100, -100, 200, 200))
-                .UseBoxDisplay(state, Color.CadetBlue, Color.Blue, 15)
-                .AddToState(state);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

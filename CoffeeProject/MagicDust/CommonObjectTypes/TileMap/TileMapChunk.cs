@@ -23,6 +23,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             Source.DrawPoints(batch, Position, Extra);
         }
 
+        public IComparable OrderComparer => 0;
+
         public TileMapChunk(TileMap source, Rectangle chunk, Vector2 position, IEnumerable<Point> extra)
         {
             Source = source;
