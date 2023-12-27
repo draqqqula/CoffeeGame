@@ -43,7 +43,7 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>().AddToState(map);
 
             var generator = new LevelGenerator(state);
-            generator.GenerateLevelGraph("TestLevel", 3, 4, 2);
+            var TestLevel = generator.GenerateLevelGraph("TestLevel", 3, 4, 2);
         }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)

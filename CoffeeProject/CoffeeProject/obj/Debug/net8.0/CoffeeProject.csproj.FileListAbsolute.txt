@@ -236,3 +236,6 @@ F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\refint\Cof
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.pdb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.genruntimeconfig.cache
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\ref\CoffeeProject.dll
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\System.Drawing.Common.dll
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
