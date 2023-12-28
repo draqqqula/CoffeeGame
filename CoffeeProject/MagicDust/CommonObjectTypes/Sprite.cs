@@ -2,6 +2,7 @@
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
+using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -67,6 +68,12 @@ namespace MagicDustLibrary.CommonObjectTypes
                     Position = this.Position,
                     Mirroring = GetFlipping(),
                 };
+
+                foreach (var filter in GetComponents<IDisplayFilter>())
+                {
+                    info = filter.ApplyFilter(info);
+                }
+
                 return info;
             }
         }
