@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/encounters.json</SourceFile>
-  <SourceTime>2023-12-27T16:23:03.1868794+05:00</SourceTime>
+  <SourceTime>2023-12-27T21:50:43.8378575+05:00</SourceTime>
   <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Levels/TestLevel/room_boss/encounters.xnb</DestFile>
-  <DestTime>2023-12-27T16:23:18.7502493+05:00</DestTime>
+  <DestTime>2023-12-27T22:25:08.2509178+05:00</DestTime>
   <Importer>MagicJsonImporter</Importer>
   <ImporterTime>2023-12-27T16:16:55.6465075+05:00</ImporterTime>
   <Processor>MagicJsonDynamicProcessor</Processor>

@@ -99,175 +99,147 @@ namespace CoffeeProject.RoomGeneration
 
         public void CreateLevelPicture(LevelGraph levelGraph)
         {
-            var levelBitmap = new Bitmap(1000, 1000);
+            var BMscale = 300;
+            var levelBitmap = new Bitmap(BMscale, BMscale);
             var graphics = Graphics.FromImage(levelBitmap);
-            var initX = 500;
-            var initY = 800;
+            var initX = 100;
+            var initY = 200;
 
-            var prevX = 500;
-            var prevY = 800;
+            var prevX = 100;
+            var prevY = 200;
             var rnd = new Random();
 
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    for (int j = 0; j < 1000; j++)
-            //    {
-            //        levelBitmap.SetPixel(i, j, Color.Black);
-            //    }
-            //}
+            for (int i = 0; i < BMscale; i++)
+            {
+                for (int j = 0; j < BMscale; j++)
+                {
+                    levelBitmap.SetPixel(i, j, Color.White);
+                }
+            }
 
 
             // Постановка Image в Bitmap в случайные места
             #region
-            //var visited = new HashSet<RoomNode>();
-            //var queue = new Queue<RoomNode>();
-            //var prevNode = levelGraph[0];    
-            //queue.Enqueue(levelGraph[0]);
-            //while (queue.Count != 0)
-            //{
-            //    var node = queue.Dequeue();
-            //    if (visited.Contains(node))
-            //        continue;
-            //    // Получение System.Drawing.Image для подачи в Bitmap
-            //    #region
-            //    var colors2d = new Microsoft.Xna.Framework.Color[node.RoomInfo.TileMap.Width, node.RoomInfo.TileMap.Height];
-            //    var colors = new Microsoft.Xna.Framework.Color[node.RoomInfo.TileMap.Width * node.RoomInfo.TileMap.Height];
-            //    node.RoomInfo.TileMap.GetData(colors);
-            //    for (int i = 0; i < node.RoomInfo.TileMap.Width; i++)
-            //    {
-            //        for (int j = 0; j < node.RoomInfo.TileMap.Height; j++)
-            //        {
-            //            colors2d[i, j] = colors[j * node.RoomInfo.TileMap.Width + i];
-            //        }
-            //    }
+            var visited = new HashSet<RoomNode>();
+            var queue = new Queue<RoomNode>();
+            var prevNode = levelGraph[0];
+            queue.Enqueue(levelGraph[0]);
+            while (queue.Count != 0)
+            {
+                var node = queue.Dequeue();
+                if (visited.Contains(node))
+                    continue;
+                // Получение System.Drawing.Image для подачи в Bitmap
+                #region
+                var colors2d = new Microsoft.Xna.Framework.Color[node.RoomInfo.TileMap.Width, node.RoomInfo.TileMap.Height];
+                var colors = new Microsoft.Xna.Framework.Color[node.RoomInfo.TileMap.Width * node.RoomInfo.TileMap.Height];
+                node.RoomInfo.TileMap.GetData(colors);
+                for (int i = 0; i < node.RoomInfo.TileMap.Width; i++)
+                {
+                    for (int j = 0; j < node.RoomInfo.TileMap.Height; j++)
+                    {
+                        colors2d[i, j] = colors[j * node.RoomInfo.TileMap.Width + i];
+                    }
+                }
 
-            //    var bitmap = new Bitmap(node.RoomInfo.TileMap.Width, node.RoomInfo.TileMap.Height);
-            //    for (int i = 0; i < node.RoomInfo.TileMap.Width; i++)
-            //    {
-            //        for (int j = 0; j < node.RoomInfo.TileMap.Height; j++)
-            //        {
-            //            bitmap.SetPixel(i, j, Color.FromArgb(colors2d[i, j].R, colors2d[i, j].G, colors2d[i, j].B));
-            //        }
-            //    }
-            //    var img = (System.Drawing.Image)bitmap;
-            //    #endregion
+                var bitmap = new Bitmap(node.RoomInfo.TileMap.Width, node.RoomInfo.TileMap.Height);
+                for (int i = 0; i < node.RoomInfo.TileMap.Width; i++)
+                {
+                    for (int j = 0; j < node.RoomInfo.TileMap.Height; j++)
+                    {
+                        bitmap.SetPixel(i, j, Color.FromArgb(colors2d[i, j].R, colors2d[i, j].G, colors2d[i, j].B));
+                    }
+                }
+                var img = (System.Drawing.Image)bitmap;
+                #endregion
 
-            //    // Постановка Image в Bitmap в случайные места
-            //    #region
+                // Постановка Image в Bitmap в случайные места
+                #region
 
-            //    //var checkSpace = true;
-            //    //var rndX = rnd.Next(200, 800);
-            //    //var rndY = rnd.Next(200, 800);
-            //    //for (int i = -20; i < node.RoomInfo.TileMap.Width + 20; i++)
-            //    //{
-            //    //    for (int j = -20; j < node.RoomInfo.TileMap.Height + 20; j++)
-            //    //    {
-            //    //        var firColor = levelBitmap.GetPixel(rndX + i, rndY + j);
-            //    //        if (firColor.R != 0 && firColor.G != 0 && firColor.B != 0)
-            //    //        {
-            //    //            checkSpace = false;
-            //    //        }
-            //    //    }
-            //    //}
+                var checkSpace = true;
+                var rndX = rnd.Next(50, 250);
+                var rndY = rnd.Next(50, 250);
+                for (int i = -5; i < node.RoomInfo.TileMap.Width + 5; i++)
+                {
+                    for (int j = -5; j < node.RoomInfo.TileMap.Height + 5; j++)
+                    {
+                        var firColor = levelBitmap.GetPixel(rndX + i, rndY + j);
+                        if (firColor.R != 0 && firColor.G != 0 && firColor.B != 0)
+                        {
+                            checkSpace = false;
+                        }
+                    }
+                }
 
-            //    //if (checkSpace)
-            //    //{
-            //    //    graphics.DrawImage(img, rndX, rndY);
-            //    //}
+                if (checkSpace)
+                {
+                    graphics.DrawImage(img, rndX, rndY);
+                }
 
+                #endregion
 
-            //    #endregion
-
-            //    // Постановка Image в Bitmap последовательно (не рабочее)
-            //    #region
-
-            //    //if (node.RoomNumber == 0)
-            //    //{
-            //    //    graphics.DrawImage(img, prevX, prevY);
-            //    //}
-            //    //if ((node.RoomNumber - 1 == prevNode.RoomNumber) && (node.RoomNumber <= levelGraph.MainPathRoomsCount))
-            //    //{
-            //    //    var constDelta = 30;
-            //    //    var dX = constDelta + node.RoomInfo.TileMap.Width;
-            //    //    if (rnd.Next(0, 2) == 0)
-            //    //    {
-            //    //        dX = -dX;
-            //    //    }
-            //    //    var dY = constDelta + node.RoomInfo.TileMap.Height;
-            //    //    graphics.DrawImage(img, prevX + dX, prevY - dY);
-            //    //    prevNode = node;
-            //    //    prevX += dX;
-            //    //    prevY += dY;
-            //    //}
-            //    //if (node.RoomNumber == levelGraph.MainPathRoomsCount + 1)
-            //    //{
-            //    //    graphics.DrawImage(img, initX, initY - levelGraph.MainPathRoomsCount * 100);
-            //    //}
-
-            //    #endregion
-
-            //    visited.Add(node);
-            //    foreach (var nextNode in node.ConnectedRooms)
-            //        queue.Enqueue(nextNode);
-            //    levelBitmap.Save(string.Format(@"F:\TestLevelOutIMG{0}.png", node.RoomNumber));
-            //}
+                visited.Add(node);
+                foreach (var nextNode in node.ConnectedRooms)
+                    queue.Enqueue(nextNode);
+                levelBitmap.Save(string.Format(@"F:\TestLevelOutIMG{0}.png", node.RoomNumber));
+            }
             #endregion
 
             // Подстановка Image в Bitmap последовательно
             #region
 
 
-            var prevNode = levelGraph[0];
-            for (int i = 0; i < levelGraph.Length; i++)
-            {
-                //Получение System.Drawing.Image для подачи в Bitmap
-                #region
-                var colors2d = new Microsoft.Xna.Framework.Color[levelGraph[i].RoomInfo.TileMap.Width, levelGraph[i].RoomInfo.TileMap.Height];
-                var colors = new Microsoft.Xna.Framework.Color[levelGraph[i].RoomInfo.TileMap.Width * levelGraph[i].RoomInfo.TileMap.Height];
-                levelGraph[i].RoomInfo.TileMap.GetData(colors);
-                for (int j = 0; j < levelGraph[i].RoomInfo.TileMap.Width; j++)
-                {
-                    for (int k = 0; k < levelGraph[i].RoomInfo.TileMap.Height; k++)
-                    {
-                        colors2d[j, k] = colors[k * levelGraph[i].RoomInfo.TileMap.Width + j];
-                    }
-                }
+            //var prevNode = levelGraph[0];
+            //for (int i = 0; i < levelGraph.Length; i++)
+            //{
+            //    //Получение System.Drawing.Image для подачи в Bitmap
+            //    #region
+            //    var colors2d = new Microsoft.Xna.Framework.Color[levelGraph[i].RoomInfo.TileMap.Width, levelGraph[i].RoomInfo.TileMap.Height];
+            //    var colors = new Microsoft.Xna.Framework.Color[levelGraph[i].RoomInfo.TileMap.Width * levelGraph[i].RoomInfo.TileMap.Height];
+            //    levelGraph[i].RoomInfo.TileMap.GetData(colors);
+            //    for (int j = 0; j < levelGraph[i].RoomInfo.TileMap.Width; j++)
+            //    {
+            //        for (int k = 0; k < levelGraph[i].RoomInfo.TileMap.Height; k++)
+            //        {
+            //            colors2d[j, k] = colors[k * levelGraph[i].RoomInfo.TileMap.Width + j];
+            //        }
+            //    }
 
-                var bitmap = new Bitmap(levelGraph[i].RoomInfo.TileMap.Width, levelGraph[i].RoomInfo.TileMap.Height);
-                for (int j = 0; j < levelGraph[i].RoomInfo.TileMap.Width; j++)
-                {
-                    for (int k = 0; k < levelGraph[j].RoomInfo.TileMap.Height; k++)
-                    {
-                        bitmap.SetPixel(j, k, Color.FromArgb(colors2d[j, k].R, colors2d[j, k].G, colors2d[j, k].B));
-                    }
-                }
-                var img = (System.Drawing.Image)bitmap;
-                #endregion
+            //    var bitmap = new Bitmap(levelGraph[i].RoomInfo.TileMap.Width, levelGraph[i].RoomInfo.TileMap.Height);
+            //    for (int j = 0; j < levelGraph[i].RoomInfo.TileMap.Width; j++)
+            //    {
+            //        for (int k = 0; k < levelGraph[i].RoomInfo.TileMap.Height; k++)
+            //        {
+            //            bitmap.SetPixel(j, k, Color.FromArgb(colors2d[j, k].R, colors2d[j, k].G, colors2d[j, k].B));
+            //        }
+            //    }
+            //    var img = (System.Drawing.Image)bitmap;
+            //    #endregion
 
-                if (levelGraph[i].RoomNumber == 0)
-                {
-                    graphics.DrawImage(img, prevX, prevY);
-                }
-                if ((levelGraph[i].RoomNumber - 1 == prevNode.RoomNumber) && (levelGraph[i].RoomNumber <= levelGraph.MainPathRoomsCount))
-                {
-                    var constDelta = 30;
-                    var dX = constDelta + levelGraph[i].RoomInfo.TileMap.Width;
-                    if (rnd.Next(0, 2) == 0)
-                    {
-                        dX = -dX;
-                    }
-                    var dY = constDelta + levelGraph[i].RoomInfo.TileMap.Height;
-                    graphics.DrawImage(img, prevX + dX, prevY - dY);
-                    prevNode = levelGraph[i];
-                    prevX += dX;
-                    prevY += dY;
-                }
-                if (levelGraph[i].RoomNumber == levelGraph.MainPathRoomsCount + 1)
-                {
-                    graphics.DrawImage(img, initX, initY - levelGraph.MainPathRoomsCount * 100);
-                }
-                levelBitmap.Save(string.Format(@"F:\TestLevelFinalOutIMG{0}-{1}.png", i, levelGraph[i].RoomNumber));
-            }
+            //    if (levelGraph[i].RoomNumber == 0)
+            //    {
+            //        graphics.DrawImage(img, prevX, prevY);
+            //    }
+            //    if ((levelGraph[i].RoomNumber - 1 == prevNode.RoomNumber) && (levelGraph[i].RoomNumber <= levelGraph.MainPathRoomsCount))
+            //    {
+            //        var constDelta = 5;
+            //        var dX = constDelta + levelGraph[i].RoomInfo.TileMap.Width;
+            //        if (rnd.Next(0, 2) == 0)
+            //        {
+            //            dX = -dX;
+            //        }
+            //        var dY = constDelta + levelGraph[i].RoomInfo.TileMap.Height;
+            //        graphics.DrawImage(img, prevX + dX, prevY - dY);
+            //        prevNode = levelGraph[i];
+            //        prevX += dX;
+            //        prevY += dY;
+            //    }
+            //    if (levelGraph[i].RoomNumber == levelGraph.MainPathRoomsCount + 1)
+            //    {
+            //        graphics.DrawImage(img, initX, initY - levelGraph.MainPathRoomsCount * 20);
+            //    }
+            //    levelBitmap.Save($@"F:\TestLevelFinalOutIMG{i}-{levelGraph[i].RoomNumber}.png");
+            //}
 
             #endregion
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/tilemap.png</SourceFile>
-  <SourceTime>2023-12-27T16:23:03.1888728+05:00</SourceTime>
+  <SourceTime>2023-12-27T22:05:48.7261953+05:00</SourceTime>
   <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Levels/TestLevel/room_loot2/tilemap.xnb</DestFile>
-  <DestTime>2023-12-27T16:23:18.767193+05:00</DestTime>
+  <DestTime>2023-12-27T22:25:08.3456011+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
