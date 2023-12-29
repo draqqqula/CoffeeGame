@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>F:/Games/Game coffe project/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</SourceFile>
-  <SourceTime>2023-12-29T19:05:57.1521204+05:00</SourceTime>
-  <DestFile>F:/Games/Game coffe project/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/SpriteFonts/TestFont/texture.xnb</DestFile>
-  <DestTime>2023-12-29T19:16:21.0868492+05:00</DestTime>
+  <SourceFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</SourceFile>
+  <SourceTime>2023-12-29T19:37:40.6406698+05:00</SourceTime>
+  <DestFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/SpriteFonts/TestFont/texture.xnb</DestFile>
+  <DestTime>2023-12-29T19:38:11.7521148+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

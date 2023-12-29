@@ -272,3 +272,31 @@ F:\Games\Game coffe project\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net
 F:\Games\Game coffe project\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.pdb
 F:\Games\Game coffe project\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.genruntimeconfig.cache
 F:\Games\Game coffe project\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\ref\CoffeeProject.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\level.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_boss\background.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_boss\encounters.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_boss\info.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_boss\tilemap.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy1\background.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy1\encounters.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy1\info.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy1\tilemap.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy2\background.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy2\encounters.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy2\info.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_enemy2\tilemap.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot1\background.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot1\encounters.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot1\info.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot1\tilemap.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot2\background.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot2\encounters.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot2\info.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_loot2\tilemap.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_start\background.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_start\encounters.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_start\info.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_start\tilemap.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll

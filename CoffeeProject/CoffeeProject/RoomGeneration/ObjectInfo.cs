@@ -169,12 +169,12 @@ namespace CoffeeProject.RoomGeneration
                     graphics.DrawImage(img, thisX, posMemory[randomMainPathRoomNum].Y);
                     posMemory.Add(levelGraph[i].RoomNumber, new Rectangle(thisX, posMemory[randomMainPathRoomNum].Y, width, height));
                 }
-                levelBitmap.Save($@"F:\TestLevelFinalOutIMG{i}-{levelGraph[i].RoomNumber}.png");
+                //levelBitmap.Save($@"F:\TestLevelFinalOutIMG{i}-{levelGraph[i].RoomNumber}.png");
             }
 
             #endregion
 
-            levelBitmap.Save(@"F:\TestLevelFinalOutIMG.png");
+            levelBitmap.Save(@"TestLevelFinalOutIMG.png");
             // Перевод конечной картинки в двумерный массив Xna.Color
             var finalColorArray = new Microsoft.Xna.Framework.Color[levelBitmap.Width, levelBitmap.Height];
             for (int i = 0; i < levelBitmap.Width; i++)

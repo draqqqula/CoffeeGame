@@ -3,6 +3,7 @@ using CoffeeProject.Behaviors;
 using CoffeeProject.BoxDisplay;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
+using CoffeeProject.RoomGeneration;
 using CoffeeProject.Run;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
@@ -36,18 +37,22 @@ namespace CoffeeProject.Levels
             return settings;
         }
 
+        Vector2 PlayerPosition { get; set; } = Vector2.Zero;
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            //state.OpenServer(7878);
+            var generator = new LevelGenerator(state);
+            var graph = generator.GenerateLevelGraph("TestLevel", 2, 3, 2);
             var map = state.Using<IFactoryController>().CreateObject<TileMap>().SetPos(new Vector2(-500, -500));
             map.SetFrame(new Point(324, 324));
             map.SetScale(0.2f);
             var sheet = state.Using<IFactoryController>().CreateAsset<TileSheet>("level1");
             map.UseSheet(sheet);
-            var level = state.Using<IFactoryController>().CreateAsset<LevelMap>("level1_map");
+            var level = new LevelMap(graph.Colors);
             map.UseMap(level.Map);
             state.Using<IFactoryController>().AddToState(map);
             state.Using<SurfaceMapProvider>().AddMap("level", map);
+
+            PlayerPosition = map.GetBoundsForPoint(graph.Positions.First().Value.Location).Value.Location.ToVector2() + new Vector2(300, 300);
 
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
             Enemy = state.Using<IFactoryController>()
@@ -70,7 +75,7 @@ namespace CoffeeProject.Levels
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
 
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
-                .SetPos(new Vector2(0, 0))
+                .SetPos(PlayerPosition)
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)

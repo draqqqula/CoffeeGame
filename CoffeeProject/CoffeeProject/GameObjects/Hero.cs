@@ -100,6 +100,10 @@ namespace CoffeeProject.GameObjects
                     refreshAnimator = false;
                 }
                 resultingVector += new Vector2(-1, 0);
+                if (Client.Controls.OnPress(Control.jump))
+                {
+                    Position += new Vector2(-400, 0);
+                }
             }
             if (Client.Controls[Control.right])
             {
@@ -109,6 +113,10 @@ namespace CoffeeProject.GameObjects
                     refreshAnimator = false;
                 }
                 resultingVector += new Vector2(1, 0);
+                if (Client.Controls.OnPress(Control.jump))
+                {
+                    Position += new Vector2(400, 0);
+                }
             }
             if (Client.Controls[Control.lookUp])
             {
@@ -118,6 +126,10 @@ namespace CoffeeProject.GameObjects
                     refreshAnimator = false;
                 }
                 resultingVector += new Vector2(0, -1);
+                if (Client.Controls.OnPress(Control.jump))
+                {
+                    Position += new Vector2(0, -400);
+                }
             }
             if (Client.Controls[Control.lookDown])
             {
@@ -127,6 +139,10 @@ namespace CoffeeProject.GameObjects
                     refreshAnimator = false;
                 }
                 resultingVector += new Vector2(0, 1);
+                if (Client.Controls.OnPress(Control.jump))
+                {
+                    Position += new Vector2(0, 400);
+                }
             }
 
             if (resultingVector != Vector2.Zero)

@@ -89,6 +89,52 @@ namespace MagicDustLibrary.Content
     {
         public byte[,] Map { get;}
 
+
+        private static Color[] ToOneDimensional(Color[,] twoDimensional)
+        {
+            var width = twoDimensional.GetLength(0);
+            var height = twoDimensional.GetLength(1);
+            var buffer = new Color[width * height];
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    buffer[j * width + i] = twoDimensional[i, j];
+                }
+            }
+            return buffer;
+        }
+
+        public LevelMap(Color[,] colors) : this(ToOneDimensional(colors), colors.GetLength(0), colors.GetLength(1))
+        {
+        }
+
+        public LevelMap(Color[] colors, int width, int height)
+        {
+            var colorMap = new Color[8] {
+                Color.Black,
+                Color.Red,
+                Color.Orange,
+                Color.Yellow,
+                Color.Green,
+                Color.LightBlue,
+                Color.Blue,
+                Color.Purple };
+            ColorByteExchanger = Enumerable.Range(0, colorMap.Length).ToDictionary(n => colorMap[n], n => (byte)(n + 1));
+            ColorByteExchanger.Add(Color.White, 0);
+
+            var rawResult = colors.Select(color => ColorByteExchanger[color]).ToArray();
+            var result = new byte[width, height];
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    result[i, j] = rawResult[j * width + i];
+                }
+            }
+            Map = result;
+        }
+
         public LevelMap(
             [FromStorage("*")]Texture2D texture
             )

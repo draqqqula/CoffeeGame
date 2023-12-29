@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj": {}
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj": {}
   },
   "projects": {
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj": {
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj",
+        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj",
         "projectName": "JsonDtos",
-        "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj",
-        "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
-        "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonDtos\\obj\\",
+        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj",
+        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonDtos\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

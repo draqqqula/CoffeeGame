@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj": {}
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj": {}
   },
   "projects": {
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
+        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
         "projectName": "AsepriteImporter",
-        "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
-        "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
-        "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\obj\\",
+        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
+        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
-                "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
+              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
               }
             }
           }
@@ -69,17 +74,21 @@
         }
       }
     },
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
+        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
         "projectName": "BehaviorKit",
-        "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
-        "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
-        "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\obj\\",
+        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
+        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,14 +96,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
-                "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
+              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
               }
             }
           }
@@ -134,17 +144,21 @@
         }
       }
     },
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj": {
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
+        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
         "projectName": "CoffeeProject",
-        "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
-        "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
-        "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\obj\\",
+        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
+        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\CoffeeProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -152,20 +166,21 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
-                "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj"
+              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
+                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj"
               },
-              "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
-                "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj"
+              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
+                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj"
               },
-              "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
-                "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
+              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
               }
             }
           }
@@ -217,17 +232,21 @@
         }
       }
     },
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj": {
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
         "projectName": "JsonPipeline",
-        "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
-        "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
-        "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\",
+        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -235,6 +254,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -279,17 +299,21 @@
         }
       }
     },
-    "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+    "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
       "version": "1.0.2",
       "restore": {
-        "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+        "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
         "projectName": "MagicDustLibrary",
-        "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
-        "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
-        "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\obj\\",
+        "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+        "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+        "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\MagicDust\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -297,14 +321,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj": {
-                "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj"
+              "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj": {
+                "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj"
               }
             }
           }
