@@ -51,6 +51,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             var viewStorage = new ViewStorage();
 
             services.AddSingleton(clientManager);
+            services.AddSingleton<IDisposable>(clientManager);
             services.AddSingleton(recieveManager);
             services.AddSingleton<StateConnectionHandleManager>();
             services.AddSingleton(viewStorage);

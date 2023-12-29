@@ -23,7 +23,7 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
         {
             if (Placements.TryGetValue(component, out Layer layer))
             {
-                layer.GetType();
+                return layer;
             }
             return null;
         }

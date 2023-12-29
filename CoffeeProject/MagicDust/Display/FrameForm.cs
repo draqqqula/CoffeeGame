@@ -1,6 +1,7 @@
 ﻿using MagicDustLibrary.Network;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections;
 
 namespace MagicDustLibrary.Display
 {
@@ -11,6 +12,7 @@ namespace MagicDustLibrary.Display
         private readonly Vector2 Anchor;
         private readonly DrawingParameters Arguments;
         private readonly Texture2D Sheet;
+        public IComparable OrderComparer => Arguments.OrderComparer;
         #endregion
 
         #region CONSTRUCTORS
@@ -38,7 +40,7 @@ namespace MagicDustLibrary.Display
                 Anchor,
                 Arguments.Scale,
                 Arguments.Mirroring,
-                new Random().NextSingle()
+                Arguments.Priority
                 );
         }
         #endregion

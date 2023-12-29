@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Behaviors;
 using Microsoft.Xna.Framework;
+using RectangleFLib;
 
 namespace CoffeeProject.Behaviors
 {
@@ -125,10 +127,16 @@ namespace CoffeeProject.Behaviors
     /// </summary>
     public class Physics<T> : Behavior<T> where T : class, IBodyComponent, IMultiBehaviorComponent
     {
-        public readonly Rectangle[][] SurfaceMap;
-        public readonly int SurfaceWidth;
+        public SurfaceMap SurfaceMap { get; set; }
+        public float SurfaceWidth => SurfaceMap.CellWidth;
+
         public Dictionary<Side, bool> Faces;
         public Dictionary<string, MovementVector> Vectors { get; private set; }
+
+        public Vector2 GetResultingVector(TimeSpan deltaTime)
+        {
+            return HalfUpdateVectors(deltaTime) * 2;
+        }
 
         public Dictionary<string, MovementVector> ActiveVectors
         {
@@ -155,17 +163,16 @@ namespace CoffeeProject.Behaviors
             Vectors.Remove(name);
         }
 
-        public IEnumerable<Rectangle> GetMapSegment(int start, int end)
+        public IEnumerable<RectangleF> GetMapSegment(int start, int end)
         {
-            var imaginaryStart = Math.Min(Math.Max(start / SurfaceWidth, 0), SurfaceMap.Length);
-            var imaginaryEnd = Math.Max(0, Math.Min(end / SurfaceWidth + 1, SurfaceMap.Length));
-            return Enumerable
-                .Range(imaginaryStart, imaginaryEnd - imaginaryStart)
-                .Select(n => SurfaceMap[n])
-                .SelectMany(e => e);
+            var relativeStart = start - SurfaceMap.Position.X;
+            var relativeEnd = end - SurfaceMap.Position.X;
+            var imaginaryStart = Math.Min(Math.Max((int)Math.Floor(relativeStart / SurfaceWidth), 0), SurfaceMap.Length);
+            var imaginaryEnd = Math.Max(0, Math.Min((int)Math.Ceiling(relativeEnd / SurfaceWidth) + 1, SurfaceMap.Length));
+            return SurfaceMap.GetSpan(imaginaryStart, imaginaryEnd - imaginaryStart);
         }
 
-        private Vector2 ApplyCollision(Rectangle start, IEnumerable<Rectangle> surfaces, Rectangle end)
+        private Vector2 ApplyCollision(Rectangle start, IEnumerable<RectangleF> surfaces, Rectangle end)
         {
             foreach (Side side in (Side[])Enum.GetValues(typeof(Side)))
                 Faces[side] = false;
@@ -218,9 +225,11 @@ namespace CoffeeProject.Behaviors
                 var sequenceLength = Math.Min(allowedSpeed, resultingLength - i * allowedSpeed);
                 var vectorSequence = direction * sequenceLength;
 
-                var pastPosition = parent.GetLayout();
-                var futurePosition = parent.PredictLayout(vectorSequence);
-                var mapSegment = GetMapSegment(Math.Min(pastPosition.Left, futurePosition.Left), Math.Max(pastPosition.Right, futurePosition.Right));
+                var pastPosition = GetLayoutF(parent.Bounds, parent.Position);
+                var futurePosition = PredictLayout(pastPosition, vectorSequence);
+                var mapSegment = GetMapSegment(
+                    Convert.ToInt32(Math.Floor(Math.Min(pastPosition.Left, futurePosition.Left))), 
+                    Convert.ToInt32(Math.Floor(Math.Max(pastPosition.Right, futurePosition.Right))));
                 var collisionFactor = ApplyCollision(pastPosition, mapSegment, futurePosition);
 
                 parent.Position += vectorSequence + collisionFactor;
@@ -229,6 +238,15 @@ namespace CoffeeProject.Behaviors
             HalfUpdateVectors(deltaTime);
         }
 
+        private static RectangleF GetLayoutF(Rectangle bounds, Vector2 position)
+        {
+            return new RectangleF(bounds.X + position.X, bounds.Y + position.Y, bounds.Width, bounds.Height);
+        }
+
+        private static RectangleF PredictLayout(RectangleF layout, Vector2 vector)
+        {
+            return new RectangleF(layout.Location.X + vector.X, layout.Location.Y + vector.Y, layout.Width, layout.Height);
+        }
 
         private Vector2 HalfUpdateVectors(TimeSpan deltaTime)
         {
@@ -242,10 +260,9 @@ namespace CoffeeProject.Behaviors
             return resultingVector;
         }
 
-        public Physics(Rectangle[][] surfaceMap, int surfaceWidth) : base()
+        public Physics(SurfaceMap surfaceMap) : base()
         {
             SurfaceMap = surfaceMap;
-            SurfaceWidth = surfaceWidth;
             Vectors = new Dictionary<string, MovementVector>();
 
             Faces = new Dictionary<Side, bool>();

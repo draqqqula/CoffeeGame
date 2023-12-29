@@ -2,7 +2,9 @@
 using CoffeeProject.Behaviors;
 using CoffeeProject.Combat;
 using CoffeeProject.Family;
+using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
@@ -10,10 +12,13 @@ using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
+using RectangleFLib;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CoffeeProject.GameObjects
@@ -28,8 +33,11 @@ namespace CoffeeProject.GameObjects
         {
             this.CombineWith(
                 new Physics<Hero>(
-                new List<Rectangle[]>().ToArray(),
-                12
+                new SurfaceMap([], 0, 1)
+                ));
+            this.CombineWith(
+                new Dummy(
+                16, [], Team.player, [], [ OnDamage ], 1
                 ));
             this.CombineWith(new Spring(0.1f));
         }
@@ -40,52 +48,91 @@ namespace CoffeeProject.GameObjects
             {
                 var info = base.DisplayInfo;
                 info.Scale = info.Scale * new Vector2(0.05f, 0.05f);
+                info.OrderComparer = Position.ToPoint().Y;
                 return info;
             }
         }
 
-        const float SPEED = 8;
+        const float SPEED = 4;
         const float DECELERATION = 15;
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
+
+        public DamageInstance OnDamage(Dummy dummy, DamageInstance instance)
+        {
+            var spring = GetComponents<Spring>().Last();
+            spring.Pull(1.12f);
+            if (instance.Tags.Contains("knockback"))
+            {
+                var physics = GetComponents<Physics<Hero>>().Last();
+                var kbvector = instance.Tags.Where(it => it.StartsWith("kbvector")).First();
+                var vector = new Vector2(
+                    float.Parse(
+                        Regex.Match(kbvector, "(?<==).+(?=;)").Value),
+                    float.Parse(
+                        Regex.Match(kbvector, "(?<=;).+").Value)
+                    );
+                physics.AddVector("knockback", new MovementVector(vector * 4, -4, TimeSpan.Zero, true));
+            }
+            return instance;
+        }
 
         public override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
             var physics = GetComponents<Physics<Hero>>().Last();
-            var spring = GetComponents<Spring>().Last();
-            var speed = 60f*SPEED * (float)deltaTime.TotalSeconds;
+            var dummy = GetComponents<Dummy>().Last();
+            var speed = SPEED;
             var deceleration = DECELERATION;
 
             SetDefaults();
             ApplyModifiers();
 
+            Vector2 resultingVector = Vector2.Zero;
+            bool refreshAnimator = true;
+            
             if (Client.Controls[Control.left])
             {
-                Animator.SetAnimation("Left", 0);
-                physics.AddVector("move_left", new MovementVector(new Vector2(-speed, 0), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Left", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(-1, 0);
             }
             if (Client.Controls[Control.right])
             {
-                Animator.SetAnimation("Right", 0);
-                physics.AddVector("move_right", new MovementVector(new Vector2(speed, 0), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Right", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(1, 0);
             }
             if (Client.Controls[Control.lookUp])
             {
-                Animator.SetAnimation("Backward", 0);
-                physics.AddVector("move_down", new MovementVector(new Vector2(0, -speed), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Backward", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(0, -1);
             }
             if (Client.Controls[Control.lookDown])
             {
-                Animator.SetAnimation("Default", 0);
-                physics.AddVector("move_up", new MovementVector(new Vector2(0, speed), -deceleration, TimeSpan.Zero, true));
+                if (refreshAnimator)
+                {
+                    Animator.SetAnimation("Default", 0);
+                    refreshAnimator = false;
+                }
+                resultingVector += new Vector2(0, 1);
             }
 
-            if (Client.Controls.OnPress(Control.left) || Client.Controls.OnPress(Control.right)
-                || Client.Controls.OnPress(Control.lookUp) || Client.Controls.OnPress(Control.lookDown))
+            if (resultingVector != Vector2.Zero)
             {
-                spring.Pull(1.12f);
+                resultingVector.Normalize();
+                physics.AddVector("move", new MovementVector(speed * resultingVector, -deceleration, TimeSpan.Zero, true));
             }
 
             if (Client.Controls.OnPress(Control.pause))
@@ -94,7 +141,7 @@ namespace CoffeeProject.GameObjects
                 state.Using<ILevelController>().LaunchLevel("pause", new LevelArgs(state.Using<ILevelController>().GetCurrentLevelName()), false);
             }
 
-            if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move_")).Any())
+            if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move")).Any())
             {
                 Animator.Resume();
             }
@@ -102,6 +149,12 @@ namespace CoffeeProject.GameObjects
             {
                 Animator.SetFrame(DisplayInfo ,0);
                 Animator.Stop();
+            }
+
+            if (!dummy.IsAlive)
+            {
+                state.Using<ILevelController>().PauseCurrent();
+                state.Using<ILevelController>().LaunchLevel("gameover", false);
             }
         }
 

@@ -18,7 +18,7 @@ namespace MagicDustLibrary.Logic.Controllers
     {
         public T CreateAsset<T>(params string[] names);
         public T CreateObject<T>() where T : ComponentBase;
-        public void AddToState<T>(T obj) where T : ComponentBase;
+        public void AddToState<T>(T obj) where T : GameObject;
     }
 
     internal class DefaultFactoryController : IFactoryController
@@ -43,7 +43,7 @@ namespace MagicDustLibrary.Logic.Controllers
             return obj;
         }
 
-        public void AddToState<T>(T obj) where T : ComponentBase
+        public void AddToState<T>(T obj) where T : GameObject
         {
             _hooker.Hook(obj);
         }

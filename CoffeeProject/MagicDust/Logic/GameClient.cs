@@ -119,7 +119,7 @@ namespace MagicDustLibrary.Logic
                 OnDispose(this);
             }
         }
-        public Action<GameClient> OnUpdate = delegate { };
-        public Action<GameClient> OnDispose = delegate { };
+        public Action<GameClient> OnUpdate { get; set; } = delegate { };
+        public Action<GameClient> OnDispose { get; set; } = delegate { };
     }
 }

@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Data;
+using CoffeeProject.SurfaceMapping;
+using CoffeeProject.Collision;
 
 namespace CoffeeProject
 {
@@ -54,12 +56,22 @@ namespace CoffeeProject
             var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice, storage) };
 
             _app = new MagicGameApplication(client, parameters, this);
+
+            _app.Services.AddService(_graphics);
+            _app.Services.AddService<Game>(this);
+
             _app.AddDefualtConfigurations();
+            _app.Configurations.AddConfiguration(SurfacesExtensions.ConfigureSurfaceHandler);
+            _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
+
             _app.LevelManager.LoadAs<TestLevel>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
-            _app.LevelManager.LoadAs<MainMenu>("placeholder");
-            _app.LevelManager.Launch("placeholder", false);
+            _app.LevelManager.LoadAs<MainMenu>("menu");
+            _app.LevelManager.LoadAs<SettingsLevel>("settings");
+            _app.LevelManager.LoadAs<GameOverScreen>("gameover");
+            _app.LevelManager.LoadAs<NameScreen>("namescreen");
+            _app.LevelManager.Launch("menu", false);
             //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 
             base.Initialize();
@@ -87,6 +99,11 @@ namespace CoffeeProject
         protected override void Update(GameTime gameTime)
         {
             _app.Update(gameTime.ElapsedGameTime, Window);
+
+            if (_app.LevelManager.GetAllActive().Length == 0)
+            {
+                this.Exit();
+            }
 
             base.Update(gameTime);
         }

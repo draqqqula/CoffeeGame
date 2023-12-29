@@ -64,6 +64,10 @@ namespace BehaviorKit
     /// </summary>
     public class Dummy : Behavior<IMultiBehaviorComponent>
     {
+        public Dummy() : base()
+        {
+        }
+
         public int MaxHealth { get; private set; }
         public int Health { get; private set; }
         public bool IsAlive { get { return Health > 0; } }

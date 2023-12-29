@@ -28,11 +28,11 @@ namespace MagicDustLibrary.Factorys
 
         public static T SetBounds<T>(this T obj, Rectangle bounds) where T : IBodyComponent
         {
-            obj.SetBounds(bounds);
+            obj.Bounds = bounds;
             return obj;
         }
 
-        public static T AddToState<T>(this T obj, IControllerProvider state) where T : ComponentBase
+        public static T AddToState<T>(this T obj, IControllerProvider state) where T : GameObject
         {
             state.Using<IFactoryController>().AddToState(obj);
             return obj;

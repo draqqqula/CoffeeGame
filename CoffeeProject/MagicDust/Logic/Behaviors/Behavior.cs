@@ -12,7 +12,7 @@ namespace MagicDustLibrary.Logic.Behaviors
         protected abstract void Act(IControllerProvider state, TimeSpan deltaTime, T parent);
 
         [ContactComponent]
-        public void GreetMultiBehavior(T parent)
+        public void GreetMultiBehavior(IMultiBehaviorComponent parent)
         {
             parent.OnAct += Update;
         }
@@ -22,6 +22,9 @@ namespace MagicDustLibrary.Logic.Behaviors
             Act(state, deltaTime, parent as T);
         }
 
-        public Behavior() : base() { }
+        public Behavior()
+        {
+            AddGreetingFor<IMultiBehaviorComponent>(GreetMultiBehavior);
+        }
     }
 }

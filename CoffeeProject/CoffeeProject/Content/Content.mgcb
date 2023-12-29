@@ -68,37 +68,26 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:level1_folder/info.json
 
-#begin Levels/TestLevel/level.json
+#begin Saves/run.json
 /importer:MagicJsonImporter
 /processor:MagicJsonDynamicProcessor
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/level.json
+/build:Saves/run.json
 
-#begin Levels/TestLevel/room_boss/background.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin SpriteFonts/Caveat1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_boss/background.png
+/processorParam:TextureFormat=Compressed
+/build:SpriteFonts/Caveat1.spritefont;SpriteFonts/Caveat.spritefont
 
-#begin Levels/TestLevel/room_boss/encounters.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
-/build:Levels/TestLevel/room_boss/encounters.json
-
-#begin Levels/TestLevel/room_boss/info.json
+#begin SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json
 /importer:MagicJsonImporter
 /processor:MagicJsonDynamicProcessor
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/room_boss/info.json
+/build:SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json;SpriteFonts/Papyrus_numeric/info.json
 
-#begin Levels/TestLevel/room_boss/tilemap.png
+#begin SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -108,9 +97,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_boss/tilemap.png
+/build:SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png;SpriteFonts/Papyrus_numeric/texture.png
 
-#begin Levels/TestLevel/room_enemy1/background.png
+#begin SpriteFonts/TestFont/heart.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -120,173 +109,11 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_enemy1/background.png
+/build:SpriteFonts/TestFont/heart.png;SpriteFonts/TestFont/texture.png
 
-#begin Levels/TestLevel/room_enemy1/encounters.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
-/build:Levels/TestLevel/room_enemy1/encounters.json
-
-#begin Levels/TestLevel/room_enemy1/info.json
+#begin SpriteFonts/TestFont/info.json
 /importer:MagicJsonImporter
 /processor:MagicJsonDynamicProcessor
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/room_enemy1/info.json
-
-#begin Levels/TestLevel/room_enemy1/tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_enemy1/tilemap.png
-
-#begin Levels/TestLevel/room_enemy2/background.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_enemy2/background.png
-
-#begin Levels/TestLevel/room_enemy2/encounters.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
-/build:Levels/TestLevel/room_enemy2/encounters.json
-
-#begin Levels/TestLevel/room_enemy2/info.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/room_enemy2/info.json
-
-#begin Levels/TestLevel/room_enemy2/tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_enemy2/tilemap.png
-
-#begin Levels/TestLevel/room_loot1/background.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_loot1/background.png
-
-#begin Levels/TestLevel/room_loot1/encounters.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
-/build:Levels/TestLevel/room_loot1/encounters.json
-
-#begin Levels/TestLevel/room_loot1/info.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/room_loot1/info.json
-
-#begin Levels/TestLevel/room_loot1/tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_loot1/tilemap.png
-
-#begin Levels/TestLevel/room_loot2/background.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_loot2/background.png
-
-#begin Levels/TestLevel/room_loot2/encounters.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
-/build:Levels/TestLevel/room_loot2/encounters.json
-
-#begin Levels/TestLevel/room_loot2/info.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/room_loot2/info.json
-
-#begin Levels/TestLevel/room_loot2/tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_loot2/tilemap.png
-
-#begin Levels/TestLevel/room_start/background.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_start/background.png
-
-#begin Levels/TestLevel/room_start/encounters.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
-/build:Levels/TestLevel/room_start/encounters.json
-
-#begin Levels/TestLevel/room_start/info.json
-/importer:MagicJsonImporter
-/processor:MagicJsonDynamicProcessor
-/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
-/build:Levels/TestLevel/room_start/info.json
-
-#begin Levels/TestLevel/room_start/tilemap.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Levels/TestLevel/room_start/tilemap.png
+/build:SpriteFonts/TestFont/info.json
 
