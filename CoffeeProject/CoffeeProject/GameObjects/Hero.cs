@@ -15,8 +15,10 @@ using Microsoft.Xna.Framework;
 using RectangleFLib;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CoffeeProject.GameObjects
@@ -60,6 +62,18 @@ namespace CoffeeProject.GameObjects
         {
             var spring = GetComponents<Spring>().Last();
             spring.Pull(1.12f);
+            if (instance.Tags.Contains("knockback"))
+            {
+                var physics = GetComponents<Physics<Hero>>().Last();
+                var kbvector = instance.Tags.Where(it => it.StartsWith("kbvector")).First();
+                var vector = new Vector2(
+                    float.Parse(
+                        Regex.Match(kbvector, "(?<==).+(?=;)").Value),
+                    float.Parse(
+                        Regex.Match(kbvector, "(?<=;).+").Value)
+                    );
+                physics.AddVector("knockback", new MovementVector(vector * 4, -4, TimeSpan.Zero, true));
+            }
             return instance;
         }
 

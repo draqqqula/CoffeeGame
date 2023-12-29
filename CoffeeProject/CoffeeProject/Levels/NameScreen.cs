@@ -93,7 +93,7 @@ namespace CoffeeProject.Levels
                 .SetPlacement(new Placement<GUI>())
                 .UseFont(state, "Caveat")
                 .SetPivot(PivotPosition.CenterLeft)
-                .SetText(() => $"{Batches[NameSelectionStep][SelectionIndex]}")
+                .SetText(() => $"{(HidePartLabel? "" : Batches[NameSelectionStep][SelectionIndex])}")
                 .SetPos(new Vector2(WindowWidth / 2, WindowHeight / 2 + 100))
                 .SetColor(Color.Gray)
                 .AddToState(state);
@@ -116,14 +116,13 @@ namespace CoffeeProject.Levels
         {
             WindowWidth = client.Window.Width;
             WindowHeight = client.Window.Height;
-
+            var physics = new Physics<CameraAnchor>(new SurfaceMap([], 0, 16));
             var cameraAnchor = state.Using<IFactoryController>()
                 .CreateObject<CameraAnchor>()
                 .SetPos(new Vector2(WindowWidth/2, WindowHeight/2))
-                .AddComponent(new Physics<CameraAnchor>(new SurfaceMap([], 0, 16)))
+                .AddComponent(physics)
                 .AddToState(state);
             state.Using<IClientController>().AttachCamera(client, cameraAnchor);
-
             Anchor = cameraAnchor;
             MainClient = client;
         }
@@ -136,12 +135,16 @@ namespace CoffeeProject.Levels
         {
             var physics = Anchor.GetComponents<Physics<CameraAnchor>>().First();
 
+            if (physics.ActiveVectors.ContainsKey("move"))
+            {
+                HidePartLabel = true;
+                return;
+            }
+
+            HidePartLabel = false;
+
             if (MainClient.Controls.OnPress(Control.jump))
             {
-                if (physics.ActiveVectors.ContainsKey("move"))
-                {
-                    return;
-                }
                 if (NameSelectionStep >= Batches.Count)
                 {
                     state.Using<ILevelController>().ShutCurrent(false);
@@ -153,7 +156,7 @@ namespace CoffeeProject.Levels
                     NewName = Regex.Replace($"{NewName}{Batches[NameSelectionStep][SelectionIndex]}", "-", "");
                     PartLabel.Dispose();
                     NameSelectionStep += 1;
-                    physics.AddVector("move", new MovementVector(new Vector2(-7, 0), -1, TimeSpan.FromSeconds(1), false));
+                    physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
                     CurrentMessage = "Меня точно так зовут?";
                 }
                 else
@@ -161,7 +164,7 @@ namespace CoffeeProject.Levels
                     NewName = $"{NewName}{Batches[NameSelectionStep][SelectionIndex]}-";
                     NameSelectionStep += 1;
                     SelectionIndex = 0;
-                    physics.AddVector("move", new MovementVector(new Vector2(-7, 0), -1, TimeSpan.FromSeconds(1), false));
+                    physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
                 }
             }
 
@@ -197,12 +200,13 @@ namespace CoffeeProject.Levels
             soul.Animator.SetAnimation(animation, 0);
         }
 
+        private bool HidePartLabel = false;
         private float WindowWidth = 1920;
         private float WindowHeight = 1080;
         private const int AnimationCount = 4;
         private const float MinScale = 0.001f;
         private const float MaxScale = 0.02f;
-        private const float MinDistance = 50f;
+        private const float MinDistance = 550f;
         private const float MaxDistance = 700f;
         private const float DistanceFactor = 0.5f;
         private const float PlacementScaleFactor = 6f;

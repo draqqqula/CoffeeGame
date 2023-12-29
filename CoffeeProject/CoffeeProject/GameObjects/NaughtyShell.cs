@@ -170,7 +170,17 @@ namespace CoffeeProject.GameObjects
             {
                 { DamageType.Physical, 3 }
             };
-            dummy.TakeDamage(new DamageInstance(damage, Team.enemy, [], "DashAttack", GetComponents<Dummy>().First(), [], [], TimeSpan.FromSeconds(1)));
+            var kbvector = obj.Position - this.Position;
+            kbvector.Normalize();
+            dummy.TakeDamage(new DamageInstance(
+                damage, 
+                Team.enemy, 
+                [ "knockback", $"kbvector={kbvector.X};{kbvector.Y}" ], 
+                "DashAttack", 
+                GetComponents<Dummy>().First(), 
+                [], [], 
+                TimeSpan.FromSeconds(1))
+                );
         }
     }
 }
