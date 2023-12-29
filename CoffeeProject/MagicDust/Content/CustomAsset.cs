@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MagicDustLibrary.Content
 {
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-    public class FromContentAttribute(params string[] path) : Attribute
+    public class FromStorageAttribute(params string[] path) : Attribute
     {
         public string[] Path { get; } = path;
     }
@@ -33,7 +33,7 @@ namespace MagicDustLibrary.Content
             return result;
         }
 
-        private static string ParsePath(FromContentAttribute attribute, IEnumerator<string> names)
+        private static string ParsePath(FromStorageAttribute attribute, IEnumerator<string> names)
         {
             names.MoveNext();
             return Path.Combine(
@@ -76,7 +76,7 @@ namespace MagicDustLibrary.Content
                         continue;
                     }
 
-                    var attribute = parameter.GetCustomAttribute<FromContentAttribute>();
+                    var attribute = parameter.GetCustomAttribute<FromStorageAttribute>();
 
                     if (attribute is null)
                     {

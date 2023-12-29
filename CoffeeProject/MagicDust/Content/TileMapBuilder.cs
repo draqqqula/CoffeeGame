@@ -90,7 +90,7 @@ namespace MagicDustLibrary.Content
         public byte[,] Map { get;}
 
         public LevelMap(
-            [FromContent("*")]Texture2D texture
+            [FromStorage("*")]Texture2D texture
             )
         {
             var colors = new Color[8] {

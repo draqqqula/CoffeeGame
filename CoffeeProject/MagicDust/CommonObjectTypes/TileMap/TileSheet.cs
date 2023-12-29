@@ -24,8 +24,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
         public FrozenDictionary<byte, TileInfo> TileDescriptions { get; init; }
 
         public TileSheet(
-            [FromContent("*_folder", "sheet")]Texture2D sheet,
-            [FromContent("*_folder", "info")]List<ExpandoObject> tiles
+            [FromStorage("*_folder", "sheet")]Texture2D sheet,
+            [FromStorage("*_folder", "info")]List<ExpandoObject> tiles
             ) :
             this(sheet, ParseTileInfo(tiles).ToArray())
         {

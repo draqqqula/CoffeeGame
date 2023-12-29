@@ -15,7 +15,7 @@ namespace CoffeeProject.RoomGeneration
     public class LevelInfo
     {
         public LevelInfo(
-            [FromContent("Levels", "*", "level")] ExpandoObject levelFile,
+            [FromStorage("Levels", "*", "level")] ExpandoObject levelFile,
             [FromInput(0)]string levelName,
             IContentStorage content
             )
@@ -62,10 +62,10 @@ namespace CoffeeProject.RoomGeneration
     public class RoomInfo
     {
         public RoomInfo(
-            [FromContent("Levels", "*", "*", "info")] ExpandoObject info,
-            [FromContent("Levels", "*", "*", "encounters")] List<ExpandoObject> encounters,
-            [FromContent("Levels", "*", "*", "background")] Texture2D background,
-            [FromContent("Levels", "*", "*", "tilemap")] Texture2D tilemap
+            [FromStorage("Levels", "*", "*", "info")] ExpandoObject info,
+            [FromStorage("Levels", "*", "*", "encounters")] List<ExpandoObject> encounters,
+            [FromStorage("Levels", "*", "*", "background")] Texture2D background,
+            [FromStorage("Levels", "*", "*", "tilemap")] Texture2D tilemap
         )
         {
             Background = background;

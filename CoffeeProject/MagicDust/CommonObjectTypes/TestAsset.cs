@@ -16,7 +16,7 @@ namespace MagicDustLibrary.CommonObjectTypes
     public class TestAsset
     {
         public TestAsset(
-            [FromContent("Folder1", "*")]dynamic json
+            [FromStorage("Folder1", "*")]dynamic json
             )
         {
             string a = json.Key;

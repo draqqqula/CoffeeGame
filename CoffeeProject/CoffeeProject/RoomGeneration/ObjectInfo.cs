@@ -32,7 +32,7 @@ namespace CoffeeProject.RoomGeneration
             _state = state;
         }
 
-        public LevelGraph GenerateLevelGraph(string levelName, int mainPathRoomsCount, int enemyRoomsCount, int lootRoomsCount)
+        public GraphInfo GenerateLevelGraph(string levelName, int mainPathRoomsCount, int enemyRoomsCount, int lootRoomsCount)
         {
             var rnd = new Random();
             var levelInfo = _state.Using<IFactoryController>().CreateAsset<LevelInfo>(levelName);
@@ -70,34 +70,10 @@ namespace CoffeeProject.RoomGeneration
 
             level.ConnectLevelGraph();
 
-            CreateLevelPicture(level);
-            //var colors2d = new Microsoft.Xna.Framework.Color[level[0].RoomInfo.TileMap.Width, level[0].RoomInfo.TileMap.Height];
-            //var colors = new Microsoft.Xna.Framework.Color[level[0].RoomInfo.TileMap.Width * level[0].RoomInfo.TileMap.Height];
-            //level[0].RoomInfo.TileMap.GetData(colors);
-
-            //for (int i = 0; i < level[0].RoomInfo.TileMap.Width; i++)
-            //{
-            //    for (int j = 0; j < level[0].RoomInfo.TileMap.Height; j++)
-            //    {
-            //        colors2d[i, j] = colors[j * level[0].RoomInfo.TileMap.Width + i];
-            //    }
-            //}
-
-            //var bitmap = new Bitmap(level[0].RoomInfo.TileMap.Width, level[0].RoomInfo.TileMap.Height);
-            //for (int i = 0; i < level[0].RoomInfo.TileMap.Width; i++)
-            //{
-            //    for (int j = 0; j < level[0].RoomInfo.TileMap.Height; j++)
-            //    {
-            //        var some = Color.FromArgb(colors2d[i, j].R, colors2d[i, j].G, colors2d[i, j].B);
-            //        bitmap.SetPixel(i, j, some);
-            //    }
-            //}
-            //bitmap.Save(@"F:\TestOutputImg.png");
-
-            return level;
+            return CreateLevelPicture(level);
         }
 
-        public Microsoft.Xna.Framework.Color[,] CreateLevelPicture(LevelGraph levelGraph)
+        public GraphInfo CreateLevelPicture(LevelGraph levelGraph)
         {
             var posMemory = new Dictionary<int, Rectangle>();
             var BMscale = 300;
@@ -209,9 +185,11 @@ namespace CoffeeProject.RoomGeneration
                     finalColorArray[i, j] = new Microsoft.Xna.Framework.Color(color.R, color.G, color.B);
                 }
             }
-            return finalColorArray;
+            return new GraphInfo(finalColorArray, posMemory, levelGraph);
         }
     }
+    public record GraphInfo(Microsoft.Xna.Framework.Color[,] Colors, Dictionary<int, Rectangle> Positions, LevelGraph Graph);
+
 
     public class RoomNode
     {
