@@ -42,7 +42,7 @@ namespace CoffeeProject.Levels
                 .AddComponent(new ButtonAction(() =>
                 {
                     state.Using<ILevelController>().ShutCurrent(false);
-                    state.Using<ILevelController>().LaunchLevel("test", false);
+                    state.Using<ILevelController>().LaunchLevel("namescreen", false);
                 }))
                 .AddToState(state);
 

@@ -33,7 +33,6 @@ namespace CoffeeProject.Levels
             {
                 CameraSettings = new CameraSettings()
             };
-            settings.AddEntry("RunInfo", new RunInfo() { CharacterName = "Олег" });
             return settings;
         }
 

@@ -35,7 +35,7 @@ namespace CoffeeProject.GameObjects
                 ));
             this.CombineWith(
                 new Dummy(
-                16, [], Team.player, [], [], 1
+                16, [], Team.player, [], [ OnDamage ], 1
                 ));
             this.CombineWith(new Spring(0.1f));
         }
@@ -56,12 +56,18 @@ namespace CoffeeProject.GameObjects
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
 
+        public DamageInstance OnDamage(Dummy dummy, DamageInstance instance)
+        {
+            var spring = GetComponents<Spring>().Last();
+            spring.Pull(1.12f);
+            return instance;
+        }
+
         public override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
             var physics = GetComponents<Physics<Hero>>().Last();
-            var spring = GetComponents<Spring>().Last();
             var dummy = GetComponents<Dummy>().Last();
             var speed = SPEED;
             var deceleration = DECELERATION;
@@ -113,12 +119,6 @@ namespace CoffeeProject.GameObjects
             {
                 resultingVector.Normalize();
                 physics.AddVector("move", new MovementVector(speed * resultingVector, -deceleration, TimeSpan.Zero, true));
-            }
-
-            if (Client.Controls.OnPress(Control.left) || Client.Controls.OnPress(Control.right)
-                || Client.Controls.OnPress(Control.lookUp) || Client.Controls.OnPress(Control.lookDown))
-            {
-                spring.Pull(1.12f);
             }
 
             if (Client.Controls.OnPress(Control.pause))

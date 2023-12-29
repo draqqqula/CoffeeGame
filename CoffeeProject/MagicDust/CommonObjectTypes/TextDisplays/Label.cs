@@ -13,6 +13,13 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
 {
+    public enum PivotPosition
+    {
+        TopLeft,
+        Center,
+        CenterLeft
+    }
+
     public class Label : GameObject, IDisplayComponent, IBodyComponent
     {
         private static class TextConstants
@@ -27,6 +34,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
         public string Text { get; set; } = TextConstants.DEFAULT_TEXT;
         public float Scale { get; set; } = 1f;
         public Color Color { get; set; } = Color.White;
+        public PivotPosition Pivot {  get; set; } = PivotPosition.TopLeft;
 
         public event OnDispose OnDisposeEvent = delegate { };
 
@@ -53,10 +61,28 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
         {
             return new DrawingParameters
             {
-                Position = Position,
+                Position = DisplayPosition,
                 Scale = new Vector2(Scale, Scale),
                 Color = Color
             };
+        }
+
+        private Vector2 DisplayPosition
+        {
+            get
+            {
+                switch (Pivot)
+                {
+                    case PivotPosition.TopLeft:
+                        return Position;
+                    case PivotPosition.Center:
+                        return Position + new Vector2(Bounds.Left, Bounds.Top);
+                    case PivotPosition.CenterLeft:
+                        return Position + new Vector2(0, Bounds.Top);
+                    default:
+                        return Vector2.Zero;
+                }
+            }
         }
 
         internal Label UseFont(IControllerProvider state, string fileName)
@@ -71,6 +97,18 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
             return this;
         }
 
+        internal Label SetColor(Color color)
+        {
+            Color = color;
+            return this;
+        }
+
+        internal Label SetPivot(PivotPosition pivot)
+        {
+            Pivot = pivot;
+            return this;
+        }
+
         internal Label SetText(string text)
         {
             if (text != Text)
@@ -78,7 +116,19 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
                 Text = text;
                 if (_font is not null)
                 {
-                    Bounds = new Rectangle(Point.Zero, (_font.MeasureString(Text) * Scale).ToPoint());
+                    var size = _font.MeasureString(Text) * Scale;
+                    if (Pivot == PivotPosition.TopLeft)
+                    {
+                        Bounds = new Rectangle(Point.Zero, size.ToPoint());
+                    }
+                    else if (Pivot == PivotPosition.Center)
+                    {
+                        Bounds = new Rectangle((-size / 2).ToPoint(), size.ToPoint());
+                    }
+                    else if (Pivot == PivotPosition.CenterLeft)
+                    {
+                        Bounds = new Rectangle((-new Vector2(0, size.Y) / 2).ToPoint(), size.ToPoint());
+                    }
                 }
             }
             return this;
@@ -131,6 +181,16 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
         public static T SetScale<T>(this T obj, float scale) where T : Label
         {
             return obj.SetScale(scale) as T;
+        }
+
+        public static T SetColor<T>(this T obj, Color color) where T : Label
+        {
+            return obj.SetColor(color) as T;
+        }
+
+        public static T SetPivot<T>(this T obj, PivotPosition pivot) where T : Label
+        {
+            return obj.SetPivot(pivot) as T;
         }
     }
 }

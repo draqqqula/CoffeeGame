@@ -68,6 +68,12 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:level1_folder/info.json
 
+#begin Saves/run.json
+/importer:MagicJsonImporter
+/processor:MagicJsonDynamicProcessor
+/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
+/build:Saves/run.json
+
 #begin SpriteFonts/Caveat1.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

@@ -142,7 +142,7 @@ namespace AsepriteImporter
 
         private Color ToXnaColor(AsepriteDotNet.Common.Color aseColor)
         {
-            return new Color(aseColor.R, aseColor.G, aseColor.B, aseColor.A);
+            return Color.FromNonPremultiplied(new Vector4(aseColor.R/256f, aseColor.G/256f, aseColor.B / 256f, aseColor.A/256f));
         }
 
         private Dictionary<string, string> ParseTags(string line)

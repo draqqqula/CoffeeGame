@@ -40,7 +40,7 @@ namespace MagicDustLibrary.Display
                 Anchor,
                 Arguments.Scale,
                 Arguments.Mirroring,
-                new Random().NextSingle()
+                Arguments.Priority
                 );
         }
         #endregion
