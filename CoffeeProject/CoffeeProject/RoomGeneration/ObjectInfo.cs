@@ -146,7 +146,7 @@ namespace CoffeeProject.RoomGeneration
                 }
                 if (levelGraph[i].RoomNumber == levelGraph.MainPathRoomsCount + 1)
                 {
-                    var bossY = initY - levelGraph.MainPathRoomsCount * 25;
+                    var bossY = posMemory[i - 1].Y - 5 - levelGraph[i].RoomInfo.TileMap.Height;
                     graphics.DrawImage(img, initX, bossY);
                     posMemory.Add(levelGraph[i].RoomNumber, new Rectangle(initX, bossY, width, height));
                 }

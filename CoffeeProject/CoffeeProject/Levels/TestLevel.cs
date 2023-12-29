@@ -55,9 +55,10 @@ namespace CoffeeProject.Levels
             PlayerPosition = map.GetBoundsForPoint(graph.Positions.First().Value.Location).Value.Location.ToVector2() + new Vector2(300, 300);
 
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
+            var enemyPos = map.GetBoundsForPoint(graph.Positions[1].Location).Value.Location.ToVector2() + new Vector2(300, 300);
             Enemy = state.Using<IFactoryController>()
                 .CreateObject<NaughtyShell>()
-                .SetPos(new Vector2(850, 700))
+                .SetPos(enemyPos)
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
