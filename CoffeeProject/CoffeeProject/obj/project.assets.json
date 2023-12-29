@@ -1004,19 +1004,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Павел\\.nuget\\packages\\": {}
+    "C:\\Users\\pboch\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Прога\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
+      "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
       "projectName": "CoffeeProject",
-      "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
-      "packagesPath": "C:\\Users\\Павел\\.nuget\\packages\\",
-      "outputPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\CoffeeProject\\obj\\",
+      "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
+      "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
+      "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\CoffeeProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Павел\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1024,21 +1024,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\Прога\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
-              "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj"
+            "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj": {
+              "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj"
             },
-            "F:\\Прога\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
-              "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj"
+            "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj": {
+              "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj"
             },
-            "F:\\Прога\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
-              "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
+            "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj": {
+              "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj"
             }
           }
         }

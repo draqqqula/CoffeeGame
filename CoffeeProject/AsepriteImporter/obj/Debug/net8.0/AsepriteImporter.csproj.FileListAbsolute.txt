@@ -34,3 +34,21 @@ F:\Прога\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\Aseprit
 F:\Прога\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\refint\AsepriteImporter.dll
 F:\Прога\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.pdb
 F:\Прога\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\ref\AsepriteImporter.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\AsepriteImporter.deps.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\AsepriteImporter.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\AsepriteImporter.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\MagicDustLibrary.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\MagicDustLibrary.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\bin\Debug\net8.0\JsonPipeline.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.csproj.AssemblyReference.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.GeneratedMSBuildEditorConfig.editorconfig
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.AssemblyInfoInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.AssemblyInfo.cs
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.csproj.CoreCompileInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.sourcelink.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.csproj.CopyComplete
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\refint\AsepriteImporter.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\AsepriteImporter.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\AsepriteImporter\obj\Debug\net8.0\ref\AsepriteImporter.dll

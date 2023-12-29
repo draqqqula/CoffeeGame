@@ -5582,19 +5582,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Павел\\.nuget\\packages\\": {}
+    "C:\\Users\\pboch\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.2",
     "restore": {
-      "projectUniqueName": "F:\\Прога\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+      "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
       "projectName": "MagicDustLibrary",
-      "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
-      "packagesPath": "C:\\Users\\Павел\\.nuget\\packages\\",
-      "outputPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\MagicDust\\obj\\",
+      "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
+      "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
+      "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\MagicDust\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Павел\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5602,15 +5602,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj": {
-              "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj"
+            "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj": {
+              "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj"
             }
           }
         }

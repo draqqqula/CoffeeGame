@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AsepriteImporter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b97343730d5bdbba2e6e5f3904893e4946f1d431")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64e0dc983c2b1192a24b1668d63630cbb465e164")]
 [assembly: System.Reflection.AssemblyProductAttribute("AsepriteImporter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AsepriteImporter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
