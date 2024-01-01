@@ -19,6 +19,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BehaviorKit;
+using MagicDustLibrary.ComponentModel;
+using System.IO;
 
 namespace CoffeeProject.Levels
 {
@@ -86,6 +89,7 @@ namespace CoffeeProject.Levels
                 .SetPivot(PivotPosition.Center)
                 .SetText(() => $"{NewName}")
                 .SetPos(new Vector2(WindowWidth/2, WindowHeight/2))
+                .AddComponent(new VisualShake())
                 .AddToState(state);
 
             PartLabel = state.Using<IFactoryController>()
@@ -114,6 +118,7 @@ namespace CoffeeProject.Levels
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Music", "Star"), "main").Play();
             WindowWidth = client.Window.Width;
             WindowHeight = client.Window.Height;
             var physics = new Physics<CameraAnchor>(new SurfaceMap([], 0, 16));
@@ -129,6 +134,7 @@ namespace CoffeeProject.Levels
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
+            state.Using<ISoundController>().GetSoundInstance("main").Stop();
         }
 
         protected override void Update(IControllerProvider state, TimeSpan deltaTime)
@@ -158,6 +164,8 @@ namespace CoffeeProject.Levels
                     NameSelectionStep += 1;
                     physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
                     CurrentMessage = "Меня точно так зовут?";
+                    state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "crystal_bell2"), "sound").Play();
+                    NameLabel.InvokeEach<VisualShake>(it => it.Start(6, TimeSpan.FromSeconds(0.1), TimeSpan.FromSeconds(0.08), 18, 0.3f));
                 }
                 else
                 {
@@ -165,6 +173,8 @@ namespace CoffeeProject.Levels
                     NameSelectionStep += 1;
                     SelectionIndex = 0;
                     physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
+                    state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "crystal_bell3"), "sound").Play();
+                    NameLabel.InvokeEach<VisualShake>(it => it.Start(6, TimeSpan.FromSeconds(0.1), TimeSpan.FromSeconds(0.08), 18, 0.3f));
                 }
             }
 
@@ -230,7 +240,7 @@ namespace CoffeeProject.Levels
             var random = new RandomEx();
             var animation = $"star{random.Next(1, 1 + AnimationCount)}";
             var distance = random.NextSingle(MinDistance, MaxDistance, DistanceFactor);
-            var position = AngleToVector(random.NextSingle() * float.Pi * 2) * distance + new Vector2(WindowHeight/2, WindowHeight/2);
+            var position = MathEx.AngleToVector(random.NextSingle() * float.Pi * 2) * distance + new Vector2(WindowHeight/2, WindowHeight/2);
             var placementIndex = random.Next(placements.Length - 1);
             var placement = placements[placementIndex];
 
@@ -243,11 +253,6 @@ namespace CoffeeProject.Levels
             var sineAmp = random.NextSingle(MinSineScale, MaxSineScale, SineScaleFactor);
 
             CreateSoul(state, scale, animation, placement, position, opacity, sineSpeed, sineAmp);
-        }
-
-        private Vector2 AngleToVector(float angle)
-        {
-            return new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
         }
     }
 }

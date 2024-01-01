@@ -121,3 +121,12 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\Pa
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\enemy.aseprite
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\soul.aseprite
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Saves\run.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Music\Star.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell1.ogg
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell1.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bells_inverted.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell2.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell3.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell_inverted2.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\ben.aseprite
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\damage_ball.aseprite

@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Saves/run.xnb","MagicJsonDynamicProcessor","JsonWrapper",142,234,0,0716547
+"C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell_inverted2.wav","C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Sound/crystal_bell_inverted2.xnb","SoundEffectProcessor","SoundEffectContent",272336,272397,0,204676

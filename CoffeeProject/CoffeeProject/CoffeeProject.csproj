@@ -35,6 +35,12 @@
     <ProjectReference Include="..\MagicDust\MagicDustLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Sprites\ben.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\damage_ball.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Sprites\enemy.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

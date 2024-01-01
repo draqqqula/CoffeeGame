@@ -19,7 +19,7 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
             {
                 var file = _content.GetAsset<SoundEffect>(fileName);
                 var sound = file.CreateInstance();
-                _soundEffects.Add(tag, sound);
+                _soundEffects[tag] = sound;
                 return sound;
             }
             finally

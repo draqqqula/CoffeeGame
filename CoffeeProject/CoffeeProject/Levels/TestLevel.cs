@@ -50,16 +50,28 @@ namespace CoffeeProject.Levels
             state.Using<SurfaceMapProvider>().AddMap("level", map);
 
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
-            Enemy = state.Using<IFactoryController>()
+            var enemy1 = state.Using<IFactoryController>()
                 .CreateObject<NaughtyShell>()
                 .SetPos(new Vector2(850, 700))
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
                 .AddToState(state);
-            Enemy.InvokeEach<Physics<NaughtyShell>>(it => it.SurfaceMap = surfaces);
+            enemy1.InvokeEach<Physics<NaughtyShell>>(it => it.SurfaceMap = surfaces);
+
+            var enemy2 = state.Using<IFactoryController>()
+                .CreateObject<Ben>()
+                .SetPos(new Vector2(850, 700))
+                .SetBounds(new Rectangle(-20, -40, 40, 40))
+                .SetPlacement(Placement<MainLayer>.On())
+                .AddHealthLabel(state)
+                .AddToState(state);
+            enemy2.InvokeEach<Physics<Ben>>(it => it.SurfaceMap = surfaces);
+
+            Enemy.Add(enemy1);
+            Enemy.Add(enemy2);
         }
-        private NaughtyShell Enemy { get; set; }
+        private List<IEnemy> Enemy { get; set; } = [];
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
@@ -67,16 +79,29 @@ namespace CoffeeProject.Levels
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
+            var healthIndicator = state.Using<IFactoryController>()
+                .CreateObject<Label>()
+                .SetPlacement(new Placement<GUI>())
+                .SetPos(new Vector2(100, 50))
+                .UseCustomFont(state, "TestFont")
+                .SetScale(4f)
+                .SetText("c")
+                .AddToState(state);
+
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
 
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(new Vector2(0, 0))
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
-                .AddHealthLabel(state)
+                .AddComponent(new TimerHandler())
+                .AddComponent(new Playable(healthIndicator))
                 .AddToState(state);
 
-            Enemy.SetTarget(obj);
+            foreach (var enemy in Enemy)
+            {
+                enemy.SetTarget(state, obj);
+            }
 
             obj.InvokeEach<Physics<Hero>>(it => it.SurfaceMap = surfaces);
             var dummy = obj.GetComponents<Dummy>().First();
@@ -84,11 +109,6 @@ namespace CoffeeProject.Levels
             obj.Client = client;
 
             state.Using<IClientController>().AttachCamera(client, obj);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(50, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(150, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(250, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

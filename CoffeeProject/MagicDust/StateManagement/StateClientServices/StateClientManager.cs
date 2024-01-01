@@ -57,6 +57,7 @@ namespace MagicDustLibrary.Organization.StateClientServices
         {
             foreach (var client in Clients)
             {
+                OnDisconnect(client);
                 client.OnUpdate -= OnUpdate;
                 client.OnDispose -= OnDisconnect;
             }

@@ -25,13 +25,13 @@ namespace CoffeeProject.GameObjects
         {
             return 1;
         }
-        public override void OnStart(NaughtyShell unit, GameObject target)
+        public override void OnStart(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
             var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
             physics.AddVector("Forward", new MovementVector(
                 -Vector2.Normalize(unit.Position - target.GetComponents<IBodyComponent>().First().Position) * 5, 0, TimeSpan.Zero, true));
         }
-        public override bool Continue(NaughtyShell unit, GameObject target)
+        public override bool Continue(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
             var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
@@ -43,15 +43,15 @@ namespace CoffeeProject.GameObjects
             return false;
         }
 
-        public override void OnEnd(NaughtyShell unit, GameObject target)
+        public override void OnEnd(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
             var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
             physics.RemoveVector("Forward");
         }
 
-        public override void OnForcedBreak(NaughtyShell unit, GameObject target, UnitMove<NaughtyShell, GameObject> breaker)
+        public override void OnForcedBreak(IControllerProvider state, NaughtyShell unit, GameObject target, UnitMove<NaughtyShell, GameObject> breaker)
         {
-            OnEnd(unit, target);
+            OnEnd(state, unit, target);
         }
     }
 
@@ -70,13 +70,13 @@ namespace CoffeeProject.GameObjects
             return 2;
         }
 
-        public override bool Continue(NaughtyShell unit, GameObject target)
+        public override bool Continue(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
             var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
             return physics.ActiveVectors.ContainsKey("DashAttack");
         }
 
-        public override void OnStart(NaughtyShell unit, GameObject target)
+        public override void OnStart(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
@@ -85,7 +85,7 @@ namespace CoffeeProject.GameObjects
     }
 
     [SpriteSheet("enemy")]
-    public class NaughtyShell : Sprite, IMultiBehaviorComponent, IUpdateComponent, ICollisionChecker<Hero>
+    public class NaughtyShell : Sprite, IMultiBehaviorComponent, IUpdateComponent, ICollisionChecker<Hero>, IEnemy
     {
         public NaughtyShell(IAnimationProvider provider) : base(provider)
         {
@@ -120,9 +120,9 @@ namespace CoffeeProject.GameObjects
             }
         }
 
-        public void SetTarget(GameObject target)
+        public void SetTarget(IControllerProvider state, GameObject target)
         {
-            this.InvokeEach<Unit<NaughtyShell, GameObject>>(it => it.SetTarget(target, this));
+            this.InvokeEach<Unit<NaughtyShell, GameObject>>(it => it.SetTarget(state, target, this));
         }
 
         public override void Update(IControllerProvider state, TimeSpan deltaTime)
