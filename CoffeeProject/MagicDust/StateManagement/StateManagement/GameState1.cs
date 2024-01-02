@@ -70,7 +70,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             
             foreach (var displayable in displayables)
             {
-                displayable.Draw(mainClient, batch);
+                 displayable.Draw(mainClient, batch);
             }
         }
 

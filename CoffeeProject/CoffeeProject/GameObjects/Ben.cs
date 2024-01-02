@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Extensions;
 
 namespace CoffeeProject.GameObjects
 {
@@ -130,7 +131,12 @@ namespace CoffeeProject.GameObjects
             unit.Animator.SetAnimation("Default", 0);
             var direction = target.GetComponents<IBodyComponent>().First().Position - unit.Position;
             direction.Normalize();
-            DamageBall.CastBall(state, unit.Position, new MovementVector(direction * 8, 0, TimeSpan.FromSeconds(4), false), target.GetComponents<Dummy>().First());
+            DamageBall.CastBall(
+                state, 
+                unit.Position, 
+                new MovementVector(direction * 8, 0, TimeSpan.FromSeconds(4), false), 
+                target.GetComponents<Dummy>().First()
+                );
         }
     }
 
@@ -164,6 +170,21 @@ namespace CoffeeProject.GameObjects
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)
         {
             unit.Animator.SetAnimation("Default", 0);
+            var direction = target.GetComponents<IBodyComponent>().First().Position - unit.Position;
+            var direction1 = MathEx.AngleToVector(MathEx.NormalizeAngle(MathEx.VectorToAngle(direction) + 0.1f * MathF.PI, MathF.PI * 2));
+            var direction2 = MathEx.AngleToVector(MathEx.NormalizeAngle(MathEx.VectorToAngle(direction) - 0.1f * MathF.PI, MathF.PI * 2));
+            DamageBall.CastBall(
+                state,
+                unit.Position,
+                new MovementVector(direction1 * 8, 0, TimeSpan.FromSeconds(4), false),
+                target.GetComponents<Dummy>().First()
+                );
+            DamageBall.CastBall(
+                state,
+                unit.Position,
+                new MovementVector(direction2 * 8, 0, TimeSpan.FromSeconds(4), false),
+                target.GetComponents<Dummy>().First()
+                );
         }
     }
 

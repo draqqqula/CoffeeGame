@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using BehaviorKit;
 using MagicDustLibrary.ComponentModel;
 using System.IO;
+using MagicDustLibrary.CommonObjectTypes.Image;
 
 namespace CoffeeProject.Levels
 {
@@ -51,6 +52,7 @@ namespace CoffeeProject.Levels
             }
         }
 
+        private Image Tint { get; set; }
         private CameraAnchor Anchor { get; set; }
         private GameClient MainClient { get; set; }
         private RunInfo RunInfo { get; set; } = new ();
@@ -62,6 +64,7 @@ namespace CoffeeProject.Levels
         private DynamicLabel PartLabel { get; set; }
         private string CurrentMessage { get; set; } = "Как меня зовут?";
         private DynamicLabel MessageLabel { get; set; }
+        private bool OnTransition { get; set; } = false;
         protected override LevelSettings GetDefaults()
         {
             var settings = new LevelSettings();
@@ -81,6 +84,14 @@ namespace CoffeeProject.Levels
             Batches.Add(savedData.FirstPart);
             Batches.Add(savedData.SecondPart);
             Batches.Add(savedData.ThirdPart);
+
+            Tint = state.Using<IFactoryController>()
+                .CreateObject<Image>()
+                .SetMonoColor(Color.White)
+                .SetOpacity(0)
+                .SetPlacement(new Placement<TintLayer>())
+                .SetScale(new Vector2(1920, 1080))
+                .AddToState(state);
 
             NameLabel = state.Using<IFactoryController>()
                 .CreateObject<DynamicLabel>()
@@ -114,6 +125,7 @@ namespace CoffeeProject.Levels
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
+            Tint.SetScale(client.Window.Size.ToVector2());
         }
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
@@ -139,6 +151,17 @@ namespace CoffeeProject.Levels
 
         protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
+            if (OnTransition)
+            {
+                Tint.Opacity += 0.3f * Convert.ToSingle(deltaTime.TotalSeconds);
+                if (Tint.Opacity >= 1)
+                {
+                    state.Using<ILevelController>().ShutCurrent(false);
+                    state.Using<ILevelController>().LaunchLevel("test", new LevelArgs(NewName), false);
+                }
+                return;
+            }
+
             var physics = Anchor.GetComponents<Physics<CameraAnchor>>().First();
 
             if (physics.ActiveVectors.ContainsKey("move"))
@@ -153,8 +176,7 @@ namespace CoffeeProject.Levels
             {
                 if (NameSelectionStep >= Batches.Count)
                 {
-                    state.Using<ILevelController>().ShutCurrent(false);
-                    state.Using<ILevelController>().LaunchLevel("test", new LevelArgs(NewName), false);
+                    OnTransition = true;
                     RunInfo.CharacterName = NewName;
                 }
                 else if (NameSelectionStep >= Batches.Count - 1)
