@@ -102,6 +102,7 @@ namespace CoffeeProject.RoomGeneration
             #region
 
             var prevNode = levelGraph[0];
+            var constDelta = 10;
             for (int i = 0; i < levelGraph.Length; i++)
             {
                 var width = levelGraph[i].RoomInfo.TileMap.Width;
@@ -137,7 +138,6 @@ namespace CoffeeProject.RoomGeneration
                 }
                 if ((levelGraph[i].RoomNumber - 1 == prevNode.RoomNumber) && (levelGraph[i].RoomNumber <= levelGraph.MainPathRoomsCount))
                 {
-                    var constDelta = 5;
                     var dY = constDelta + levelGraph[i].RoomInfo.TileMap.Height;
                     graphics.DrawImage(img, initX, prevY - dY);
                     prevNode = levelGraph[i];
@@ -146,7 +146,7 @@ namespace CoffeeProject.RoomGeneration
                 }
                 if (levelGraph[i].RoomNumber == levelGraph.MainPathRoomsCount + 1)
                 {
-                    var bossY = posMemory[i - 1].Y - 5 - levelGraph[i].RoomInfo.TileMap.Height;
+                    var bossY = posMemory[i - 1].Y - constDelta - levelGraph[i].RoomInfo.TileMap.Height;
                     graphics.DrawImage(img, initX, bossY);
                     posMemory.Add(levelGraph[i].RoomNumber, new Rectangle(initX, bossY, width, height));
                 }
@@ -156,18 +156,15 @@ namespace CoffeeProject.RoomGeneration
                     var randomMainPathRoomNum = rnd.Next(levelGraph.MainPathRoomsCount);
                     var randomSide = sideChose[rnd.Next(2)];
                     if (!memory[randomMainPathRoomNum].ContainsKey(randomSide))
-                        memory[randomMainPathRoomNum].Add(randomSide, 1);
-                    else
-                    {
-                        memory[randomMainPathRoomNum][randomSide] += 1;
-                    }
-                    var constDelta = 5;
-                    var dX = constDelta + levelGraph[i].RoomInfo.TileMap.Width;
+                        memory[randomMainPathRoomNum].Add(randomSide, randomMainPathRoomNum);
+
+                    var dX = levelGraph[memory[randomMainPathRoomNum][randomSide]].RoomInfo.TileMap.Width + levelGraph[i].RoomInfo.TileMap.Width;
                     if (randomSide == "left")
                         dX = -dX;
-                    var thisX = initX + dX * memory[randomMainPathRoomNum][randomSide];
+                    var thisX = dX + posMemory[memory[randomMainPathRoomNum][randomSide]].X;
                     graphics.DrawImage(img, thisX, posMemory[randomMainPathRoomNum].Y);
                     posMemory.Add(levelGraph[i].RoomNumber, new Rectangle(thisX, posMemory[randomMainPathRoomNum].Y, width, height));
+                    memory[randomMainPathRoomNum][randomSide] = levelGraph[i].RoomNumber;
                 }
                 //levelBitmap.Save($@"F:\TestLevelFinalOutIMG{i}-{levelGraph[i].RoomNumber}.png");
             }

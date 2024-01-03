@@ -80,24 +80,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BogdanPC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\pboch\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+      "projectUniqueName": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
       "projectName": "JsonPipeline",
-      "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
-      "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
-      "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\",
+      "projectPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+      "packagesPath": "C:\\Users\\pboch\\.nuget\\packages\\",
+      "outputPath": "F:\\Games\\Game coffe project\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\pboch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -105,7 +100,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
