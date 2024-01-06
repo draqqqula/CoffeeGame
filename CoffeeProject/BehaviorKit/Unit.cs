@@ -20,6 +20,7 @@ namespace BehaviorKit
         private KeyValuePair<string, UnitMove<TUnit, TTarget>> CurrentAction;
 
         public TTarget Target { get; set; }
+        public bool Enabled { get; set; } = true;
 
         #region TARGET
         public void SetTarget(IControllerProvider state, TTarget target, TUnit parent)
@@ -104,7 +105,9 @@ namespace BehaviorKit
         public void Step()
         {
             foreach (var cooldown in StepCooldowns.Keys)
+            {
                 StepCooldowns[cooldown] -= 1;
+            }
             StepCooldowns = StepCooldowns.Where(cooldown => cooldown.Value > 0).ToDictionary(e => e.Key, e => e.Value);
         }
 
@@ -125,16 +128,25 @@ namespace BehaviorKit
             }
         }
 
-        public void AddAction(string name, UnitMove<TUnit, TTarget> action)
+        public void AddAction(string name, UnitMove<TUnit, TTarget> action, int initialCooldown)
         {
             Actions.Add(name, action);
+            if (initialCooldown > 0)
+            {
+                StepCooldowns.Add(name, initialCooldown);
+            }
         }
 
-        public void AddActions(params (string name, UnitMove<TUnit, TTarget> action)[] actions)
+        public void AddAction(string name, UnitMove<TUnit, TTarget> action)
+        {
+            AddAction(name, action, 0);
+        }
+
+        public void AddActions(params (string name, UnitMove<TUnit, TTarget> action, int initialCooldown)[] actions)
         {
             foreach (var action in actions)
             {
-                AddAction(action.name, action.action);
+                AddAction(action.name, action.action, action.initialCooldown);
             }
         }
         #endregion

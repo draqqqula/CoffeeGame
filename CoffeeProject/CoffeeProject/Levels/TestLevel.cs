@@ -68,8 +68,18 @@ namespace CoffeeProject.Levels
                 .AddToState(state);
             enemy2.InvokeEach<Physics<Ben>>(it => it.SurfaceMap = surfaces);
 
+            var boss1 = state.Using<IFactoryController>()
+                .CreateObject<Demon>()
+                .SetPos(new Vector2(850, 700))
+                .SetBounds(new Rectangle(-20, -40, 40, 40))
+                .SetPlacement(Placement<MainLayer>.On())
+                .AddHealthLabel(state)
+                .AddToState(state);
+            boss1.InvokeEach<Physics<Demon>>(it => it.SurfaceMap = surfaces);
+
             Enemy.Add(enemy1);
             Enemy.Add(enemy2);
+            Enemy.Add(boss1);
         }
         private List<IEnemy> Enemy { get; set; } = [];
 

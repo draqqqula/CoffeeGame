@@ -24,7 +24,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
             Dispose
         }
         public OnException ExceptionAction { get; set; } = OnException.UseErrorText;
-        private Func<string> TextGenerator {  get; set; } = () => "Text";
+        protected Func<string> TextGenerator {  get; set; } = () => "Text";
         public void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             OnAct(state, deltaTime, this);

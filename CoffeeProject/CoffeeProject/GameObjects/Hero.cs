@@ -2,11 +2,14 @@
 using CoffeeProject.Behaviors;
 using CoffeeProject.Combat;
 using CoffeeProject.Family;
+using CoffeeProject.Layers;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
+using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Logic.Controllers;
@@ -20,6 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CoffeeProject.BoxDisplay;
 
 namespace CoffeeProject.GameObjects
 {
@@ -34,12 +38,13 @@ namespace CoffeeProject.GameObjects
             this.CombineWith(
                 new Physics<Hero>(
                 new SurfaceMap([], 0, 1)
-                ));
-            this.CombineWith(
+                ))
+            .CombineWith(
                 new Dummy(
-                16, [], Team.player, [], [ OnDamage ], 1
-                ));
-            this.CombineWith(new Spring(0.1f));
+                16, [], Team.player, [], [OnDamage], 1
+                ))
+            .CombineWith(new Spring(0.1f))
+            .CombineWith(new TimerHandler());
         }
 
         protected override DrawingParameters DisplayInfo
@@ -77,8 +82,10 @@ namespace CoffeeProject.GameObjects
             return instance;
         }
 
+        private List<Direction> Directions { get; set; } = [];
         public override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
+            Directions.Clear();
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
             var physics = GetComponents<Physics<Hero>>().Last();
@@ -90,43 +97,35 @@ namespace CoffeeProject.GameObjects
             ApplyModifiers();
 
             Vector2 resultingVector = Vector2.Zero;
-            bool refreshAnimator = true;
             
             if (Client.Controls[Control.left])
             {
-                if (refreshAnimator)
-                {
-                    Animator.SetAnimation("Left", 0);
-                    refreshAnimator = false;
-                }
-                resultingVector += new Vector2(-1, 0);
+                Directions.Add(Direction.Left);
             }
             if (Client.Controls[Control.right])
             {
-                if (refreshAnimator)
-                {
-                    Animator.SetAnimation("Right", 0);
-                    refreshAnimator = false;
-                }
-                resultingVector += new Vector2(1, 0);
+                Directions.Add(Direction.Right);
             }
             if (Client.Controls[Control.lookUp])
             {
-                if (refreshAnimator)
-                {
-                    Animator.SetAnimation("Backward", 0);
-                    refreshAnimator = false;
-                }
-                resultingVector += new Vector2(0, -1);
+                Directions.Add(Direction.Backward);
             }
             if (Client.Controls[Control.lookDown])
             {
-                if (refreshAnimator)
-                {
-                    Animator.SetAnimation("Default", 0);
-                    refreshAnimator = false;
-                }
-                resultingVector += new Vector2(0, 1);
+                Directions.Add(Direction.Forward);
+            }
+
+            if (Directions.Count > 0)
+            {
+                Animator.SetAnimation(Directions
+                    .Last()
+                    .ToString()
+                    .Replace("Forward", "Default"), 0);
+            }
+
+            foreach (var direction in Directions)
+            {
+                resultingVector += direction.ToPoint().ToVector2();
             }
 
             if (resultingVector != Vector2.Zero)
@@ -155,6 +154,43 @@ namespace CoffeeProject.GameObjects
             {
                 state.Using<ILevelController>().PauseCurrent();
                 state.Using<ILevelController>().LaunchLevel("gameover", false);
+            }
+
+            UseSlash(state);
+        }
+
+        private const float DirectionOffset = 60;
+        private void UseSlash(IControllerProvider state)
+        {
+            var timer = GetComponents<TimerHandler>().First();
+            var physics = GetComponents<Physics<Hero>>().Last();
+            if (Client.Controls.OnPress(Control.jump))
+            {
+                if (timer.OnLoop("slash", TimeSpan.FromSeconds(0.6), delegate { }))
+                {
+                    var offset = Enum.Parse<Direction>(Animator.Running.Name.Replace("Default", "Forward")).ToPoint().ToVector2() * DirectionOffset;
+                    var slash = state.Using<IFactoryController>().CreateObject<Slash>()
+                    .SetPos(Position + offset)
+                    .SetBounds(new Rectangle(-70, -70, 140, 140))
+                    .UseBoxDisplay(state, Color.Red, Color.Purple, 3)
+                    .SetPlacement(new Placement<MainLayer>())
+                    .AddToState(state);
+
+                    var damage = new Dictionary<DamageType, int>
+                    {
+                        { DamageType.Physical, 3 }
+                    };
+
+                    slash.Damage = new DamageInstance(damage, Team.player, [], "Slash", GetComponents<Dummy>().First(), [], [], TimeSpan.FromSeconds(0.5));
+                    slash.Offset = offset;
+                    slash.Animator.SetAnimation(Animator.Running.Name, 0);
+                    slash.Owner = this;
+                    timer.SetTimer("deleteSlash", TimeSpan.FromSeconds(0.2), () =>
+                    {
+                        slash.Dispose();
+                    }, true);
+                    physics.ActiveVectors.Remove("move");
+                }
             }
         }
 

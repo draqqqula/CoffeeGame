@@ -11,12 +11,75 @@ using RectangleFLib;
 
 namespace CoffeeProject.Behaviors
 {
+    public static class SideExtensions
+    {
+        public static Point ToPoint(this Side side)
+        {
+            switch (side)
+            {
+                case Side.Left:
+                    return new Point(-1, 0);
+                case Side.Right:
+                    return new Point(1, 0);
+                case Side.Top:
+                    return new Point(0, -1);
+                case Side.Bottom:
+                    return new Point(0, 1);
+                default:
+                    return new Point(0, 0);
+            }
+        }
+
+        public static Point ToPoint(this Direction direction)
+        {
+            return direction.ToSide().ToPoint();
+        }
+
+        public static Direction ToDirection(this Side side)
+        {
+            switch (side)
+            {
+                case Side.Left:
+                    return Direction.Left;
+                case Side.Right:
+                    return Direction.Right;
+                case Side.Top:
+                    return Direction.Backward;
+                default:
+                    return Direction.Forward;
+            }
+        }
+
+        public static Side ToSide(this Direction side)
+        {
+            switch (side)
+            {
+                case Direction.Left:
+                    return Side.Left;
+                case Direction.Right:
+                    return Side.Right;
+                case Direction.Backward:
+                    return Side.Top;
+                default:
+                    return Side.Bottom;
+            }
+        }
+    }
+
     public enum Side
     {
         Left,
         Right,
         Top,
         Bottom
+    }
+
+    public enum Direction
+    {
+        Left,
+        Right,
+        Forward,
+        Backward
     }
 
     /// <summary>
@@ -189,6 +252,12 @@ namespace CoffeeProject.Behaviors
                 if (!intersection.IsEmpty)
                 {
                     var distance = moving.Center - intersection.Center;
+
+                    if (distance == Point.Zero)
+                    {
+                        return Vector2.Zero;
+                    }
+
                     if (intersection.Width > intersection.Height)
                     {
                         var factor = distance.Y / Math.Abs(distance.Y);

@@ -65,7 +65,7 @@ namespace CoffeeProject.GameObjects
             return this;
         }
 
-        protected override DrawingParameters DisplayInfo => base.DisplayInfo with { Scale = new Vector2(0.6f, 0.6f) };
+        protected override DrawingParameters DisplayInfo => base.DisplayInfo with { Scale = new Vector2(0.6f, 0.6f), OrderComparer = Position.ToPoint().Y };
 
         public static DamageBall CastBall(IControllerProvider state, Vector2 position, MovementVector vector, Dummy owner)
         {

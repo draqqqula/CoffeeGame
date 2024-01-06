@@ -133,7 +133,7 @@ namespace CoffeeProject.GameObjects
             direction.Normalize();
             DamageBall.CastBall(
                 state, 
-                unit.Position, 
+                unit.Position + direction * 80, 
                 new MovementVector(direction * 8, 0, TimeSpan.FromSeconds(4), false), 
                 target.GetComponents<Dummy>().First()
                 );
@@ -175,13 +175,13 @@ namespace CoffeeProject.GameObjects
             var direction2 = MathEx.AngleToVector(MathEx.NormalizeAngle(MathEx.VectorToAngle(direction) - 0.1f * MathF.PI, MathF.PI * 2));
             DamageBall.CastBall(
                 state,
-                unit.Position,
+                unit.Position + direction1 * 80,
                 new MovementVector(direction1 * 8, 0, TimeSpan.FromSeconds(4), false),
                 target.GetComponents<Dummy>().First()
                 );
             DamageBall.CastBall(
                 state,
-                unit.Position,
+                unit.Position + direction2 * 80,
                 new MovementVector(direction2 * 8, 0, TimeSpan.FromSeconds(4), false),
                 target.GetComponents<Dummy>().First()
                 );
