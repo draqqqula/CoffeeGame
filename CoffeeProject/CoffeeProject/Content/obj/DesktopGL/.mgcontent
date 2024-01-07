@@ -12,6 +12,7 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/shadow.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell_inverted2.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell1.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</File>
@@ -22,6 +23,7 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/vignette.png</File>
   </SourceFiles>
   <DestFiles>
     <File>level1_map.png</File>
@@ -37,10 +39,12 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>SpriteFonts/Caveat.spritefont</File>
     <File>SpriteFonts/Papyrus_numeric/info.json</File>
     <File>SpriteFonts/Papyrus_numeric/texture.png</File>
     <File>SpriteFonts/TestFont/texture.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

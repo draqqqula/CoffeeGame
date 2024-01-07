@@ -80,6 +80,18 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
 /build:Saves/run.json
 
+#begin shadow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:shadow.png
+
 #begin Sound/crystal_bell_inverted2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -152,4 +164,16 @@
 /processor:MagicJsonDynamicProcessor
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
 /build:SpriteFonts/TestFont/info.json
+
+#begin vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:vignette.png
 

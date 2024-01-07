@@ -83,6 +83,7 @@ namespace CoffeeProject.GameObjects
                 .SetPos(position)
                 .SetBounds(new Rectangle(-15, -15, 30, 30))
                 .SetPlacement(new Placement<MainLayer>())
+                .AddShadow(state)
                 .AddComponent(physics)
                 .AddComponent(timerHandler)
                 .AddToState(state);

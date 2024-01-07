@@ -123,7 +123,7 @@ namespace CoffeeProject.GameObjects
         public override void OnStart(IControllerProvider state, Ben unit, GameObject target)
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
-            unit.Animator.SetAnimation("Atk_forward", 0);
+            unit.Animator.SetAnimation($"Atk_{unit.Animator.Running.Name}", 0);
         }
 
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)
@@ -164,7 +164,7 @@ namespace CoffeeProject.GameObjects
         public override void OnStart(IControllerProvider state, Ben unit, GameObject target)
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
-            unit.Animator.SetAnimation("Atk_backward", 0);
+            unit.Animator.SetAnimation($"Atk_{unit.Animator.Running.Name}", 0);
         }
 
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)
@@ -188,7 +188,7 @@ namespace CoffeeProject.GameObjects
         }
     }
 
-    [SpriteSheet("ben")]
+    [SpriteSheet("enemy_with_fireballs")]
     public class Ben : Sprite, IMultiBehaviorComponent, IUpdateComponent, ICollisionChecker<Hero>, IEnemy
     {
         public Ben(IAnimationProvider provider) : base(provider)
@@ -220,7 +220,7 @@ namespace CoffeeProject.GameObjects
             get
             {
                 var info = base.DisplayInfo;
-                info.Scale = info.Scale * new Vector2(0.15f, 0.15f);
+                info.Scale = info.Scale * new Vector2(0.06f, 0.06f);
                 info.OrderComparer = Position.ToPoint().Y;
                 return info;
             }

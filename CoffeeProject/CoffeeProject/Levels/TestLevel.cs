@@ -6,6 +6,7 @@ using CoffeeProject.Layers;
 using CoffeeProject.Run;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.Image;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
 using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.ComponentModel;
@@ -27,6 +28,7 @@ namespace CoffeeProject.Levels
 {
     public class TestLevel : GameLevel
     {
+        private Image Vignette { get; set; }
         protected override LevelSettings GetDefaults()
         {
             var settings = new LevelSettings
@@ -56,6 +58,8 @@ namespace CoffeeProject.Levels
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
+                .UseBoxDisplay(state, Color.Red, Color.PowderBlue, 3 )
+                .AddShadow(state)
                 .AddToState(state);
             enemy1.InvokeEach<Physics<NaughtyShell>>(it => it.SurfaceMap = surfaces);
 
@@ -65,6 +69,7 @@ namespace CoffeeProject.Levels
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
+                .AddShadow(state)
                 .AddToState(state);
             enemy2.InvokeEach<Physics<Ben>>(it => it.SurfaceMap = surfaces);
 
@@ -74,8 +79,14 @@ namespace CoffeeProject.Levels
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
+                .AddShadow(state)
                 .AddToState(state);
             boss1.InvokeEach<Physics<Demon>>(it => it.SurfaceMap = surfaces);
+
+            Vignette = state.Using<IFactoryController>().CreateObject<Image>()
+                .SetPlacement(new Placement<TintLayer>())
+                .SetTexture("vignette")
+                .AddToState(state);
 
             Enemy.Add(enemy1);
             Enemy.Add(enemy2);
@@ -85,10 +96,17 @@ namespace CoffeeProject.Levels
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
+            Vignette
+                .SetScale(client.Window.Size.ToVector2() / Vignette.TextureBounds.Size.ToVector2())
+                .SetPos(client.Window.Size.ToVector2() / 2);
         }
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
+            Vignette
+                .SetScale(client.Window.Size.ToVector2() / Vignette.TextureBounds.Size.ToVector2())
+                .SetPos(client.Window.Size.ToVector2() / 2);
+
             var healthIndicator = state.Using<IFactoryController>()
                 .CreateObject<Label>()
                 .SetPlacement(new Placement<GUI>())
@@ -106,6 +124,7 @@ namespace CoffeeProject.Levels
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddComponent(new TimerHandler())
                 .AddComponent(new Playable(healthIndicator))
+                .AddShadow(state)
                 .AddToState(state);
 
             foreach (var enemy in Enemy)

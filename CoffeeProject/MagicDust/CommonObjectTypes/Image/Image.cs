@@ -29,6 +29,7 @@ namespace MagicDustLibrary.CommonObjectTypes.Image
         public Vector2 Scale { get; set; }
         public float Opacity { get; set; } = 1f;
         public Color Color { get; set; } = Color.White;
+        public Rectangle TextureBounds => Texture?.Bounds ?? Rectangle.Empty;
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
 

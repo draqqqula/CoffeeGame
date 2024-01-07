@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.Organization;
+﻿using MagicDustLibrary.Display;
+using MagicDustLibrary.Organization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,9 @@ namespace CoffeeProject.Layers
     [Paralax(0, 0)]
     internal class TintLayer : ParalaxLayer
     {
+        public override DrawingParameters Process(DrawingParameters arguments, GameCamera camera)
+        {
+             return base.Process(arguments, camera);
+        }
     }
 }
