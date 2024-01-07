@@ -25,9 +25,9 @@ namespace CoffeeProject.Levels
 
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            state.Using<IFactoryController>().CreateObject<PauseTitle>()
-                .SetPos(new Vector2(500, 500))
-                .SetPlacement(Placement<MainLayer>.On())
+            state.Using<IFactoryController>().CreateObject<PausePanel>()
+                .SetPos(new Vector2(0, 0))
+                .SetPlacement(Placement<CenterLayer>.On())
                 .AddToState(state);
             PauseSource = arguments.Data[0];
         }

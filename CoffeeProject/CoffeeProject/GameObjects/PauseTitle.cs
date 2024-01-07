@@ -1,5 +1,6 @@
 ﻿using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.Content;
+using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,11 +12,13 @@ using System.Threading.Tasks;
 namespace CoffeeProject.GameObjects
 {
     [Box(10)]
-    [SpriteSheet("PauseTitle")]
-    public class PauseTitle : Sprite
+    [SpriteSheet("panel-menu")]
+    public class PausePanel : Sprite
     {
-        public PauseTitle(IAnimationProvider provider) : base(provider)
+        public PausePanel(IAnimationProvider provider) : base(provider)
         {
         }
+
+        protected override DrawingParameters DisplayInfo => base.DisplayInfo with { Scale = new Vector2(0.2f, 0.2f) };
     }
 }
