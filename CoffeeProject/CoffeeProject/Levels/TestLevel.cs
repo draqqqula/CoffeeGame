@@ -41,7 +41,7 @@ namespace CoffeeProject.Levels
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
             var generator = new LevelGenerator(state);
-            var graph = generator.GenerateLevelGraph("TestLevel", 2, 3, 2);
+            var graph = generator.GenerateLevelGraph("TestLevel", 3, 8, 8);
             var map = state.Using<IFactoryController>().CreateObject<TileMap>().SetPos(new Vector2(-500, -500));
             map.SetFrame(new Point(324, 324));
             map.SetScale(0.2f);

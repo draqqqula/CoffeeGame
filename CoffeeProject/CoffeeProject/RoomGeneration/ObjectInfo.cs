@@ -21,6 +21,7 @@ using AsepriteDotNet.Common;
 using Color = System.Drawing.Color;
 using SharpFont;
 using static System.Net.Mime.MediaTypeNames;
+using GraphShape.Utils;
 
 namespace CoffeeProject.RoomGeneration
 {
@@ -38,6 +39,8 @@ namespace CoffeeProject.RoomGeneration
             var levelInfo = _state.Using<IFactoryController>().CreateAsset<LevelInfo>(levelName);
             var level = new LevelGraph(enemyRoomsCount, lootRoomsCount, mainPathRoomsCount);
             var roomsCount = 2 + enemyRoomsCount + lootRoomsCount;
+            var pictureScale = 1.0;
+            if (enemyRoomsCount + lootRoomsCount - mainPathRoomsCount > 5) pictureScale = 1.5;
 
             #region
             // Добавление стартовой комнаты
@@ -63,25 +66,25 @@ namespace CoffeeProject.RoomGeneration
             // Добавление комнат с лутом
             for (int i = enemyRoomsCount + 2; i < roomsCount; i++)
             {
-                var lootRoomIndex = rnd.Next(0, levelInfo.LootRooms.Length);
-                level[i].AddRoomInfo(levelInfo.LootRooms[lootRoomIndex]);
+                //var lootRoomIndex = rnd.Next(0, levelInfo.LootRooms.Length);
+                //level[i].AddRoomInfo(levelInfo.LootRooms[lootRoomIndex]);
+                level[i].AddRoomInfo(levelInfo.LootRooms[1]);
             }
             #endregion
 
-            level.ConnectLevelGraph();
-
-            return CreateLevelPicture(level);
+            return CreateLevelPicture(level, pictureScale);
         }
 
-        public GraphInfo CreateLevelPicture(LevelGraph levelGraph)
+        public GraphInfo CreateLevelPicture(LevelGraph levelGraph, double pictureScale)
         {
             var posMemory = new Dictionary<int, Rectangle>();
-            var BMscale = 300;
+            var BMscale = (int)(400 * pictureScale);
+
             var levelBitmap = new Bitmap(BMscale, BMscale);
             var graphics = Graphics.FromImage(levelBitmap);
-            var initX = 100;
-            var initY = 200;
-            var prevY = 200;
+            var initX = BMscale / 2;
+            var initY = BMscale - 50;
+            var prevY = BMscale - 50;
             var rnd = new Random();
             var memory = new Dictionary<int, Dictionary<string, int>>();
 
@@ -138,6 +141,7 @@ namespace CoffeeProject.RoomGeneration
                 }
                 if ((levelGraph[i].RoomNumber - 1 == prevNode.RoomNumber) && (levelGraph[i].RoomNumber <= levelGraph.MainPathRoomsCount))
                 {
+                    levelGraph.Connect(i, i - 1);
                     var dY = constDelta + levelGraph[i].RoomInfo.TileMap.Height;
                     graphics.DrawImage(img, initX, prevY - dY);
                     prevNode = levelGraph[i];
@@ -146,6 +150,7 @@ namespace CoffeeProject.RoomGeneration
                 }
                 if (levelGraph[i].RoomNumber == levelGraph.MainPathRoomsCount + 1)
                 {
+                    levelGraph.Connect(i, i - 1);
                     var bossY = posMemory[i - 1].Y - constDelta - levelGraph[i].RoomInfo.TileMap.Height;
                     graphics.DrawImage(img, initX, bossY);
                     posMemory.Add(levelGraph[i].RoomNumber, new Rectangle(initX, bossY, width, height));
@@ -154,6 +159,7 @@ namespace CoffeeProject.RoomGeneration
                 {
                     string[] sideChose = ["left", "right"];
                     var randomMainPathRoomNum = rnd.Next(levelGraph.MainPathRoomsCount);
+
                     var randomSide = sideChose[rnd.Next(2)];
                     if (!memory[randomMainPathRoomNum].ContainsKey(randomSide))
                         memory[randomMainPathRoomNum].Add(randomSide, randomMainPathRoomNum);
@@ -164,14 +170,34 @@ namespace CoffeeProject.RoomGeneration
                     var thisX = dX + posMemory[memory[randomMainPathRoomNum][randomSide]].X;
                     graphics.DrawImage(img, thisX, posMemory[randomMainPathRoomNum].Y);
                     posMemory.Add(levelGraph[i].RoomNumber, new Rectangle(thisX, posMemory[randomMainPathRoomNum].Y, width, height));
+                    levelGraph.Connect(i, memory[randomMainPathRoomNum][randomSide]);
                     memory[randomMainPathRoomNum][randomSide] = levelGraph[i].RoomNumber;
                 }
-                //levelBitmap.Save($@"F:\TestLevelFinalOutIMG{i}-{levelGraph[i].RoomNumber}.png");
+            }
+            if (levelGraph.Length - levelGraph.MainPathRoomsCount > 4)
+            {
+                for (int j = levelGraph.MainPathRoomsCount + 2; j < levelGraph.Length - 1; j++)
+                {
+                    for (int k = levelGraph.MainPathRoomsCount + 2; k < levelGraph.Length - 1; k++)
+                    {
+                        if (j == k) continue;
+                        if (Math.Abs(posMemory[j].X - posMemory[k].X) < 16 && Math.Abs(posMemory[j].Y - posMemory[k].Y) < 35)
+                        {
+                            var checkConnection = rnd.NextDouble();
+                            if (checkConnection > 0.50)
+                            {
+                                levelGraph.Connect(k, j);
+                            }
+                        }
+                    }
+                }
             }
 
             #endregion
 
             levelBitmap.Save(@"TestLevelFinalOutIMG.png");
+            levelBitmap = CorridorCreator.CreateCorridors(levelBitmap, graphics, posMemory, levelGraph);
+            levelBitmap.Save(@"TestLevelFinalOutIMG2.png");
             // Перевод конечной картинки в двумерный массив Xna.Color
             var finalColorArray = new Microsoft.Xna.Framework.Color[levelBitmap.Width, levelBitmap.Height];
             for (int i = 0; i < levelBitmap.Width; i++)
@@ -185,6 +211,229 @@ namespace CoffeeProject.RoomGeneration
             return new GraphInfo(finalColorArray, posMemory, levelGraph);
         }
     }
+
+    public class CorridorCreator
+    {
+        public static Bitmap CreateCorridors(Bitmap levelBitmap, Graphics graphics, Dictionary<int, Rectangle> posMemory, LevelGraph levelGraph)
+        {
+            var borderColor = Color.FromArgb(255, 165, 0);
+            var wallColor = Color.FromArgb(255, 0, 0);
+            var floorColor = Color.FromArgb(0, 0, 0);
+            var corridorsTest = new List<(int, int)>();
+            var corridors = new Dictionary<RoomNode, List<RoomNode>>();
+            for (int i = 0; i < levelGraph.Rooms.Count(); i++)
+            {
+                for (int j = 0; j < levelGraph[i].ConnectedRooms.Count(); j++)
+                {
+                    var firstRoomPos = posMemory[i];
+                    var secondRoomPos = posMemory[levelGraph[i].ConnectedRooms.ElementAt(j).RoomNumber];
+                    var bestGates = ChoseBestGates(levelGraph, i, j, firstRoomPos, secondRoomPos);
+
+                    var firstGate = new Point(levelGraph[i].RoomInfo.Gates[bestGates.Item1].X + firstRoomPos.X, levelGraph[i].RoomInfo.Gates[bestGates.Item1].Y + firstRoomPos.Y);
+                    var secondGate = new Point(levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[bestGates.Item2].X + secondRoomPos.X, levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[bestGates.Item2].Y + secondRoomPos.Y);
+                    var dirX = 1;
+                    var dirY = 1;
+                    if (secondGate.X < firstGate.X)
+                    {
+                        dirX = -dirX;
+                    }
+                    if (secondGate.Y < firstGate.Y)
+                    {
+                        dirY = -dirY;
+                    }
+
+                    var deltaX = Math.Abs(firstGate.X - secondGate.X);
+                    var deltaY = Math.Abs(firstGate.Y - secondGate.Y);
+
+                    if (i > levelGraph.MainPathRoomsCount + 1 && dirY > 0) continue;
+
+                    if (!corridorsTest.Contains((levelGraph[i].ConnectedRooms.ElementAt(j).RoomNumber, i)))
+                    {
+                        corridorsTest.Add((i, levelGraph[i].ConnectedRooms.ElementAt(j).RoomNumber));
+                    }
+                    else continue;
+
+                    if (CheckHorizontal(levelBitmap, firstGate))
+                    {
+                        levelBitmap.SetPixel(firstGate.X, firstGate.Y + 1 * -dirY, floorColor);
+                        levelBitmap.SetPixel(firstGate.X, firstGate.Y + 2 * -dirY, floorColor);
+                        for (int dY = 0; dY <= deltaY / 2; dY++)
+                        {
+                            levelBitmap.SetPixel(firstGate.X, firstGate.Y + dY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X - 1, firstGate.Y + dY * dirY, borderColor);
+                            levelBitmap.SetPixel(firstGate.X + 1, firstGate.Y + dY * dirY, borderColor);
+                        }
+                        for (int dX = 0; dX <= deltaX; dX++)
+                        {
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY, floorColor);
+
+                            if (dX != 0)
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY + 1, borderColor);
+                            else 
+                            {
+                                levelBitmap.SetPixel(firstGate.X - dirX, firstGate.Y + deltaY / 2 * dirY, borderColor);
+                                levelBitmap.SetPixel(firstGate.X - dirX, firstGate.Y + deltaY / 2 * dirY - 1, borderColor);
+                                levelBitmap.SetPixel(firstGate.X - dirX, firstGate.Y + deltaY / 2 * dirY - 2, borderColor);
+                                levelBitmap.SetPixel(firstGate.X - dirX, firstGate.Y + deltaY / 2 * dirY - 3, borderColor);
+                            }
+                            if (dX != deltaX)
+                            {
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 1, wallColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 2, wallColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 3, borderColor);
+                            }
+                            else
+                            {
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 1, floorColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 2, floorColor);
+
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX + dirX, firstGate.Y + deltaY / 2 * dirY + 1, borderColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX + dirX, firstGate.Y + deltaY / 2 * dirY, borderColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX + dirX, firstGate.Y + deltaY / 2 * dirY - 1, borderColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX + dirX, firstGate.Y + deltaY / 2 * dirY - 2, borderColor);
+                            }
+                        }
+                        for (int dY = deltaY / 2 + 3; dY <= deltaY; dY++)
+                        {
+                            levelBitmap.SetPixel(firstGate.X + deltaX * dirX, firstGate.Y + dY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + deltaX * dirX - 1, firstGate.Y + dY * dirY, borderColor);
+                            levelBitmap.SetPixel(firstGate.X + deltaX * dirX + 1, firstGate.Y + dY * dirY, borderColor);
+                        }
+                    }
+                    else
+                    {
+                        for (int dX = 0; dX <= deltaX / 2; dX++)
+                        {
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + 1, borderColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y - 1, wallColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y - 2, wallColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y - 3, borderColor);
+                        }
+                        for (int dY = 0; dY <= deltaY; dY++)
+                        {
+                            levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY, floorColor);
+                            if (deltaY == 0) break;
+                            if (deltaY == 1)
+                            {
+                                if (dirY > 0)
+                                {
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - 3, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY, floorColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY + 1, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY + dirY + 1, borderColor);
+                                }
+                                else
+                                {
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - dirY, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY, floorColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY - 1, wallColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY - 2, wallColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY - 3, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY + dirY - 3, borderColor);
+                                }
+                                break;
+                            }
+                            if (dY == 0)
+                            {
+                                if (dirY < 0)
+                                {
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY - dirY, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - dirY, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY, borderColor);
+                                }
+                                else
+                                {
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - 3, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - 2, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - 1, borderColor);
+                                    levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY, borderColor);
+                                }
+                            }
+                            if (dY > 2 && dirY < 0)
+                            {
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY, borderColor);
+                            }
+                            if (dY > 1 && dirY > 0)
+                            {
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY, borderColor);
+                            }
+                            if (dY < deltaY)
+                            {
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY, borderColor);
+                            }
+                            if (dY == deltaY && deltaY > 1 && dirY < 0)
+                            {
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY - 1, wallColor);
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY - 2, wallColor);
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY - 3, borderColor);
+
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY - 1, borderColor);
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY - 2, borderColor);
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY - 3, borderColor);
+                            }
+                            if (dY == deltaY && deltaY > 1 && dirY > 0)
+                            {
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX - dirX, firstGate.Y + dY * dirY + dirY, borderColor);
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY, borderColor);
+                            }
+                        }
+                        for (int dX = deltaX / 2 + 1; dX <= deltaX; dX++)
+                        {
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY + 1, borderColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY - 1, wallColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY - 2, wallColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY - 3, borderColor);
+                        }
+                    }
+
+                }
+            }
+            return levelBitmap;
+        }
+
+        private static bool CheckHorizontal(Bitmap levelBitmap, Point gate)
+        {
+            var leftColor = levelBitmap.GetPixel(gate.X - 1, gate.Y);
+            var rightColor = levelBitmap.GetPixel(gate.X + 1, gate.Y);
+            return leftColor == rightColor;
+        }
+
+        private static (int, int) ChoseBestGates(LevelGraph levelGraph, int i, int j, Rectangle firstRoomPos, Rectangle secondRoomPos)
+        {
+            var gatesDifferents = new List<(int, int, double)>();
+            for (int k = 0; k < levelGraph[i].RoomInfo.Gates.Length; k++)
+            {
+                for (int l = 0; l < levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates.Length; l++)
+                {
+                    var firstGatePos = new Point(firstRoomPos.X + levelGraph[i].RoomInfo.Gates[k].X, firstRoomPos.Y + levelGraph[i].RoomInfo.Gates[k].Y);
+                    var secondGatePos = new Point(secondRoomPos.X + levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[l].X, secondRoomPos.Y + levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[l].Y);
+                    var difX = Math.Abs((firstGatePos - secondGatePos).X);
+                    var difY = Math.Abs((firstGatePos - secondGatePos).Y);
+                    var range = Math.Sqrt(difY * difY + difX * difX);
+                    gatesDifferents.Add((k, l, range));
+                }
+            }
+            var bestGates = (-1, -1);
+            var gateMinDif = double.MaxValue;
+            for (int k = 0; k < gatesDifferents.Count; k++)
+            {
+                gateMinDif = Math.Min(gateMinDif, gatesDifferents[k].Item3);
+            }
+            for (int k = 0; k < gatesDifferents.Count; k++)
+            {
+                if (gatesDifferents[k].Item3 == gateMinDif)
+                {
+                    bestGates = (gatesDifferents[k].Item1, gatesDifferents[k].Item2);
+                    break;
+                }
+            }
+
+            return bestGates;
+        }
+    }
+
     public record GraphInfo(Microsoft.Xna.Framework.Color[,] Colors, Dictionary<int, Rectangle> Positions, LevelGraph Graph);
 
 
@@ -274,77 +523,6 @@ namespace CoffeeProject.RoomGeneration
                 return rooms;
             }
         }
-
-        public void ConnectLevelGraph()
-        {
-            var rnd = new Random();
-            var connectCoef = 0.85;
-            // Рандомное соединение комнат графа
-            for (int i = 0; i < _roomsCount; i++)
-            {
-                if (i == _mainPathRoomsCount + 1) // Пропускает комнату босса
-                {
-                    continue;
-                }
-                for (int j = 0; j < _roomsCount; j++)
-                {
-                    if ((j == _mainPathRoomsCount + 1) || (i == j)) // Пропускает комнату босса и повторающуюся комнату
-                    {
-                        continue;
-                    }
-                    if (rnd.NextDouble() > connectCoef)
-                    {
-                        Connect(i, j);
-                    }
-                }
-            }
-
-            // Соединение комнат главного пути (от StartRoom до BossRoom через EnemyRooms)
-            for (int i = 1; i <= _mainPathRoomsCount + 1; i++)
-            {
-                Connect(i - 1, i);
-            }
-
-            // Проверяем нет ли комнат не соединённых с основным путём
-            var conRoomsNum = GetConnectedRoomsNum();
-            while (conRoomsNum.Count != _roomsCount)
-            {
-                foreach (var room in rooms)
-                {
-                    if (!conRoomsNum.Contains(room.RoomNumber))
-                    {
-                        var randomNum = rnd.Next(0, _roomsCount);
-                        while (randomNum == _mainPathRoomsCount + 1)
-                        {
-                            randomNum = rnd.Next(0, _roomsCount);
-                        }
-                        Connect(randomNum, room.RoomNumber);
-                        conRoomsNum = GetConnectedRoomsNum();
-                    }
-                }
-            }
-        }
-
-        public List<int> GetConnectedRoomsNum()
-        {
-            var visited = new HashSet<RoomNode>();
-            var queue = new Queue<RoomNode>();
-            var conRoomsNum = new List<int>();
-            queue.Enqueue(rooms[0]);
-            while (queue.Count != 0)
-            {
-                var node = queue.Dequeue();
-                if (visited.Contains(node))
-                    continue;
-                visited.Add(node);
-                conRoomsNum.Add(node.RoomNumber);
-                foreach (var nextNode in node.ConnectedRooms)
-                    queue.Enqueue(nextNode);
-            }
-
-            return conRoomsNum;     // Возвращает лист номеров комнат соединённых с основным путём
-        }
-
 
         public void Connect(int index1, int index2)
         {
