@@ -53,8 +53,37 @@ namespace CoffeeProject.GameObjects
                     {
                         return;
                     }
+                    Damage.Events.Clear();
+                    Damage.Events.Add((target, dmg) =>
+                    {
+                        DealKnockBack(obj);
+                        return dmg;
+                    });
                     dummy.TakeDamage(Damage);
                 }
+            }
+        }
+
+        private const float KnockBackPower = 6;
+        private const float KnockBackAcceleration = -1;
+        private const double KnockBackLifetime = 0.3;
+        private void DealKnockBack(IBodyComponent obj)
+        {
+            if (obj is GameObject gobj)
+            {
+                var physicsList = gobj.GetComponents<Physics>();
+                if (!physicsList.Any())
+                {
+                    return;
+                }
+                var initialKnockback = Offset;
+                initialKnockback.Normalize();
+                physicsList.First().AddVector("knockback",
+                    new MovementVector(initialKnockback * KnockBackPower,
+                    KnockBackAcceleration,
+                    TimeSpan.FromSeconds(KnockBackLifetime),
+                    false)
+                    );
             }
         }
     }

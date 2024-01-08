@@ -36,7 +36,7 @@ namespace CoffeeProject.GameObjects
         public Hero(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
-                new Physics<Hero>(
+                new Physics(
                 new SurfaceMap([], 0, 1)
                 ))
             .CombineWith(
@@ -69,7 +69,7 @@ namespace CoffeeProject.GameObjects
             spring.Pull(1.12f);
             if (instance.Tags.Contains("knockback"))
             {
-                var physics = GetComponents<Physics<Hero>>().Last();
+                var physics = GetComponents<Physics>().Last();
                 var kbvector = instance.Tags.Where(it => it.StartsWith("kbvector")).First();
                 var vector = new Vector2(
                     float.Parse(
@@ -88,7 +88,7 @@ namespace CoffeeProject.GameObjects
             Directions.Clear();
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
-            var physics = GetComponents<Physics<Hero>>().Last();
+            var physics = GetComponents<Physics>().Last();
             var dummy = GetComponents<Dummy>().Last();
             var speed = SPEED;
             var deceleration = DECELERATION;
@@ -163,7 +163,7 @@ namespace CoffeeProject.GameObjects
         private void UseSlash(IControllerProvider state)
         {
             var timer = GetComponents<TimerHandler>().First();
-            var physics = GetComponents<Physics<Hero>>().Last();
+            var physics = GetComponents<Physics>().Last();
             if (Client.Controls.OnPress(Control.jump))
             {
                 if (timer.OnLoop("slash", TimeSpan.FromSeconds(0.6), delegate { }))
@@ -189,7 +189,6 @@ namespace CoffeeProject.GameObjects
                     {
                         slash.Dispose();
                     }, true);
-                    physics.ActiveVectors.Remove("move");
                 }
             }
         }

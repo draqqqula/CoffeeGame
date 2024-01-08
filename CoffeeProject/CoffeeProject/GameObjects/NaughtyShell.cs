@@ -27,13 +27,13 @@ namespace CoffeeProject.GameObjects
         }
         public override void OnStart(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("Forward", new MovementVector(
                 -Vector2.Normalize(unit.Position - target.GetComponents<IBodyComponent>().First().Position) * 5, 0, TimeSpan.Zero, true));
         }
         public override bool Continue(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             physics.DirectVector("Forward", targetPosition - unit.Position);
             if (Vector2.Distance(unit.Position, targetPosition) > 300)
@@ -45,7 +45,7 @@ namespace CoffeeProject.GameObjects
 
         public override void OnEnd(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.RemoveVector("Forward");
         }
 
@@ -72,14 +72,14 @@ namespace CoffeeProject.GameObjects
 
         public override bool Continue(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             return physics.ActiveVectors.ContainsKey("DashAttack");
         }
 
         public override void OnStart(IControllerProvider state, NaughtyShell unit, GameObject target)
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
-            var physics = unit.GetComponents<Physics<NaughtyShell>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("DashAttack", new MovementVector(Vector2.Normalize(unit.Position - targetPosition) * -7, -5, TimeSpan.Zero, true));
         }
     }
@@ -90,7 +90,7 @@ namespace CoffeeProject.GameObjects
         public NaughtyShell(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
-                new Physics<NaughtyShell>(
+                new Physics(
                 new SurfaceMap([], 0, 1)
                 ));
             this.CombineWith(
@@ -130,7 +130,7 @@ namespace CoffeeProject.GameObjects
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
 
-            var physics = GetComponents<Physics<NaughtyShell>>().First();
+            var physics = GetComponents<Physics>().First();
             var movement = physics.GetResultingVector(deltaTime);
             movement.Normalize();
 
@@ -160,6 +160,11 @@ namespace CoffeeProject.GameObjects
                 {
                     Animator.SetAnimation("Backward", 0);
                 }
+            }
+            var dummy = GetComponents<Dummy>().First();
+            if (!dummy.IsAlive)
+            {
+                Dispose();
             }
         }
 

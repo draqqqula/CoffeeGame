@@ -17,6 +17,7 @@ using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,10 +59,9 @@ namespace CoffeeProject.Levels
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
-                .UseBoxDisplay(state, Color.Red, Color.PowderBlue, 3 )
                 .AddShadow(state)
                 .AddToState(state);
-            enemy1.InvokeEach<Physics<NaughtyShell>>(it => it.SurfaceMap = surfaces);
+            enemy1.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
 
             var enemy2 = state.Using<IFactoryController>()
                 .CreateObject<Ben>()
@@ -71,7 +71,7 @@ namespace CoffeeProject.Levels
                 .AddHealthLabel(state)
                 .AddShadow(state)
                 .AddToState(state);
-            enemy2.InvokeEach<Physics<Ben>>(it => it.SurfaceMap = surfaces);
+            enemy2.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
 
             var boss1 = state.Using<IFactoryController>()
                 .CreateObject<Demon>()
@@ -81,7 +81,7 @@ namespace CoffeeProject.Levels
                 .AddHealthLabel(state)
                 .AddShadow(state)
                 .AddToState(state);
-            boss1.InvokeEach<Physics<Demon>>(it => it.SurfaceMap = surfaces);
+            boss1.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
 
             Vignette = state.Using<IFactoryController>().CreateObject<Image>()
                 .SetPlacement(new Placement<TintLayer>())
@@ -132,7 +132,7 @@ namespace CoffeeProject.Levels
                 enemy.SetTarget(state, obj);
             }
 
-            obj.InvokeEach<Physics<Hero>>(it => it.SurfaceMap = surfaces);
+            obj.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
             var dummy = obj.GetComponents<Dummy>().First();
 
             obj.Client = client;

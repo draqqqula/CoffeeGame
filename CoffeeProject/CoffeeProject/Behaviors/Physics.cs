@@ -188,7 +188,7 @@ namespace CoffeeProject.Behaviors
     /// <summary>
     /// Описывает поведение объекта, подверженного физике
     /// </summary>
-    public class Physics<T> : Behavior<T> where T : class, IBodyComponent, IMultiBehaviorComponent
+    public class Physics : Behavior<IBodyComponent>
     {
         public SurfaceMap SurfaceMap { get; set; }
         public float SurfaceWidth => SurfaceMap.CellWidth;
@@ -282,7 +282,7 @@ namespace CoffeeProject.Behaviors
             return (moving.Location - end.Location).ToVector2();
         }
 
-        protected override void Act(IControllerProvider state, TimeSpan deltaTime, T parent)
+        protected override void Act(IControllerProvider state, TimeSpan deltaTime, IBodyComponent parent)
         {
             Vector2 resultingVector = HalfUpdateVectors(deltaTime);
             var resultingLength = resultingVector.Length();

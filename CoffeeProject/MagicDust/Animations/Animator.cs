@@ -10,6 +10,7 @@ namespace MagicDustLibrary.Animations
 {
     public class Animator
     {
+        public event Action<string> OnEnded = delegate { };
         private readonly Dictionary<string, Animation> Animations;
         public TimeSpan RunDuration { get; private set; }
         /// <summary>
@@ -33,6 +34,8 @@ namespace MagicDustLibrary.Animations
             }
             if (!Running.Run(RunDuration) && !OnPause)
             {
+                OnEnded(Running.Name);
+
                 if (Running.NextAnimation != null)
                     ChangeAnimation(Running.NextAnimation, 0);
 

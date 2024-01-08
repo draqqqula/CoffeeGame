@@ -49,13 +49,13 @@ namespace CoffeeProject.GameObjects
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
 
-            var physics = GetComponents<Physics<DamageBall>>().First();
+            var physics = GetComponents<Physics>().First();
             if (physics.Faces[Side.Top] ||
                 physics.Faces[Side.Left] ||
                 physics.Faces[Side.Right] ||
                 physics.Faces[Side.Bottom])
             {
-                Dispose();
+                Collapse(state);
             }
         }
 
@@ -74,12 +74,11 @@ namespace CoffeeProject.GameObjects
             {
                 { DamageType.Fire, 5 }
             };
-            var physics = new Physics<DamageBall>(map);
+            var physics = new Physics(map);
             var timerHandler = new TimerHandler();
             physics.AddVector("move", vector);
             var obj = state.Using<IFactoryController>()
                 .CreateObject<DamageBall>()
-                .UseDamage(new DamageInstance(damages, Team.enemy, [], "DamageBall", owner, [], [], TimeSpan.FromSeconds(1)))
                 .SetPos(position)
                 .SetBounds(new Rectangle(-15, -15, 30, 30))
                 .SetPlacement(new Placement<MainLayer>())
@@ -88,7 +87,33 @@ namespace CoffeeProject.GameObjects
                 .AddComponent(timerHandler)
                 .AddToState(state);
             timerHandler.SetTimer("dispose", 4, obj.Dispose, true);
-            return obj;
+            return obj.UseDamage(new DamageInstance(damages, Team.enemy, [], "DamageBall", owner, [], [(target, dmg) =>
+            {
+                obj.Collapse(state);
+                return dmg;
+            }
+            ], TimeSpan.FromSeconds(1)));
         }
+
+        public void Collapse(IControllerProvider state)
+        {
+            Dispose();
+            state.Using<IFactoryController>()
+                .CreateObject<DamageBallCollapse>()
+                .SetPlacement(new Placement<MainLayer>())
+                .SetPos(Position)
+                .AddToState(state);
+        }
+    }
+
+    [SpriteSheet("collapse")]
+    public class DamageBallCollapse : Sprite
+    {
+        public DamageBallCollapse(IAnimationProvider provider) : base(provider)
+        {
+            Animator.OnEnded += (name) => Dispose();
+        }
+
+        protected override DrawingParameters DisplayInfo => base.DisplayInfo with { Scale = new Vector2(0.6f, 0.6f), OrderComparer = Position.ToPoint().Y };
     }
 }

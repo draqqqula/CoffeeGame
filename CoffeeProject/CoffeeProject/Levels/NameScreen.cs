@@ -133,7 +133,7 @@ namespace CoffeeProject.Levels
             state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Music", "Star"), "main").Play();
             WindowWidth = client.Window.Width;
             WindowHeight = client.Window.Height;
-            var physics = new Physics<CameraAnchor>(new SurfaceMap([], 0, 16));
+            var physics = new Physics(new SurfaceMap([], 0, 16));
             var cameraAnchor = state.Using<IFactoryController>()
                 .CreateObject<CameraAnchor>()
                 .SetPos(new Vector2(WindowWidth/2, WindowHeight/2))
@@ -162,7 +162,7 @@ namespace CoffeeProject.Levels
                 return;
             }
 
-            var physics = Anchor.GetComponents<Physics<CameraAnchor>>().First();
+            var physics = Anchor.GetComponents<Physics>().First();
 
             if (physics.ActiveVectors.ContainsKey("move"))
             {

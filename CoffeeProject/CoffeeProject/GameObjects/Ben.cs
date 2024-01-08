@@ -28,13 +28,13 @@ namespace CoffeeProject.GameObjects
         }
         public override void OnStart(IControllerProvider state, Ben unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Ben>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("Backward", new MovementVector(
                 -Vector2.Normalize(unit.Position - target.GetComponents<IBodyComponent>().First().Position) * 3, 0, TimeSpan.Zero, true));
         }
         public override bool Continue(IControllerProvider state, Ben unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Ben>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             physics.DirectVector("Backward", unit.Position - targetPosition);
             if (Vector2.Distance(unit.Position, targetPosition) < 500)
@@ -46,7 +46,7 @@ namespace CoffeeProject.GameObjects
 
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Ben>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.RemoveVector("Backward");
         }
 
@@ -71,13 +71,13 @@ namespace CoffeeProject.GameObjects
         }
         public override void OnStart(IControllerProvider state, Ben unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Ben>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("Forward", new MovementVector(
                 -Vector2.Normalize(target.GetComponents<IBodyComponent>().First().Position - unit.Position) * 3, 0, TimeSpan.Zero, true));
         }
         public override bool Continue(IControllerProvider state, Ben unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Ben>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             physics.DirectVector("Forward", targetPosition - unit.Position);
             if (Vector2.Distance(unit.Position, targetPosition) > 700)
@@ -89,7 +89,7 @@ namespace CoffeeProject.GameObjects
 
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Ben>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.RemoveVector("Forward");
         }
 
@@ -194,7 +194,7 @@ namespace CoffeeProject.GameObjects
         public Ben(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
-                new Physics<Ben>(
+                new Physics(
                 new SurfaceMap([], 0, 1)
                 ));
             this.CombineWith(
@@ -236,7 +236,7 @@ namespace CoffeeProject.GameObjects
             base.Update(state, deltaTime);
             OnAct(state, deltaTime, this);
 
-            var physics = GetComponents<Physics<Ben>>().First();
+            var physics = GetComponents<Physics>().First();
             var movement = physics.GetResultingVector(deltaTime);
             movement.Normalize();
 
@@ -266,6 +266,12 @@ namespace CoffeeProject.GameObjects
                 {
                     Animator.SetAnimation("Backward", 0);
                 }
+            }
+
+            var dummy = GetComponents<Dummy>().First();
+            if (!dummy.IsAlive)
+            {
+                Dispose();
             }
         }
 

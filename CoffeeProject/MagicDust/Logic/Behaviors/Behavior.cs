@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic.Behaviors
 {
-    public abstract class Behavior<T> : NodeComponent where T : class, IMultiBehaviorComponent
+    public abstract class Behavior<T> : NodeComponent where T : class
     {
         protected abstract void Act(IControllerProvider state, TimeSpan deltaTime, T parent);
 

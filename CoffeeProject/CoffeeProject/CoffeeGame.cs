@@ -41,7 +41,7 @@ namespace CoffeeProject
 
             _graphics.PreferredBackBufferWidth = 1903;
             _graphics.PreferredBackBufferHeight = 969;
-            _graphics.PreferMultiSampling = true;
+            _graphics.PreferMultiSampling = false;
             _graphics.SynchronizeWithVerticalRetrace = true;
             this.IsFixedTimeStep = true;
             this.TargetElapsedTime = TimeSpan.FromSeconds(1 / 120f);

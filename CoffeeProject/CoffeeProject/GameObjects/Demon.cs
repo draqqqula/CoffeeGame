@@ -35,13 +35,13 @@ namespace CoffeeProject.GameObjects
         }
         public override void OnStart(IControllerProvider state, Demon unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("Forward", new MovementVector(
                 -Vector2.Normalize(unit.Position - target.GetComponents<IBodyComponent>().First().Position) * 3, 0, TimeSpan.Zero, true));
         }
         public override bool Continue(IControllerProvider state, Demon unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             if (!physics.Vectors.ContainsKey("Forward"))
             {
@@ -103,7 +103,7 @@ namespace CoffeeProject.GameObjects
 
         public override void OnEnd(IControllerProvider state, Demon unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.RemoveVector("Forward");
         }
 
@@ -173,7 +173,7 @@ namespace CoffeeProject.GameObjects
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             var deltaPosition = targetPosition - unit.Position;
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
 
             if (Math.Abs(deltaPosition.X) > Math.Abs(deltaPosition.Y))
             {
@@ -215,7 +215,7 @@ namespace CoffeeProject.GameObjects
 
         public override void OnEnd(IControllerProvider state, Demon unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             DamageBox.Dispose();
             DamageBox = null;
             physics.RemoveVector("Attack");
@@ -246,7 +246,7 @@ namespace CoffeeProject.GameObjects
 
         public override bool Continue(IControllerProvider state, Demon unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             return physics.Vectors.ContainsKey("Backward");
         }
 
@@ -254,14 +254,14 @@ namespace CoffeeProject.GameObjects
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             var deltaPosition = targetPosition - unit.Position;
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("Backward", new MovementVector(
                 -Vector2.Normalize(target.GetComponents<IBodyComponent>().First().Position - unit.Position) * 4, -2, TimeSpan.Zero, true));
         }
 
         public override void OnEnd(IControllerProvider state, Demon unit, GameObject target)
         {
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             physics.RemoveVector("Backward");
         }
 
@@ -295,7 +295,7 @@ namespace CoffeeProject.GameObjects
         public override void OnStart(IControllerProvider state, Demon unit, GameObject target)
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
-            var physics = unit.GetComponents<Physics<Demon>>().First();
+            var physics = unit.GetComponents<Physics>().First();
             unit.Animator.SetAnimation("Teleport_start", 0);
             TeleportObject = state.Using<IFactoryController>().CreateObject<BlackTeleport>().SetPos(targetPosition)
                 .SetPlacement(new Placement<MainLayer>()).AddToState(state);
@@ -385,7 +385,7 @@ namespace CoffeeProject.GameObjects
         public Demon(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
-                new Physics<Demon>(
+                new Physics(
                 new SurfaceMap([], 0, 1)
                 ));
             this.CombineWith(
