@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("MonoGame library featuring multiplayer")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17d23eb32ab1619ecaee576b6a7774443c6b8e2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c4ebab5135aa2c6d5f5b38d57061c3401bf110a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MagicDustLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MagicDustLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bells_inverted.wav</SourceFile>
+  <SourceTime>2024-01-09T03:30:43.1826349+05:00</SourceTime>
+  <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Sound/crystal_bells_inverted.xnb</DestFile>
+  <DestTime>2024-01-09T03:31:28.1848293+05:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2022-07-26T16:44:56+05:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

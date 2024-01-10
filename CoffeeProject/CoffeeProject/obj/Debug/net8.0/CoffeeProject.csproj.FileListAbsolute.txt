@@ -451,3 +451,11 @@ F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\refint\Cof
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.pdb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\CoffeeProject.genruntimeconfig.cache
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\obj\Debug\net8.0\ref\CoffeeProject.dll
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Music\Star.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\shadow.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell1.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell2.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell3.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bells_inverted.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\crystal_bell_inverted2.xnb
+F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\vignette.xnb

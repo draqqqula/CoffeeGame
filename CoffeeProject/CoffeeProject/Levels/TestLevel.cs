@@ -41,13 +41,13 @@ namespace CoffeeProject.Levels
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
             var generator = new LevelGenerator(state);
-            var graph = generator.GenerateLevelGraph("TestLevel", 3, 8, 8);
+            var graph = generator.GenerateLevelGraph("TestLevel", 4, 8, 8);
             var map = state.Using<IFactoryController>().CreateObject<TileMap>().SetPos(new Vector2(-500, -500));
             map.SetFrame(new Point(324, 324));
             map.SetScale(0.2f);
             var sheet = state.Using<IFactoryController>().CreateAsset<TileSheet>("level1");
             map.UseSheet(sheet);
-            var level = new LevelMap(graph.Colors);
+            var level = new LevelMap(graph.LevelColors);
             map.UseMap(level.Map);
             state.Using<IFactoryController>().AddToState(map);
             state.Using<SurfaceMapProvider>().AddMap("level", map);
