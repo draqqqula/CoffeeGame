@@ -22,7 +22,7 @@ namespace MagicDustLibrary.Factorys
         public static T SetPlacement<T>(this T obj, IPlacement placement) where T : ComponentBase, IDisplayComponent
         {
             var layer = placement.GetLayerType();
-            obj.CombineWith(new PlacementInfoComponent() { PlacementInfo = placement });
+            obj.CombineWith(new PlacementInfoComponent() { PlacementInfo = placement, PlacementTarget = obj });
             return obj;
         }
 
@@ -41,6 +41,7 @@ namespace MagicDustLibrary.Factorys
 
     internal class PlacementInfoComponent : ComponentBase, IDisposableComponent
     {
+        public IDisplayComponent PlacementTarget { get; set; }
         public IPlacement PlacementInfo { get; set; }
         public event OnDispose OnDisposeEvent;
 

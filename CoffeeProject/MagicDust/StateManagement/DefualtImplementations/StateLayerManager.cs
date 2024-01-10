@@ -80,7 +80,12 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
             IPlacement placement = new Placement<CommonLayer>();
             if (component is ComponentBase componentBase)
             {
-                componentBase.InvokeEach<PlacementInfoComponent>(it => placement = it.PlacementInfo);
+                var placements = componentBase.GetComponents<PlacementInfoComponent>()
+                    .Where(it => it.PlacementTarget == componentBase);
+                if (placements.Any())
+                {
+                    placement = placements.First().PlacementInfo;
+                }
             }
             var layer = GetLayer(placement.GetLayerType());
             Placements.Add(component, layer);

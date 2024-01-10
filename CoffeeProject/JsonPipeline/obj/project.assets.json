@@ -80,19 +80,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Павел\\.nuget\\packages\\": {}
+    "C:\\Users\\BogdanPC\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+      "projectUniqueName": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
       "projectName": "JsonPipeline",
-      "projectPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
-      "packagesPath": "C:\\Users\\Павел\\.nuget\\packages\\",
-      "outputPath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\",
+      "projectPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
+      "packagesPath": "C:\\Users\\BogdanPC\\.nuget\\packages\\",
+      "outputPath": "C:\\CoffeeGame\\CoffeeGame\\CoffeeProject\\JsonPipeline\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Павел\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\BogdanPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -197,8 +197,9 @@ namespace CoffeeProject.RoomGeneration
                 for (int j = 0; j < levelBitmap.Height; j++)
                 {
                     var color = levelBitmap.GetPixel(i, j);
+                    var backgroundColor = backgroundBitmap.GetPixel(i, j);
                     levelColorArray[i, j] = new Microsoft.Xna.Framework.Color(color.R, color.G, color.B);
-                    backgroundColorArray[i, j] = new Microsoft.Xna.Framework.Color(color.R, color.G, color.B);
+                    backgroundColorArray[i, j] = new Microsoft.Xna.Framework.Color(backgroundColor.R, backgroundColor.G, backgroundColor.B);
                 }
             }
             return new GraphInfo(levelColorArray, backgroundColorArray, posMemory, levelGraph);

@@ -17,6 +17,7 @@ using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Controllers;
 using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,17 @@ namespace CoffeeProject.Levels
             var level = new LevelMap(graph.LevelColors);
             map.UseMap(level.Map);
             map.AddToState(state);
+
+            var backgroundMap = state.Using<IFactoryController>()
+                .CreateObject<TileMap>()
+                .SetPos(new Vector2(-500, -500))
+                .SetPlacement(new Placement<FloorLayer>());
+            backgroundMap.SetFrame(new Point(324, 324));
+            backgroundMap.SetScale(0.2f);
+            backgroundMap.UseSheet(sheet);
+            var backgroundLevel = new LevelMap(graph.BackgroundColors);
+            backgroundMap.UseMap(backgroundLevel.Map);
+            backgroundMap.AddToState(state);
 
 
             state.Using<SurfaceMapProvider>().AddMap("level", map);
