@@ -198,7 +198,7 @@ namespace CoffeeProject.RoomGeneration
                 {
                     var color = levelBitmap.GetPixel(i, j);
                     levelColorArray[i, j] = new Microsoft.Xna.Framework.Color(color.R, color.G, color.B);
-                    backgroundColorArray[i, j] = Microsoft.Xna.Framework.Color.Black;
+                    backgroundColorArray[i, j] = new Microsoft.Xna.Framework.Color(color.R, color.G, color.B);
                 }
             }
             return new GraphInfo(levelColorArray, backgroundColorArray, posMemory, levelGraph);
@@ -273,18 +273,19 @@ namespace CoffeeProject.RoomGeneration
 
                     if (CheckHorizontal(levelBitmap, firstGate))
                     {
-                        levelBitmap.SetPixel(firstGate.X, firstGate.Y + 1 * -dirY, floorColor);
-                        levelBitmap.SetPixel(firstGate.X, firstGate.Y + 2 * -dirY, floorColor);
+                        levelBitmap.SetPixel(firstGate.X, firstGate.Y + 1 * -dirY, Color.White);
+                        levelBitmap.SetPixel(firstGate.X, firstGate.Y + 2 * -dirY, Color.White);
+
                         for (int dY = 0; dY <= deltaY / 2; dY++)
                         {
                             backgroundBitmap.SetPixel(firstGate.X, firstGate.Y + dY * dirY, floorColor);
-                            levelBitmap.SetPixel(firstGate.X, firstGate.Y + dY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X, firstGate.Y + dY * dirY, Color.White);
                             levelBitmap.SetPixel(firstGate.X - 1, firstGate.Y + dY * dirY, borderColor);
                             levelBitmap.SetPixel(firstGate.X + 1, firstGate.Y + dY * dirY, borderColor);
                         }
                         for (int dX = 0; dX <= deltaX; dX++)
                         {
-                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY, Color.White);
                             backgroundBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY, floorColor);
                             if (dX != 0)
                                 levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY + 1, borderColor);
@@ -305,8 +306,8 @@ namespace CoffeeProject.RoomGeneration
                             {
                                 backgroundBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 1, floorColor);
                                 backgroundBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 2, floorColor);
-                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 1, floorColor);
-                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 2, floorColor);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 1, Color.White);
+                                levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY / 2 * dirY - 2, Color.White);
 
                                 levelBitmap.SetPixel(firstGate.X + dX * dirX + dirX, firstGate.Y + deltaY / 2 * dirY + 1, borderColor);
                                 levelBitmap.SetPixel(firstGate.X + dX * dirX + dirX, firstGate.Y + deltaY / 2 * dirY, borderColor);
@@ -317,7 +318,7 @@ namespace CoffeeProject.RoomGeneration
                         for (int dY = deltaY / 2 + 3; dY <= deltaY; dY++)
                         {
                             backgroundBitmap.SetPixel(firstGate.X + deltaX * dirX, firstGate.Y + dY * dirY, floorColor);
-                            levelBitmap.SetPixel(firstGate.X + deltaX * dirX, firstGate.Y + dY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + deltaX * dirX, firstGate.Y + dY * dirY, Color.White);
                             levelBitmap.SetPixel(firstGate.X + deltaX * dirX - 1, firstGate.Y + dY * dirY, borderColor);
                             levelBitmap.SetPixel(firstGate.X + deltaX * dirX + 1, firstGate.Y + dY * dirY, borderColor);
                         }
@@ -327,7 +328,7 @@ namespace CoffeeProject.RoomGeneration
                         for (int dX = 0; dX <= deltaX / 2; dX++)
                         {
                             backgroundBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y, floorColor);
-                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y, Color.White);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + 1, borderColor);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y - 1, wallColor);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y - 2, wallColor);
@@ -336,12 +337,12 @@ namespace CoffeeProject.RoomGeneration
                         for (int dY = 0; dY <= deltaY; dY++)
                         {
                             backgroundBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY, floorColor);
-                            levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY, Color.White);
                             if (deltaY == 0) break;
                             if (deltaY == 1)
                             {
                                 backgroundBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY, floorColor);
-                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY, floorColor);
+                                levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX, firstGate.Y + dY * dirY + dirY, Color.White);
                                 if (dirY > 0)
                                 {
                                     levelBitmap.SetPixel(firstGate.X + deltaX / 2 * dirX + dirX, firstGate.Y + dY * dirY - 3, borderColor);
@@ -405,14 +406,13 @@ namespace CoffeeProject.RoomGeneration
                         for (int dX = deltaX / 2 + 1; dX <= deltaX; dX++)
                         {
                             backgroundBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY, floorColor);
-                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY, floorColor);
+                            levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY, Color.White);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY + 1, borderColor);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY - 1, wallColor);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY - 2, wallColor);
                             levelBitmap.SetPixel(firstGate.X + dX * dirX, firstGate.Y + deltaY * dirY - 3, borderColor);
                         }
                     }
-
                 }
             }
         }
