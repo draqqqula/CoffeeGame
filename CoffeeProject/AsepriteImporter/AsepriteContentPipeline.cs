@@ -1,22 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Content.Pipeline;
 using AsepriteDotNet;
-using AsepriteDotNet.Document;
 using AsepriteDotNet.Image;
 using MagicDustLibrary.Animations;
-using MagicDustLibrary.Content;
-using MagicDustLibrary.Display;
-using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
 using Microsoft.Xna.Framework.Content;
-using System.Collections.ObjectModel;
+using System.Buffers.Binary;
 
 namespace AsepriteImporter
 {
@@ -48,10 +39,10 @@ namespace AsepriteImporter
             return wrapper;
         }
 
-        private Animation[] ProcessAnimations(AsepriteSheet sheet)
+        private SerializedAnimation[] ProcessAnimations(AsepriteSheet sheet)
         {
             var aseAnimations = sheet.Spritesheet.Animations;
-            var animations = new List<Animation>();
+            var animations = new List<SerializedAnimation>();
 
             if (!aseAnimations.Any())
             {
@@ -61,9 +52,9 @@ namespace AsepriteImporter
             int indent = 0;
             foreach (var aseAnimation in aseAnimations)
             {
-                var magicAnimation = ToMagicAnimation(aseAnimation, indent);
+                var magicAnimation = SerializeAnimation(aseAnimation, indent);
                 animations.Add(magicAnimation);
-                indent += magicAnimation.FrameCount;
+                indent += magicAnimation.Frames.Length;
             }
             return animations.ToArray();
         }
@@ -82,23 +73,21 @@ namespace AsepriteImporter
             return new TilesheetOptions();
         }
 
-        private Animation AsSingularAnimation(Spritesheet sheet)
+        private SerializedAnimation AsSingularAnimation(Spritesheet sheet)
         {
             var properties = new Dictionary<string, string>();
-            return new Animation(
+            return SerializeAnimation(
                 DEFAULT_NAME,
-                null,
                 GetFrames(sheet.Frames.ToArray(), 0),
                 properties
                 );
         }
 
-        private Animation ToMagicAnimation(SpritesheetAnimation aseAnimation, int indent)
+        private SerializedAnimation SerializeAnimation(SpritesheetAnimation aseAnimation, int indent)
         {
             var properties = ParseTags(aseAnimation.Name);
-            return new Animation(
+            return SerializeAnimation(
                 ParseName(aseAnimation.Name),
-                null,
                 GetFrames(aseAnimation.Frames.ToArray(), indent),
                 properties
                 );
@@ -140,42 +129,54 @@ namespace AsepriteImporter
             return name.Value;
         }
 
-        private AnimationFrame[] GetFrames(SpritesheetFrame[] aseFrames, int indent)
+        private byte[][] GetFrames(SpritesheetFrame[] aseFrames, int indent)
         {
-            return Enumerable.Range(0, aseFrames.Length).Select(n => ToMagicAnimationFrame(aseFrames[n], indent + n)).ToArray();
+            return Enumerable.Range(0, aseFrames.Length).Select(n => SerializeFrame(aseFrames[n], indent + n)).ToArray();
         }
 
-        private AnimationFrame ToMagicAnimationFrame(SpritesheetFrame frame, int number)
+        private SerializedAnimation SerializeAnimation(string name, byte[][] frames, Dictionary<string, string> properties)
+        {
+            return new SerializedAnimation()
+            {
+                Frames = frames,
+                Properties = properties,
+                Name = name
+            };
+        }
+
+        private byte[] SerializeFrame(SpritesheetFrame frame, int number)
         {
             var slices = frame.GetSlices();
 
             if (!slices.Any())
             {
-                return new AnimationFrame(
-                    ToXnaRectangle(frame.SourceRectangle),
-                    ToXnaRectangle(frame.SourceRectangle).Center.ToVector2(),
-                    TimeSpan.FromMilliseconds(frame.Duration));
+                return SerializeFrame(
+                    frame.SourceRectangle,
+                    new AsepriteDotNet.Common.Point(frame.SourceRectangle.Width/2, frame.SourceRectangle.Height / 2),
+                    frame.Duration);
             }
 
             var mainSlice = slices.Where(it => it.Name.StartsWith("#")).First();
-            var frameLocation = ToXnaRectangle(frame.SourceRectangle).Location;
-            var sliceBounds = ToXnaRectangle(mainSlice.Bounds);
-            var resultBounds = new Rectangle(frameLocation + new Point(sliceBounds.Width * number, 0), sliceBounds.Size);
+            var frameLocation = frame.SourceRectangle.Location;
+            var resultBounds = new AsepriteDotNet.Common.Rectangle(frameLocation + new AsepriteDotNet.Common.Point(mainSlice.Bounds.Width * number, 0), mainSlice.Bounds.Size);
 
-            return new AnimationFrame(
+            return SerializeFrame(
                 resultBounds,
-                ToXnaPoint(mainSlice.Pivot.Value),
-                TimeSpan.FromMilliseconds(frame.Duration));
+                mainSlice.Pivot ?? new AsepriteDotNet.Common.Point(frame.SourceRectangle.Width / 2, frame.SourceRectangle.Height / 2),
+                frame.Duration);
         }
 
-        private Rectangle ToXnaRectangle(AsepriteDotNet.Common.Rectangle aseRectangle)
+        private byte[] SerializeFrame(AsepriteDotNet.Common.Rectangle borders, AsepriteDotNet.Common.Point anchor, int duration)
         {
-            return new Rectangle(aseRectangle.X, aseRectangle.Y, aseRectangle.Width, aseRectangle.Height);
-        }
-
-        private Vector2 ToXnaPoint(AsepriteDotNet.Common.Point asePoint)
-        {
-            return new Vector2(asePoint.X, asePoint.Y);
+            Span<byte> buffer = stackalloc byte[28];
+            BinaryPrimitives.WriteInt32LittleEndian(buffer, borders.X);
+            BinaryPrimitives.WriteInt32LittleEndian(buffer[4..], borders.Y);
+            BinaryPrimitives.WriteInt32LittleEndian(buffer[8..], borders.Width);
+            BinaryPrimitives.WriteInt32LittleEndian(buffer[12..], borders.Height);
+            BinaryPrimitives.WriteInt32LittleEndian(buffer[16..], anchor.X);
+            BinaryPrimitives.WriteInt32LittleEndian(buffer[20..], anchor.Y);
+            BinaryPrimitives.WriteInt32LittleEndian(buffer[24..], duration);
+            return buffer.ToArray();
         }
     }
 
@@ -190,30 +191,46 @@ namespace AsepriteImporter
 
         protected override void Write(ContentWriter output, AnimationWrapper value)
         {
-            output.Write7BitEncodedInt(value.TextureWidth);
-            output.Write7BitEncodedInt(value.TextureHeight);
+            output.Write(value.TextureWidth);
+            output.Write(value.TextureHeight);
             foreach (var color in value.Pixels)
             {
+                //4 bytes for one color
                 WriteColor(color, output);
             }
 
+            output.Write(value.Animations.Length);
             foreach (var animation in value.Animations)
             {
                 WriteAnimation(animation, output);
             }
         }
 
-        private void WriteColor(AsepriteDotNet.Common.Color aseColor, ContentWriter output)
+        private Color ToXnaColor(AsepriteDotNet.Common.Color aseColor)
         {
-            output.Write([aseColor.R, aseColor.G, aseColor.B, aseColor.A]);
+            return Color.FromNonPremultiplied(new Vector4(aseColor.R / 256f, aseColor.G / 256f, aseColor.B / 256f, aseColor.A / 256f));
         }
 
-        private void WriteAnimation(Animation animation, ContentWriter output)
+        private void WriteColor(AsepriteDotNet.Common.Color aseColor, ContentWriter output)
         {
-            output.Write(animation.Duration.TotalSeconds);
-            output.Write(animation.NextAnimation);
-            output.Write(animation.Looping);
-            output.Write(animation.SpeedFactor);
+            var xnaColor = ToXnaColor(aseColor);
+            output.Write([xnaColor.R, xnaColor.G, xnaColor.B, xnaColor.A]);
+        }
+
+        private void WriteAnimation(SerializedAnimation animation, ContentWriter output)
+        {
+            output.Write(animation.Frames.Length);
+            foreach (var frame in animation.Frames)
+            {
+                output.Write(frame);
+            }
+            output.Write(animation.Name);
+            output.Write(animation.Properties.Count);
+            foreach (var property in animation.Properties)
+            {
+                output.Write(property.Key);
+                output.Write(property.Value);
+            }
         }
     }
 
@@ -224,16 +241,49 @@ namespace AsepriteImporter
             var result = new AnimationCollection();
 
             var device = input.GetGraphicsDevice();
-            int textureWidth = input.Read7BitEncodedInt();
-            int textureHeight = input.Read7BitEncodedInt();
+            int textureWidth = input.ReadInt32();
+            int textureHeight = input.ReadInt32();
             byte[] pixelBuffer = new byte[textureWidth * textureHeight * 4];
             input.Read(pixelBuffer);
-
             var texture = new Texture2D(device, textureWidth, textureHeight);
             texture.SetData(pixelBuffer);
 
+            var animationCount = input.ReadInt32();
+
+            for (int i = 0; i < animationCount; i++)
+            {
+                var animation = ReadAnimation(input, texture);
+                result.Animations.Add(animation.Name, animation);
+            }
 
             return result;
+        }
+
+        private Animation ReadAnimation(ContentReader input, Texture2D texture)
+        {
+            var frameCount = input.ReadInt32();
+            var frames = new AnimationFrame[frameCount];
+            for (int i = 0; i < frameCount; i++)
+            {
+                var boundsX = input.ReadInt32();
+                var boundsY = input.ReadInt32();
+                var boundsWidth = input.ReadInt32();
+                var boundsHeight = input.ReadInt32();
+                var pivotX = input.ReadInt32();
+                var pivotY = input.ReadInt32();
+                var duration = input.ReadInt32();
+                frames[i] = new AnimationFrame(boundsX, boundsY, boundsWidth, boundsHeight, pivotX, pivotY, Convert.ToDouble(duration) / 1000);
+            }
+            var name = input.ReadString();
+            var propertyCount = input.ReadInt32();
+            var properties = new Dictionary<string, string>();
+            for (int i = 0; i < propertyCount; i++)
+            {
+                var propertyName = input.ReadString();
+                var propertyValue = input.ReadString();
+                properties.Add(propertyName, propertyValue);
+            }
+            return new Animation(name, texture, frames, properties);
         }
     }
 
@@ -247,6 +297,15 @@ namespace AsepriteImporter
         public int TextureWidth { get; set; }
         public int TextureHeight { get; set; }
         public AsepriteDotNet.Common.Color[] Pixels { get; set; }
-        public Animation[] Animations { get; set; }
+        public SerializedAnimation[] Animations { get; set; }
+    }
+
+    public class SerializedAnimation
+    {
+        public string Name { get; set; }
+
+        //28 byte array each frame
+        public byte[][] Frames { get; set; }
+        public Dictionary<string, string> Properties { get; set; }
     }
 }

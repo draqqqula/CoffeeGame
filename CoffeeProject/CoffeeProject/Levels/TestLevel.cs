@@ -20,6 +20,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -41,6 +42,7 @@ namespace CoffeeProject.Levels
 
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Music", "dungeon"), "sound").Play();
             //state.OpenServer(7878);
             var map = state.Using<IFactoryController>().CreateObject<TileMap>().SetPos(new Vector2(-500, -500));
             map.SetFrame(new Point(324, 324));
@@ -74,11 +76,10 @@ namespace CoffeeProject.Levels
             enemy2.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
 
             var boss1 = state.Using<IFactoryController>()
-                .CreateObject<Demon>()
+                .CreateObject<BossSpawner>()
                 .SetPos(new Vector2(850, 700))
-                .SetBounds(new Rectangle(-20, -40, 40, 40))
+                .SetBounds(new Rectangle(-20, -20, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
-                .AddHealthLabel(state)
                 .AddShadow(state)
                 .AddToState(state);
             boss1.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
@@ -90,7 +91,6 @@ namespace CoffeeProject.Levels
 
             Enemy.Add(enemy1);
             Enemy.Add(enemy2);
-            Enemy.Add(boss1);
         }
         private List<IEnemy> Enemy { get; set; } = [];
 

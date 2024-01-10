@@ -53,7 +53,7 @@ namespace CoffeeProject
 
             var client = new GameClient(Window.ClientBounds, CreateKeyBoardControls(), GameClient.GameLanguage.Russian);
             var storage = new DefaultContentStorage(_graphics.GraphicsDevice, Content);
-            var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice, storage) };
+            var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepritePipelineBuilder(storage) };
 
             _app = new MagicGameApplication(client, parameters, this);
 

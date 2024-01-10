@@ -8,8 +8,10 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/painting.jpg</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/hero.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/dungeon.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/shadow.png</File>
@@ -18,11 +20,25 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell3.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bells_inverted.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/soulbeat.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Caveat1.spritefont</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/black_teleport.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/boss1.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/collapse.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/damage_ball.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy_with_fireballs.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/heart.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/hero.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/menuBackground.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/panel-menu.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/PauseTitle.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/slash.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/soul.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/vignette.png</File>
   </SourceFiles>
   <DestFiles>
@@ -30,9 +46,12 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>level1_folder/sheet.png</File>
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>Music/Star.wav</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
@@ -44,6 +63,19 @@
     <File>SpriteFonts/Papyrus_numeric/info.json</File>
     <File>SpriteFonts/Papyrus_numeric/texture.png</File>
     <File>SpriteFonts/TestFont/texture.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

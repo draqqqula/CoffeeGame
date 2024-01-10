@@ -3,7 +3,7 @@
 
 /outputDir:bin/$(Platform)
 /intermediateDir:obj/$(Platform)
-/platform:DesktopGL
+/platform:Android
 /config:
 /profile:Reach
 /compress:False
@@ -11,6 +11,8 @@
 #-------------------------------- References --------------------------------#
 
 /reference:..\..\..\CustomImporters\MagicJsonPipeline.dll
+/reference:..\..\..\CustomImporters\asepriteImporter\AsepriteContentPipelineExtension.dll
+/reference:..\..\..\CustomImporters\asepriteImporter\AsepriteDotNet.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -50,6 +52,11 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:Folder1/txt.json
 
+#begin hero.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:hero.aseprite
+
 #begin level1_folder/floor cage.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -67,6 +74,12 @@
 /processor:MagicJsonDynamicProcessor
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:level1_folder/info.json
+
+#begin Music/dungeon.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/dungeon.mp3
 
 #begin Music/Star - Instrumental.wav
 /importer:WavImporter
@@ -122,6 +135,12 @@
 /processorParam:Quality=Best
 /build:Sound/crystal_bells_inverted.wav
 
+#begin Sound/soulbeat.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/soulbeat.wav
+
 #begin SpriteFonts/Caveat1.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -164,6 +183,71 @@
 /processor:MagicJsonDynamicProcessor
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
 /build:SpriteFonts/TestFont/info.json
+
+#begin Sprites/black_teleport.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/black_teleport.aseprite
+
+#begin Sprites/boss1.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/boss1.aseprite
+
+#begin Sprites/collapse.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/collapse.aseprite
+
+#begin Sprites/damage_ball.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/damage_ball.aseprite
+
+#begin Sprites/enemy_with_fireballs.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/enemy_with_fireballs.aseprite
+
+#begin Sprites/enemy.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/enemy.aseprite
+
+#begin Sprites/heart.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/heart.aseprite
+
+#begin Sprites/hero.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/hero.aseprite
+
+#begin Sprites/menuBackground.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/menuBackground.aseprite
+
+#begin Sprites/panel-menu.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/panel-menu.aseprite
+
+#begin Sprites/PauseTitle.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/PauseTitle.aseprite
+
+#begin Sprites/slash.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/slash.aseprite
+
+#begin Sprites/soul.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/soul.aseprite
 
 #begin vignette.png
 /importer:TextureImporter

@@ -10,4 +10,5 @@ catch (Exception ex)
 {
     File.WriteAllText("error_log.txt", $"{ex.Message}, " +
         $"{ex.StackTrace}");
+    throw;
 }

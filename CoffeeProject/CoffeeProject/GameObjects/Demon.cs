@@ -370,7 +370,22 @@ namespace CoffeeProject.GameObjects
         public override void OnStart(IControllerProvider state, Demon unit, GameObject target)
         {
             var shake = unit.GetComponents<VisualShake>().First();
-            unit.GetComponents<TimerHandler>().First().SetTimer("dispose", 3, unit.Dispose, true);
+            unit.GetComponents<TimerHandler>().First().SetTimer("dispose", 3, () => 
+            {
+                unit.Dispose();
+                var memory = state.Using<IFactoryController>()
+                .CreateObject<MemoryGate>()
+                .SetPlacement(new Placement<MainLayer>())
+                .SetPos(unit.Position)
+                .AddShadow(state)
+                .SetBounds(new Rectangle(-20, -20, 40, 40))
+                .AddToState(state);
+                if (target is null)
+                {
+                    return;
+                }
+                memory.Target = target.GetComponents<IBodyComponent>().First();
+            }, true);
             shake.Start(30, TimeSpan.FromSeconds(0.1), TimeSpan.FromSeconds(0.05), 7, 3);
         }
 

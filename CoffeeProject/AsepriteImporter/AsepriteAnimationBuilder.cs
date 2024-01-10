@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace AsepriteImporter
 {
@@ -27,7 +28,7 @@ namespace AsepriteImporter
             var file = AsepriteFile.Load(Path.Combine("Sprites", $"{name}.aseprite"));
             var sheet = file.ToAsepriteSheet(GetSpritesheetOptions(), GetTilesheetOptions());
             var aseAnimations = sheet.Spritesheet.Animations;
-            Texture2D texture;
+            Texture2D texture = new Texture2D(_device, 1, 1);
             if (_storage.GetAsset<Texture2D>(name) is not null)
             {
                 texture = _storage.GetAsset<Texture2D>(name);
@@ -35,9 +36,9 @@ namespace AsepriteImporter
             else
             {
                 texture = ToXnaTexture(
-                sheet.Spritesheet.Pixels,
-                sheet.Spritesheet.Size.Width,
-                sheet.Spritesheet.Size.Height);
+                    sheet.Spritesheet.Pixels,
+                    sheet.Spritesheet.Size.Width,
+                    sheet.Spritesheet.Size.Height);
                 _storage.AddAsset(texture, name);
             }
 
@@ -134,6 +135,7 @@ namespace AsepriteImporter
 
         private Texture2D ToXnaTexture(IEnumerable<AsepriteDotNet.Common.Color> pixels, int width, int height)
         {
+            File.AppendAllText("asepriteBuilder_log.txt", Thread.CurrentThread.IsThreadPoolThread.ToString());
             var xnaPixels = pixels.Select(it => ToXnaColor(it)).ToArray();
             var texture = new Texture2D(_device, width, height);
             texture.SetData(xnaPixels);
