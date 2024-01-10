@@ -177,12 +177,6 @@ F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Le
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Levels\TestLevel\room_start\tilemap.xnb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\hero_properties.txt
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Painting_properties.txt
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\enemy.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\heart.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\hero.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\menuBackground.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\PauseTitle.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\soul.aseprite
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\ANOTHER HIM.xnb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Folder1\painting.xnb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Folder1\txt.xnb
@@ -219,14 +213,6 @@ F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sp
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sprites\slash.xnb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sprites\soul.xnb
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\vignette.xnb
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\ben.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\black_teleport.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\boss1.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\collapse.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\damage_ball.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\enemy_with_fireballs.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\panel-menu.aseprite
-F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Sprites\slash.aseprite
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\CoffeeProject.exe
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\CoffeeProject.deps.json
 F:\Прога\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\CoffeeProject.runtimeconfig.json
