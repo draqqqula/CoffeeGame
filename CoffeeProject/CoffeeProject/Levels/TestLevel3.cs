@@ -63,7 +63,7 @@ namespace CoffeeProject.Levels
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddHealthLabel(state)
                 .AddToState(state);
-            Enemy.InvokeEach<Physics<NaughtyShell>>(it => it.SurfaceMap = surfaces);
+            Enemy.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
         }
         private NaughtyShell Enemy { get; set; }
 
@@ -82,9 +82,9 @@ namespace CoffeeProject.Levels
                 .AddHealthLabel(state)
                 .AddToState(state);
 
-            Enemy.SetTarget(obj);
+            Enemy.SetTarget(state, obj);
 
-            obj.InvokeEach<Physics<Hero>>(it => it.SurfaceMap = surfaces);
+            obj.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
             var dummy = obj.GetComponents<Dummy>().First();
 
             obj.Client = client;
