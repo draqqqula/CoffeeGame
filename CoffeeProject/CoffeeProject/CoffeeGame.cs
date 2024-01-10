@@ -64,7 +64,7 @@ namespace CoffeeProject
             _app.Configurations.AddConfiguration(SurfacesExtensions.ConfigureSurfaceHandler);
             _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
 
-            _app.LevelManager.LoadAs<TestLevel>("test");
+            _app.LevelManager.LoadAs<TestLevel3>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
             _app.LevelManager.LoadAs<MainMenu>("menu");

@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.Levels
 {
-    public class TestLevel : GameLevel
+    public class TestLevel3 : GameLevel
     {
         protected override LevelSettings GetDefaults()
         {
