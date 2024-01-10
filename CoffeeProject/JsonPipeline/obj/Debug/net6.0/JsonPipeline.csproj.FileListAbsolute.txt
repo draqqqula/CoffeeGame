@@ -11,3 +11,29 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipelin
 C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\refint\JsonPipeline.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\ref\JsonPipeline.dll
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.deps.json
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.dll
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.pdb
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.csproj.AssemblyReference.cache
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.GeneratedMSBuildEditorConfig.editorconfig
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.AssemblyInfoInputs.cache
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.AssemblyInfo.cs
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.csproj.CoreCompileInputs.cache
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.sourcelink.json
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.dll
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\refint\JsonPipeline.dll
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.pdb
+F:\Прога\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\ref\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.deps.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\bin\Debug\net6.0\JsonPipeline.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.csproj.AssemblyReference.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.GeneratedMSBuildEditorConfig.editorconfig
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.AssemblyInfoInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.AssemblyInfo.cs
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.csproj.CoreCompileInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.sourcelink.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\refint\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\JsonPipeline.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\JsonPipeline\obj\Debug\net6.0\ref\JsonPipeline.dll

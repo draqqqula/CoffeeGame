@@ -14,3 +14,35 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\ref\MagicDustL
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.pdb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.CopyComplete
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\MagicDustLibrary.deps.json
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\MagicDustLibrary.dll
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\MagicDustLibrary.pdb
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.dll
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.pdb
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.AssemblyReference.cache
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.GeneratedMSBuildEditorConfig.editorconfig
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.AssemblyInfoInputs.cache
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.AssemblyInfo.cs
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.CoreCompileInputs.cache
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.sourcelink.json
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.CopyComplete
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.dll
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\refint\MagicDustLibrary.dll
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.pdb
+F:\Прога\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\ref\MagicDustLibrary.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\MagicDustLibrary.deps.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\MagicDustLibrary.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\MagicDustLibrary.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\bin\Debug\net8.0\JsonPipeline.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.AssemblyReference.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.GeneratedMSBuildEditorConfig.editorconfig
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.AssemblyInfoInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.AssemblyInfo.cs
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.CoreCompileInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.sourcelink.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.csproj.CopyComplete
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\refint\MagicDustLibrary.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\MagicDustLibrary.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\MagicDust\obj\Debug\net8.0\ref\MagicDustLibrary.dll

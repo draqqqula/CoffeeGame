@@ -16,3 +16,39 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\ref\BehaviorKit.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.dll
 C:\CoffeeGame\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.pdb
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\BehaviorKit.deps.json
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\BehaviorKit.dll
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\BehaviorKit.pdb
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.dll
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\MagicDustLibrary.dll
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\MagicDustLibrary.pdb
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.pdb
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.csproj.AssemblyReference.cache
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.GeneratedMSBuildEditorConfig.editorconfig
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.AssemblyInfoInputs.cache
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.AssemblyInfo.cs
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.csproj.CoreCompileInputs.cache
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.sourcelink.json
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.csproj.CopyComplete
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.dll
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\refint\BehaviorKit.dll
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.pdb
+F:\Прога\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\ref\BehaviorKit.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\BehaviorKit.deps.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\BehaviorKit.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\BehaviorKit.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\MagicDustLibrary.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\MagicDustLibrary.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\bin\Debug\net8.0\JsonPipeline.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.csproj.AssemblyReference.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.GeneratedMSBuildEditorConfig.editorconfig
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.AssemblyInfoInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.AssemblyInfo.cs
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.csproj.CoreCompileInputs.cache
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.sourcelink.json
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.csproj.CopyComplete
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\refint\BehaviorKit.dll
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\BehaviorKit.pdb
+F:\Games\Game coffe project\CoffeeGame\CoffeeProject\BehaviorKit\obj\Debug\net8.0\ref\BehaviorKit.dll

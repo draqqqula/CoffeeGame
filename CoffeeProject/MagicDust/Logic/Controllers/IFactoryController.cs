@@ -16,7 +16,7 @@ namespace MagicDustLibrary.Logic.Controllers
 {
     public interface IFactoryController : IStateController
     {
-        public T CreateAsset<T>(string name);
+        public T CreateAsset<T>(params string[] names);
         public T CreateObject<T>() where T : ComponentBase;
         public void AddToState<T>(T obj) where T : GameObject;
     }
@@ -32,9 +32,9 @@ namespace MagicDustLibrary.Logic.Controllers
             _hooker = hooker;
             _factory = factory;
         }
-        public T CreateAsset<T>(string name)
+        public T CreateAsset<T>(params string[] names)
         {
-            return AssetExtensions.Create<T>(name, _storage);
+            return AssetExtensions.Create<T>(_storage, names);
         }
 
         public T CreateObject<T>() where T : ComponentBase

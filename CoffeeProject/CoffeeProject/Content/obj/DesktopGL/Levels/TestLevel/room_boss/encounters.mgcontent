@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/encounters.json</SourceFile>
+  <SourceTime>2023-12-29T19:11:28.9445009+05:00</SourceTime>
+  <DestFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Levels/TestLevel/room_boss/encounters.xnb</DestFile>
+  <DestTime>2023-12-29T19:49:42.8632148+05:00</DestTime>
+  <Importer>MagicJsonImporter</Importer>
+  <ImporterTime>2023-12-17T18:58:41.0815968+05:00</ImporterTime>
+  <Processor>MagicJsonDynamicProcessor</Processor>
+  <ProcessorTime>2023-12-17T18:58:41.0815968+05:00</ProcessorTime>
+  <Parameters>
+    <Key>RuntimeType</Key>
+    <Value>MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

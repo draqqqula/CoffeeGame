@@ -69,14 +69,22 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
         public Rectangle? GetBoundsForPoint(Point point)
         {
             if (_sheet is null ||
-                _map.GetLength(0) > point.X ||
-                _map.GetLength(1) > point.Y ||
+                _map.GetLength(0) - 1 < point.X ||
+                _map.GetLength(1) - 1 < point.Y ||
                 point.X < 0 ||
                 point.Y < 0)
             {
                 return null;
             }
-            var tile = _sheet.GetInfo(_map[point.X, point.Y]);
+            var tileType = _map[point.X, point.Y];
+            if (tileType == 0)
+            {
+                var rawPos = _tileFrame * point;
+                var pos = Position + rawPos.ToVector2() * _scale;
+                return new Rectangle(pos.ToPoint(), Point.Zero);
+            }
+
+            var tile = _sheet.GetInfo(tileType);
 
             var rawPosition = _tileFrame * point + tile.Offset;
             var position = Position + rawPosition.ToVector2() * _scale;
