@@ -11,8 +11,9 @@ namespace MagicDustLibrary.Organization
     {
         #region FIELDS
         private MagicGameApplication _app;
-        private readonly Dictionary<string, ILevel> Loaded = new Dictionary<string, ILevel>();
-        private readonly RelativeCollection<ILevel> ActiveLevels = new RelativeCollection<ILevel>();
+        private readonly Dictionary<string, Func<ILevel>> Generators = [];
+        private readonly Dictionary<string, ILevel> Loaded = [];
+        private readonly RelativeCollection<ILevel> ActiveLevels = [];
         #endregion
 
 
@@ -135,6 +136,7 @@ namespace MagicDustLibrary.Organization
             if (!keepState)
             {
                 Loaded[name].Shut();
+                Loaded[name] = Generators[name]();
             }
         }
 
@@ -144,8 +146,8 @@ namespace MagicDustLibrary.Organization
         /// <param name="name"></param>
         public void Restart(string name, LevelArgs arguments)
         {
-            Loaded[name].Shut();
-            Loaded[name].Start(_app, arguments, name);
+            Shut(name, false);
+            Launch(name, arguments, false);
         }
 
         /// <summary>
@@ -154,8 +156,7 @@ namespace MagicDustLibrary.Organization
         /// <param name="name"></param>
         public void Restart(string name)
         {
-            Loaded[name].Shut();
-            Loaded[name].Start(_app, LevelArgs.Empty, name);
+            Restart(name, LevelArgs.Empty);
         }
 
         /// <summary>
@@ -165,7 +166,8 @@ namespace MagicDustLibrary.Organization
         /// <param name="name"></param>
         public void LoadAs<T>(string name) where T : ILevel
         {
-            Loaded[name] = Activator.CreateInstance<T>();
+            Generators.Add(name, () => Activator.CreateInstance<T>());
+            Loaded[name] = Generators[name]();
         }
         #endregion
 

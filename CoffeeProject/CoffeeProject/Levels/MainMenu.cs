@@ -1,7 +1,9 @@
-﻿using CoffeeProject.GameObjects;
+﻿using AsepriteImporter;
+using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
 using MagicDustLibrary.ComponentModel;
+using MagicDustLibrary.Content;
 using MagicDustLibrary.Factorys;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Controllers;
@@ -23,6 +25,17 @@ namespace CoffeeProject.Levels
         protected override LevelSettings GetDefaults()
         {
             return new LevelSettings();
+        }
+
+        private class AnimationCollectionWrapper
+        {
+            AnimationCollection Collection { get; set; }
+            public AnimationCollectionWrapper(
+                [FromStorage("*")]AnimationCollection collection
+                )
+            {
+                Collection = collection;
+            }
         }
 
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)

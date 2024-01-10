@@ -41,7 +41,7 @@ namespace CoffeeProject
 
             _graphics.PreferredBackBufferWidth = 1903;
             _graphics.PreferredBackBufferHeight = 969;
-            _graphics.PreferMultiSampling = true;
+            _graphics.PreferMultiSampling = false;
             _graphics.SynchronizeWithVerticalRetrace = true;
             this.IsFixedTimeStep = true;
             this.TargetElapsedTime = TimeSpan.FromSeconds(1 / 120f);
@@ -53,7 +53,7 @@ namespace CoffeeProject
 
             var client = new GameClient(Window.ClientBounds, CreateKeyBoardControls(), GameClient.GameLanguage.Russian);
             var storage = new DefaultContentStorage(_graphics.GraphicsDevice, Content);
-            var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepriteAnimationBuilder(_graphics.GraphicsDevice, storage) };
+            var parameters = new ApplicationParameters() { ContentStorage = storage, AnimationProvider = new AsepritePipelineBuilder(storage) };
 
             _app = new MagicGameApplication(client, parameters, this);
 

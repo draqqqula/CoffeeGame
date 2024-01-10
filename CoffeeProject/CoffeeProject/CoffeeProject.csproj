@@ -36,7 +36,25 @@
     <ProjectReference Include="..\MagicDust\MagicDustLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Sprites\ben.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\black_teleport.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\boss1.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\collapse.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\damage_ball.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Sprites\enemy.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\enemy_with_fireballs.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Sprites\heart.aseprite">
@@ -54,7 +72,13 @@
     <None Update="Painting_properties.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Sprites\panel-menu.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Sprites\PauseTitle.aseprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Sprites\slash.aseprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Sprites\soul.aseprite">

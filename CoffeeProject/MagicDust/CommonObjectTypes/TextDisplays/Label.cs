@@ -57,7 +57,7 @@ namespace MagicDustLibrary.CommonObjectTypes.TextDisplays
             };
         }
 
-        public DrawingParameters GetDrawingParameters()
+        public virtual DrawingParameters GetDrawingParameters()
         {
             return new DrawingParameters
             {

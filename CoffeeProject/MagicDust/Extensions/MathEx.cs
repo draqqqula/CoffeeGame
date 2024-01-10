@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Runtime.CompilerServices;
 
 namespace MagicDustLibrary.Extensions
 {
@@ -105,6 +107,26 @@ namespace MagicDustLibrary.Extensions
         public static float RotateTowards(this float angle, float targetAngle, float border, float speed, TimeSpan deltatime)
         {
             return angle.RotateTowards(targetAngle, border, speed, deltatime.TotalSeconds);
+        }
+
+        public static Vector2 AngleToVector(float angle)
+        {
+            return new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+        }
+
+        public static float Atan2(float y, float x)
+        {
+            return (float)Math.Atan2(y, x);
+        }
+
+        public static float VectorToAngle(Vector2 vector)
+        {
+            return Atan2(vector.Y, vector.X);
+        }
+
+        public static float AngleBetweenVectors(Vector2 from, Vector2 to)
+        {
+            return Atan2(to.Y - from.Y, to.X - from.X);
         }
     }
 }

@@ -19,6 +19,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BehaviorKit;
+using MagicDustLibrary.ComponentModel;
+using System.IO;
+using MagicDustLibrary.CommonObjectTypes.Image;
 
 namespace CoffeeProject.Levels
 {
@@ -48,6 +52,7 @@ namespace CoffeeProject.Levels
             }
         }
 
+        private Image Tint { get; set; }
         private CameraAnchor Anchor { get; set; }
         private GameClient MainClient { get; set; }
         private RunInfo RunInfo { get; set; } = new ();
@@ -59,6 +64,7 @@ namespace CoffeeProject.Levels
         private DynamicLabel PartLabel { get; set; }
         private string CurrentMessage { get; set; } = "Как меня зовут?";
         private DynamicLabel MessageLabel { get; set; }
+        private bool OnTransition { get; set; } = false;
         protected override LevelSettings GetDefaults()
         {
             var settings = new LevelSettings();
@@ -79,6 +85,14 @@ namespace CoffeeProject.Levels
             Batches.Add(savedData.SecondPart);
             Batches.Add(savedData.ThirdPart);
 
+            Tint = state.Using<IFactoryController>()
+                .CreateObject<Image>()
+                .SetMonoColor(Color.White)
+                .SetOpacity(0)
+                .SetPlacement(new Placement<TintLayer>())
+                .SetScale(new Vector2(1920, 1080))
+                .AddToState(state);
+
             NameLabel = state.Using<IFactoryController>()
                 .CreateObject<DynamicLabel>()
                 .SetPlacement(new Placement<GUI>())
@@ -86,6 +100,7 @@ namespace CoffeeProject.Levels
                 .SetPivot(PivotPosition.Center)
                 .SetText(() => $"{NewName}")
                 .SetPos(new Vector2(WindowWidth/2, WindowHeight/2))
+                .AddComponent(new VisualShake())
                 .AddToState(state);
 
             PartLabel = state.Using<IFactoryController>()
@@ -110,13 +125,15 @@ namespace CoffeeProject.Levels
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
+            Tint.SetScale(client.Window.Size.ToVector2());
         }
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Music", "Star"), "main").Play();
             WindowWidth = client.Window.Width;
             WindowHeight = client.Window.Height;
-            var physics = new Physics<CameraAnchor>(new SurfaceMap([], 0, 16));
+            var physics = new Physics(new SurfaceMap([], 0, 16));
             var cameraAnchor = state.Using<IFactoryController>()
                 .CreateObject<CameraAnchor>()
                 .SetPos(new Vector2(WindowWidth/2, WindowHeight/2))
@@ -129,11 +146,23 @@ namespace CoffeeProject.Levels
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)
         {
+            state.Using<ISoundController>().GetSoundInstance("main").Stop();
         }
 
         protected override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
-            var physics = Anchor.GetComponents<Physics<CameraAnchor>>().First();
+            if (OnTransition)
+            {
+                Tint.Opacity += 0.3f * Convert.ToSingle(deltaTime.TotalSeconds);
+                if (Tint.Opacity >= 1)
+                {
+                    state.Using<ILevelController>().ShutCurrent(false);
+                    state.Using<ILevelController>().LaunchLevel("test", new LevelArgs(NewName), false);
+                }
+                return;
+            }
+
+            var physics = Anchor.GetComponents<Physics>().First();
 
             if (physics.ActiveVectors.ContainsKey("move"))
             {
@@ -147,8 +176,7 @@ namespace CoffeeProject.Levels
             {
                 if (NameSelectionStep >= Batches.Count)
                 {
-                    state.Using<ILevelController>().ShutCurrent(false);
-                    state.Using<ILevelController>().LaunchLevel("test", new LevelArgs(NewName), false);
+                    OnTransition = true;
                     RunInfo.CharacterName = NewName;
                 }
                 else if (NameSelectionStep >= Batches.Count - 1)
@@ -158,6 +186,8 @@ namespace CoffeeProject.Levels
                     NameSelectionStep += 1;
                     physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
                     CurrentMessage = "Меня точно так зовут?";
+                    state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "crystal_bell2"), "sound").Play();
+                    NameLabel.InvokeEach<VisualShake>(it => it.Start(6, TimeSpan.FromSeconds(0.1), TimeSpan.FromSeconds(0.08), 18, 0.3f));
                 }
                 else
                 {
@@ -165,6 +195,8 @@ namespace CoffeeProject.Levels
                     NameSelectionStep += 1;
                     SelectionIndex = 0;
                     physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
+                    state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "crystal_bell3"), "sound").Play();
+                    NameLabel.InvokeEach<VisualShake>(it => it.Start(6, TimeSpan.FromSeconds(0.1), TimeSpan.FromSeconds(0.08), 18, 0.3f));
                 }
             }
 
@@ -230,7 +262,7 @@ namespace CoffeeProject.Levels
             var random = new RandomEx();
             var animation = $"star{random.Next(1, 1 + AnimationCount)}";
             var distance = random.NextSingle(MinDistance, MaxDistance, DistanceFactor);
-            var position = AngleToVector(random.NextSingle() * float.Pi * 2) * distance + new Vector2(WindowHeight/2, WindowHeight/2);
+            var position = MathEx.AngleToVector(random.NextSingle() * float.Pi * 2) * distance + new Vector2(WindowHeight/2, WindowHeight/2);
             var placementIndex = random.Next(placements.Length - 1);
             var placement = placements[placementIndex];
 
@@ -243,11 +275,6 @@ namespace CoffeeProject.Levels
             var sineAmp = random.NextSingle(MinSineScale, MaxSineScale, SineScaleFactor);
 
             CreateSoul(state, scale, animation, placement, position, opacity, sineSpeed, sineAmp);
-        }
-
-        private Vector2 AngleToVector(float angle)
-        {
-            return new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
         }
     }
 }

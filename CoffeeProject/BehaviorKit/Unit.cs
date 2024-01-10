@@ -20,15 +20,16 @@ namespace BehaviorKit
         private KeyValuePair<string, UnitMove<TUnit, TTarget>> CurrentAction;
 
         public TTarget Target { get; set; }
+        public bool Enabled { get; set; } = true;
 
         #region TARGET
-        public void SetTarget(TTarget target, TUnit parent)
+        public void SetTarget(IControllerProvider state, TTarget target, TUnit parent)
         {
             if (target != Target)
             {
                 LoseTarget();
                 Target = target;
-                TakeAction(SearchForAction(target, parent), parent);
+                TakeAction(state, SearchForAction(target, parent), parent);
             }
         }
 
@@ -47,25 +48,25 @@ namespace BehaviorKit
             get => Target is not null;
         }
 
-        private void ReactWith(KeyValuePair<string, UnitMove<TUnit, TTarget>> action, TUnit parent)
+        private void ReactWith(IControllerProvider state, KeyValuePair<string, UnitMove<TUnit, TTarget>> action, TUnit parent)
         {
             if (CurrentAction.Value is not null)
-                CurrentAction.Value.OnForcedBreak(parent, Target, action.Value);
+                CurrentAction.Value.OnForcedBreak(state, parent, Target, action.Value);
             timerHandler.Silence("Action");
             timerHandler.Silence("Cooldown");
-            TakeAction(action, parent);
+            TakeAction(state, action, parent);
         }
 
-        public void ReactWith(string actionName, TUnit parent)
+        public void ReactWith(IControllerProvider state, string actionName, TUnit parent)
         {
-            ReactWith(new KeyValuePair<string, UnitMove<TUnit, TTarget>>(actionName, Actions[actionName]), parent);
+            ReactWith(state, new KeyValuePair<string, UnitMove<TUnit, TTarget>>(actionName, Actions[actionName]), parent);
         }
-        public void ReactWith<Move>(TUnit parent) where Move : UnitMove<TUnit, TTarget>
+        public void ReactWith<Move>(IControllerProvider state, TUnit parent) where Move : UnitMove<TUnit, TTarget>
         {
-            ReactWith(typeof(Move).Name, parent);
+            ReactWith(state, typeof(Move).Name, parent);
         }
 
-        public void TakeAction(KeyValuePair<string, UnitMove<TUnit, TTarget>> action, TUnit parent)
+        public void TakeAction(IControllerProvider state, KeyValuePair<string, UnitMove<TUnit, TTarget>> action, TUnit parent)
         {
             Step();
             CurrentAction = action;
@@ -78,12 +79,12 @@ namespace BehaviorKit
 
             if (!action.Value.IsEndless)
             {
-                timerHandler.SetTimer("Action", action.Value.Duration, () => action.Value.OnEnd(parent, Target), false);
+                timerHandler.SetTimer("Action", action.Value.Duration, () => action.Value.OnEnd(state, parent, Target), false);
                 if (action.Value.HasFreeSpan)
-                    timerHandler.SetTimer("Cooldown", action.Value.FreeSpan + action.Value.Duration, () => TakeAction(SearchForAction(Target, parent), parent), false);
+                    timerHandler.SetTimer("Cooldown", action.Value.FreeSpan + action.Value.Duration, () => TakeAction(state, SearchForAction(Target, parent), parent), false);
             }
 
-            action.Value.OnStart(parent, Target);
+            action.Value.OnStart(state, parent, Target);
         }
 
         public KeyValuePair<string, UnitMove<TUnit, TTarget>> SearchForAction(TTarget target, TUnit parent)
@@ -104,7 +105,9 @@ namespace BehaviorKit
         public void Step()
         {
             foreach (var cooldown in StepCooldowns.Keys)
+            {
                 StepCooldowns[cooldown] -= 1;
+            }
             StepCooldowns = StepCooldowns.Where(cooldown => cooldown.Value > 0).ToDictionary(e => e.Key, e => e.Value);
         }
 
@@ -125,16 +128,25 @@ namespace BehaviorKit
             }
         }
 
-        public void AddAction(string name, UnitMove<TUnit, TTarget> action)
+        public void AddAction(string name, UnitMove<TUnit, TTarget> action, int initialCooldown)
         {
             Actions.Add(name, action);
+            if (initialCooldown > 0)
+            {
+                StepCooldowns.Add(name, initialCooldown);
+            }
         }
 
-        public void AddActions(params (string name, UnitMove<TUnit, TTarget> action)[] actions)
+        public void AddAction(string name, UnitMove<TUnit, TTarget> action)
+        {
+            AddAction(name, action, 0);
+        }
+
+        public void AddActions(params (string name, UnitMove<TUnit, TTarget> action, int initialCooldown)[] actions)
         {
             foreach (var action in actions)
             {
-                AddAction(action.name, action.action);
+                AddAction(action.name, action.action, action.initialCooldown);
             }
         }
         #endregion
@@ -142,20 +154,20 @@ namespace BehaviorKit
         #region IBEHAVIOR
         protected override void Act(IControllerProvider state, TimeSpan deltaTime, TUnit parent)
         {
-            if (CurrentAction.Value != null && !CurrentAction.Value.Continue(parent, Target))
+            if (CurrentAction.Value != null && !CurrentAction.Value.Continue(state, parent, Target))
             {
                 var action = CurrentAction.Value;
                 timerHandler.CheckAndTurnOff("Action");
 
-                action.OnEnd(parent, Target);
+                action.OnEnd(state, parent, Target);
 
                 if (action.HasFreeSpan)
                 {
-                    timerHandler.Hold("Cooldown", action.FreeSpan, () => TakeAction(SearchForAction(Target, parent), parent), false);
+                    timerHandler.Hold("Cooldown", action.FreeSpan, () => TakeAction(state, SearchForAction(Target, parent), parent), false);
                 }
                 else
                 {
-                    TakeAction(SearchForAction(Target, parent), parent);
+                    TakeAction(state, SearchForAction(Target, parent), parent);
                 }
 
                 CurrentAction = default;
@@ -194,10 +206,10 @@ namespace BehaviorKit
         #endregion
 
         #region SCRIPT
-        public virtual void OnStart(TUnit unit, TTarget target) { }
-        public virtual void OnEnd(TUnit unit, TTarget target) { }
-        public virtual bool Continue(TUnit unit, TTarget target) { return true; }
-        public virtual void OnForcedBreak(TUnit unit, TTarget target, UnitMove<TUnit, TTarget> breaker) { }
+        public virtual void OnStart(IControllerProvider state, TUnit unit, TTarget target) { }
+        public virtual void OnEnd(IControllerProvider state, TUnit unit, TTarget target) { }
+        public virtual bool Continue(IControllerProvider state, TUnit unit, TTarget target) { return true; }
+        public virtual void OnForcedBreak(IControllerProvider state, TUnit unit, TTarget target, UnitMove<TUnit, TTarget> breaker) { }
         #endregion
 
         #region CHOICE
