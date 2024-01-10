@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/encounters.json</SourceFile>
-  <SourceTime>2024-01-09T03:41:41.0202727+05:00</SourceTime>
-  <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Levels/TestLevel/room_enemy2/encounters.xnb</DestFile>
-  <DestTime>2024-01-10T18:40:32.1459268+05:00</DestTime>
+  <SourceFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/encounters.json</SourceFile>
+  <SourceTime>2024-01-11T01:14:40.8873209+05:00</SourceTime>
+  <DestFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Levels/TestLevel/room_enemy2/encounters.xnb</DestFile>
+  <DestTime>2024-01-11T01:40:36.9775762+05:00</DestTime>
   <Importer>MagicJsonImporter</Importer>
-  <ImporterTime>2023-12-27T16:16:55.6465075+05:00</ImporterTime>
+  <ImporterTime>2023-12-17T18:58:41.0815968+05:00</ImporterTime>
   <Processor>MagicJsonDynamicProcessor</Processor>
-  <ProcessorTime>2023-12-27T16:16:55.6465075+05:00</ProcessorTime>
+  <ProcessorTime>2023-12-17T18:58:41.0815968+05:00</ProcessorTime>
   <Parameters>
     <Key>RuntimeType</Key>
     <Value>MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary</Value>

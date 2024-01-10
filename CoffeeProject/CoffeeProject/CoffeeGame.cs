@@ -64,14 +64,14 @@ namespace CoffeeProject
             _app.Configurations.AddConfiguration(SurfacesExtensions.ConfigureSurfaceHandler);
             _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
 
-            _app.LevelManager.LoadAs<TestLevel>("test");
+            _app.LevelManager.LoadAs<TestLevel3>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
             _app.LevelManager.LoadAs<MainMenu>("menu");
             _app.LevelManager.LoadAs<SettingsLevel>("settings");
             _app.LevelManager.LoadAs<GameOverScreen>("gameover");
             _app.LevelManager.LoadAs<NameScreen>("namescreen");
-            _app.LevelManager.Launch("menu", false);
+            _app.LevelManager.Launch("test", false);
             //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 
             base.Initialize();

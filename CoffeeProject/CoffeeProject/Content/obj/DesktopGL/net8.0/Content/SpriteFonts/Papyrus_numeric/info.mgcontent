@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json</SourceFile>
-  <SourceTime>2024-01-07T12:52:57.0710125+05:00</SourceTime>
-  <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/SpriteFonts/Papyrus_numeric/info.xnb</DestFile>
-  <DestTime>2024-01-11T00:59:43.175719+05:00</DestTime>
+  <SourceFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json</SourceFile>
+  <SourceTime>2023-12-29T19:37:40.6206682+05:00</SourceTime>
+  <DestFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/SpriteFonts/Papyrus_numeric/info.xnb</DestFile>
+  <DestTime>2024-01-11T01:15:34.6352556+05:00</DestTime>
   <Importer>MagicJsonImporter</Importer>
-  <ImporterTime>2023-12-27T16:16:55.6465075+05:00</ImporterTime>
+  <ImporterTime>2023-12-17T18:58:41.0815968+05:00</ImporterTime>
   <Processor>MagicJsonDynamicProcessor</Processor>
-  <ProcessorTime>2023-12-27T16:16:55.6465075+05:00</ProcessorTime>
+  <ProcessorTime>2023-12-17T18:58:41.0815968+05:00</ProcessorTime>
   <Parameters>
     <Key>RuntimeType</Key>
     <Value>MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary</Value>

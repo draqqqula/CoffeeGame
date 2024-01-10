@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</SourceFile>
-  <SourceTime>2024-01-11T00:49:37.1288824+05:00</SourceTime>
-  <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Sound/crystal_bell2.xnb</DestFile>
-  <DestTime>2024-01-11T00:59:42.7057727+05:00</DestTime>
+  <SourceFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</SourceFile>
+  <SourceTime>2024-01-11T01:07:44.1109615+05:00</SourceTime>
+  <DestFile>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Sound/crystal_bell2.xnb</DestFile>
+  <DestTime>2024-01-11T01:15:32.9900315+05:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

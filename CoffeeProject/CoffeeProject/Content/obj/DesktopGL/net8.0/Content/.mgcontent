@@ -4,42 +4,67 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/../../../Design/for location/level1_map.png</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/painting.jpg</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/hero.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/dungeon.mp3</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/shadow.png</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell_inverted2.wav</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell1.mp3</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell3.mp3</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bells_inverted.wav</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/soulbeat.wav</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Caveat1.spritefont</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/black_teleport.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/boss1.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/collapse.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/damage_ball.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy_with_fireballs.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/heart.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/hero.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/menuBackground.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/panel-menu.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/PauseTitle.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/slash.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/soul.aseprite</File>
-    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/vignette.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/../../../Design/for location/level1_map.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/painting.jpg</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/hero.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/level.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/dungeon.mp3</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/shadow.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell_inverted2.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell1.mp3</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell3.mp3</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bells_inverted.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/soulbeat.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Caveat1.spritefont</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/black_teleport.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/boss1.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/collapse.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/damage_ball.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy_with_fireballs.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/heart.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/hero.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/menuBackground.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/panel-menu.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/PauseTitle.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/slash.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/soul.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/vignette.png</File>
   </SourceFiles>
   <DestFiles>
     <File>level1_map.png</File>
@@ -48,6 +73,31 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>level1_folder/sheet.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>Music/Star.wav</File>

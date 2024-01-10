@@ -42,14 +42,20 @@ namespace CoffeeProject.Levels
         {
             var generator = new LevelGenerator(state);
             var graph = generator.GenerateLevelGraph("TestLevel", 4, 8, 8);
-            var map = state.Using<IFactoryController>().CreateObject<TileMap>().SetPos(new Vector2(-500, -500));
+
+            var map = state.Using<IFactoryController>()
+                .CreateObject<TileMap>()
+                .SetPos(new Vector2(-500, -500))
+                .SetPlacement(new Placement<SurfaceLayer>());
             map.SetFrame(new Point(324, 324));
             map.SetScale(0.2f);
             var sheet = state.Using<IFactoryController>().CreateAsset<TileSheet>("level1");
             map.UseSheet(sheet);
             var level = new LevelMap(graph.LevelColors);
             map.UseMap(level.Map);
-            state.Using<IFactoryController>().AddToState(map);
+            map.AddToState(state);
+
+
             state.Using<SurfaceMapProvider>().AddMap("level", map);
 
             PlayerPosition = map.GetBoundsForPoint(graph.Positions.First().Value.Location).Value.Location.ToVector2() + new Vector2(300, 300);
@@ -75,12 +81,24 @@ namespace CoffeeProject.Levels
         {
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
 
+            var healthIndicator = state.Using<IFactoryController>()
+                .CreateObject<Label>()
+                .SetPlacement(new Placement<GUI>())
+                .SetPos(new Vector2(100, 50))
+                .UseCustomFont(state, "TestFont")
+                .SetScale(4f)
+                .SetText("c")
+                .AddToState(state);
+
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(PlayerPosition)
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
-                .AddHealthLabel(state)
+                .AddComponent(new TimerHandler())
+                .AddComponent(new Playable(healthIndicator))
+                .AddShadow(state)
                 .AddToState(state);
+
 
             Enemy.SetTarget(state, obj);
 
@@ -90,11 +108,6 @@ namespace CoffeeProject.Levels
             obj.Client = client;
 
             state.Using<IClientController>().AttachCamera(client, obj);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(50, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(150, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(250, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(350, 50)).AddToState(state);
-            state.Using<IFactoryController>().CreateObject<Heart>().SetPlacement(new Placement<GUI>()).SetPos(new Vector2(450, 50)).AddToState(state);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

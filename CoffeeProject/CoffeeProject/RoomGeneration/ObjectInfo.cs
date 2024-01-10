@@ -421,7 +421,7 @@ namespace CoffeeProject.RoomGeneration
         {
             var leftColor = bitmap.GetPixel(gate.X - 1, gate.Y);
             var rightColor = bitmap.GetPixel(gate.X + 1, gate.Y);
-            return leftColor == rightColor;
+            return leftColor == rightColor && rightColor == Color.FromArgb(255, 165, 0);
         }
 
         private static (int, int) ChoseBestGates(LevelGraph levelGraph, int i, int j, Rectangle firstRoomPos, Rectangle secondRoomPos)
