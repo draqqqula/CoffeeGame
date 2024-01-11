@@ -28,7 +28,6 @@ namespace MagicDustLibrary.Animations
         public double SpeedFactor;
 
         public readonly int FrameCount;
-        public int CurrentFrame { get; private set; }
 
         public Animation(string name, Texture2D sheet, AnimationFrame[] frames, Dictionary<string, string> properties)
         {
@@ -45,45 +44,15 @@ namespace MagicDustLibrary.Animations
             FrameCount = frames.Length;
             Sheet = sheet;
             Duration = TimeSpan.FromSeconds(frames.Sum(frame => frame.Duration.TotalSeconds));
-
-            CurrentFrame = 0;
         }
 
-        /// <summary>
-        /// если возможно, выбирает кадр отталкиваясь от прогресса анимации, отправляет в буфер на отрисовку и возвращает true
-        /// если невозможно выбрать кадр, возвращает false
-        /// </summary>
-        /// <param newPriority="progress"></param>
-        /// <param newPriority="arguments"></param>
-        /// <param newPriority="animator"></param>
-        /// <returns></returns>
-        public bool Run(double progress)
+        public IDisplayable GetVisual(DrawingParameters arguments, int frame)
         {
-            if (progress > 1 || progress < 0)
+            if (frame < 0 || frame >= Frames.Length)
             {
-                return false;
+                throw new ArgumentOutOfRangeException($"Couldn't display frame {frame} since Animation {Name} has only {FrameCount}");
             }
-
-            CurrentFrame = (int)Math.Floor(progress * Frames.Length);
-            return true;
-        }
-
-        /// <summary>
-        /// если возможно, выбирает кадр отталкиваясь от длительности анимации, отправляет в буфер на отрисовку и возвращает true
-        /// если невозможно выбрать кадр, возвращает false
-        /// </summary>
-        /// <param newPriority="t"></param>
-        /// <param newPriority="arguments"></param>
-        /// <param newPriority="animator"></param>
-        /// <returns></returns>
-        public bool Run(TimeSpan t)
-        {
-            return Run(t / SpeedFactor / Duration);
-        }
-
-        public IDisplayable GetVisual(DrawingParameters arguments)
-        {
-            return Frames[CurrentFrame].CreateDrawable(arguments, Sheet);
+            return Frames[frame].CreateDrawable(arguments, Sheet);
         }
     }
 }

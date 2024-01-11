@@ -39,7 +39,7 @@ namespace MagicDustLibrary.Factorys
         }
     }
 
-    internal class PlacementInfoComponent : ComponentBase, IDisposableComponent
+    public class PlacementInfoComponent : ComponentBase, IDisposableComponent
     {
         public IDisplayComponent PlacementTarget { get; set; }
         public IPlacement PlacementInfo { get; set; }

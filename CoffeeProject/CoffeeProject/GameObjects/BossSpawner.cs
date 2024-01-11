@@ -23,6 +23,7 @@ namespace CoffeeProject.GameObjects
     [SpriteSheet("soul")]
     internal class BossSpawner : Sprite, IMultiBehaviorComponent
     {
+        public Hero Target { get; set; }
         private bool IsActivated {  get; set; } = false;
         private const float SineSpeed = 2f;
         private const float SineAmplitude = 25;
@@ -81,6 +82,7 @@ namespace CoffeeProject.GameObjects
                 .AddShadow(state)
                 .AddToState(state);
             boss.InvokeEach<Physics>(it => it.SurfaceMap = state.Using<SurfaceMapProvider>().GetMap("level"));
+            boss.SetTarget(state, Target);
         }
     }
 }

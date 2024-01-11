@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Organization.DefualtImplementations
 {
-    public class StateLayerManager : ComponentHandler<IDisplayComponent>
+    public class StateLayerManager : ComponentHandler<PlacementInfoComponent>
     {
         private readonly List<Layer> LayerOrder = new();
         private readonly Dictionary<Type, Layer> LayerTypes = new();
@@ -75,29 +75,22 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
             return LayerOrder.ToArray();
         }
 
-        public override void Hook(IDisplayComponent component)
+        public override void Hook(PlacementInfoComponent component)
         {
-            IPlacement placement = new Placement<CommonLayer>();
-            if (component is ComponentBase componentBase)
-            {
-                var placements = componentBase.GetComponents<PlacementInfoComponent>()
-                    .Where(it => it.PlacementTarget == componentBase);
-                if (placements.Any())
-                {
-                    placement = placements.First().PlacementInfo;
-                }
-            }
+            var placement = component.PlacementInfo;
             var layer = GetLayer(placement.GetLayerType());
-            Placements.Add(component, layer);
-            layer.PlaceTop(component);
+            var target = component.PlacementTarget;
+            Placements.Add(target, layer);
+            layer.PlaceTop(target);
         }
 
-        public override void Unhook(IDisplayComponent component)
+        public override void Unhook(PlacementInfoComponent component)
         {
-            GetLayer(component).Remove(component);
-            if (Placements.ContainsKey(component))
+            var target = component.PlacementTarget;
+            GetLayer(target).Remove(target);
+            if (Placements.ContainsKey(target))
             {
-                Placements.Remove(component);
+                Placements.Remove(target);
             }
         }
     }

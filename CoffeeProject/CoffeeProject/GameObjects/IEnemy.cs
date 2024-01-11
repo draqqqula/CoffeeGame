@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.GameObjects
 {
-    internal interface IEnemy
+    public interface IEnemy
     {
         public void SetTarget(IControllerProvider state, GameObject target);
     }

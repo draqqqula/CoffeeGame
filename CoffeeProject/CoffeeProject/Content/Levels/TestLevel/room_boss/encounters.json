@@ -1,9 +1,5 @@
 [{
-  "name" : "spikes",
-  "position": [15, 15]
-},
-{
-  "name" : "spikes2",
-  "position": [16, 16]
+  "name" : "BossSpawnerEncounter",
+  "position": [9, 7]
 }
 ]

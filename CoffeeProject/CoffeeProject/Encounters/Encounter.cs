@@ -1,5 +1,6 @@
 ﻿using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
+using CoffeeProject.RoomGeneration;
 using MagicDustLibrary.Logic;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,13 +13,6 @@ namespace CoffeeProject.Encounters
 {
     public abstract class Encounter
     {
-        public abstract void Create(IControllerProvider state, Point position);
-    }
-
-    public class EnemyEncounter : Encounter
-    {
-        public override void Create(IControllerProvider state, Point position)
-        {
-        }
+        public abstract void Invoke(IControllerProvider state, Vector2 position, Room room);
     }
 }

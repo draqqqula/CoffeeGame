@@ -1,12 +1,14 @@
 ﻿using BehaviorKit;
 using CoffeeProject.Behaviors;
 using CoffeeProject.BoxDisplay;
+using CoffeeProject.Encounters;
 using CoffeeProject.GameObjects;
 using CoffeeProject.Layers;
 using CoffeeProject.RoomGeneration;
 using CoffeeProject.Run;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
+using MagicDustLibrary.CommonObjectTypes.Image;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
 using MagicDustLibrary.CommonObjectTypes.TileMap;
 using MagicDustLibrary.ComponentModel;
@@ -38,59 +40,52 @@ namespace CoffeeProject.Levels
             return settings;
         }
 
-        Vector2 PlayerPosition { get; set; } = Vector2.Zero;
+        private Image Vignette { get; set; }
+        private Vector2 PlayerPosition { get; set; } = Vector2.Zero;
+
+        class PlayerSpawnerEncounter(TestLevel3 level) : Encounter
+        {
+            private TestLevel3 Level { get; init; } = level;
+            public override void Invoke(IControllerProvider state, Vector2 position, Room room)
+            {
+                Level.PlayerPosition = position;
+            }
+        }
+
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
-            var generator = new LevelGenerator(state);
-            var graph = generator.GenerateLevelGraph("TestLevel", 4, 8, 8);
+            Vignette = state.Using<IFactoryController>().CreateObject<Image>()
+            .SetPlacement(new Placement<TintLayer>())
+            .SetTexture("vignette")
+            .AddToState(state);
 
-            var map = state.Using<IFactoryController>()
-                .CreateObject<TileMap>()
-                .SetPos(new Vector2(-500, -500))
-                .SetPlacement(new Placement<SurfaceLayer>());
-            map.SetFrame(new Point(324, 324));
-            map.SetScale(0.2f);
-            var sheet = state.Using<IFactoryController>().CreateAsset<TileSheet>("level1");
-            map.UseSheet(sheet);
-            var level = new LevelMap(graph.LevelColors);
-            map.UseMap(level.Map);
-            map.AddToState(state);
+            var mapper = new EncounterMapper();
+            mapper.AddEncounter<BlazeEnemyEncounter>();
+            mapper.AddEncounter<ShellEnemyEncounter>();
+            mapper.AddEncounter<BossSpawnerEncounter>();
+            mapper.AddEncounter("PlayerSpawnerEncounter", new PlayerSpawnerEncounter(this));
 
-            var backgroundMap = state.Using<IFactoryController>()
-                .CreateObject<TileMap>()
-                .SetPos(new Vector2(-500, -500))
-                .SetPlacement(new Placement<FloorLayer>());
-            backgroundMap.SetFrame(new Point(324, 324));
-            backgroundMap.SetScale(0.2f);
-            backgroundMap.UseSheet(sheet);
-            var backgroundLevel = new LevelMap(graph.BackgroundColors);
-            backgroundMap.UseMap(backgroundLevel.Map);
-            backgroundMap.AddToState(state);
-
-
-            state.Using<SurfaceMapProvider>().AddMap("level", map);
-
-            PlayerPosition = map.GetBoundsForPoint(graph.Positions.First().Value.Location).Value.Location.ToVector2() + new Vector2(300, 300);
-
-            var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
-            var enemyPos = map.GetBoundsForPoint(graph.Positions[1].Location).Value.Location.ToVector2() + new Vector2(300, 300);
-            Enemy = state.Using<IFactoryController>()
-                .CreateObject<NaughtyShell>()
-                .SetPos(enemyPos)
-                .SetBounds(new Rectangle(-20, -40, 40, 40))
-                .SetPlacement(Placement<MainLayer>.On())
-                .AddHealthLabel(state)
-                .AddToState(state);
-            Enemy.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
+            state.Using<IDungeonController>().CreateDungeon(
+                new DungeonParameters("TestLevel", 4, 8, 8),
+                new TileMapParameters("level1", 324, 0.2f, "level"),
+                mapper
+                );
         }
         private NaughtyShell Enemy { get; set; }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
+            Vignette
+                .SetScale(client.Window.Size.ToVector2() / Vignette.TextureBounds.Size.ToVector2())
+                .SetPos(client.Window.Size.ToVector2() / 2);
         }
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
+            Vignette
+                .SetScale(client.Window.Size.ToVector2() / Vignette.TextureBounds.Size.ToVector2())
+                .SetPos(client.Window.Size.ToVector2() / 2);
+
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
 
             var healthIndicator = state.Using<IFactoryController>()
@@ -110,9 +105,6 @@ namespace CoffeeProject.Levels
                 .AddComponent(new Playable(healthIndicator))
                 .AddShadow(state)
                 .AddToState(state);
-
-
-            Enemy.SetTarget(state, obj);
 
             obj.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
             var dummy = obj.GetComponents<Dummy>().First();

@@ -12,11 +12,13 @@ namespace MagicDustLibrary.Animations
     {
         public event Action<string> OnEnded = delegate { };
         private readonly Dictionary<string, Animation> Animations;
+        private AnimationPlayback Playback {  get; set; }
         public TimeSpan RunDuration { get; private set; }
         /// <summary>
         /// текущая анимация
         /// </summary>
-        public Animation Running { get; private set; }
+        public Animation Running => Playback.TargetAnimation;
+        public int CurrentFrame => Playback.CurrentFrame;
         public bool OnPause { get; private set; }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace MagicDustLibrary.Animations
             {
                 RunDuration += deltaTime;
             }
-            if (!Running.Run(RunDuration) && !OnPause)
+            if (!Playback.Run(RunDuration) && !OnPause)
             {
                 OnEnded(Running.Name);
 
@@ -52,7 +54,7 @@ namespace MagicDustLibrary.Animations
         /// </summary>
         /// <param newPriority="arguments"></param>
         /// <param newPriority="frame"></param>
-        public void SetFrame(DrawingParameters arguments, int frame)
+        public void SetFrame(int frame)
         {
             ChangeAnimation(Running.Name, frame);
         }
@@ -69,7 +71,7 @@ namespace MagicDustLibrary.Animations
         /// <param newPriority="initialFrame"></param>
         public void ChangeAnimation(string animation, int initialFrame)
         {
-            Running = Animations[animation];
+            Playback = new AnimationPlayback(Animations[animation]);
             RunDuration = Running.Duration * Running.SpeedFactor * (initialFrame / (double)Running.FrameCount);
             Resume();
             Update(TimeSpan.Zero);
@@ -83,7 +85,7 @@ namespace MagicDustLibrary.Animations
 
         internal IDisplayable GetVisual(DrawingParameters arguments)
         {
-            return Running.GetVisual(arguments);
+            return Playback.GetVisual(arguments);
         }
 
         public Animator(Dictionary<string, Animation> animations, string initial)
@@ -92,7 +94,7 @@ namespace MagicDustLibrary.Animations
             {
                 OnPause = false;
                 Animations = animations;
-                Running = Animations[initial];
+                Playback = new AnimationPlayback(Animations[initial]);
                 RunDuration = TimeSpan.Zero;
             }
             else

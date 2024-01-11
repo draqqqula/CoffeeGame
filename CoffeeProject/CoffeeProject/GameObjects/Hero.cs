@@ -146,7 +146,7 @@ namespace CoffeeProject.GameObjects
             }
             else
             {
-                Animator.SetFrame(DisplayInfo ,0);
+                Animator.SetFrame(0);
                 Animator.Stop();
             }
 

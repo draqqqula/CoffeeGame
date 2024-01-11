@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MagicDustLibrary.Logic
 {
-    public abstract class NodeComponent : ExtendedComponent, IDisposableComponent
+    public abstract class NodeComponent : ComponentShell, IDisposableComponent
     {
         public event OnDispose OnDisposeEvent = delegate { };
 

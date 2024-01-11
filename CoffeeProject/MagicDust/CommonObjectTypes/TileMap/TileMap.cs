@@ -34,6 +34,8 @@ namespace MagicDustLibrary.CommonObjectTypes.TileMap
             }
         }
 
+
+        public float Scale => _scale;
         public Vector2 Position { get; set; }
         public Vector2 CellSize => _tileFrame.ToVector2() * _scale;
         public int MapLengthX => _map.GetLength(0);

@@ -92,8 +92,8 @@ namespace CoffeeProject.GameObjects
                     unit.Animator.SetAnimation("Backward", 0);
                 }
             }
-            if ((unit.Animator.Running.CurrentFrame == 1 ||
-                unit.Animator.Running.CurrentFrame == 3)
+            if ((unit.Animator.CurrentFrame == 1 ||
+                unit.Animator.CurrentFrame == 3)
                 && !OnShakeFrame)
             {
                 OnShakeFrame = true;
@@ -134,7 +134,7 @@ namespace CoffeeProject.GameObjects
         {
             DamageBox.SetPos(unit.Position);
             MoveDamageBox(unit);
-            if (unit.Animator.Running.CurrentFrame == 2)
+            if (unit.Animator.CurrentFrame == 2)
             {
                 DamageBox.Active = true;
             }

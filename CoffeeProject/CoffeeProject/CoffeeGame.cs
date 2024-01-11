@@ -13,6 +13,7 @@ using System;
 using System.Data;
 using CoffeeProject.SurfaceMapping;
 using CoffeeProject.Collision;
+using CoffeeProject.RoomGeneration;
 
 namespace CoffeeProject
 {
@@ -43,7 +44,7 @@ namespace CoffeeProject
             _graphics.PreferredBackBufferHeight = 969;
             _graphics.PreferMultiSampling = false;
             _graphics.SynchronizeWithVerticalRetrace = true;
-            this.IsFixedTimeStep = true;
+            this.IsFixedTimeStep = false;
             this.TargetElapsedTime = TimeSpan.FromSeconds(1 / 120f);
             _graphics.ApplyChanges();
             Window.AllowUserResizing = true;
@@ -63,6 +64,7 @@ namespace CoffeeProject
             _app.AddDefualtConfigurations();
             _app.Configurations.AddConfiguration(SurfacesExtensions.ConfigureSurfaceHandler);
             _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
+            _app.Configurations.AddConfiguration(DungeonExtensions.ConfigureDungeonController);
 
             _app.LevelManager.LoadAs<TestLevel3>("test");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
