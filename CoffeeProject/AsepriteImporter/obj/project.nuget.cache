@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "7IDgUoCtbVEy/5jJ+x0auXy3YZdTvN2oLPfY1UXt+Rz3oBjX8fXiqGPjv6qBX1Cd2i5jX5+MtLBVGVO+llK77A==",
+=======
+  "dgSpecHash": "NEd8PWEUqNbPq9dNzMKpJobTViIK2QUG8zhHow6dAPs8mAVRKa6l/tcFTjya4L/H5MdoBgi0681rkbeW/GXurg==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\AsepriteImporter\\AsepriteImporter.csproj",
   "expectedPackageFiles": [

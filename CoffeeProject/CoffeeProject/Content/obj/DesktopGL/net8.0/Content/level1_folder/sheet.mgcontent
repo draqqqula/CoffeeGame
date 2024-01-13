@@ -3,7 +3,11 @@
   <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</SourceFile>
   <SourceTime>2023-12-27T16:16:53.4199556+05:00</SourceTime>
   <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/level1_folder/sheet.xnb</DestFile>
+<<<<<<< Updated upstream
   <DestTime>2024-01-11T00:59:41.6572088+05:00</DestTime>
+=======
+  <DestTime>2024-01-11T03:06:51.777947+05:00</DestTime>
+>>>>>>> Stashed changes
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

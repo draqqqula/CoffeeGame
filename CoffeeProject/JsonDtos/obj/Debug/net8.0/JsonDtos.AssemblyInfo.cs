@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JsonDtos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00f999701d596fe315e30a17cf2620fc8b98ac86")]
 [assembly: System.Reflection.AssemblyProductAttribute("JsonDtos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JsonDtos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

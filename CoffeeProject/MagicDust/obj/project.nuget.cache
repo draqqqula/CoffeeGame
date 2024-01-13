@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "kHl/sPTHnNJQT5TxlS+Lv3R3/a2xVFhnpGhCRfhtdLbkR864s+cuWZqzl6pmms+HLxY6DKp1skpfax+QS/VPRA==",
+=======
+  "dgSpecHash": "A5VxXIGKD82kCopd6WykDcjBPMzzS+bX1TsgpzJNifgfVGDguC1tb9SmT/uFnlftXDzGhPdc9D9Py16xe/4YcA==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\MagicDust\\MagicDustLibrary.csproj",
   "expectedPackageFiles": [

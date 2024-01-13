@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "RbdqigQCxArjd3Yw47C6rUpLl6unZwysUgwn36J2c4qA1wQhonhPoj0IRuAugmMnA0reMTGib6zNOToN+bsqhA==",
+=======
+  "dgSpecHash": "08mjtzHohKVu2V2zWSiMkIACbJ2kyYH45w9I1A78glqnRoSwgHlFihAR7FdtA73pWSTOUyCzABSTkWOTHPlEvQ==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonDtos\\JsonDtos.csproj",
   "expectedPackageFiles": [],

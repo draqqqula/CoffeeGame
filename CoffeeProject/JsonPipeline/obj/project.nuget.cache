@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "ou9ZVMVg+1nJnFHVJLXDd3XPdhu6+sUke96fPc2/WRYrz7Qw+sbFUUoFbViXTF0BYhTk32eLlaDL3LzWDvLoPQ==",
+=======
+  "dgSpecHash": "MOrbzIjwF87s117T0qErKYB/58nyVSnD/crcVL3iL9j14CSIKFpzdD42zSyj5mlhFxXUTJFZjE2IxDnyfinQlw==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\JsonPipeline\\JsonPipeline.csproj",
   "expectedPackageFiles": [

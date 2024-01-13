@@ -3,7 +3,11 @@
   <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</SourceFile>
   <SourceTime>2024-01-07T12:52:57.072009+05:00</SourceTime>
   <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/SpriteFonts/TestFont/info.xnb</DestFile>
+<<<<<<< Updated upstream
   <DestTime>2024-01-11T00:59:43.1916657+05:00</DestTime>
+=======
+  <DestTime>2024-01-11T03:06:53.0723026+05:00</DestTime>
+>>>>>>> Stashed changes
   <Importer>MagicJsonImporter</Importer>
   <ImporterTime>2023-12-27T16:16:55.6465075+05:00</ImporterTime>
   <Processor>MagicJsonDynamicProcessor</Processor>

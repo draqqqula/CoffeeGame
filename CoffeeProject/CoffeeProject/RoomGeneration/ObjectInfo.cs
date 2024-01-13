@@ -40,7 +40,7 @@ namespace CoffeeProject.RoomGeneration
             var level = new LevelGraph(enemyRoomsCount, lootRoomsCount, mainPathRoomsCount);
             var roomsCount = 2 + enemyRoomsCount + lootRoomsCount;
             var pictureScale = 1.0;
-            if (enemyRoomsCount + lootRoomsCount - mainPathRoomsCount > 5) pictureScale = 1.5;
+            if (enemyRoomsCount + lootRoomsCount - mainPathRoomsCount > 5) pictureScale = 2;
 
             #region
             // Добавление стартовой комнаты
@@ -170,7 +170,7 @@ namespace CoffeeProject.RoomGeneration
                     for (int k = levelGraph.MainPathRoomsCount + 2; k < levelGraph.Length - 1; k++)
                     {
                         if (j == k) continue;
-                        if (Math.Abs(posMemory[j].X - posMemory[k].X) < 16 && Math.Abs(posMemory[j].Y - posMemory[k].Y) < 35)
+                        if (Math.Abs(posMemory[j].X - posMemory[k].X) < 14 && Math.Abs(posMemory[j].Y - posMemory[k].Y) < 35)
                         {
                             var checkConnection = rnd.NextDouble();
                             if (checkConnection > 0.50)
@@ -245,8 +245,7 @@ namespace CoffeeProject.RoomGeneration
                 {
                     var firstRoomPos = posMemory[i];
                     var secondRoomPos = posMemory[levelGraph[i].ConnectedRooms.ElementAt(j).RoomNumber];
-                    var bestGates = ChoseBestGates(levelGraph, i, j, firstRoomPos, secondRoomPos);
-
+                    var bestGates = ChoseBestGates(levelGraph, i, j, firstRoomPos, secondRoomPos, levelBitmap);
                     var firstGate = new Point(levelGraph[i].RoomInfo.Gates[bestGates.Item1].X + firstRoomPos.X, levelGraph[i].RoomInfo.Gates[bestGates.Item1].Y + firstRoomPos.Y);
                     var secondGate = new Point(levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[bestGates.Item2].X + secondRoomPos.X, levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[bestGates.Item2].Y + secondRoomPos.Y);
                     var dirX = 1;
@@ -424,9 +423,9 @@ namespace CoffeeProject.RoomGeneration
             return leftColor == rightColor;
         }
 
-        private static (int, int) ChoseBestGates(LevelGraph levelGraph, int i, int j, Rectangle firstRoomPos, Rectangle secondRoomPos)
+        private static (int, int) ChoseBestGates(LevelGraph levelGraph, int i, int j, Rectangle firstRoomPos, Rectangle secondRoomPos, Bitmap levelBitmap)
         {
-            var gatesDifferents = new List<(int, int, double)>();
+            var gatesDifferents = new List<(int, int, double, int)>();
             for (int k = 0; k < levelGraph[i].RoomInfo.Gates.Length; k++)
             {
                 for (int l = 0; l < levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates.Length; l++)
@@ -436,11 +435,13 @@ namespace CoffeeProject.RoomGeneration
                     var difX = Math.Abs((firstGatePos - secondGatePos).X);
                     var difY = Math.Abs((firstGatePos - secondGatePos).Y);
                     var range = Math.Sqrt(difY * difY + difX * difX);
-                    gatesDifferents.Add((k, l, range));
+                    gatesDifferents.Add((k, l, range, difY));
                 }
             }
             var bestGates = (-1, -1);
             var gateMinDif = double.MaxValue;
+            var gateMinYDif = int.MaxValue;
+            var index = -1;
             for (int k = 0; k < gatesDifferents.Count; k++)
             {
                 gateMinDif = Math.Min(gateMinDif, gatesDifferents[k].Item3);
@@ -450,10 +451,45 @@ namespace CoffeeProject.RoomGeneration
                 if (gatesDifferents[k].Item3 == gateMinDif)
                 {
                     bestGates = (gatesDifferents[k].Item1, gatesDifferents[k].Item2);
+                    index = k;
                     break;
                 }
+                else
+                {
+                    continue;
+                }
             }
-
+            if (CheckHorizontal(levelBitmap, new Point(levelGraph[i].RoomInfo.Gates[bestGates.Item1].X + firstRoomPos.X, levelGraph[i].RoomInfo.Gates[bestGates.Item1].Y + firstRoomPos.Y)))
+            {
+                while (true)
+                {
+                    if (CheckHorizontal(levelBitmap, new Point(levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[bestGates.Item2].X + secondRoomPos.X,
+                                                              levelGraph[i].ConnectedRooms.ElementAt(j).RoomInfo.Gates[bestGates.Item2].Y + secondRoomPos.Y)) &&
+                       CheckHorizontal(levelBitmap, new Point(levelGraph[i].RoomInfo.Gates[bestGates.Item1].X + firstRoomPos.X,
+                                                              levelGraph[i].RoomInfo.Gates[bestGates.Item1].Y + firstRoomPos.Y)))
+                    { break; }
+                    gatesDifferents.RemoveAt(index);
+                    gateMinYDif = int.MaxValue;
+                    index = -1;
+                    for (int k = 0; k < gatesDifferents.Count; k++)
+                    {
+                        gateMinYDif = Math.Min(gateMinYDif, gatesDifferents[k].Item4);
+                    }
+                    for (int k = 0; k < gatesDifferents.Count; k++)
+                    {
+                        if (gatesDifferents[k].Item4 == gateMinYDif)
+                        {
+                            bestGates = (gatesDifferents[k].Item1, gatesDifferents[k].Item2);
+                            index = k;
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
             return bestGates;
         }
     }

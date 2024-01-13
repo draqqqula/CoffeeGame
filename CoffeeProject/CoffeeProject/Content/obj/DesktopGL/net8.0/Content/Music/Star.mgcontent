@@ -3,7 +3,11 @@
   <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</SourceFile>
   <SourceTime>2024-01-11T00:49:37.0890154+05:00</SourceTime>
   <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/Music/Star.xnb</DestFile>
+<<<<<<< Updated upstream
   <DestTime>2024-01-11T00:59:42.3663521+05:00</DestTime>
+=======
+  <DestTime>2024-01-11T03:06:52.1885738+05:00</DestTime>
+>>>>>>> Stashed changes
   <Importer>WavImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

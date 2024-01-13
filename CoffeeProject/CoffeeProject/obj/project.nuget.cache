@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "40iNFzpYsGJp8r3x0zN6kyeOR9bsd5MnBJ9W8TzOrgbuy1h5YW5IgjabgDfj9GbN66LiYlXKS981WOm/txidaQ==",
+=======
+  "dgSpecHash": "4dPrf0R/iV3dtPDVWgnLkRYnRi4tkFCbaPb7K57V3LpX9SPCmiRlWyVFrcDrtsFHahmm5pIgu1C/IlShY7CowA==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\CoffeeProject\\CoffeeProject.csproj",
   "expectedPackageFiles": [

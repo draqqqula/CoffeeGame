@@ -11,6 +11,34 @@
     <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/hero.aseprite</File>
     <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
     <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
+<<<<<<< Updated upstream
+=======
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/level.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/background.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/encounters.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/info.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_boss/tilemap.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/background.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/encounters.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/info.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy1/tilemap.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/background.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/encounters.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/info.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/tilemap.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/background.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/encounters.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/info.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/tilemap.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/background.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/encounters.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/info.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot2/tilemap.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/background.png</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/encounters.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/info.json</File>
+    <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_start/tilemap.png</File>
+>>>>>>> Stashed changes
     <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/dungeon.mp3</File>
     <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</File>
     <File>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json</File>

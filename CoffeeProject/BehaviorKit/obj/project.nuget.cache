@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "3yLXYZSs0Ua4VOmWTAHXA/whm6yLfpVx2jftUGXn8TbCR9F6p8rXVepblANUoLRke85azB1XfQiSzJ0NvDT+4w==",
+=======
+  "dgSpecHash": "ZjGRBxJfi8Ikxls8zwJybD2hqJraU75KA7aMz1RcOaVtZGI8OqkAK7URefEkeE8XLgV6JfSbYhUCzJYPUvHLrQ==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "F:\\Прога\\CoffeeGame\\CoffeeProject\\BehaviorKit\\BehaviorKit.csproj",
   "expectedPackageFiles": [

@@ -41,8 +41,17 @@ namespace CoffeeProject.Levels
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
             var generator = new LevelGenerator(state);
+<<<<<<< Updated upstream
             var graph = generator.GenerateLevelGraph("TestLevel", 4, 8, 8);
             var map = state.Using<IFactoryController>().CreateObject<TileMap>().SetPos(new Vector2(-500, -500));
+=======
+            var graph = generator.GenerateLevelGraph("TestLevel", 6, 20, 4);
+
+            var map = state.Using<IFactoryController>()
+                .CreateObject<TileMap>()
+                .SetPos(new Vector2(-500, -500))
+                .SetPlacement(new Placement<SurfaceLayer>());
+>>>>>>> Stashed changes
             map.SetFrame(new Point(324, 324));
             map.SetScale(0.2f);
             var sheet = state.Using<IFactoryController>().CreateAsset<TileSheet>("level1");

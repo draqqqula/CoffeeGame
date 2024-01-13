@@ -3,7 +3,11 @@
   <SourceFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</SourceFile>
   <SourceTime>2024-01-07T12:52:57.086959+05:00</SourceTime>
   <DestFile>F:/Прога/CoffeeGame/CoffeeProject/CoffeeProject/Content/bin/DesktopGL/Content/level1_folder/info.xnb</DestFile>
+<<<<<<< Updated upstream
   <DestTime>2024-01-11T00:59:41.6641854+05:00</DestTime>
+=======
+  <DestTime>2024-01-11T03:06:51.7849239+05:00</DestTime>
+>>>>>>> Stashed changes
   <Importer>MagicJsonImporter</Importer>
   <ImporterTime>2023-12-27T16:16:55.6465075+05:00</ImporterTime>
   <Processor>MagicJsonDynamicProcessor</Processor>
