@@ -35,6 +35,10 @@
 
         public override ComponentBase? Without<T>()
         {
+            if (this is T)
+            {
+                return _component?.Without<T>() ?? null;
+            }
             if (_component is not null)
             {
                 _component = _component.Without<T>();

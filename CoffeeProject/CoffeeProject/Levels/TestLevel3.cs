@@ -7,6 +7,7 @@ using CoffeeProject.Layers;
 using CoffeeProject.RoomGeneration;
 using CoffeeProject.Run;
 using CoffeeProject.SurfaceMapping;
+using CoffeeProject.Weapons;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.CommonObjectTypes.Image;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
@@ -25,6 +26,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CoffeeProject.Levels
@@ -42,6 +44,7 @@ namespace CoffeeProject.Levels
 
         private Image Vignette { get; set; }
         private Vector2 PlayerPosition { get; set; } = Vector2.Zero;
+        private BuildConfiguration BuildConfiguration { get; set; }
 
         class PlayerSpawnerEncounter(TestLevel3 level) : Encounter
         {
@@ -63,15 +66,18 @@ namespace CoffeeProject.Levels
             mapper.AddEncounter<BlazeEnemyEncounter>();
             mapper.AddEncounter<ShellEnemyEncounter>();
             mapper.AddEncounter<BossSpawnerEncounter>();
+            mapper.AddEncounter<PetalyEnemyEncounter>();
+            mapper.AddEncounter<HealingItemEncounter>();
             mapper.AddEncounter("PlayerSpawnerEncounter", new PlayerSpawnerEncounter(this));
 
             state.Using<IDungeonController>().CreateDungeon(
-                new DungeonParameters("TestLevel", 4, 8, 8),
+                new DungeonParameters("TestLevel", 1, 4, 4),
                 new TileMapParameters("level1", 324, 0.2f, "level"),
                 mapper
                 );
+
+            BuildConfiguration = JsonSerializer.Deserialize<BuildConfiguration>(arguments.Data[1]);
         }
-        private NaughtyShell Enemy { get; set; }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
         {
@@ -86,32 +92,8 @@ namespace CoffeeProject.Levels
                 .SetScale(client.Window.Size.ToVector2() / Vignette.TextureBounds.Size.ToVector2())
                 .SetPos(client.Window.Size.ToVector2() / 2);
 
-            var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
-
-            var healthIndicator = state.Using<IFactoryController>()
-                .CreateObject<Label>()
-                .SetPlacement(new Placement<GUI>())
-                .SetPos(new Vector2(100, 50))
-                .UseCustomFont(state, "TestFont")
-                .SetScale(4f)
-                .SetText("c")
-                .AddToState(state);
-
-            var obj = state.Using<IFactoryController>().CreateObject<Hero>()
-                .SetPos(PlayerPosition)
-                .SetBounds(new Rectangle(-20, -40, 40, 40))
-                .SetPlacement(Placement<MainLayer>.On())
-                .AddComponent(new TimerHandler())
-                .AddComponent(new Playable(healthIndicator))
-                .AddShadow(state)
-                .AddToState(state);
-
-            obj.InvokeEach<Physics>(it => it.SurfaceMap = surfaces);
-            var dummy = obj.GetComponents<Dummy>().First();
-
-            obj.Client = client;
-
-            state.Using<IClientController>().AttachCamera(client, obj);
+            var builder = new CharacterBuilder();
+            builder.Build(state, BuildConfiguration, client, PlayerPosition);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

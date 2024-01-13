@@ -52,6 +52,18 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
 /build:Folder1/txt.json
 
+#begin ground_particle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ground_particle.png
+
 #begin hero.aseprite
 /importer:AsepriteContentImporter
 /processor:AsepriteContentProcessor
@@ -188,6 +200,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Levels/TestLevel/room_enemy2/tilemap.png
+
+#begin Levels/TestLevel/room_enemy3/background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Levels/TestLevel/room_enemy3/background.png
+
+#begin Levels/TestLevel/room_enemy3/encounters.json
+/importer:MagicJsonImporter
+/processor:MagicJsonDynamicProcessor
+/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoReader, MagicDustLibrary
+/build:Levels/TestLevel/room_enemy3/encounters.json
+
+#begin Levels/TestLevel/room_enemy3/info.json
+/importer:MagicJsonImporter
+/processor:MagicJsonDynamicProcessor
+/processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
+/build:Levels/TestLevel/room_enemy3/info.json
+
+#begin Levels/TestLevel/room_enemy3/tilemap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Levels/TestLevel/room_enemy3/tilemap.png
 
 #begin Levels/TestLevel/room_loot1/background.png
 /importer:TextureImporter
@@ -327,6 +375,30 @@
 /processorParam:TextureFormat=Color
 /build:shadow.png
 
+#begin Sound/boss1_attack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/boss1_attack.wav
+
+#begin Sound/boss1_dead.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/boss1_dead.wav
+
+#begin Sound/boss1_teleport.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/boss1_teleport.wav
+
+#begin Sound/boss1_walk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/boss1_walk.wav
+
 #begin Sound/crystal_bell_inverted2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -356,6 +428,42 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/crystal_bells_inverted.wav
+
+#begin Sound/damage_ball_fly.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/damage_ball_fly.wav
+
+#begin Sound/enemy_dash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/enemy_dash.wav
+
+#begin Sound/enemy_with_fareballs_reload.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/enemy_with_fareballs_reload.wav
+
+#begin Sound/enemy_with_fireballs_fly.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/enemy_with_fireballs_fly.wav
+
+#begin Sound/hero_attack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/hero_attack.wav
+
+#begin Sound/soul_take.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/soul_take.wav;Sound/soul_drop.wav
 
 #begin Sound/soulbeat.wav
 /importer:WavImporter
@@ -436,6 +544,11 @@
 /processor:AsepriteContentProcessor
 /build:Sprites/enemy.aseprite
 
+#begin Sprites/healing-item.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/healing-item.aseprite;Sprites/healing_item.aseprite
+
 #begin Sprites/heart.aseprite
 /importer:AsepriteContentImporter
 /processor:AsepriteContentProcessor
@@ -460,6 +573,16 @@
 /importer:AsepriteContentImporter
 /processor:AsepriteContentProcessor
 /build:Sprites/PauseTitle.aseprite
+
+#begin Sprites/petaly_attack.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/petaly_attack.aseprite
+
+#begin Sprites/petaly.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/petaly.aseprite
 
 #begin Sprites/slash.aseprite
 /importer:AsepriteContentImporter

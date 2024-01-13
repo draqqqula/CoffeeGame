@@ -24,6 +24,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using CoffeeProject.BoxDisplay;
+using System.IO;
+using CoffeeProject.Weapons;
 
 namespace CoffeeProject.GameObjects
 {
@@ -31,8 +33,14 @@ namespace CoffeeProject.GameObjects
     [SpriteSheet("hero")]
     public class Hero : Sprite, IMultiBehaviorComponent, IUpdateComponent
     {
-        public GameClient Client;
+        public IPlayerWeapon Weapon { get; set; }
+        public IPlayerAbility Ability { get; set; }
+        public bool AbilityInputBlocked { get; set; } = false;
+        public bool WeaponInputBlocked { get; set; } = false;
+        public GameClient Client {  get; set; }
+
         private List<PlayerModifier> _modifiers = new List<PlayerModifier>();
+        public int Currency { get; set; } = 0;
         public Hero(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
@@ -63,8 +71,10 @@ namespace CoffeeProject.GameObjects
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
 
+        public event Action OnDamageEvent = delegate { };
         public DamageInstance OnDamage(Dummy dummy, DamageInstance instance)
         {
+            OnDamageEvent();
             var spring = GetComponents<Spring>().Last();
             spring.Pull(1.12f);
             if (instance.Tags.Contains("knockback"))
@@ -82,7 +92,7 @@ namespace CoffeeProject.GameObjects
             return instance;
         }
 
-        private List<Direction> Directions { get; set; } = [];
+        public List<Direction> Directions { get; set; } = [];
         public override void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             Directions.Clear();
@@ -156,40 +166,45 @@ namespace CoffeeProject.GameObjects
                 state.Using<ILevelController>().LaunchLevel("gameover", false);
             }
 
-            UseSlash(state);
+            ManageWeapon(state);
+            ManageAbility(state);
         }
 
-        private const float DirectionOffset = 60;
-        private void UseSlash(IControllerProvider state)
+        public Hero UseWeapon(IPlayerWeapon weapon)
         {
-            var timer = GetComponents<TimerHandler>().First();
-            var physics = GetComponents<Physics>().Last();
+            Weapon = weapon;
+            return this;
+        }
+
+        public Hero UseAbility(IPlayerAbility ability)
+        {
+            Ability = ability;
+            return this;
+        }
+
+        private void ManageWeapon(IControllerProvider state)
+        {
+            if (Weapon is null || WeaponInputBlocked)
+            {
+                return;
+            }
+
             if (Client.Controls.OnPress(Control.jump))
             {
-                if (timer.OnLoop("slash", TimeSpan.FromSeconds(0.6), delegate { }))
-                {
-                    var offset = Enum.Parse<Direction>(Animator.Running.Name.Replace("Default", "Forward")).ToPoint().ToVector2() * DirectionOffset;
-                    var slash = state.Using<IFactoryController>().CreateObject<Slash>()
-                    .SetPos(Position + offset)
-                    .SetBounds(new Rectangle(-70, -70, 140, 140))
-                    .UseBoxDisplay(state, Color.Red, Color.Purple, 3)
-                    .SetPlacement(new Placement<MainLayer>())
-                    .AddToState(state);
+                Weapon.UsePrimary(state, this);
+            }
+        }
 
-                    var damage = new Dictionary<DamageType, int>
-                    {
-                        { DamageType.Physical, 3 }
-                    };
+        private void ManageAbility(IControllerProvider state)
+        {
+            if (Ability is null || AbilityInputBlocked)
+            {
+                return;
+            }
 
-                    slash.Damage = new DamageInstance(damage, Team.player, [], "Slash", GetComponents<Dummy>().First(), [], [], TimeSpan.FromSeconds(0.5));
-                    slash.Offset = offset;
-                    slash.Animator.SetAnimation(Animator.Running.Name, 0);
-                    slash.Owner = this;
-                    timer.SetTimer("deleteSlash", TimeSpan.FromSeconds(0.2), () =>
-                    {
-                        slash.Dispose();
-                    }, true);
-                }
+            if (Client.Controls.OnPress(Control.dash))
+            {
+                Ability.UseAbility(state, this);
             }
         }
 

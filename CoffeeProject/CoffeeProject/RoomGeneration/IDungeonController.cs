@@ -71,7 +71,6 @@ namespace CoffeeProject.RoomGeneration
                 var trigger = _state.Using<IFactoryController>().CreateObject<RoomTrigger>()
                     .SetPos(roomLayout.Location.ToVector2() * map.CellSize + map.Position)
                     .SetBounds(new Rectangle(Point.Zero, (roomLayout.Size.ToVector2() * map.CellSize).ToPoint()))
-                    .UseBoxDisplay(_state, Color.DeepPink * 0.4f, Color.HotPink * 0.4f, 9)
                     .AddToState(_state);
                 var room = new Room(trigger);
                 room.Trigger.PlayerDetected += (player) => AlertEnemies(player, room);

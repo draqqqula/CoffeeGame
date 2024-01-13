@@ -1,4 +1,5 @@
-﻿using MagicDustLibrary.Logic;
+﻿using CoffeeProject.Family;
+using MagicDustLibrary.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.GameObjects
 {
-    public interface IEnemy
+    [MemberShip<Enemy>]
+    public interface IEnemy : IFamilyComponent
     {
         public void SetTarget(IControllerProvider state, GameObject target);
     }

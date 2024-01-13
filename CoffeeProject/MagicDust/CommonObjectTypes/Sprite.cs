@@ -17,6 +17,7 @@ namespace MagicDustLibrary.CommonObjectTypes
     {
         public bool IsMirroredVertical = false;
         public bool IsMirroredHorizontal = false;
+        public bool Invisible { get; set; } = false;
 
         public event OnDispose OnDisposeEvent;
 
@@ -83,6 +84,10 @@ namespace MagicDustLibrary.CommonObjectTypes
 
         public IEnumerable<IDisplayable> GetDisplay(GameCamera camera, Layer layer)
         {
+            if (Invisible)
+            {
+                yield break;
+            }
             yield return Animator.GetVisual(layer.Process(DisplayInfo, camera));
         }
 

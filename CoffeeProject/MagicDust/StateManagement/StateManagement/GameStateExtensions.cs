@@ -23,12 +23,14 @@ namespace MagicDustLibrary.Organization.StateManagement
         {
             var updateManager = new StateUpdateManager();
             var layerManager = new StateLayerManager();
+            var familyManager = new StateFamilyManager();
             services.AddSingleton<IUpdateService>(updateManager);
             services.AddSingleton<IComponentHandler>(updateManager);
             services.AddSingleton<IComponentHandler>(layerManager);
             services.AddSingleton<StateLayerManager>(layerManager);
             services.AddSingleton<IUpdateService, StatePictureManager>();
-            services.AddSingleton<IComponentHandler, StateFamilyManager>();
+            services.AddSingleton<IComponentHandler>(familyManager);
+            services.AddSingleton(familyManager);
             services.AddSingleton<IDisplayService, DefaultDisplayService>();
             services.AddSingleton<IGameObjectFactory>(new ComponentFactory(services, new DefaultServiceProviderFactory()));
         }

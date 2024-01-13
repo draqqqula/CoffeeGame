@@ -12,13 +12,6 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
 {
     public class StateFamilyManager : ComponentHandler<IFamilyComponent>
     {
-        private readonly IControllerProvider _stateController;
-
-        public StateFamilyManager(IControllerProvider controller)
-        {
-            _stateController = controller;
-        }
-
         private Dictionary<Type, IFamily> _families { get; } = new Dictionary<Type, IFamily>();
 
         public IEnumerable<IFamily> GetAll()
@@ -42,10 +35,19 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
             return newFamily;
         }
 
+        private static IEnumerable<T> GetCustomAttributesIncludingBaseInterfaces<T>(Type type)
+        {
+            var attributeType = typeof(T);
+            return type.GetCustomAttributes(attributeType, true)
+              .Union(type.GetInterfaces().SelectMany(interfaceType =>
+                  interfaceType.GetCustomAttributes(attributeType, true)))
+              .Cast<T>();
+        }
+
         private IEnumerable<IFamily> GetFamilies(IFamilyComponent obj)
         {
             var type = obj.GetType();
-            var attributes = type.GetCustomAttributes(true);
+            var attributes = GetCustomAttributesIncludingBaseInterfaces<IMemberShipContainer>(type);
 
             if (!attributes.Any())
             {
@@ -88,12 +90,12 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
 
         public override void Hook(IFamilyComponent component)
         {
-            Introduce(_stateController, component);
+            Introduce(null, component);
         }
 
         public override void Unhook(IFamilyComponent component)
         {
-            Abandon(_stateController, component);
+            Abandon(null, component);
         }
     }
 }

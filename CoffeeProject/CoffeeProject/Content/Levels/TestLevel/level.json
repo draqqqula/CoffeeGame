@@ -1,5 +1,5 @@
 {
-    "EnemyRooms": ["room_enemy1", "room_enemy2"],
+    "EnemyRooms": ["room_enemy1", "room_enemy2", "room_enemy3"],
     "LootRooms": ["room_loot1", "room_loot2"],
     "StartRoom": "room_start",
     "BossRoom": "room_boss"

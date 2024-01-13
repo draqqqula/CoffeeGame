@@ -164,13 +164,12 @@ namespace BehaviorKit
                 if (action.HasFreeSpan)
                 {
                     timerHandler.Hold("Cooldown", action.FreeSpan, () => TakeAction(state, SearchForAction(Target, parent), parent), false);
+                    CurrentAction = default;
                 }
                 else
                 {
                     TakeAction(state, SearchForAction(Target, parent), parent);
                 }
-
-                CurrentAction = default;
             }
         }
         #endregion

@@ -73,7 +73,8 @@ namespace CoffeeProject
             _app.LevelManager.LoadAs<SettingsLevel>("settings");
             _app.LevelManager.LoadAs<GameOverScreen>("gameover");
             _app.LevelManager.LoadAs<NameScreen>("namescreen");
-            _app.LevelManager.Launch("test", false);
+            _app.LevelManager.LoadAs<Remembrance>("memory");
+            _app.LevelManager.Launch("menu", false);
             //_app.LevelManager.Launch("connect", new LevelArgs("192.168.56.101:7878"), false);
 
             base.Initialize();

@@ -117,7 +117,7 @@ namespace CoffeeProject.Collision
         public void Update(IControllerProvider state, TimeSpan deltaTime)
         {
             var checkerLayout = _checker.GetLayout();
-            foreach (var body in _bodies)
+            foreach (var body in _bodies.ToArray())
             {
                 var bodyLayout = body.GetLayout();
                 Rectangle.Intersect(ref checkerLayout, ref bodyLayout, out var intersection);

@@ -8,6 +8,7 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ANOTHER HIM.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/painting.jpg</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Folder1/txt.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/ground_particle.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/hero.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/floor cage.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/level1_folder/info.json</File>
@@ -24,6 +25,10 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/encounters.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/info.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy2/tilemap.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy3/background.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy3/encounters.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy3/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_enemy3/tilemap.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/background.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/encounters.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Levels/TestLevel/room_loot1/info.json</File>
@@ -40,11 +45,21 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Music/Star - Instrumental.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Saves/run.json</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/shadow.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/boss1_attack.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/boss1_dead.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/boss1_teleport.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/boss1_walk.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell_inverted2.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell1.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell2.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bell3.mp3</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/crystal_bells_inverted.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/damage_ball_fly.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/enemy_dash.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/enemy_with_fareballs_reload.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/enemy_with_fireballs_fly.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/hero_attack.wav</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/soul_take.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sound/soulbeat.wav</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Caveat1.spritefont</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_info.json</File>
@@ -57,11 +72,14 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/damage_ball.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy_with_fireballs.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/enemy.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/healing-item.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/heart.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/hero.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/menuBackground.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/panel-menu.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/PauseTitle.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/petaly_attack.aseprite</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/petaly.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/slash.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/soul.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/vignette.png</File>
@@ -72,7 +90,12 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>level1_folder/sheet.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
@@ -109,6 +132,16 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>Sound/soul_drop.wav</File>
+    <File xsi:nil="true" />
     <File>SpriteFonts/Caveat.spritefont</File>
     <File>SpriteFonts/Papyrus_numeric/info.json</File>
     <File>SpriteFonts/Papyrus_numeric/texture.png</File>
@@ -118,6 +151,9 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>Sprites/healing_item.aseprite</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoffeeProject.GameObjects;
+using MagicDustLibrary.Logic;
 
 namespace CoffeeProject.Weapons
 {
     public interface IPlayerWeapon
     {
+        public void UsePrimary(IControllerProvider state, Hero player);
     }
 }

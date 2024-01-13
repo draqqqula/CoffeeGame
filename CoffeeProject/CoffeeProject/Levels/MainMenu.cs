@@ -43,6 +43,7 @@ namespace CoffeeProject.Levels
             state.Using<IFactoryController>()
                 .CreateObject<MenuImage>()
                 .SetPos(new Vector2(0, 0))
+                .SetPlacement(new Placement<CenterLayer>())
                 .AddToState(state);
 
             var startGame = state.Using<IFactoryController>()

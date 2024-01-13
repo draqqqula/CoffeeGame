@@ -87,7 +87,7 @@ namespace MagicDustLibrary.Organization.DefualtImplementations
         public override void Unhook(PlacementInfoComponent component)
         {
             var target = component.PlacementTarget;
-            GetLayer(target).Remove(target);
+            GetLayer(target)?.Remove(target);
             if (Placements.ContainsKey(target))
             {
                 Placements.Remove(target);

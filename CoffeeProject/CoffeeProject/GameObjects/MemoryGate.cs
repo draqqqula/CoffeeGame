@@ -69,6 +69,10 @@ namespace CoffeeProject.GameObjects
             if ((Position - Target.Position).Length() < 1)
             {
                 Dispose();
+                if (Target is Hero hero)
+                {
+                    state.Using<ILevelController>().LaunchLevel("memory", false);
+                }
             }
         }
 

@@ -61,6 +61,7 @@ namespace MagicDustLibrary.Organization.StateClientServices
                 client.OnUpdate -= OnUpdate;
                 client.OnDispose -= OnDisconnect;
             }
+            Clients.Clear();
         }
     }
 }

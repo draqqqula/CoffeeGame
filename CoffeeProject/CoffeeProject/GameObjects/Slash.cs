@@ -28,7 +28,7 @@ namespace CoffeeProject.GameObjects
 
         protected override DrawingParameters DisplayInfo => base.DisplayInfo with { 
             OrderComparer = Position.ToPoint().Y, 
-            Scale = new Microsoft.Xna.Framework.Vector2(0.6f, 0.6f) 
+            Scale = new Microsoft.Xna.Framework.Vector2(0.6f, 0.6f) * (Bounds.Size.ToVector2() / 140),
         };
 
         public override void Update(IControllerProvider state, TimeSpan deltaTime)

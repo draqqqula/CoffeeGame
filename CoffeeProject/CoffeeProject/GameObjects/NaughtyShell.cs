@@ -1,6 +1,7 @@
 ﻿using BehaviorKit;
 using CoffeeProject.Behaviors;
 using CoffeeProject.Collision;
+using CoffeeProject.Family;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.ComponentModel;
@@ -8,9 +9,11 @@ using MagicDustLibrary.Content;
 using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Behaviors;
+using MagicDustLibrary.Logic.Controllers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,6 +84,7 @@ namespace CoffeeProject.GameObjects
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("DashAttack", new MovementVector(Vector2.Normalize(unit.Position - targetPosition) * -7, -5, TimeSpan.Zero, true));
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "enemy_dash"), "enemy1dash").Play();
         }
     }
 

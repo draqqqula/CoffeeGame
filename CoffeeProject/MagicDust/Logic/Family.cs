@@ -23,7 +23,7 @@ namespace MagicDustLibrary.Logic
     /// </list>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Family<T> : IEnumerable<T>, IFamily where T : IFamilyComponent
+    public abstract class Family<T> : IEnumerable<T>, IFamily
     {
 
         protected List<T> Members { get; } = new List<T>();
@@ -51,17 +51,17 @@ namespace MagicDustLibrary.Logic
 
         public void AddMember(IControllerProvider state, IFamilyComponent member)
         {
-            if (member is IFamilyComponent)
+            if (member is T t)
             {
-                AddMember(state, (T)member);
+                AddMember(state, t);
             }
         }
 
         public void RemoveMember(IControllerProvider state, IFamilyComponent member)
         {
-            if (member is IFamilyComponent)
+            if (member is T t)
             {
-                RemoveMember(state, (T)member);
+                RemoveMember(state, t);
             }
         }
 

@@ -69,6 +69,7 @@ namespace BehaviorKit
         }
 
         public int MaxHealth { get; private set; }
+        public bool IsInvincible { get; set; }
         public int Health { get; private set; }
         public bool IsAlive { get { return Health > 0; } }
         public Dictionary<DamageType, int> Resistances { get; private set; }
@@ -106,7 +107,7 @@ namespace BehaviorKit
 
         public bool TakeDamage(DamageInstance damage)
         {
-            if (Team != damage.Team && !InvincibilityFrames.ContainsKey(damage.MainTag))
+            if (Team != damage.Team && !InvincibilityFrames.ContainsKey(damage.MainTag) && !IsInvincible)
             {
                 var allConditions = Conditions.Concat(damage.Conditions);
                 if (allConditions.Count() == 0 || allConditions.All(condition => condition(this, damage)))
@@ -125,6 +126,11 @@ namespace BehaviorKit
                 }
             }
             return false;
+        }
+
+        public void RecieveHealing(int amount)
+        {
+            Health = Math.Min(Health + amount, MaxHealth);
         }
 
         public Dummy(int maxHealth, Dictionary<DamageType, int> resistances, Team team, List<Condition> conditions, List<DamageEvent> events, double invincibilityFactor) : base()

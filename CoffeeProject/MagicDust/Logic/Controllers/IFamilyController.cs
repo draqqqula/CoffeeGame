@@ -10,7 +10,7 @@ namespace MagicDustLibrary.Logic.Controllers
 {
     public interface IFamilyController : IStateController
     {
-        public void GetFamily<F>() where F : class, IFamily;
+        public F GetFamily<F>() where F : class, IFamily;
     }
 
     internal class DefaultFamilyController : IFamilyController
@@ -21,9 +21,9 @@ namespace MagicDustLibrary.Logic.Controllers
             _familyManager = familyManager;
         }
 
-        public void GetFamily<F>() where F : class, IFamily
+        public F GetFamily<F>() where F : class, IFamily
         {
-            _familyManager.GetFamily<F>();
+           return  _familyManager.GetFamily<F>();
         }
     }
 }

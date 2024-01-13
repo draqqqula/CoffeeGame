@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Extensions;
+using MagicDustLibrary.Logic.Controllers;
+using System.IO;
 
 namespace CoffeeProject.GameObjects
 {
@@ -124,6 +126,7 @@ namespace CoffeeProject.GameObjects
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             unit.Animator.SetAnimation($"Atk_{unit.Animator.Running.Name}", 0);
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "enemy_with_fareballs_reload"), "enemy_with_fireballs").Play();
         }
 
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)
@@ -165,6 +168,7 @@ namespace CoffeeProject.GameObjects
         {
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             unit.Animator.SetAnimation($"Atk_{unit.Animator.Running.Name}", 0);
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "enemy_with_fareballs_reload"), "enemy_with_fireballs").Play();
         }
 
         public override void OnEnd(IControllerProvider state, Ben unit, GameObject target)

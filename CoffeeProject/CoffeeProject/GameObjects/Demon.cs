@@ -20,6 +20,8 @@ using MagicDustLibrary.Extensions;
 using CoffeeProject.BoxDisplay;
 using MagicDustLibrary.Logic.Controllers;
 using CoffeeProject.Layers;
+using SharpDX.XInput;
+using System.IO;
 
 namespace CoffeeProject.GameObjects
 {
@@ -53,7 +55,7 @@ namespace CoffeeProject.GameObjects
             physics.DirectVector("Forward", targetPosition - unit.Position);
             var movement = physics.Vectors["Forward"].Vector;
 
-            ApplyAnimation(movement, unit);
+            ApplyAnimation(movement, unit, state.Using<ISoundController>());
 
             if (Vector2.Distance(unit.Position, targetPosition) > 300)
             {
@@ -63,7 +65,7 @@ namespace CoffeeProject.GameObjects
         }
 
         private bool OnShakeFrame { get; set; } = false;
-        private void ApplyAnimation(Vector2 movement, Demon unit)
+        private void ApplyAnimation(Vector2 movement, Demon unit, ISoundController sound)
         {
             if (movement.Length() is float.NaN)
             {
@@ -97,7 +99,13 @@ namespace CoffeeProject.GameObjects
                 && !OnShakeFrame)
             {
                 OnShakeFrame = true;
+                sound.CreateSoundInstance(Path.Combine("Sound", "boss1_walk"), "boss").Play();
                 unit.InvokeEach<VisualShake>(it => it.Start(15, TimeSpan.FromSeconds(0.05), TimeSpan.FromSeconds(0.025), 4, 2));
+            }
+            if (!(unit.Animator.CurrentFrame == 1 ||
+                unit.Animator.CurrentFrame == 3))
+            {
+                OnShakeFrame = false;
             }
         }
 
@@ -130,16 +138,23 @@ namespace CoffeeProject.GameObjects
             return 2;
         }
 
+        private bool SoundPlayed { get; set; } = false;
         public override bool Continue(IControllerProvider state, Demon unit, GameObject target)
         {
             DamageBox.SetPos(unit.Position);
             MoveDamageBox(unit);
             if (unit.Animator.CurrentFrame == 2)
             {
+                if (!SoundPlayed)
+                {
+                    state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "boss1_attack"), "boss").Play();
+                    SoundPlayed = true;
+                }
                 DamageBox.Active = true;
             }
             else
             {
+                SoundPlayed = false;
                 DamageBox.Active = false;
             }
 
@@ -209,7 +224,6 @@ namespace CoffeeProject.GameObjects
             DamageBox = new DamageBox(GetDamage(Side.ToPoint().ToVector2(), unit.GetComponents<Dummy>().First()))
                 .SetPos(unit.Position)
                 .SetBounds(new Rectangle(-30, -30, 60, 60))
-                .UseBoxDisplay(state, Color.Green, Color.Purple, 3)
                 .AddToState(state);
         }
 
@@ -297,6 +311,7 @@ namespace CoffeeProject.GameObjects
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             var physics = unit.GetComponents<Physics>().First();
             unit.Animator.SetAnimation("Teleport_start", 0);
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "boss1_teleport"), "boss").Play();
             TeleportObject = state.Using<IFactoryController>().CreateObject<BlackTeleport>().SetPos(targetPosition)
                 .SetPlacement(new Placement<MainLayer>()).AddToState(state);
             LandingPosition = targetPosition;
@@ -311,6 +326,7 @@ namespace CoffeeProject.GameObjects
             var direction3 = MathEx.AngleToVector(MathF.PI / 4 + MathF.PI);
             var direction4 = MathEx.AngleToVector(MathF.PI / 4 + MathF.PI * 1.5f);
             TeleportObject.Dispose();
+
             DamageBall.CastBall(
                 state,
                 unit.Position + direction1 * 80,
@@ -385,8 +401,10 @@ namespace CoffeeProject.GameObjects
                     return;
                 }
                 memory.Target = target.GetComponents<IBodyComponent>().First();
+                state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "soul_drop"), "soul").Play();
             }, true);
             shake.Start(30, TimeSpan.FromSeconds(0.1), TimeSpan.FromSeconds(0.05), 7, 3);
+            state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "boss1_dead"), "boss").Play();
         }
 
         public override void OnEnd(IControllerProvider state, Demon unit, GameObject target)

@@ -23,6 +23,8 @@ using BehaviorKit;
 using MagicDustLibrary.ComponentModel;
 using System.IO;
 using MagicDustLibrary.CommonObjectTypes.Image;
+using CoffeeProject.Weapons;
+using System.Text.Json;
 
 namespace CoffeeProject.Levels
 {
@@ -65,6 +67,7 @@ namespace CoffeeProject.Levels
         private string CurrentMessage { get; set; } = "Как меня зовут?";
         private DynamicLabel MessageLabel { get; set; }
         private bool OnTransition { get; set; } = false;
+        public BuildConfiguration Build = new BuildConfiguration(null, null, null);
         protected override LevelSettings GetDefaults()
         {
             var settings = new LevelSettings();
@@ -157,7 +160,7 @@ namespace CoffeeProject.Levels
                 if (Tint.Opacity >= 1)
                 {
                     state.Using<ILevelController>().ShutCurrent(false);
-                    state.Using<ILevelController>().LaunchLevel("test", new LevelArgs(NewName), false);
+                    state.Using<ILevelController>().LaunchLevel("test", new LevelArgs(NewName, JsonSerializer.Serialize(Build)), false);
                 }
                 return;
             }
@@ -183,6 +186,7 @@ namespace CoffeeProject.Levels
                 {
                     NewName = Regex.Replace($"{NewName}{Batches[NameSelectionStep][SelectionIndex]}", "-", "");
                     PartLabel.Dispose();
+                    Build[NameSelectionStep] = Batches[NameSelectionStep][SelectionIndex];
                     NameSelectionStep += 1;
                     physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
                     CurrentMessage = "Меня точно так зовут?";
@@ -192,6 +196,7 @@ namespace CoffeeProject.Levels
                 else
                 {
                     NewName = $"{NewName}{Batches[NameSelectionStep][SelectionIndex]}-";
+                    Build[NameSelectionStep] = Batches[NameSelectionStep][SelectionIndex];
                     NameSelectionStep += 1;
                     SelectionIndex = 0;
                     physics.AddVector("move", new MovementVector(new Vector2(0, -7), -3, TimeSpan.FromSeconds(3), true));
@@ -213,6 +218,7 @@ namespace CoffeeProject.Levels
             {
                 SelectionIndex = Math.Clamp(SelectionIndex + 1, 0, Batches[NameSelectionStep].Length - 1);
             }
+
             PartLabel.SetPos(new Vector2(NameLabel.GetLayout().Right, NameLabel.Position.Y));
         }
 
