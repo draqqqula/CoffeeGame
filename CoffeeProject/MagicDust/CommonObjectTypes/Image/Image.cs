@@ -26,7 +26,7 @@ namespace MagicDustLibrary.CommonObjectTypes.Image
         private Texture2D? Texture { get; set; }
         public Vector2 Position { get; set; }
         public Rectangle Bounds { get; set; }
-        public Vector2 Scale { get; set; }
+        public Vector2 Scale { get; set; } = Vector2.One;
         public float Opacity { get; set; } = 1f;
         public Color Color { get; set; } = Color.White;
         public Rectangle TextureBounds => Texture?.Bounds ?? Rectangle.Empty;

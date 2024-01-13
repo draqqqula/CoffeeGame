@@ -42,6 +42,9 @@ namespace CoffeeProject.Weapons
                 slash.Offset = offset;
                 slash.Animator.SetAnimation(player.Animator.Running.Name, 0);
                 slash.Owner = player;
+                player.Animator.SetAnimation("Atk_Sword_" + player.Animator.Running.Name, 0);
+                player.Animator.Resume();
+                player.DirectionAnimationForced = false;
                 timer.SetTimer("deleteSlash", TimeSpan.FromSeconds(0.2), () =>
                 {
                     slash.Dispose();

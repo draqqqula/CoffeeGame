@@ -9,23 +9,24 @@ namespace CoffeeProject.Weapons
 {
     public enum ChosenWeapon
     {
-        [NamePart("Ни")] Knife,
-        [NamePart("Ар")] Shovel,
-        [NamePart("Па")] Pickaxe
+        [PartDescription("кинжалом")][NamePart("Ни")] Knife,
+        [PartDescription("секирой")][NamePart("Ар")] Axe,
+        [PartDescription("мечом")][NamePart("Па")] Sword,
+        [PartDescription("луком")][NamePart("Ло")] Bow
     }
 
     public enum ChosenElement
     {
-        [NamePart("тем")] Fire,
-        [NamePart("ко")] Ice,
-        [NamePart("сен")] Lightning
+        [PartDescription("огнем")][NamePart("тем")] Fire,
+        [PartDescription("льдом")][NamePart("ко")] Ice,
+        [PartDescription("молнией")][NamePart("сен")] Lightning
     }
 
     public enum ChosenAbility
     {
-        [NamePart("ий")] Dash,
-        [NamePart("лай")] Block,
-        [NamePart("ля")] Cleanse
+        [PartDescription("рывок")][NamePart("ий")] Dash,
+        [PartDescription("остановку времени")][NamePart("лай")] Block,
+        [PartDescription("защитное поле")][NamePart("ля")] Cleanse
     }
 
     public record struct BuildConfiguration(ChosenWeapon? Weapon, ChosenElement? Element, ChosenAbility? Ability)
@@ -63,12 +64,25 @@ namespace CoffeeProject.Weapons
                 }
             }
         }
+
+        public string GetDescription()
+        {
+            return $"Владеет {BuildHelper.GetDescription(Weapon)}, " +
+                $"\nуправляет {BuildHelper.GetDescription(Element)}, " +
+                $"\nспособен делать {BuildHelper.GetDescription(Ability)}";
+        }
     };
 
     [AttributeUsage(AttributeTargets.Field)]
     public class NamePartAttribute(string part) : Attribute
     {
         public string Part = part;
+    }
+
+    [AttributeUsage(AttributeTargets.Field)]
+    public class PartDescriptionAttribute(string text) : Attribute
+    {
+        public string Text = text;
     }
 
     public static class BuildHelper
@@ -90,6 +104,19 @@ namespace CoffeeProject.Weapons
             }
 
             throw new ArgumentException($"No enum value with NamePartAttribute matching '{namePart}' found.");
+        }
+
+        public static string GetDescription(Enum enumValue)
+        {
+            if (enumValue is null)
+            {
+                return "...";
+            }
+            var type = enumValue.GetType();
+            var memberInfo = type.GetMember(enumValue.ToString());
+            var member = memberInfo.FirstOrDefault(m => m.DeclaringType == type);
+            var attribute = member.GetCustomAttribute<PartDescriptionAttribute>();
+            return attribute.Text ?? "...";
         }
     }
 }

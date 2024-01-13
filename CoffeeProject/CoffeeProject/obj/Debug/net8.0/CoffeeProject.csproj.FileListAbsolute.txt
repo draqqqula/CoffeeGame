@@ -356,3 +356,8 @@ C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\So
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\hero_attack.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\soul_take.xnb
 C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sound\soul_drop.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sprites\arrow.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\Sprites\player_projectile.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\white_vignette.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\whire_circle.xnb
+C:\CoffeeGame\CoffeeGame\CoffeeProject\CoffeeProject\bin\Debug\net8.0\Content\white_circle.xnb

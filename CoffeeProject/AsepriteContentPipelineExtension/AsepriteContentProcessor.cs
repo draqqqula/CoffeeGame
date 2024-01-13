@@ -99,7 +99,7 @@ namespace AsepriteContentPipelineExtension
                 var match = equalPattern.Match(tag);
                 if (match.Success)
                 {
-                    result.Add(match.Groups[0].Value, match.Groups[1].Value);
+                    result.Add(match.Groups[1].Value, match.Groups[2].Value);
                     continue;
                 }
                 result.Add(tag, "true");

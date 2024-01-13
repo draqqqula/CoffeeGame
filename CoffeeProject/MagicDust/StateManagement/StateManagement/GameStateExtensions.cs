@@ -24,6 +24,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             var updateManager = new StateUpdateManager();
             var layerManager = new StateLayerManager();
             var familyManager = new StateFamilyManager();
+            services.AddSingleton(updateManager);
             services.AddSingleton<IUpdateService>(updateManager);
             services.AddSingleton<IComponentHandler>(updateManager);
             services.AddSingleton<IComponentHandler>(layerManager);
@@ -43,6 +44,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             services.AddSingleton<IFactoryController, DefaultFactoryController>();
             services.AddSingleton<IClientController, DefaultClientController>();
             services.AddSingleton<ISoundController, DefaultSoundController>();
+            services.AddSingleton<ITimeController, DefaultTimeController>();
         }
 
         public static void ConfigureNetworkServices(IServiceCollection services, LevelSettings settings)

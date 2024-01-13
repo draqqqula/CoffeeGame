@@ -66,6 +66,7 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/Papyrus_numeric/papyrus_numeric_spritesheet.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/heart.png</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/SpriteFonts/TestFont/info.json</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/arrow.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/black_teleport.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/boss1.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/collapse.aseprite</File>
@@ -83,6 +84,8 @@
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/slash.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/Sprites/soul.aseprite</File>
     <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/vignette.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/whire_circle.png</File>
+    <File>C:/CoffeeGame/CoffeeGame/CoffeeProject/CoffeeProject/Content/white_vignette.png</File>
   </SourceFiles>
   <DestFiles>
     <File>level1_map.png</File>
@@ -147,6 +150,7 @@
     <File>SpriteFonts/Papyrus_numeric/texture.png</File>
     <File>SpriteFonts/TestFont/texture.png</File>
     <File xsi:nil="true" />
+    <File>Sprites/player_projectile.aseprite</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
@@ -163,6 +167,8 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>white_circle.png</File>
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BehaviorKit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcc464f429a9ddbd03d59d2676c1fea96f2156ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a776f094780d5b31b419f902d2bbe3f9218cec5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BehaviorKit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BehaviorKit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

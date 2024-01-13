@@ -31,7 +31,6 @@ namespace CoffeeProject.Weapons
                 .SetScale(4f)
                 .SetText("c")
                 .AddToState(state);
-
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
                 .SetPos(position)
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
@@ -59,10 +58,12 @@ namespace CoffeeProject.Weapons
             {
                 case ChosenWeapon.Knife:
                     return new KnifeWeapon();
-                case ChosenWeapon.Shovel:
+                case ChosenWeapon.Axe:
                     return new ShowelWeapon();
-                case ChosenWeapon.Pickaxe:
+                case ChosenWeapon.Sword:
                     return new PickaxeWeapon();
+                case ChosenWeapon.Bow:
+                    return new BowWeapon();
                 default:
                     return new KnifeWeapon();
             }
@@ -75,7 +76,7 @@ namespace CoffeeProject.Weapons
                 case ChosenAbility.Dash:
                     return new DashAbility();
                 case ChosenAbility.Block:
-                    return new DashAbility();
+                    return new TimeStopAbility();
                 case ChosenAbility.Cleanse:
                     return new TornadoAbility();
                 default:

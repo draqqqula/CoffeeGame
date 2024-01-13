@@ -66,6 +66,8 @@ namespace CoffeeProject.Levels
         private DynamicLabel PartLabel { get; set; }
         private string CurrentMessage { get; set; } = "Как меня зовут?";
         private DynamicLabel MessageLabel { get; set; }
+        private DynamicLabel DescriptionLabel {  get; set; }
+        private DynamicLabel DescriptionContinuation { get; set; }
         private bool OnTransition { get; set; } = false;
         public BuildConfiguration Build = new BuildConfiguration(null, null, null);
         protected override LevelSettings GetDefaults()
@@ -106,6 +108,16 @@ namespace CoffeeProject.Levels
                 .AddComponent(new VisualShake())
                 .AddToState(state);
 
+            DescriptionLabel = state.Using<IFactoryController>()
+                .CreateObject<DynamicLabel>()
+                .SetPlacement(new Placement<GUI>())
+                .UseFont(state, "Caveat")
+                .SetPivot(PivotPosition.Center)
+                .SetText(() => $"{Build.GetDescription()}")
+                .SetScale(0.7f)
+                .SetPos(new Vector2(WindowWidth / 2, WindowHeight / 2 + 200))
+                .AddToState(state);
+
             PartLabel = state.Using<IFactoryController>()
                 .CreateObject<DynamicLabel>()
                 .SetPlacement(new Placement<GUI>())
@@ -113,6 +125,35 @@ namespace CoffeeProject.Levels
                 .SetPivot(PivotPosition.CenterLeft)
                 .SetText(() => $"{(HidePartLabel? "" : Batches[NameSelectionStep][SelectionIndex])}")
                 .SetPos(new Vector2(WindowWidth / 2, WindowHeight / 2 + 100))
+                .SetColor(Color.Gray)
+                .AddToState(state);
+
+            DescriptionContinuation = state.Using<IFactoryController>()
+                .CreateObject<DynamicLabel>()
+                .SetPlacement(new Placement<GUI>())
+                .UseFont(state, "Caveat")
+                .SetPivot(PivotPosition.Center)
+                .SetText(() =>
+                {
+                    if (NameSelectionStep == 0)
+                    {
+                        return "-" + BuildHelper.GetDescription(BuildHelper.FromNamePart<ChosenWeapon>(Batches[NameSelectionStep][SelectionIndex]));
+                    }
+                    else if (NameSelectionStep == 1)
+                    {
+                        return "-" + BuildHelper.GetDescription(BuildHelper.FromNamePart<ChosenElement>(Batches[NameSelectionStep][SelectionIndex]));
+                    }
+                    else if (NameSelectionStep == 2)
+                    {
+                        return "-" + BuildHelper.GetDescription(BuildHelper.FromNamePart<ChosenAbility>(Batches[NameSelectionStep][SelectionIndex]));
+                    }
+                    else
+                    {
+                        return string.Empty;
+                    }
+                })
+                .SetScale(0.7f)
+                .SetPos(new Vector2(WindowWidth / 2, WindowHeight / 2 + 380))
                 .SetColor(Color.Gray)
                 .AddToState(state);
 

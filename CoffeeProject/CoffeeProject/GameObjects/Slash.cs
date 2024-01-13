@@ -1,6 +1,7 @@
 ﻿using BehaviorKit;
 using CoffeeProject.Behaviors;
 using CoffeeProject.Collision;
+using CoffeeProject.Family;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
 using MagicDustLibrary.Content;
@@ -17,7 +18,8 @@ using System.Threading.Tasks;
 namespace CoffeeProject.GameObjects
 {
     [SpriteSheet("slash")]
-    public class Slash : Sprite, IUpdateComponent, ICollisionChecker<IBodyComponent>
+    [MemberShip<TimeStopImmune>]
+    public class Slash : Sprite, IUpdateComponent, ICollisionChecker<IBodyComponent>, IFamilyComponent
     {
         public DamageInstance Damage { get; set; }
         public Vector2 Offset { get; set; } = Vector2.Zero;

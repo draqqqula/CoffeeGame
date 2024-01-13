@@ -13,7 +13,7 @@ namespace CoffeeProject.Layers
     {
         public override DrawingParameters Process(DrawingParameters arguments, GameCamera camera)
         {
-            return arguments with { Position = new Microsoft.Xna.Framework.Vector2(camera.ViewPort.Center.X, arguments.Position.Y) };
+            return arguments with { Position = new Microsoft.Xna.Framework.Vector2(camera.ViewPort.Center.X - camera.ViewPort.X, arguments.Position.Y) };
         }
     }
 }

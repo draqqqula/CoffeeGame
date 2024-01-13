@@ -15,7 +15,7 @@ namespace CoffeeProject.Weapons
 {
     public class KnifeWeapon : IPlayerWeapon
     {
-        public double AttackInterval { get; set; } = 0.3;
+        public double AttackInterval { get; set; } = 0.4;
         public int AttackSize { get; set; } = 130;
         public float DirectionOffset { get; set; } = 70;
         public DamageInstance Damage { get; set; }
@@ -32,7 +32,10 @@ namespace CoffeeProject.Weapons
                 .UseBoxDisplay(state, Color.Red * 0.1f, Color.Purple * 0.1f, 3)
                 .SetPlacement(new Placement<MainLayer>())
                 .AddToState(state);
-
+                PlayerProjectile.ShootProjectile(
+                    state, player.Position, 
+                    Enum.Parse<Direction>(player.Animator.Running.Name.Replace("Default", "Forward")), 
+                    player.GetComponents<Dummy>().First(), "Knife");
                 var damage = new Dictionary<DamageType, int>
                     {
                         { DamageType.Physical, 2 }
@@ -42,6 +45,9 @@ namespace CoffeeProject.Weapons
                 slash.Offset = offset;
                 slash.Animator.SetAnimation(player.Animator.Running.Name, 0);
                 slash.Owner = player;
+                player.Animator.SetAnimation("Atk_Knife_" + player.Animator.Running.Name, 0);
+                player.Animator.Resume();
+                player.DirectionAnimationForced = false;
                 timer.SetTimer("deleteSlash", TimeSpan.FromSeconds(0.2), () =>
                 {
                     slash.Dispose();

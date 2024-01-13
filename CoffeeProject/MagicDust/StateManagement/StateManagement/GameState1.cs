@@ -18,6 +18,7 @@ namespace MagicDustLibrary.Organization.StateManagement
         private readonly IServiceProviderFactory<IServiceCollection> _factory;
         private IServiceProvider _serviceProvider;
         private readonly IServiceCollection _services;
+        public double TimeScale { get; set; } = 1.0;
         public IServiceProvider GetProvider()
         {
             if (_serviceProvider is null)
@@ -34,6 +35,7 @@ namespace MagicDustLibrary.Organization.StateManagement
             _factory = new DefaultServiceProviderFactory();
             _services = new ServiceCollection();
             _services.AddSingleton<IControllerProvider>(new DefaultStateController(this));
+            _services.AddSingleton(this);
         }
 
         public void ConfigureServices(StateConfigurations configurations, LevelSettings settings)
@@ -59,7 +61,7 @@ namespace MagicDustLibrary.Organization.StateManagement
                 {
                     continue;
                 }
-                updateable.Update(controller, deltaTime);
+                updateable.Update(controller, deltaTime * TimeScale);
             }
         }
 

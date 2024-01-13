@@ -62,6 +62,27 @@ namespace CoffeeProject.Levels
             .SetTexture("vignette")
             .AddToState(state);
 
+            state.Using<IFactoryController>()
+                .CreateObject<Label>()
+                .SetPlacement(new Placement<GUI>())
+                .UseFont(state, "Caveat")
+                .SetPivot(PivotPosition.CenterLeft)
+                .SetScale(0.5f)
+                .SetText(arguments.Data[0])
+                .SetPos(new Vector2(103, 103))
+                .SetColor(Color.Black)
+                .AddToState(state);
+            state.Using<IFactoryController>()
+                .CreateObject<Label>()
+                .SetPlacement(new Placement<GUI>())
+                .UseFont(state, "Caveat")
+                .SetPivot(PivotPosition.CenterLeft)
+                .SetScale(0.5f)
+                .SetText(arguments.Data[0])
+                .SetPos(new Vector2(100, 100))
+                .SetColor(Color.White)
+                .AddToState(state);
+
             var mapper = new EncounterMapper();
             mapper.AddEncounter<BlazeEnemyEncounter>();
             mapper.AddEncounter<ShellEnemyEncounter>();

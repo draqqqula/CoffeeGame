@@ -13,7 +13,7 @@ namespace CoffeeProject.Layers
     {
         public override DrawingParameters Process(DrawingParameters arguments, GameCamera camera)
         {
-            arguments.Position = camera.ClientBounds.Center.ToVector2();
+            arguments.Position = camera.ClientBounds.Center.ToVector2() - camera.ClientBounds.Location.ToVector2();
             return arguments;
         }
     }

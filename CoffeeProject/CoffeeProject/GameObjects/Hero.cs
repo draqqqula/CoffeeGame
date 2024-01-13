@@ -30,13 +30,15 @@ using CoffeeProject.Weapons;
 namespace CoffeeProject.GameObjects
 {
     [Box(100, 200, 50, 200)]
+    [MemberShip<TimeStopImmune>]
     [SpriteSheet("hero")]
-    public class Hero : Sprite, IMultiBehaviorComponent, IUpdateComponent
+    public class Hero : Sprite, IMultiBehaviorComponent, IUpdateComponent, IFamilyComponent
     {
         public IPlayerWeapon Weapon { get; set; }
         public IPlayerAbility Ability { get; set; }
         public bool AbilityInputBlocked { get; set; } = false;
         public bool WeaponInputBlocked { get; set; } = false;
+        public bool DirectionAnimationForced { get; set; } = false;
         public GameClient Client {  get; set; }
 
         private List<PlayerModifier> _modifiers = new List<PlayerModifier>();
@@ -53,6 +55,10 @@ namespace CoffeeProject.GameObjects
                 ))
             .CombineWith(new Spring(0.1f))
             .CombineWith(new TimerHandler());
+            Animator.OnEnded += (name) =>
+            {
+                DirectionAnimationForced = true;
+            };
         }
 
         protected override DrawingParameters DisplayInfo
@@ -60,7 +66,7 @@ namespace CoffeeProject.GameObjects
             get
             {
                 var info = base.DisplayInfo;
-                info.Scale = info.Scale * new Vector2(0.05f, 0.05f);
+                info.Scale = info.Scale * new Vector2(0.2f, 0.2f);
                 info.OrderComparer = Position.ToPoint().Y;
                 return info;
             }
@@ -125,14 +131,6 @@ namespace CoffeeProject.GameObjects
                 Directions.Add(Direction.Forward);
             }
 
-            if (Directions.Count > 0)
-            {
-                Animator.SetAnimation(Directions
-                    .Last()
-                    .ToString()
-                    .Replace("Forward", "Default"), 0);
-            }
-
             foreach (var direction in Directions)
             {
                 resultingVector += direction.ToPoint().ToVector2();
@@ -150,14 +148,25 @@ namespace CoffeeProject.GameObjects
                 state.Using<ILevelController>().LaunchLevel("pause", new LevelArgs(state.Using<ILevelController>().GetCurrentLevelName()), false);
             }
 
-            if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move")).Any())
+            if (DirectionAnimationForced)
             {
-                Animator.Resume();
-            }
-            else
-            {
-                Animator.SetFrame(0);
-                Animator.Stop();
+                if (Directions.Count > 0)
+                {
+                    Animator.SetAnimation(Directions
+                        .Last()
+                        .ToString()
+                        .Replace("Forward", "Default"), 0);
+                }
+
+                if (physics.ActiveVectors.Where(it => it.Key.StartsWith("move")).Any())
+                {
+                    Animator.Resume();
+                }
+                else
+                {
+                    Animator.SetFrame(0);
+                    Animator.Stop();
+                }
             }
 
             if (!dummy.IsAlive)

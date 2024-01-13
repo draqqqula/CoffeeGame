@@ -514,6 +514,11 @@
 /processorParam:RuntimeType=MagicDustLibrary.CommonObjectTypes.TestDtoSingleReader, MagicDustLibrary
 /build:SpriteFonts/TestFont/info.json
 
+#begin Sprites/arrow.aseprite
+/importer:AsepriteContentImporter
+/processor:AsepriteContentProcessor
+/build:Sprites/arrow.aseprite;Sprites/player_projectile.aseprite
+
 #begin Sprites/black_teleport.aseprite
 /importer:AsepriteContentImporter
 /processor:AsepriteContentProcessor
@@ -605,4 +610,28 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:vignette.png
+
+#begin whire_circle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:whire_circle.png;white_circle.png
+
+#begin white_vignette.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:white_vignette.png
 
