@@ -14,21 +14,23 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes.TextDisplays;
+using MagicDustLibrary.Organization;
+using System.Text.Json;
 
 namespace CoffeeProject.Weapons
 {
     public class CharacterBuilder
     {
-        public Hero Build(IControllerProvider state, BuildConfiguration args, GameClient client, Vector2 position)
+        public Hero Build(IControllerProvider state, BuildConfiguration args, GameClient client, Vector2 position, LevelArgs arguments)
         {
             var surfaces = state.Using<SurfaceMapProvider>().GetMap("level");
 
             var healthIndicator = state.Using<IFactoryController>()
                 .CreateObject<Label>()
                 .SetPlacement(new Placement<GUI>())
-                .SetPos(new Vector2(100, 50))
-                .UseCustomFont(state, "TestFont")
-                .SetScale(4f)
+                .SetPos(new Vector2(100, 20))
+                .UseCustomFont(state, "HeartFont")
+                .SetScale(0.4f)
                 .SetText("c")
                 .AddToState(state);
             var obj = state.Using<IFactoryController>().CreateObject<Hero>()
@@ -39,6 +41,7 @@ namespace CoffeeProject.Weapons
                 .AddComponent(new Playable(healthIndicator))
                 .AddShadow(state)
                 .UseWeapon(BuildWeapon(args.Weapon))
+                .UseElement(BuildElement(args.Element))
                 .UseAbility(BuildAbility(args.Ability))
                 .AddToState(state);
 
@@ -46,6 +49,12 @@ namespace CoffeeProject.Weapons
             var dummy = obj.GetComponents<Dummy>().First();
 
             obj.Client = client;
+            obj.LevelArgs = arguments;
+            if (arguments.Data.Length > 2)
+            {
+                var stats = JsonSerializer.Deserialize<PlayerStats>(arguments.Data[2]);
+                obj.Stats = stats;
+            }
 
             state.Using<IClientController>().AttachCamera(client, obj);
 
@@ -81,6 +90,23 @@ namespace CoffeeProject.Weapons
                     return new TornadoAbility();
                 default:
                     return new DashAbility();
+            }
+        }
+
+        private DamageType BuildElement(ChosenElement? chosen)
+        {
+            switch (chosen)
+            {
+                case ChosenElement.Fire:
+                    return DamageType.Fire;
+                case ChosenElement.Ice:
+                    return DamageType.Ice;
+                case ChosenElement.Light:
+                    return DamageType.Light;
+                case ChosenElement.Dark:
+                    return DamageType.Dark;
+                default:
+                    return DamageType.Physical;
             }
         }
     }

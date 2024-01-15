@@ -26,12 +26,9 @@ namespace CoffeeProject.Weapons
             if (timer.OnLoop("shoot", TimeSpan.FromSeconds(AttackInterval), delegate { }))
             {
                 var offset = Enum.Parse<Direction>(player.Animator.Running.Name.Replace("Default", "Forward")).ToPoint().ToVector2() * DirectionOffset;
-                PlayerProjectile.ShootProjectile(state, player.Position, Enum.Parse<Direction>(player.Animator.Running.Name.Replace("Default", "Forward")), player.GetComponents<Dummy>().First(), "Arrow");
-
-                var damage = new Dictionary<DamageType, int>
-                    {
-                        { DamageType.Physical, 2 }
-                    };
+                PlayerProjectile.ShootProjectile(state, player.Position, Enum.Parse<Direction>(player.Animator.Running.Name.Replace("Default", "Forward")), 
+                    player.GetComponents<Dummy>().First(), 
+                    "Arrow", 3 + player.Stats.AttackPower * 2, player.Element, 2);
                 player.Animator.SetAnimation("Atk_Bow_" + player.Animator.Running.Name, 0);
                 player.Animator.Resume();
                 player.DirectionAnimationForced = false;

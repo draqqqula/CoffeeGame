@@ -17,6 +17,8 @@ using MagicDustLibrary.ComponentModel;
 using MagicDustLibrary.Extensions;
 using MagicDustLibrary.Logic.Controllers;
 using System.IO;
+using CoffeeProject.Layers;
+using MagicDustLibrary.Factorys;
 
 namespace CoffeeProject.GameObjects
 {
@@ -138,7 +140,8 @@ namespace CoffeeProject.GameObjects
                 state, 
                 unit.Position + direction * 80, 
                 new MovementVector(direction * 8, 0, TimeSpan.FromSeconds(4), false), 
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(),
+                unit.Level
                 );
         }
     }
@@ -181,14 +184,15 @@ namespace CoffeeProject.GameObjects
                 state,
                 unit.Position + direction1 * 80,
                 new MovementVector(direction1 * 8, 0, TimeSpan.FromSeconds(4), false),
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(), unit.Level
                 );
             DamageBall.CastBall(
                 state,
                 unit.Position + direction2 * 80,
                 new MovementVector(direction2 * 8, 0, TimeSpan.FromSeconds(4), false),
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(), unit.Level
                 );
+            unit.InvokeAttack(state, target);
         }
     }
 
@@ -200,10 +204,6 @@ namespace CoffeeProject.GameObjects
             this.CombineWith(
                 new Physics(
                 new SurfaceMap([], 0, 1)
-                ));
-            this.CombineWith(
-                new Dummy(
-                16, [], Team.enemy, [], [], 1
                 ));
             var unit = new Unit<Ben, GameObject>();
             this.CombineWith(
@@ -218,6 +218,11 @@ namespace CoffeeProject.GameObjects
         }
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
+        public event Action<IControllerProvider, GameObject> OnAttack = delegate { };
+        public void InvokeAttack(IControllerProvider state, GameObject target)
+        {
+            OnAttack(state, target);
+        }
 
         protected override DrawingParameters DisplayInfo
         {
@@ -229,6 +234,8 @@ namespace CoffeeProject.GameObjects
                 return info;
             }
         }
+
+        public int Level { get; set; } = 1;
 
         public void SetTarget(IControllerProvider state, GameObject target)
         {
@@ -275,6 +282,20 @@ namespace CoffeeProject.GameObjects
             var dummy = GetComponents<Dummy>().First();
             if (!dummy.IsAlive)
             {
+                var memory = state.Using<IFactoryController>()
+                .CreateObject<ExperienceDrop>()
+                .SetPlacement(new Placement<MainLayer>())
+                .SetPos(Position)
+                .AddShadow(state)
+                .SetBounds(new Rectangle(-7, -15, 15, 15))
+                .AddToState(state);
+                var target = GetComponents<Unit<Ben, GameObject>>().First().Target;
+                if (target is null)
+                {
+                    return;
+                }
+                memory.Target = target.GetComponents<IBodyComponent>().First();
+                memory.Amount = 15 + Level * 5;
                 Dispose();
             }
         }
@@ -284,7 +305,7 @@ namespace CoffeeProject.GameObjects
             var dummy = obj.GetComponents<Dummy>().First();
             var damage = new Dictionary<DamageType, int>
             {
-                { DamageType.Physical, 3 }
+                { DamageType.Physical, 2 + Level }
             };
             var kbvector = obj.Position - this.Position;
             kbvector.Normalize();

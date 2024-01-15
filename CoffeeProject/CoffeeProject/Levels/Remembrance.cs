@@ -11,6 +11,7 @@ namespace CoffeeProject.Levels
 {
     public class Remembrance : GameLevel
     {
+        private LevelArgs Arguments { get; set; }
         protected override LevelSettings GetDefaults()
         {
             return new LevelSettings();
@@ -19,6 +20,7 @@ namespace CoffeeProject.Levels
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
             state.Using<ILevelController>().ShutLevel("test", false);
+            Arguments = arguments;
         }
 
         protected override void OnClientUpdate(IControllerProvider state, GameClient client)
@@ -27,7 +29,8 @@ namespace CoffeeProject.Levels
 
         protected override void OnConnect(IControllerProvider state, GameClient client)
         {
-
+            state.Using<ILevelController>().LaunchLevel("dungeon2", Arguments, false);
+            state.Using<ILevelController>().ShutCurrent(false);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

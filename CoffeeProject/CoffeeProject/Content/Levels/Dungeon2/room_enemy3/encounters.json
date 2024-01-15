@@ -1,0 +1,10 @@
+[{
+  "name" : "ShellEnemyEncounter",
+  "position": [16, 12]
+},{
+  "name" : "PetalyEnemyEncounter",
+  "position": [24, 5]
+},{
+  "name" : "ShellEnemyEncounter",
+  "position": [6, 5]
+}]

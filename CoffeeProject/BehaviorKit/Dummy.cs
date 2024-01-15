@@ -18,8 +18,8 @@ namespace BehaviorKit
         Physical,
         Fire,
         Ice,
-        Wind,
-        Lightning,
+        Dark,
+        Light,
         Holy
     }
     /// <summary>
@@ -126,6 +126,12 @@ namespace BehaviorKit
                 }
             }
             return false;
+        }
+
+        public void IncreaceHealth(int amount)
+        {
+            MaxHealth += amount;
+            Health += amount;
         }
 
         public void RecieveHealing(int amount)

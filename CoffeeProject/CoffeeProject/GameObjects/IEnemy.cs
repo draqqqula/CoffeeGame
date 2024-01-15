@@ -11,6 +11,17 @@ namespace CoffeeProject.GameObjects
     [MemberShip<Enemy>]
     public interface IEnemy : IFamilyComponent
     {
+        public int Level { get; set; }
+        public event Action<IControllerProvider, GameObject> OnAttack;
         public void SetTarget(IControllerProvider state, GameObject target);
+    }
+
+    public static class EnemyExtensions
+    {
+        public static T SetLevel<T>(this T obj, int level) where T : IEnemy
+        {
+            obj.Level = level;
+            return obj;
+        }
     }
 }

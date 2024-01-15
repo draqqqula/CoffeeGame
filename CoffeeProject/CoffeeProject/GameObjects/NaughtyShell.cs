@@ -2,6 +2,7 @@
 using CoffeeProject.Behaviors;
 using CoffeeProject.Collision;
 using CoffeeProject.Family;
+using CoffeeProject.Layers;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
 using MagicDustLibrary.ComponentModel;
@@ -17,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MagicDustLibrary.Factorys;
 
 namespace CoffeeProject.GameObjects
 {
@@ -84,6 +86,7 @@ namespace CoffeeProject.GameObjects
             var targetPosition = target.GetComponents<IBodyComponent>().First().Position;
             var physics = unit.GetComponents<Physics>().First();
             physics.AddVector("DashAttack", new MovementVector(Vector2.Normalize(unit.Position - targetPosition) * -7, -5, TimeSpan.Zero, true));
+            unit.InvokeAttack(state, target);
             state.Using<ISoundController>().CreateSoundInstance(Path.Combine("Sound", "enemy_dash"), "enemy1dash").Play();
         }
     }
@@ -91,15 +94,12 @@ namespace CoffeeProject.GameObjects
     [SpriteSheet("enemy")]
     public class NaughtyShell : Sprite, IMultiBehaviorComponent, IUpdateComponent, ICollisionChecker<Hero>, IEnemy
     {
+        public int Level { get; set; } = 1;
         public NaughtyShell(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
                 new Physics(
                 new SurfaceMap([], 0, 1)
-                ));
-            this.CombineWith(
-                new Dummy(
-                16, [], Team.enemy, [], [], 1
                 ));
             var unit = new Unit<NaughtyShell, GameObject>();
             this.CombineWith(
@@ -112,6 +112,12 @@ namespace CoffeeProject.GameObjects
         }
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
+        public event Action<IControllerProvider, GameObject> OnAttack = delegate { };
+
+        public void InvokeAttack(IControllerProvider state, GameObject target)
+        {
+            OnAttack(state, target);
+        }
 
         protected override DrawingParameters DisplayInfo
         {
@@ -168,6 +174,20 @@ namespace CoffeeProject.GameObjects
             var dummy = GetComponents<Dummy>().First();
             if (!dummy.IsAlive)
             {
+                var memory = state.Using<IFactoryController>()
+                .CreateObject<ExperienceDrop>()
+                .SetPlacement(new Placement<MainLayer>())
+                .SetPos(Position)
+                .AddShadow(state)
+                .SetBounds(new Rectangle(-7, -15, 15, 15))
+                .AddToState(state);
+                var target = GetComponents<Unit<NaughtyShell, GameObject>>().First().Target;
+                if (target is null)
+                {
+                    return;
+                }
+                memory.Target = target.GetComponents<IBodyComponent>().First();
+                memory.Amount = 5 + Level * 3;
                 Dispose();
             }
         }
@@ -177,7 +197,7 @@ namespace CoffeeProject.GameObjects
             var dummy = obj.GetComponents<Dummy>().First();
             var damage = new Dictionary<DamageType, int>
             {
-                { DamageType.Physical, 3 }
+                { DamageType.Physical, 2 + Level }
             };
             var kbvector = obj.Position - this.Position;
             kbvector.Normalize();

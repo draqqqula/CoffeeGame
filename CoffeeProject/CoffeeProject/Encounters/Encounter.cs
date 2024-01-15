@@ -13,6 +13,14 @@ namespace CoffeeProject.Encounters
 {
     public abstract class Encounter
     {
+        public Encounter() : this(1)
+        {
+        }
+        public Encounter(int level)
+        {
+            Level = level;
+        }
+        public int Level { get; set; } = 1;
         public abstract void Invoke(IControllerProvider state, Vector2 position, Room room);
     }
 }

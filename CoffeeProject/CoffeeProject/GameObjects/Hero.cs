@@ -36,13 +36,15 @@ namespace CoffeeProject.GameObjects
     {
         public IPlayerWeapon Weapon { get; set; }
         public IPlayerAbility Ability { get; set; }
+        public DamageType Element { get; set; } = DamageType.Physical;
+        public LevelArgs LevelArgs { get; set; }
         public bool AbilityInputBlocked { get; set; } = false;
         public bool WeaponInputBlocked { get; set; } = false;
         public bool DirectionAnimationForced { get; set; } = false;
         public GameClient Client {  get; set; }
 
         private List<PlayerModifier> _modifiers = new List<PlayerModifier>();
-        public int Currency { get; set; } = 0;
+        public PlayerStats Stats { get; set; } = new PlayerStats();
         public Hero(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
@@ -51,7 +53,7 @@ namespace CoffeeProject.GameObjects
                 ))
             .CombineWith(
                 new Dummy(
-                16, [], Team.player, [], [OnDamage], 1
+                10, [], Team.player, [], [OnDamage], 1
                 ))
             .CombineWith(new Spring(0.1f))
             .CombineWith(new TimerHandler());
@@ -106,7 +108,7 @@ namespace CoffeeProject.GameObjects
             OnAct(state, deltaTime, this);
             var physics = GetComponents<Physics>().Last();
             var dummy = GetComponents<Dummy>().Last();
-            var speed = SPEED;
+            var speed = SPEED + 1.5f * Stats.Speed;
             var deceleration = DECELERATION;
 
             SetDefaults();
@@ -172,16 +174,23 @@ namespace CoffeeProject.GameObjects
             if (!dummy.IsAlive)
             {
                 state.Using<ILevelController>().PauseCurrent();
-                state.Using<ILevelController>().LaunchLevel("gameover", false);
+                state.Using<ILevelController>().LaunchLevel("gameover", LevelArgs, false);
             }
 
             ManageWeapon(state);
             ManageAbility(state);
+            ManageHealth();
         }
 
         public Hero UseWeapon(IPlayerWeapon weapon)
         {
             Weapon = weapon;
+            return this;
+        }
+
+        public Hero UseElement(DamageType element)
+        {
+            Element = element;
             return this;
         }
 
@@ -201,6 +210,16 @@ namespace CoffeeProject.GameObjects
             if (Client.Controls.OnPress(Control.jump))
             {
                 Weapon.UsePrimary(state, this);
+            }
+        }
+
+        int LastHealthPower = 0;
+        private void ManageHealth()
+        {
+            if (Stats.HealthPower != LastHealthPower)
+            {
+                GetComponents<Dummy>().First().IncreaceHealth(Stats.HealthPower - LastHealthPower);
+                LastHealthPower = Stats.HealthPower;
             }
         }
 

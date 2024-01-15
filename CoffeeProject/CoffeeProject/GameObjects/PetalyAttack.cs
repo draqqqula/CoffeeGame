@@ -53,11 +53,11 @@ namespace CoffeeProject.GameObjects
             return this;
         }
 
-        public static PetalyAttack CreateAttack(IControllerProvider state, Vector2 position, Dummy owner)
+        public static PetalyAttack CreateAttack(IControllerProvider state, Vector2 position, Dummy owner, int level)
         {
             var damages = new Dictionary<DamageType, int>
             {
-                { DamageType.Physical, 3 }
+                { DamageType.Physical, 2 + level }
             };
 
                 var obj = state.Using<IFactoryController>()

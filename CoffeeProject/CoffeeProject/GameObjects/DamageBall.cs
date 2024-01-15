@@ -67,12 +67,12 @@ namespace CoffeeProject.GameObjects
 
         protected override DrawingParameters DisplayInfo => base.DisplayInfo with { Scale = new Vector2(0.6f, 0.6f), OrderComparer = Position.ToPoint().Y };
 
-        public static DamageBall CastBall(IControllerProvider state, Vector2 position, MovementVector vector, Dummy owner)
+        public static DamageBall CastBall(IControllerProvider state, Vector2 position, MovementVector vector, Dummy owner, int level)
         {
             var map = state.Using<SurfaceMapProvider>().GetMap("level");
             var damages = new Dictionary<DamageType, int>
             {
-                { DamageType.Fire, 5 }
+                { DamageType.Fire, 4 + level }
             };
             var physics = new Physics(map);
             var timerHandler = new TimerHandler();

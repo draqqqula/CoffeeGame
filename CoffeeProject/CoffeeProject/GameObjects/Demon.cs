@@ -167,12 +167,12 @@ namespace CoffeeProject.GameObjects
             DamageBox.SetPos(unit.Position + Side.ToPoint().ToVector2() * BoxDistance);
         }
 
-        private DamageInstance GetDamage(Vector2 knockback, Dummy owner)
+        private DamageInstance GetDamage(Vector2 knockback, Dummy owner, int level)
         {
             knockback.Normalize();
             var damage = new Dictionary<DamageType, int>
                 {
-                    { DamageType.Physical, 3 }
+                    { DamageType.Physical, 3 + level }
                 };
             return new DamageInstance(
                 damage,
@@ -221,7 +221,7 @@ namespace CoffeeProject.GameObjects
                 }
             }
 
-            DamageBox = new DamageBox(GetDamage(Side.ToPoint().ToVector2(), unit.GetComponents<Dummy>().First()))
+            DamageBox = new DamageBox(GetDamage(Side.ToPoint().ToVector2(), unit.GetComponents<Dummy>().First(), unit.Level))
                 .SetPos(unit.Position)
                 .SetBounds(new Rectangle(-30, -30, 60, 60))
                 .AddToState(state);
@@ -331,25 +331,29 @@ namespace CoffeeProject.GameObjects
                 state,
                 unit.Position + direction1 * 80,
                 new MovementVector(direction1 * 8, 0, TimeSpan.FromSeconds(4), false),
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(),
+                unit.Level
                 );
             DamageBall.CastBall(
                 state,
                 unit.Position + direction2 * 80,
                 new MovementVector(direction2 * 8, 0, TimeSpan.FromSeconds(4), false),
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(),
+                unit.Level
                 );
             DamageBall.CastBall(
                 state,
                 unit.Position + direction3 * 80,
                 new MovementVector(direction3 * 8, 0, TimeSpan.FromSeconds(4), false),
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(),
+                unit.Level
                 );
             DamageBall.CastBall(
                 state,
                 unit.Position + direction4 * 80,
                 new MovementVector(direction4 * 8, 0, TimeSpan.FromSeconds(4), false),
-                target.GetComponents<Dummy>().First()
+                target.GetComponents<Dummy>().First(),
+                unit.Level
                 );
         }
 
@@ -415,15 +419,14 @@ namespace CoffeeProject.GameObjects
     [SpriteSheet("boss1")]
     public class Demon : Sprite, IMultiBehaviorComponent, IUpdateComponent, ICollisionChecker<Hero>, IEnemy
     {
+        public int Level { get; set; } = 1;
+
+        public event Action<IControllerProvider, GameObject> OnAttack = delegate { };
         public Demon(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
                 new Physics(
                 new SurfaceMap([], 0, 1)
-                ));
-            this.CombineWith(
-                new Dummy(
-                16, [], Team.enemy, [], [], 1
                 ));
             var unit = new Unit<Demon, GameObject>();
             this.CombineWith(
@@ -478,7 +481,7 @@ namespace CoffeeProject.GameObjects
             var dummy = obj.GetComponents<Dummy>().First();
             var damage = new Dictionary<DamageType, int>
             {
-                { DamageType.Physical, 3 }
+                { DamageType.Physical, 3 + Level }
             };
             var kbvector = obj.Position - this.Position;
             kbvector.Normalize();

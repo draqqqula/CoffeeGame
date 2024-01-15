@@ -24,6 +24,7 @@ namespace CoffeeProject.GameObjects
     internal class BossSpawner : Sprite, IMultiBehaviorComponent
     {
         public Hero Target { get; set; }
+        public int Level { get; set; } = 1;
         private bool IsActivated {  get; set; } = false;
         private const float SineSpeed = 2f;
         private const float SineAmplitude = 25;
@@ -78,6 +79,10 @@ namespace CoffeeProject.GameObjects
                 .SetPos(Position)
                 .SetBounds(new Rectangle(-20, -40, 40, 40))
                 .SetPlacement(Placement<MainLayer>.On())
+                .SetLevel(Level)
+                .AddComponent(new Dummy(
+                30 + Level * 10, [], Team.enemy, [], [], 1
+                ))
                 .AddHealthLabel(state)
                 .AddShadow(state)
                 .AddToState(state);

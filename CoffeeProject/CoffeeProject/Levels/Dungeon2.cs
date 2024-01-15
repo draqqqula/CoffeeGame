@@ -31,8 +31,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeProject.Levels
 {
-    public class TestLevel3 : GameLevel
+    public class Dungeon2 : GameLevel, IDungeonLevel
     {
+        private LevelArgs _levelArgs;
         protected override LevelSettings GetDefaults()
         {
             var settings = new LevelSettings
@@ -43,20 +44,15 @@ namespace CoffeeProject.Levels
         }
 
         private Image Vignette { get; set; }
-        private Vector2 PlayerPosition { get; set; } = Vector2.Zero;
         private BuildConfiguration BuildConfiguration { get; set; }
 
-        class PlayerSpawnerEncounter(TestLevel3 level) : Encounter
-        {
-            private TestLevel3 Level { get; init; } = level;
-            public override void Invoke(IControllerProvider state, Vector2 position, Room room)
-            {
-                Level.PlayerPosition = position;
-            }
-        }
+        public int Level => 2;
+
+        public Vector2 PlayerPosition { get; set; } = Vector2.Zero;
 
         protected override void Initialize(IControllerProvider state, LevelArgs arguments)
         {
+            _levelArgs = arguments;
             Vignette = state.Using<IFactoryController>().CreateObject<Image>()
             .SetPlacement(new Placement<TintLayer>())
             .SetTexture("vignette")
@@ -84,15 +80,16 @@ namespace CoffeeProject.Levels
                 .AddToState(state);
 
             var mapper = new EncounterMapper();
-            mapper.AddEncounter<BlazeEnemyEncounter>();
-            mapper.AddEncounter<ShellEnemyEncounter>();
-            mapper.AddEncounter<BossSpawnerEncounter>();
-            mapper.AddEncounter<PetalyEnemyEncounter>();
-            mapper.AddEncounter<HealingItemEncounter>();
+            mapper.AddEncounter(new BlazeEnemyEncounter(Level));
+            mapper.AddEncounter(new ShellEnemyEncounter(Level));
+            mapper.AddEncounter(new BossSpawnerEncounter(Level));
+            mapper.AddEncounter(new PetalyEnemyEncounter(Level));
+            mapper.AddEncounter(new HealingItemEncounter(Level));
+            mapper.AddEncounter(new ShopItemEncounter(Level));
             mapper.AddEncounter("PlayerSpawnerEncounter", new PlayerSpawnerEncounter(this));
 
             state.Using<IDungeonController>().CreateDungeon(
-                new DungeonParameters("TestLevel", 1, 4, 4),
+                new DungeonParameters("Dungeon2", 4, 8, 8),
                 new TileMapParameters("level1", 324, 0.2f, "level"),
                 mapper
                 );
@@ -114,7 +111,27 @@ namespace CoffeeProject.Levels
                 .SetPos(client.Window.Size.ToVector2() / 2);
 
             var builder = new CharacterBuilder();
-            builder.Build(state, BuildConfiguration, client, PlayerPosition);
+            var obj = builder.Build(state, BuildConfiguration, client, PlayerPosition, _levelArgs);
+            state.Using<IFactoryController>()
+            .CreateObject<DynamicLabel>()
+            .SetPlacement(new Placement<GUI>())
+            .UseFont(state, "Caveat")
+            .SetPivot(PivotPosition.CenterLeft)
+            .SetScale(0.4f)
+            .SetText(() => obj.Stats.Currency.ToString() + " оп.")
+            .SetPos(new Vector2(103, 153))
+            .SetColor(Color.Black)
+            .AddToState(state);
+            state.Using<IFactoryController>()
+            .CreateObject<DynamicLabel>()
+            .SetPlacement(new Placement<GUI>())
+            .UseFont(state, "Caveat")
+            .SetPivot(PivotPosition.CenterLeft)
+            .SetScale(0.4f)
+            .SetText(() => obj.Stats.Currency.ToString() + " оп.")
+            .SetPos(new Vector2(100, 150))
+            .SetColor(Color.White)
+            .AddToState(state);
         }
 
         protected override void OnDisconnect(IControllerProvider state, GameClient client)

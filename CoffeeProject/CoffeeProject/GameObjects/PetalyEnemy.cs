@@ -50,9 +50,13 @@ namespace CoffeeProject.GameObjects
 
             if ((targetPosition - unit.Position).Length() < 600)
             {
-                timer.OnLoop("attack", TimeSpan.FromSeconds(0.7), () => PetalyAttack.CreateAttack(state,
-                target.GetComponents<IBodyComponent>().First().Position +
-                target.GetComponents<Physics>().First().GetResultingVector(TimeSpan.FromSeconds(0.2)), unit.GetComponents<Dummy>().First()));
+                timer.OnLoop("attack", TimeSpan.FromSeconds(0.7), () =>
+                {
+                    PetalyAttack.CreateAttack(state,
+                    target.GetComponents<IBodyComponent>().First().Position +
+                    target.GetComponents<Physics>().First().GetResultingVector(TimeSpan.FromSeconds(0.2)), unit.GetComponents<Dummy>().First(), unit.Level);
+                    unit.InvokeAttack(state, target);
+                });
             }
             return true;
         }
@@ -195,16 +199,13 @@ namespace CoffeeProject.GameObjects
     [SpriteSheet("petaly")]
     public class PetalyEnemy : Sprite, IEnemy, IMultiBehaviorComponent, IUpdateComponent
     {
+        public int Level { get; set; } = 1;
         public PetalyEnemy(IAnimationProvider provider) : base(provider)
         {
             this.CombineWith(
     new Physics(
     new SurfaceMap([], 0, 1)
     ));
-            this.CombineWith(
-                new Dummy(
-                16, [], Team.enemy, [], [], 1
-                ));
             var unit = new Unit<PetalyEnemy, GameObject>();
             this.CombineWith(
                 new TimerHandler());
@@ -229,7 +230,11 @@ namespace CoffeeProject.GameObjects
         }
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
-
+        public event Action<IControllerProvider, GameObject> OnAttack = delegate { };
+        public void InvokeAttack(IControllerProvider state, GameObject target)
+        {
+            OnAttack(state, target);
+        }
         public void SetTarget(IControllerProvider state, GameObject target)
         {
             this.InvokeEach<Unit<PetalyEnemy, GameObject>>(it => it.SetTarget(state, target, this));
@@ -244,6 +249,20 @@ namespace CoffeeProject.GameObjects
 
             if (!dummy.IsAlive)
             {
+                var memory = state.Using<IFactoryController>()
+                .CreateObject<ExperienceDrop>()
+                .SetPlacement(new Placement<MainLayer>())
+                .SetPos(Position)
+                .AddShadow(state)
+                .SetBounds(new Rectangle(-7, -15, 15, 15))
+                .AddToState(state);
+                var target = GetComponents<Unit<PetalyEnemy, GameObject>>().First().Target;
+                if (target is null)
+                {
+                    return;
+                }
+                memory.Target = target.GetComponents<IBodyComponent>().First();
+                memory.Amount = 15 + Level * 5;
                 Dispose();
             }
         }

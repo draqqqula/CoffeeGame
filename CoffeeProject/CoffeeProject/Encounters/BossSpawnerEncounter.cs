@@ -18,6 +18,10 @@ namespace CoffeeProject.Encounters
 {
     public class BossSpawnerEncounter : Encounter
     {
+        public BossSpawnerEncounter(int level) : base(level)
+        {
+        }
+
         public override void Invoke(IControllerProvider state, Vector2 position, Room room)
         {
             var spawner = state.Using<IFactoryController>()
@@ -27,6 +31,7 @@ namespace CoffeeProject.Encounters
                 .SetPlacement(Placement<MainLayer>.On())
                 .AddShadow(state)
                 .AddToState(state);
+            spawner.Level = Level;
             spawner.InvokeEach<Physics>(it => it.SurfaceMap = state.Using<SurfaceMapProvider>().GetMap("level"));
             room.Trigger.PlayerDetected += (player) => spawner.Target = player;
         }

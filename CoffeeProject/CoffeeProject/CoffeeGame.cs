@@ -66,7 +66,8 @@ namespace CoffeeProject
             _app.Configurations.AddConfiguration(CollisionExtensions.ConfigureCollisionHandler);
             _app.Configurations.AddConfiguration(DungeonExtensions.ConfigureDungeonController);
 
-            _app.LevelManager.LoadAs<TestLevel3>("test");
+            _app.LevelManager.LoadAs<Dungeon1>("test");
+            _app.LevelManager.LoadAs<Dungeon2>("dungeon2");
             _app.LevelManager.LoadAs<PauseMenu>("pause");
             _app.LevelManager.LoadAs<RemoteLevel>("connect");
             _app.LevelManager.LoadAs<MainMenu>("menu");

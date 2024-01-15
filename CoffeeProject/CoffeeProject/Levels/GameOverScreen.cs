@@ -37,7 +37,7 @@ namespace CoffeeProject.Levels
                 .SetPos(new Vector2(700, 400))
                 .AddComponent(new ButtonAction(() =>
                 {
-                    state.Using<ILevelController>().RestartLevel("test");
+                    state.Using<ILevelController>().RestartLevel("test", arguments);
                     state.Using<ILevelController>().ShutCurrent(false);
                 }))
                 .AddToState(state);

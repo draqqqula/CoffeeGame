@@ -6,12 +6,14 @@ using MagicDustLibrary.Display;
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Logic.Behaviors;
 using MagicDustLibrary.Logic.Controllers;
+using MagicDustLibrary.Organization;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CoffeeProject.GameObjects
@@ -71,7 +73,14 @@ namespace CoffeeProject.GameObjects
                 Dispose();
                 if (Target is Hero hero)
                 {
-                    state.Using<ILevelController>().LaunchLevel("memory", false);
+                    var newArgs = new List<string>();
+                    var oldArgs = hero.LevelArgs;
+                    foreach (var arg in oldArgs.Data)
+                    {
+                        newArgs.Add(arg);
+                    }
+                    newArgs.Add(JsonSerializer.Serialize(hero.Stats));
+                    state.Using<ILevelController>().LaunchLevel("memory", new LevelArgs(newArgs.ToArray()), false);
                 }
             }
         }

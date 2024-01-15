@@ -2,6 +2,7 @@
 using MagicDustLibrary.Logic;
 using MagicDustLibrary.Organization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace MagicDustLibrary.Factorys
         }
         public T CreateObject<T>() where T : ComponentBase
         {
-            _services.AddTransient<T>();
+            _services.TryAddTransient<T>();
             var provider = _factory.CreateServiceProvider(_services);
             return provider.GetService<T>();
         }

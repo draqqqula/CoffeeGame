@@ -20,6 +20,7 @@ namespace CoffeeProject.GameObjects
     {
         private const float SineSpeed = 2f;
         private const float SineAmplitude = 25;
+        public int Amount { get; set; } = 5;
 
         public event Action<IControllerProvider, TimeSpan, IMultiBehaviorComponent> OnAct = delegate { };
 
@@ -33,7 +34,7 @@ namespace CoffeeProject.GameObjects
         public void OnCollisionWith(IControllerProvider state, TimeSpan deltaTime, Hero obj, Rectangle intersection)
         {
             var dummy = obj.GetComponents<Dummy>().First();
-            dummy.RecieveHealing(5);
+            dummy.RecieveHealing(Amount);
             Dispose();
         }
 

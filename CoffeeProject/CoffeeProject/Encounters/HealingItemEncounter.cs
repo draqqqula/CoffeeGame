@@ -15,6 +15,10 @@ namespace CoffeeProject.Encounters
 {
     public class HealingItemEncounter : Encounter
     {
+        public HealingItemEncounter(int level) : base(level)
+        {
+        }
+
         public override void Invoke(IControllerProvider state, Vector2 position, Room room)
         {
             state.Using<IFactoryController>()
@@ -23,7 +27,7 @@ namespace CoffeeProject.Encounters
                 .SetBounds(new Rectangle(-20, -20, 40, 40))
                 .SetPos(position)
                 .AddShadow(state)
-                .AddToState(state);
+                .AddToState(state).Amount = 3 + Level * 2;
         }
     }
 }

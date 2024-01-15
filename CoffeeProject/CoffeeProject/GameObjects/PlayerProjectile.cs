@@ -1,6 +1,7 @@
 ﻿using BehaviorKit;
 using CoffeeProject.Behaviors;
 using CoffeeProject.Collision;
+using CoffeeProject.CustomNodes;
 using CoffeeProject.Layers;
 using CoffeeProject.SurfaceMapping;
 using MagicDustLibrary.CommonObjectTypes;
@@ -71,15 +72,17 @@ namespace CoffeeProject.GameObjects
         protected override DrawingParameters DisplayInfo => base.DisplayInfo with { Scale = new Vector2(0.6f, 0.6f), OrderComparer = Position.ToPoint().Y };
 
         private const float Speed = 10;
-        public static PlayerProjectile ShootProjectile(IControllerProvider state, Vector2 position, Direction vector, Dummy owner, string weapon)
+        public static PlayerProjectile ShootProjectile(IControllerProvider state, Vector2 position, Direction vector, Dummy owner, string weapon, int physicalDamageAmount, DamageType element, int ElementDamageAmount)
         {
             var map = state.Using<SurfaceMapProvider>().GetMap("level");
             var damages = new Dictionary<DamageType, int>
             {
-                { DamageType.Physical, 5 }
+                { DamageType.Physical, physicalDamageAmount },
+                { element, ElementDamageAmount }
             };
             var physics = new Physics(map);
             var timerHandler = new TimerHandler();
+            var random = new Random();
             physics.AddVector("move", new MovementVector(Speed * vector.ToPoint().ToVector2(), 0, TimeSpan.FromSeconds(4), false));
             var obj = state.Using<IFactoryController>()
                 .CreateObject<PlayerProjectile>()
@@ -88,11 +91,12 @@ namespace CoffeeProject.GameObjects
                 .SetPlacement(new Placement<MainLayer>())
                 .AddShadow(state)
                 .AddComponent(physics)
+                .AddComponent(new ElementFilter(element))
                 .AddComponent(timerHandler)
                 .AddToState(state);
             obj.Animator.SetAnimation((vector.ToString() + "_" + weapon).Replace("Forward_Arrow", "Default"), 0);
             timerHandler.SetTimer("dispose", 4, obj.Dispose, true);
-            return obj.UseDamage(new DamageInstance(damages, Team.player, [], "DamageBall", owner, [], [(target, dmg) =>
+            return obj.UseDamage(new DamageInstance(damages, Team.player, [], $"PlayerDamage{random.Next()}", owner, [], [(target, dmg) =>
             {
                 obj.Dispose();
                 return dmg;

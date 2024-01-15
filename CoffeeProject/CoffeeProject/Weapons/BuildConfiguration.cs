@@ -19,7 +19,8 @@ namespace CoffeeProject.Weapons
     {
         [PartDescription("огнем")][NamePart("тем")] Fire,
         [PartDescription("льдом")][NamePart("ко")] Ice,
-        [PartDescription("молнией")][NamePart("сен")] Lightning
+        [PartDescription("светом")][NamePart("сен")] Light,
+        [PartDescription("тьмой")][NamePart("кад")] Dark
     }
 
     public enum ChosenAbility
